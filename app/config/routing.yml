@@ -1,0 +1,85 @@
+# Used for Oauth login to manage callback URI
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /{_locale}/connect
+    requirements:
+        _locale: en|fr    
+
+# Used in 1 and 2 (see above hwi_oauth_connect). Not needed for Oauth login as {{ render(controller('HWIOAuthBundle:Connect:Connect', {'request' : app.request})) }}
+# is directly used in the login page.
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    #prefix:   /{_locale}/login-oauth
+    #prefix:   /{_locale}/login
+    prefix:   /{_locale}/connect
+    requirements:
+        _locale: en|fr      
+
+# 1 - Used to connect FBN account to Oauh account if user log with Oauth being already logged with his
+# FBN account (Provider ID is added to DB).
+# 2 - Also used to create a new FBN account when a user log with Oauth and that no user with same Provider ID or
+# same email already exists. If user already exists with same email, the Oauth ID is added to his account 
+# using FBNUserProvider
+hwi_oauth_connect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+    prefix:   /{_locale}/connect
+    requirements:
+        _locale: en|fr     
+
+google_login:
+    pattern: /{_locale}/login/check-google
+    requirements:
+        _locale: en|fr
+
+facebook_login:
+    pattern: /{_locale}/login/check-facebook
+    requirements:
+        _locale: en|fr         
+
+FBNGuideBundle:
+    resource: "@FBNGuideBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr     
+
+FBNUserBundle:
+    resource: "@FBNUserBundle/Resources/config/routing.yml"
+    prefix:   /{_locale}/profile
+    requirements:
+        _locale: en|fr          
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    prefix:   /{_locale}
+    requirements:
+        _locale: en|fr        
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /{_locale}/profile
+    requirements:
+        _locale: en|fr    
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /{_locale}/register
+    requirements:
+        _locale: en|fr       
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /{_locale}/resetting
+    requirements:
+        _locale: en|fr       
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /{_locale}/profile
+    requirements:
+        _locale: en|fr      
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

@@ -1,0 +1,5 @@
+{% set flash = 'resetting.check_email' | trans({'%email%': email}, 'FOSUserBundle') %}
+
+{{ app.session.flashBag.add('success', flash) }}
+	
+{{ render(controller('FBNGuideBundle:Guide:accueil')) }}

@@ -1,0 +1,42 @@
+parameters:
+
+#   fbn_guide.map
+
+#   zoom de proximité restos / evenements
+    fbn_guide.map.zoom_close : 15
+#   zoom vigneron si un seul marker    
+    fbn_guide.map.zoom_vigneron : 10
+#   affichage google maps world    
+    fbn_guide.map.world_dim_height : 256
+    fbn_guide.map.world_dim_width : 256
+#   zoom maxi google maps        
+    fbn_guide.map.zoom_max : 21
+#   dimension de l'element d'affichage de la carte        
+    fbn_guide.map.map_dim_height : 300
+    fbn_guide.map.map_dim_width : 300
+
+services:
+#    fbn_guide.example:
+#        class: %fbn_guide.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    fbn_guide.menu_builder:
+        class: FBN\GuideBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory"]
+
+    fbn_guide.menu.main:
+        class: Knp\Menu\MenuItem # the service definition requires setting the class
+        factory_service: fbn_guide.menu_builder
+        factory_method: createMainMenu
+        arguments: ["@request"]
+        scope: request # needed as we have the request as a dependency here
+        tags:
+            - { name: knp_menu.menu, alias: main } # The alias is what is used to retrieve the menu
+
+    fbn_guide.map:
+        class : FBN\GuideBundle\Map\Map
+        arguments: [%fbn_guide.map.zoom_close%, %fbn_guide.map.zoom_vigneron%, %fbn_guide.map.world_dim_height%, %fbn_guide.map.world_dim_width%, %fbn_guide.map.zoom_max%,%fbn_guide.map.map_dim_height%, %fbn_guide.map.map_dim_width%]
+
+    fbn_guide.bookmark_manager:
+        class : FBN\GuideBundle\Bookmark\BookmarkManager
+        arguments: [@security.token_storage, @doctrine.orm.entity_manager, @session]

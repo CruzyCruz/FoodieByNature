@@ -1,0 +1,39 @@
+{# app/Resources/views/layout.html.twig #}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    {{ render(controller('FBNUserBundle:User:authenticityCSRFToken')) }}    
+
+    <title>{% block title %}Foodie By Nature{% endblock %}</title> 
+
+  <body>
+
+    <header>
+      {% block header %}
+      {% endblock   %}
+    </header>
+
+    <div id="content">
+      {% block body %}
+      {% endblock   %}
+    </div>
+
+    <footer>
+      {% block footer %}
+      {% endblock   %}
+      
+    </footer>
+
+    {% block javascripts %}
+      <script type="application/javascript" src="{{ asset('js/jquery-1.11.3.js') }}"></script>
+      <script type="application/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+      <script type="application/javascript" src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>    
+      <script type="application/javascript" src="{{ asset('js/fbn-main.js') }}"></script>
+    {% endblock %}
+
+
+  </body>
+</html>

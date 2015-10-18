@@ -1,0 +1,52 @@
+# src/FBN/GuideBundle/Resources/config/routing.yml
+
+fbn_guide_accueil:
+    path:  /
+    defaults: { _controller: FBNGuideBundle:Guide:accueil }
+
+fbn_guide_articles:
+    path:  /{articles}
+    defaults: { _controller: FBNGuideBundle:Guide:articles }
+    requirements : 
+        articles : infos|restaurants|vignerons|evenements|tutoriels|cavistes
+
+fbn_guide_restaurants:
+    path:  /restaurants/{slug}
+    defaults: { _controller: FBNGuideBundle:Guide:restaurant }
+
+fbn_guide_vignerons:
+    path:  /vignerons/{slug}
+    defaults: { _controller: FBNGuideBundle:Guide:vigneron }
+
+fbn_guide_evenements:
+    path:  /evenements/{slug}
+    defaults: { _controller: FBNGuideBundle:Guide:evenement }
+
+fbn_guide_tutoriels:
+    path:  /tutoriels/{slug}
+    defaults: { _controller: FBNGuideBundle:Guide:tutoriel }
+
+fbn_guide_cavistes:
+    path:  /cavistes/{slug}
+    defaults: { _controller: FBNGuideBundle:Guide:caviste }
+
+fbn_guide_favoris:
+    path:  /favoris
+    defaults: { _controller: FBNGuideBundle:Guide:favoris }
+
+fbn_guide_favoris_manage:
+    path:  /favoris/manage
+    defaults: { _controller: FBNGuideBundle:Guide:favoriManage }
+    options:
+        expose: true
+    requirements:
+        _method:  POST
+
+#fbn_guide_favoris_delete:
+#    path:  /favoris/delete
+#    defaults: { _controller: FBNGuideBundle:Guide:favoriDelete }
+#    options:
+#        expose: true
+#    requirements:
+#        _method:  POST        
+

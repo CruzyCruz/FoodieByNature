@@ -1,0 +1,8 @@
+<div>
+    {% if HWIerror is defined and HWIerror %}
+        <span>{{ HWIerror }}</span>
+    {% endif %}
+    {% for owner in hwi_oauth_resource_owners() %}
+    <a href="{{ hwi_oauth_login_url(owner) }}">{{ owner | trans({}, 'HWIOAuthBundle') }}</a> <br />
+    {% endfor %}
+</div>	

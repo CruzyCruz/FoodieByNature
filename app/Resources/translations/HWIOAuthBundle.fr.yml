@@ -1,0 +1,15 @@
+header:
+    connecting: Connexion en cours
+    success: Connexion réussie avec le compte '%name%' !
+    register: S'inscrire avec le compte '%name%'
+    registration_success: Enregistrement et connexion du compte '%username%' réussis !
+    oauth_id_success: Vous êtes inscrits sur FBN avec la même adresse email que celle de votre compte %resource_owner_name%. Ces deux comptes ont été connectés.
+
+connect:
+    confirm:
+        cancel: Annuler
+        submit: Connecter le compte
+        text: Êtes-vous sûr de vouloir connecter votre compte %service% avec votre compte '%name%' ?
+    registration:
+        cancel: Annuler
+        submit: Enregistrer le compte

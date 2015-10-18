@@ -1,0 +1,181 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: "%locale%" }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+
+# Assetic Configuration
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: false
+    bundles:        [ ]
+    #java: /usr/bin/java
+    filters:
+        cssrewrite: ~
+        #closure:
+        #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
+        #yui_css:
+        #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   "%database_driver%"
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver, add the path in parameters.yml
+        # e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        # path:     "%database_path%"
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        #auto_mapping: true
+        entity_managers:
+            default:
+                auto_mapping: true
+                mappings:
+                    gedmo_translatable:
+                        type: annotation
+                        prefix: Gedmo\Translatable\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+                        alias: GedmoTranslatable # this one is optional and will default to the name set for the mapping
+                        is_bundle: false           
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: "%mailer_transport%"
+    #host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    #spool:     { type: memory }
+
+
+# Stof Doctrine Extensions Configuration
+stof_doctrine_extensions:
+    default_locale: fr
+    translation_fallback: true
+    orm:
+        default:
+            timestampable: true
+            sluggable: true
+            translatable: true      
+
+# Knp Menu Configuration
+knp_menu:
+    twig:
+        template: FBNGuideBundle:Menu:knp_menu.html.twig            
+
+# FOS User Configuration
+fos_user:
+    db_driver:     orm                       # Le type de BDD à utiliser, nous utilisons l'ORM Doctrine depuis le début
+    firewall_name: main                      # Le nom du firewall derrière lequel on utilisera ces utilisateurs
+    user_class:    FBN\UserBundle\Entity\User # La classe de l'entité User que nous utilisons
+    registration:
+        confirmation:
+            enabled:    true   
+    from_email:
+        address:        noreply@fbn.com
+        sender_name:    Foodie By Nature  
+    #service:
+    #    user_manager: fbn_user.user_manager           
+
+# HWIOauth Configuration
+hwi_oauth:
+    # name of the firewall in which this bundle is active, this setting MUST be set
+    firewall_name: main
+
+    # an optional setting to configure a query string parameter which can be used to redirect
+    # the user after authentication, e.g. /connect/facebook?_destination=/my/destination will
+    # redirect the user to /my/destination after facebook authenticates them.  If this is not
+    # set then the user will be redirected to the original resource that they requested, or
+    # the base address if no resource was requested.  This is similar to the behaviour of
+    # [target_path_parameter for form login](http://symfony.com/doc/2.0/cookbook/security/form_login.html).
+    # target_path_parameter: fbn_guide_accueil
+
+    # an optional setting to use the HTTP REFERER header to be used in case no
+    # previous URL was stored in the session (i.e. no resource was requested).
+    # This is similar to the behaviour of
+    # [using the referring URL for form login](http://symfony.com/doc/2.0/cookbook/security/form_login.html#using-the-referring-url).
+    # use_referer: true
+
+    # here you will add one (or more) configurations for resource owners
+    # and other settings you want to adjust in this bundle, just checkout the list below!    
+
+    resource_owners:
+        google:
+            type:                google
+            client_id:           936954419013-ltnlnlgiqnk7kbe08dsd0bn80mn7e0l9.apps.googleusercontent.com
+            client_secret:       lbqByzfxpZ6ovG90iR0iz7OO       
+            scope:               "email profile"
+
+        facebook:
+            type:                facebook
+            client_id:           809025625845970
+            client_secret:       be349cf137b47bd11a16224474c612a4            
+            scope:               "email public_profile"
+
+    # When connexion with FOSUserBundle is activated, and registration form is displayed
+    # username automatic proposal in username form field
+    fosub:
+        # try 30 times to check if a username is available (foo, foo1, foo2 etc)
+        username_iterations: 30
+
+        # mapping between resource owners (see below) and properties
+        properties:
+            google: googleId
+            facebook: facebookId
+
+    # Used to register using Oauth login => redirection to pre-filled registration page if first connexion with this Provider ID
+    # Also used to connect FBN account to Oauh account if user log with Oauth being already logged with his
+    # FBN account (Provider ID is added to DB). If "confirmation : true"  (or "connect: ~" and #confirmation) confirmation is asked (connect_confirm.html.twig -> connect_success.html.twig)
+    # If "confirmation : false" ,default, no confirmation (connect_success.html.twig)
+    connect: 
+        confirmation: true
+        #account_connector: fbn_user.provider.fosub_bridge
+        #registration_form_handler: hwi_oauth.registration.form.handler.fosub_bridge
+        #registration_form: fos_user.registration.form
+
+# Liip Configuration
+liip_imagine:
+
+    filter_sets:
+        thumb_outbound:
+            filters:
+                thumbnail: { size: [224, 149], mode: outbound }
+
+
+# Avalanche Imagine Configuration
+#avalanche_imagine:
+#    filters:
+#        thumb:
+#            type: thumbnail
+#            options: { size: [224, 149], mode: outbound }

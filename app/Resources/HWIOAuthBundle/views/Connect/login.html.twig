@@ -1,0 +1,46 @@
+{#  On vérifie que l'utilisateur n'essaie pas d'afficher uniquement la partie Oauth de la page de login (route de login du HWIOAauthBundle) sinon on le renvoie à la page de login sandard #}
+
+{#{% if app.request.get('_route') == 'hwi_oauth_connect' %}
+    
+	{{ render(controller('FOSUserBundle:Security:login', {'request' : app.request})) }}
+
+{% else %}#}
+
+	{#<div>
+	    {% if error is defined and error %}
+	        <span>{{ error }}</span>
+	    {% endif %}
+	    {% for owner in hwi_oauth_resource_owners() %}
+	    <a href="{{ hwi_oauth_login_url(owner) }}">{{ owner | trans({}, 'HWIOAuthBundle') }}</a> <br />
+	    {% endfor %}
+	</div>#}
+
+{#{% endif %}#}
+
+{#  Cette page est appelée quand l'utilisateut à demander cliquer sur le lien de login Oauth dans la page de login ou de register (route : 'hwi_oauth_connect'). Si une erreur se produit le message doit être affiché sur la page initialement demandée #}
+
+{#{% set referer = app.request.headers.get('referer') %}	#}
+
+{#{% if referer == null or referer == path('fos_user_security_login') %}	
+
+	{% include 'FOSUserBundle:Security:login.html.twig' %}
+
+{% elseif referer == path('fos_user_registration_register') %}
+
+	{% include 'FOSUserBundle:Registration:register.html.twig' %}
+
+{% endif %}#}
+
+
+	{#<div>
+		<span>REFERER : {{referer}}</span>
+
+	    {% if error is defined and error %}
+	        <span>{{ error }}</span>
+	    {% endif %}
+	    {% for owner in hwi_oauth_resource_owners() %}
+	    <a href="{{ hwi_oauth_login_url(owner) }}">{{ owner | trans({}, 'HWIOAuthBundle') }}</a> <br />
+	    {% endfor %}
+	</div>#}
+
+{% include 'FOSUserBundle:Security:login.html.twig' %}	

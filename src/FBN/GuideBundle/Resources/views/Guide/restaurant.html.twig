@@ -1,0 +1,103 @@
+{# src/FBN/GuideBundle/Resources/views/restaurant.html.twig #}
+
+{% extends "FBNGuideBundle::layout.html.twig" %}
+
+
+{% block title %}
+	{{ restaurant.nom }}
+{% endblock %}
+
+{% block body %}
+
+{% set  entiteId = restaurant.id %} 
+{% include 'FBNGuideBundle:Guide:entite-bookmark-manage.html.twig' %}
+
+<h1>{{ restaurant.nom }}</h1>
+
+  {% if restaurant.caviste is not null %}
+    <p>[<a href="{{ path('fbn_guide_cavistes', {'slug': restaurant.caviste.slug} ) }}">LA CAVE DU RESTO</a>]</p>
+  {% endif %}  
+
+<h3>STYLE : </h3>
+  <p>
+  {% for styles in restaurant.restaurantStyle %}
+    {{ styles.style }}
+  {% endfor %}
+  </p>
+
+<h3>BONUS : </h3>
+  <p>
+  {% for bonuss in restaurant.restaurantBonus %}
+    {{ bonuss.bonus }}
+  {% endfor %}
+  </p>  
+
+<h3>COMBIEN : </h3>
+  <p>{{ restaurant.restaurantPrix.prix }}</p> 
+
+  <h3>HORAIRES : </h3>
+
+  <p>{{ restaurant.horaires }}</p> 
+
+  {% if restaurant.image is not null %}
+    <img 
+      src="{{ asset(restaurant.image.webPath) }}"
+      alt="{{ restaurant.nom }}"
+    />
+  {% endif %}    
+
+  <p>{{ restaurant.description }}</p>  
+
+  <h3>PAR ICI : </h3>
+
+  <p>     
+    {% if restaurant.coordonnees.coordonneesFR.divers is not null %}
+      {{ restaurant.coordonnees.coordonneesFR.divers }}
+    {% endif %}  
+    <br />  
+    {% if restaurant.coordonnees.coordonneesFR.voieNom is not null %}
+      {% if restaurant.coordonnees.coordonneesFR.voieNum is not null %}
+        {% set separateur = ', ' %}  
+      {% else %}
+        {% set separateur = '' %}  
+      {% endif %}      
+      {{ 
+      restaurant.coordonnees.coordonneesFR.voieNum ~ separateur ~
+      restaurant.coordonnees.coordonneesFR.coordonneesFRVoie.voie ~ ' ' ~
+      restaurant.coordonnees.coordonneesFR.voieNom
+      }}
+    {% endif %}
+    <br />
+    {% if restaurant.coordonnees.coordonneesFR.lieudit is not null %}
+      {{ restaurant.coordonnees.coordonneesFR.lieudit }}
+    {% endif %}  
+    <br />
+    {{ restaurant.coordonnees.coordonneesFR.codePostal ~ ' ' ~ restaurant.coordonnees.ville }}
+  </p>
+
+  {% if restaurant.tel is not null %}
+    <h3>ALLO : </h3>  
+    <p>{{ restaurant.tel }}</p>  
+  {% endif %}  
+
+  {% if restaurant.coordonnees.metro is not null %}
+    <h3>METRO : </h3>  
+    <p>{{ restaurant.coordonnees.metro }}</p> 
+  {% endif %}  
+
+  {% if restaurant.site is not null %}
+    <h3>SITE : </h3>
+    <a href="{{ restaurant.href }}">{{ restaurant.site }}</a> 
+  {% endif %}  
+
+  {{ google_map(map) }}
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}  
+
+  <script type="application/javascript" src="{{ asset('js/fbn-guide-bookmark-manage.js') }}"></script>
+{% endblock %}

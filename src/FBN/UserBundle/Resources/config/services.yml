@@ -1,0 +1,48 @@
+parameters:
+
+services:
+    fbn_user.redirect_listener:
+        class: FBN\UserBundle\EventListener\RedirectListener
+        arguments: [@router]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    fbn_user.flash_listener:
+        class: FBN\UserBundle\EventListener\FlashListener
+        arguments: [@session,@translator,@security.token_storage]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    fbn_user.hwioauth.flash_listener:
+        class: FBN\UserBundle\EventListener\HWIOauthFlashListener
+        arguments: [@session,@translator]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    fbn_user.hwioauth.flash_dispatcher:
+        class: FBN\UserBundle\Flash\HWIOauthFlashDispatcher
+        arguments: [@event_dispatcher]
+
+    fbn_user.logout_handler:
+        class: FBN\UserBundle\EventListener\LogoutHandler
+        arguments: [@session,@translator]
+
+    fbn_user.login_entry_point:
+        class: FBN\UserBundle\EventListener\LoginEntryPoint
+        arguments: [ @router ]
+
+    fbn_user.provider.fosub_bridge:
+        class: FBN\UserBundle\Security\Core\User\FBNUserProvider
+        arguments: [@fos_user.user_manager, {google: googleId, facebook: facebookId}, @fbn_user.hwioauth.flash_dispatcher]
+
+    fbn_user.already_loggedd_listener:
+        class: FBN\UserBundle\EventListener\AlreadyLoggedListener
+        arguments: [@security.token_storage,@security.authorization_checker,@event_dispatcher,@router]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    fbn_user.authenticity_csrf_token_listener:
+        class: FBN\UserBundle\EventListener\AuthenticityCSRFTokenListener
+        arguments: [@security.csrf.token_manager]
+        tags:
+            - { name: kernel.event_subscriber }
