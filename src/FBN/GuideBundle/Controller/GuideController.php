@@ -191,6 +191,7 @@ class GuideController extends Controller
 
     public function favorisAction()
     {
+        // User connexion is checked using custom LoginEntryPoint
         $userId = $this->getUser()->getId();
         $bookmarkManager = $this->container->get('fbn_guide.bookmark_manager');
         $favoriRepo = $this

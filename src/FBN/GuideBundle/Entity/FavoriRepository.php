@@ -26,6 +26,7 @@ class FavoriRepository extends EntityRepository
 
     public function getFavorisByEntite($userId, $entite)
     {
+        // Using join to only take data with correspondances
         $qb = $this->createQueryBuilder('f')
                     ->where('f.user = :user_id')
                     ->setParameter('user_id', $userId)
