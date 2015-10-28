@@ -42,11 +42,9 @@ fbn_guide_favoris_manage:
     requirements:
         _method:  POST
 
-#fbn_guide_favoris_delete:
-#    path:  /favoris/delete
-#    defaults: { _controller: FBNGuideBundle:Guide:favoriDelete }
-#    options:
-#        expose: true
-#    requirements:
-#        _method:  POST        
+fbn_guide_display_error_pages:
+    path:  /error/{statusCode}
+    defaults: { _controller: FBNGuideBundle:Guide:displayErrorPages }
+    options:
+        expose: true   
 

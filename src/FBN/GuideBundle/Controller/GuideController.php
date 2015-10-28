@@ -233,7 +233,18 @@ class GuideController extends Controller
         }
     }
 
-    // Fonction de comparaison des dates
+    /**
+     * Displays error pages when requested from JS.
+     *
+     * @param int $statusCode The HTTP header status code
+     *
+     * @return Response
+     */
+    public function displayErrorPagesAction($statusCode)
+    {
+        return $this->render('TwigBundle:Exception:error'.$statusCode.'.html.twig');
+    }
+
     public static function compareDate($a, $b)
     {
         $d1 = $a->getDatePublication();

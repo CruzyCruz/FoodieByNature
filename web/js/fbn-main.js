@@ -15,7 +15,7 @@ $.ajaxSetup({
     }
 });
 
-// Manage error code
+// Manage HTTP error code
 function manageErrorCode(status) {
     switch (status) {
         case 401:
@@ -23,9 +23,13 @@ function manageErrorCode(status) {
             window.location.replace(redirectUrl);
             break;
         case 403:
-            // Reload page from server
-            window.location.reload(true);
+            var redirectUrl = Routing.generate('fbn_guide_display_error_pages', { statusCode : status });
+            window.location.replace(redirectUrl);
             break;
+        case 404:
+            var redirectUrl = Routing.generate('fbn_guide_display_error_pages', { statusCode : status });
+            window.location.replace(redirectUrl);
+            break;            
         default:
             break;                     
     }
