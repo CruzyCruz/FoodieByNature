@@ -5,6 +5,8 @@ namespace FBN\GuideBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use FBN\GuideBundle\Entity\Article;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class GuideController extends Controller
 {
@@ -236,13 +238,24 @@ class GuideController extends Controller
     /**
      * Displays error pages when requested from JS.
      *
-     * @param int $statusCode The HTTP header status code
+     * @param int $statusCode The HTTP header status code.
      *
-     * @return Response
+     * @throws NotFoundHttpException if satus code is 404.
+     * @throws AccessDeniedException if satus code is 403.
+     * @throws NotFoundHttpException is user tries any other status code in adress bar.
      */
     public function displayErrorPagesAction($statusCode)
     {
-        return $this->render('TwigBundle:Exception:error'.$statusCode.'.html.twig');
+        switch ($statusCode) {
+            case 403:
+                throw new AccessDeniedException();
+                break;
+            case 404:
+                throw new NotFoundHttpException();
+                break;
+            default:
+                throw new NotFoundHttpException();
+        }
     }
 
     public static function compareDate($a, $b)
