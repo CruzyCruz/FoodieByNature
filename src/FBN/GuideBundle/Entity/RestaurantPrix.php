@@ -25,10 +25,10 @@ class RestaurantPrix
     /**
      * @var string
      *
-     * @ORM\Column(name="prix", type="string", length=255, unique=true)
+     * @ORM\Column(name="price", type="string", length=255, unique=true)
      * @Gedmo\Translatable
      */
-    private $prix;
+    private $price;
 
     /**
      * @var string
@@ -50,26 +50,26 @@ class RestaurantPrix
     }
 
     /**
-     * Set prix
+     * Set price
      *
-     * @param string $prix
+     * @param string $price
      * @return RestaurantPrix
      */
-    public function setPrix($prix)
+    public function setPrice($price)
     {
-        $this->prix = $prix;
+        $this->price = $price;
 
         return $this;
     }
 
     /**
-     * Get prix
+     * Get price
      *
      * @return string 
      */
-    public function getPrix()
+    public function getPrice()
     {
-        return $this->prix;
+        return $this->price;
     }
 
     /**
