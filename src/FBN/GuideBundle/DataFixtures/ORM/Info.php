@@ -15,7 +15,7 @@ class Info extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
     
-        $noms = array('La force est avec lui !', 'Un coffee shop en cachait un autre', 'Papier à mâcher', 'Bon grain !', 'Dis camion !', 'Encore un !', 'Rien ne l\'arrête !', 'Jurassique Arnal','Papier à mâcher', 'Top 50 !');
+        $names = array('La force est avec lui !', 'Un coffee shop en cachait un autre', 'Papier à mâcher', 'Bon grain !', 'Dis camion !', 'Encore un !', 'Rien ne l\'arrête !', 'Jurassique Arnal','Papier à mâcher', 'Top 50 !');
 
         $descriptions = array(
             'Après la Crèmerie la semaine dernière, David Lanher (Racines, Vivant, Stern, Noglu…) vient de s’offrir le Bon Saint Pourcain, rue Servandoni dans le 6e…',
@@ -30,7 +30,7 @@ class Info extends AbstractFixture implements OrderedFixtureInterface
             'Classé 17ème, Candelaria est le premier bar français à entrer dans les 50 meilleurs bars du monde. Classement établi par 334 professionnels du secteur, répartis dans 46 pays, et dévoilé dans Drinks International.',
             );
 
-        $nomsen = array('The force is with him!', 'A coffee shop in another hiding', 'Paper chewing', 'Good grain !', 'Dis camion !', 'Another one!', 'Nothing\'s stop!', 'Jurassic Arnal','Paper chewing', 'Top 50 !');
+        $namesen = array('The force is with him!', 'A coffee shop in another hiding', 'Paper chewing', 'Good grain !', 'Dis camion !', 'Another one!', 'Nothing\'s stop!', 'Jurassic Arnal','Paper chewing', 'Top 50 !');
 
         $descriptionsen = array(
             'After Creamery last week, David Lanher ( Roots , living, Stern, Noglu ... ) just to afford the Bon Saint Pourcain Servandoni street in the 6th ...',
@@ -50,12 +50,12 @@ class Info extends AbstractFixture implements OrderedFixtureInterface
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        foreach($noms as $i => $nom)
+        foreach($names as $i => $name)
         {
             $news[$i] = new Inf();
-            $news[$i]->setNom($nom);   
+            $news[$i]->setName($name);   
 
-            $repository->translate($news[$i], 'nom', 'en', $nomsen[$i]);          
+            $repository->translate($news[$i], 'name', 'en', $namesen[$i]);          
         }   
 
         foreach($descriptions as $i => $description)

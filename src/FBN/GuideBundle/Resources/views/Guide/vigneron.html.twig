@@ -3,7 +3,7 @@
 {% extends "FBNGuideBundle::layout.html.twig" %}
 
 {% block title %}
-	{{ vigneron.nom }}
+	{{ vigneron.name }}
 {% endblock %}
 
 {% block body %}
@@ -11,12 +11,12 @@
 {% set  entiteId = vigneron.id %} 
 {% include 'FBNGuideBundle:Guide:entite-bookmark-manage.html.twig' %}
 
-<h1>{{ vigneron.nom }}</h1>
+<h1>{{ vigneron.name }}</h1>
 
 {% if vigneron.image is not null %}
   <img 
     src="{{ asset(vigneron.image.webPath) }}"
-    alt="{{ vigneron.nom }}"
+    alt="{{ vigneron.name }}"
   />
 {% endif %}    
 

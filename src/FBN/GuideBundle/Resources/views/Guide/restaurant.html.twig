@@ -4,7 +4,7 @@
 
 
 {% block title %}
-	{{ restaurant.nom }}
+	{{ restaurant.name }}
 {% endblock %}
 
 {% block body %}
@@ -12,7 +12,7 @@
 {% set  entiteId = restaurant.id %} 
 {% include 'FBNGuideBundle:Guide:entite-bookmark-manage.html.twig' %}
 
-<h1>{{ restaurant.nom }}</h1>
+<h1>{{ restaurant.name }}</h1>
 
   {% if restaurant.caviste is not null %}
     <p>[<a href="{{ path('fbn_guide_cavistes', {'slug': restaurant.caviste.slug} ) }}">LA CAVE DU RESTO</a>]</p>
@@ -42,7 +42,7 @@
   {% if restaurant.image is not null %}
     <img 
       src="{{ asset(restaurant.image.webPath) }}"
-      alt="{{ restaurant.nom }}"
+      alt="{{ restaurant.name }}"
     />
   {% endif %}    
 

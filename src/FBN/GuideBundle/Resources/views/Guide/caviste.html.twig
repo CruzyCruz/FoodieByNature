@@ -3,7 +3,7 @@
 {% extends "FBNGuideBundle::layout.html.twig" %}
 
 {% block title %}
-	{{ sharedData.nom }}
+	{{ sharedData.name }}
 {% endblock %}
 
 {% block body %}
@@ -11,7 +11,7 @@
 {% set  entiteId = caviste.id %} 
 {% include 'FBNGuideBundle:Guide:entite-bookmark-manage.html.twig' %}  
 
-<h1>{{ sharedData.nom }}</h1>
+<h1>{{ sharedData.name }}</h1>
 
   {% if caviste.restaurant is not null %}
     <p>[<a href="{{ path('fbn_guide_restaurants', {'slug': sharedData.slug} ) }}">LE RESTO DU CAVISTE</a>]</p>
@@ -24,7 +24,7 @@
   {% if caviste.image is not null %}
     <img 
       src="{{ asset(caviste.image.webPath) }}"
-      alt="{{ caviste.nom }}"
+      alt="{{ caviste.name }}"
     />
   {% endif %}    
 

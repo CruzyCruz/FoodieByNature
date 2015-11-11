@@ -15,7 +15,7 @@ class Tutoriel extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
     
-        $noms = array('Le vin au naturel', 'La biodynamie', 'Les labels', 'La macération carbonique', 'Boire nature');
+        $names = array('Le vin au naturel', 'La biodynamie', 'Les labels', 'La macération carbonique', 'Boire nature');
 
         $descriptions = array(
             'Il existe en France environ 3000 vignerons, soit moins de 3% à l’échelle nationale, qui travaillent en bio, biodynamie ou de manière naturelle se démarquant ainsi des pratiques productivistes. Pour des raisons éthiques, ces vignerons ont choisi de travailler en utilisant des pratiques respectueuses de l’environnement ayant pour objectif de retrouver l’expression naturelle des terroirs et le caractère vivant du vin.',
@@ -29,7 +29,7 @@ class Tutoriel extends AbstractFixture implements OrderedFixtureInterface
 
         $rangs = array(0, 1, 2, 3, 4);
 
-        $nomsen = array('The natural wine', 'Biodynamics', 'Labels', 'Carbonic maceration', 'Drink Nature');
+        $namesen = array('The natural wine', 'Biodynamics', 'Labels', 'Carbonic maceration', 'Drink Nature');
 
         $descriptionsen = array(
             'There are about 3,000 wineries in France, less than 3% nationally, working in organic, biodynamic or naturally consequently achieve productivist practices. For ethical reasons, these wineries have chosen to work using environmentally friendly practices with the goal of finding the natural expression of terroir and character of the wine alive.',
@@ -49,11 +49,11 @@ class Tutoriel extends AbstractFixture implements OrderedFixtureInterface
             2
             );          
 
-        foreach($noms as $i => $nom)
+        foreach($names as $i => $name)
         {
             $tutoriel[$i] = new Tuto();
-            $tutoriel[$i]->setNom($nom); 
-            $repository->translate($tutoriel[$i], 'nom', 'en', $nomsen[$i]);           
+            $tutoriel[$i]->setName($name); 
+            $repository->translate($tutoriel[$i], 'name', 'en', $namesen[$i]);           
         }   
 
         foreach($descriptions as $i => $description)

@@ -35,7 +35,7 @@ class Vigneron extends Article
     private $id;
 
     /**
-     * @Gedmo\Slug(fields={"nom"}, prefix="vigneron-")
+     * @Gedmo\Slug(fields={"name"}, prefix="vigneron-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;      

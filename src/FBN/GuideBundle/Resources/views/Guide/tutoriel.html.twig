@@ -3,18 +3,18 @@
 {% extends "FBNGuideBundle::layout.html.twig" %}
 
 {% block title %}
-	{{ tutoriel.nom }}
+	{{ tutoriel.name }}
 {% endblock %}
 
 {% block body %}
 
 
-<h1>{{ tutoriel.nom  }}</h1>
+<h1>{{ tutoriel.name  }}</h1>
 
 {% if tutoriel.image is not null %}
   <img 
     src="{{ asset(tutoriel.image.webPath) }}"
-    alt="{{ tutoriel.nom }}"
+    alt="{{ tutoriel.name }}"
   />
 {% endif %}    
 

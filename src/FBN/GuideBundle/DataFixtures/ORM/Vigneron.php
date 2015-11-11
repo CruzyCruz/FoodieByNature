@@ -15,7 +15,7 @@ class Vigneron extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
     
-        $noms = array('Didier Barral', 'Marcel Lapierre', 'Elian Da Ros', 'Robert Plageoles', 'Jacques Selosse');
+        $names = array('Didier Barral', 'Marcel Lapierre', 'Elian Da Ros', 'Robert Plageoles', 'Jacques Selosse');
 
         $descriptions = array(
             'Didier Barral a parcouru un long chemin depuis son installation sur les schistes paternels de Lenthéric, au début des années 1990. En quête d’une expression authentique de son terroir, il ne ménage pas sa peine à la vigne. Aidé de son frère, Jean-Luc, ce vigneron obstiné a mis en place un mode de culture permettant de respecter l’écosystème, de favoriser les interactions entre règne végétal et animal, et de renforcer au plus loin l’immunité de la vigne. Côté cave, comme la vendange est très saine et les raisins d’excellente constitution, l’élevage est « biblique ». Après quelques risques pris il y a une dizaine d\'années, les vins sont revenus depuis 2003 à un niveau d\'exigence sans faille. Le Tradition est une entrée de gamme aux arômes personnalisés et aux tanins doux. Autour de la trilogie syrah, grenache, mourvèdre, le Jadis annonce la puissance du style Barral : un vin entier, mûr, qui parle en force mais très justement, avec une expression toujours un rien sauvage, et auquel l\'aération est bénéfique. Une utilisation minimale du soufre explique l’acidité volatile parfois haute sur les années de grande chaleur ; acidité qui, dans la cuvée Valinière, exalte les arômes cacaotés et poivrés de la syrah et du mourvèdre. Pas de vente directe à la propriété, mais les Barral communiquent volontiers les adresses de leurs cavistes fidèles. De par leur singularité, leur caractère profondément original et noblement paysan, les vins de Didier Barral font désormais partie des références essentielles du Languedoc.',
@@ -39,10 +39,10 @@ class Vigneron extends AbstractFixture implements OrderedFixtureInterface
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        foreach($noms as $i => $nom)
+        foreach($names as $i => $name)
         {
             $vnr[$i] = new Vnr();
-            $vnr[$i]->setNom($nom);            
+            $vnr[$i]->setName($name);            
         }           
 
         foreach($descriptions as $i => $description)

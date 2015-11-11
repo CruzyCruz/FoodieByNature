@@ -1,11 +1,11 @@
 <ul>
   {% for article in articles %}    
-  <a href="{{ path('fbn_guide_' ~ menu.entite | lower ~ 's', {'slug': article.slug} ) }}">{{ article.nom }}</a>
+  <a href="{{ path('fbn_guide_' ~ menu.entite | lower ~ 's', {'slug': article.slug} ) }}">{{ article.name }}</a>
 	<br />
     {% if article.image is not null %}
       <img 
         src="{{ asset( article.image.webPath | imagine_filter('thumb_outbound') ) }}"
-        alt="{{ article.nom }}"
+        alt="{{ article.name }}"
       />
     {% endif %}    
     <hr />    

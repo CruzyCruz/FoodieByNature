@@ -15,7 +15,7 @@ class Evenement extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
     
-        $noms = array('Yvon Métras au Temps des Vendanges', 'Repas Gastronomique à Toulouse', 'Sous les pavés, la vigne !', 'La remise', 'Yvon Métras au Temps des Vendanges', 'Repas Gastronomique à Toulouse', 'La remise', 'Déjeuner sur l\'herbe chez Robert Plageoles');
+        $names = array('Yvon Métras au Temps des Vendanges', 'Repas Gastronomique à Toulouse', 'Sous les pavés, la vigne !', 'La remise', 'Yvon Métras au Temps des Vendanges', 'Repas Gastronomique à Toulouse', 'La remise', 'Déjeuner sur l\'herbe chez Robert Plageoles');
         
 
         $descriptions = array(
@@ -57,7 +57,7 @@ class Evenement extends AbstractFixture implements OrderedFixtureInterface
 
         $useextsites = array(1,0,0,0,1,1,1,1);
 
-        $nomsen = array('Yvon Métras at Temps des Vendanges', 'Gourmet in Toulouse', 'Sous les pavés, la vigne !', 'La remise', 'Yvon Métras at Temps des Vendanges', 'Gourmet in Toulouse', 'La remise', 'Lunch on grass at Robert Plageoles');
+        $namesen = array('Yvon Métras at Temps des Vendanges', 'Gourmet in Toulouse', 'Sous les pavés, la vigne !', 'La remise', 'Yvon Métras at Temps des Vendanges', 'Gourmet in Toulouse', 'La remise', 'Lunch on grass at Robert Plageoles');
 
         $descriptionsen = array(
             'At Temps des Vendanges, this Saturday, September 13, tasting new wines and Beaujolais Fleurie Domaine Yvon Métras this year with the return of Fleurie "Spring".',
@@ -86,12 +86,12 @@ class Evenement extends AbstractFixture implements OrderedFixtureInterface
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        foreach($noms as $i => $nom)
+        foreach($names as $i => $name)
         {
             $evenement[$i] = new Evt();
-            $evenement[$i]->setNom($nom);    
+            $evenement[$i]->setName($name);    
 
-            $repository->translate($evenement[$i], 'nom', 'en', $nomsen[$i]);         
+            $repository->translate($evenement[$i], 'name', 'en', $namesen[$i]);         
         }   
 
         foreach($descriptions as $i => $description)

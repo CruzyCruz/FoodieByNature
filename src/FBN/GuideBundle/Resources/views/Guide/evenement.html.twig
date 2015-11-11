@@ -3,13 +3,13 @@
 {% extends "FBNGuideBundle::layout.html.twig" %}
 
 {% block title %}
-	{{ evenement.nom }}
+	{{ evenement.name }}
 {% endblock %}
 
 {% block body %}
 
 
-<h1>{{ evenement.nom }}</h1>
+<h1>{{ evenement.name }}</h1>
 
 <h3>TYPE : </h3>
   <p>{{ evenement.evenementType.type }}</p> 
@@ -18,7 +18,7 @@
 {% if evenement.image is not null %}
   <img 
     src="{{ asset(evenement.image.webPath) }}"
-    alt="{{ evenement.nom }}"
+    alt="{{ evenement.name }}"
   />
 {% endif %}  
 

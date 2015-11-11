@@ -77,7 +77,7 @@ class Caviste extends Article
     private $horaires;
 
     /**
-     * @Gedmo\Slug(fields={"nom"}, prefix="caviste-")
+     * @Gedmo\Slug(fields={"name"}, prefix="caviste-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
@@ -88,7 +88,7 @@ class Caviste extends Article
        
        if (null != $restaurant)
        {
-        $this->nom = $restaurant->getNom();
+        $this->name = $restaurant->getName();
        }
 
     }*/

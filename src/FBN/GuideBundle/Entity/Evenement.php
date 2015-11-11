@@ -127,7 +127,7 @@ class Evenement extends Article
     private $useExtSite;    
 
     /**
-     * @Gedmo\Slug(fields={"nom","annee"}, prefix="evenement-")
+     * @Gedmo\Slug(fields={"name","annee"}, prefix="evenement-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;   

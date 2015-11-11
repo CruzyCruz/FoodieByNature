@@ -19,10 +19,10 @@ abstract class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255, nullable = true)
+     * @ORM\Column(name="name", type="string", length=255, nullable = true)
      * @Gedmo\Translatable
      */
-    private $nom;
+    private $name;
 
     /**
      * @var string
@@ -77,27 +77,27 @@ abstract class Article
     }
 
     /**
-     * Set nom.
+     * Set name.
      *
-     * @param string $nom
+     * @param string $name
      *
      * @return Article
      */
-    public function setNom($nom)
+    public function setName($name)
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get nom.
+     * Get name.
      *
      * @return string
      */
-    public function getNom()
+    public function getName()
     {
-        return $this->nom;
+        return $this->name;
     }
 
     /**

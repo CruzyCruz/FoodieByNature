@@ -19,7 +19,7 @@ class ImageEvenement extends AbstractFixture implements OrderedFixtureInterface
 
         $chemin = __DIR__.'/../../../../../web/uploads/images/evenements';
 
-        $noms = array('evenement-yvon-metras-au-temps-des-vendanges-2013-il.jpg', 'evenement-repas-gastronomique-a-toulouse-2013-il.jpg', 'evenement-sous-les-paves-la-vigne-2014-il.jpg', 'evenement-la-remise-2013-il.jpg', 'evenement-yvon-metras-au-temps-des-vendanges-2014-il.jpg', 'evenement-repas-gastronomique-a-toulouse-2014-il.jpg', 'evenement-la-remise-2014-il.jpg', 'evenement-dejeuner-sur-l-herbe-chez-robert-plageoles-2014-il.jpg');
+        $names = array('evenement-yvon-metras-au-temps-des-vendanges-2013-il.jpg', 'evenement-repas-gastronomique-a-toulouse-2013-il.jpg', 'evenement-sous-les-paves-la-vigne-2014-il.jpg', 'evenement-la-remise-2013-il.jpg', 'evenement-yvon-metras-au-temps-des-vendanges-2014-il.jpg', 'evenement-repas-gastronomique-a-toulouse-2014-il.jpg', 'evenement-la-remise-2014-il.jpg', 'evenement-dejeuner-sur-l-herbe-chez-robert-plageoles-2014-il.jpg');
 
         $tailles = array(65536, 69632, 155648, 24576, 32768, 98304, 221184, 196608);
 
@@ -37,10 +37,10 @@ class ImageEvenement extends AbstractFixture implements OrderedFixtureInterface
             $imageevenement[$i]->setRang($rang);                        
         }
 
-        foreach($noms as $i => $nom)
+        foreach($names as $i => $name)
         {            
             $imageevenement[$i]->setChemin($chemin);
-            $imageevenement[$i]->setNom($nom);                        
+            $imageevenement[$i]->setName($name);                        
         }
 
         foreach($tailles as $i => $taille)

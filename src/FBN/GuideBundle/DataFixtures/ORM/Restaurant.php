@@ -15,7 +15,7 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
     
-        $noms = array('Le Temps des Vendanges', 'Naturellement', 'La Fine Mousse', 'Dix-Huit', 'Cantine California');
+        $names = array('Le Temps des Vendanges', 'Naturellement', 'La Fine Mousse', 'Dix-Huit', 'Cantine California');
 
         $descriptions = array(
             'Une apparition qui va combler les Bellevillois : un café moderne, toujours ouvert, avec terrasse sol y sombra, canapés et baby-foot. Valentin Bauer et Grégory Cossu ont dépouillé l’ancien café La Triplette, et rhabillé ce grand volume de parquet, de marbre et de miroirs. Ce qui dessine une belle tranche de boulevard pour petit-déjeuner avec œufs au bacon, bruncher le week-end, cocktailiser à la coule (pour seulement 5 € de 17 à 21 heures !) ou manger tout simplement… Ex-chef de Quedubon, Sofiane Saadi Haddad n’envoie que des petits plats bien foutus : bouillon du jour, harengs marinés, terrine de tête, poisson cru, burger à l’épaule de veau, mozza et pickles, riz au lait nappé de caramel au rhum, crumble pomme-framboise… Le tout servi sans temps morts par une équipe ardente comme un commando de marine. Mention spéciale pour le fish & chips : un beau morceau de cabillaud cuit en tempura et des frites avec la peau. Petite carte de vins estimables, au verre (3 à 5 €), en pichet et en bouteille : viognier Domaine des Salices, bourgueil Trinch des Breton, crozes-hermitage de Guigal, côtes-du-roussillon Le Petit Dernier… Formules 6-9 € (petit déjeuner), 12-16 € (midi, café offert), brunch 16 €, carte 19-28 €.',
@@ -62,10 +62,10 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        foreach($noms as $i => $nom)
+        foreach($names as $i => $name)
         {
             $restaurant[$i] = new Resto();
-            $restaurant[$i]->setNom($nom);            
+            $restaurant[$i]->setName($name);            
         }   
 
         foreach($descriptions as $i => $description)

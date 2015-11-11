@@ -104,7 +104,7 @@ class Restaurant extends Article
      *          @Gedmo\SlugHandlerOption(name="separator", value="-"),
      *          @Gedmo\SlugHandlerOption(name="urilize", value=true)   
      *      })
-     * }, separator="-", updatable=true, fields={"nom"}, prefix="restaurant-")
+     * }, separator="-", updatable=true, fields={"name"}, prefix="restaurant-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;  
@@ -303,7 +303,7 @@ class Restaurant extends Article
     {
         $this->caviste = $caviste;
         $caviste->setRestaurant($this);
-        $caviste->setNom($this->getNom()); 
+        $caviste->setName($this->getName()); 
 
         return $this;
     }

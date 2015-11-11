@@ -16,7 +16,7 @@ class Caviste extends AbstractFixture implements OrderedFixtureInterface
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $noms = array(null, 'Vinea', 'Le Tire Bouchon', 'Les Caves Augé', 'Les Zinzins du Vin');
+        $names = array(null, 'Vinea', 'Le Tire Bouchon', 'Les Caves Augé', 'Les Zinzins du Vin');
 
         $descriptions = array(null ,null, null, null, null);
 
@@ -50,9 +50,9 @@ class Caviste extends AbstractFixture implements OrderedFixtureInterface
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        foreach ($noms as $i => $nom) {
+        foreach ($names as $i => $name) {
             $caviste[$i] = new Kviste();
-            $caviste[$i]->setNom($nom);
+            $caviste[$i]->setName($name);
         }
 
         foreach ($descriptions as $i => $description) {
