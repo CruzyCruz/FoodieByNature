@@ -30,7 +30,7 @@ class Caviste extends AbstractFixture implements OrderedFixtureInterface
 
         $sites = array(null, 'cave-vinea.com', 'le-tire-bouchon.org', 'cavesauge.com', 'leszinzinsduvin.com');
 
-        $horaires = array(
+        $openingHours = array(
                         'Tous les jours, de 8h à 1h30 ; service de midi à 15h30 et de 19h à 23h30.',
                         'De midi à 14h30 et de 19h à 23h. Fermé dimanche.',
                         'De 19h à 22h30. Fermé dimanche et lundi.',
@@ -40,7 +40,7 @@ class Caviste extends AbstractFixture implements OrderedFixtureInterface
 
         $descriptionsen = array(null ,null, null, null, null);
 
-        $horairesen = array(
+        $openingHoursen = array(
                         'Everyday, from 8am to 1:30am; meal service from noon to 3:30pm and from 7pm to 11:30pm.',
                         'From noon to 2:30pm and from 7pm to 11pm. Closed Sunday.',
                         'From 7pm to 10:30pm. Closed Sunday and Monday.',
@@ -81,10 +81,10 @@ class Caviste extends AbstractFixture implements OrderedFixtureInterface
             $caviste[$i]->setSite($site);
         }
 
-        foreach ($horaires as $i => $horaire) {
-            $caviste[$i]->setHoraires($horaire);
+        foreach ($openingHours as $i => $openingHour) {
+            $caviste[$i]->setOpeningHours($openingHour);
 
-            $repository->translate($caviste[$i], 'horaires', 'en', $horairesen[$i]);
+            $repository->translate($caviste[$i], 'openingHours', 'en', $openingHoursen[$i]);
 
             $manager->persist($caviste[$i]);
 

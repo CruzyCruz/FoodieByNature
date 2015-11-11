@@ -105,10 +105,10 @@ class Evenement extends Article
     /**
      * @var string
      *
-     * @ORM\Column(name="horaires", type="string", length=255)
+     * @ORM\Column(name="openingHours", type="string", length=255)
      * @Gedmo\Translatable      
      */
-    private $horaires;
+    private $openingHours;
 
     /**
     *
@@ -198,26 +198,26 @@ class Evenement extends Article
     }    
 
     /**
-     * Set horaires
+     * Set openingHours
      *
-     * @param string $horaires
+     * @param string $openingHours
      * @return Evenement
      */
-    public function setHoraires($horaires)
+    public function setOpeningHours($openingHours)
     {
-        $this->horaires = $horaires;
+        $this->openingHours = $openingHours;
 
         return $this;
     }
 
     /**
-     * Get horaires
+     * Get openingHours
      *
      * @return string 
      */
-    public function getHoraires()
+    public function getOpeningHours()
     {
-        return $this->horaires;
+        return $this->openingHours;
     }
 
     /**
