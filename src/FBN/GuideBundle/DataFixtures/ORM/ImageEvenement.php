@@ -1,5 +1,7 @@
 <?php
+
 // src/FBN/GuideBundle/DataFixtures/ORM/ImageEvenement.php
+
 
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
@@ -14,7 +16,6 @@ class ImageEvenement extends AbstractFixture implements OrderedFixtureInterface
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-    
         $rangs = array(0, 0, 0, 0, 0, 0, 0, 0);
 
         $chemin = __DIR__.'/../../../../../web/uploads/images/evenements';
@@ -25,39 +26,35 @@ class ImageEvenement extends AbstractFixture implements OrderedFixtureInterface
 
         $mimetype = 'image/jpeg';
 
-        $legendes = array('Métras aux Temps des Vendanges!', 'Repas Gastronomique à Toulouse', 'Sous les pavés la vigne', 'La remise', 'Métras aux Temps des Vendanges!', 'Repas Gastronomique à Toulouse', 'La remise', 'Déjeuner sur l\'herbe chez Plageoles');        
+        $legendes = array('Métras aux Temps des Vendanges!', 'Repas Gastronomique à Toulouse', 'Sous les pavés la vigne', 'La remise', 'Métras aux Temps des Vendanges!', 'Repas Gastronomique à Toulouse', 'La remise', 'Déjeuner sur l\'herbe chez Plageoles');
 
-        $legendesen = array('Métras at Temps des Vendanges!', 'Gourmet meal in Toulouse', 'Sous les pavés la vigne', 'La remise', 'Métras at Temps des Vendanges!', 'Gourmet meal in Toulouse', 'La remise', 'Lunch on grass at Robert Plageoles');        
+        $legendesen = array('Métras at Temps des Vendanges!', 'Gourmet meal in Toulouse', 'Sous les pavés la vigne', 'La remise', 'Métras at Temps des Vendanges!', 'Gourmet meal in Toulouse', 'La remise', 'Lunch on grass at Robert Plageoles');
 
-        $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');        
+        $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        foreach($rangs as $i => $rang)
-        {
+        foreach ($rangs as $i => $rang) {
             $imageevenement[$i] = new Image();
-            $imageevenement[$i]->setRang($rang);                        
+            $imageevenement[$i]->setRang($rang);
         }
 
-        foreach($names as $i => $name)
-        {            
+        foreach ($names as $i => $name) {
             $imageevenement[$i]->setChemin($chemin);
-            $imageevenement[$i]->setName($name);                        
+            $imageevenement[$i]->setName($name);
         }
 
-        foreach($tailles as $i => $taille)
-        {
+        foreach ($tailles as $i => $taille) {
             $imageevenement[$i]->setTaille($taille);
-            $imageevenement[$i]->setMimeType($mimetype);                        
+            $imageevenement[$i]->setMimeType($mimetype);
         }
 
-        foreach($legendes as $i => $legende)
-        {
+        foreach ($legendes as $i => $legende) {
             $imageevenement[$i]->setLegende($legende);
 
-            $repository->translate($imageevenement[$i], 'legende', 'en', $legendesen[$i]);             
-            
+            $repository->translate($imageevenement[$i], 'legende', 'en', $legendesen[$i]);
+
             $manager->persist($imageevenement[$i]);
 
-            $this->addReference('imageevenement-' . $i, $imageevenement[$i]);
+            $this->addReference('imageevenement-'.$i, $imageevenement[$i]);
 
             $imageevenement[$i]->setImageType($this->getReference('imagetype-0'));
         }
@@ -68,5 +65,5 @@ class ImageEvenement extends AbstractFixture implements OrderedFixtureInterface
     public function getOrder()
     {
         return 104; // l'ordre dans lequel les fichiers sont chargés
-    }  
+    }
 }

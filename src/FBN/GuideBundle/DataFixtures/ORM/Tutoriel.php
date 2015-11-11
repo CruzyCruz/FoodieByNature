@@ -25,7 +25,7 @@ class Tutoriel extends AbstractFixture implements OrderedFixtureInterface
             'Non stabilisés, les vins naturels sont des vins vivants dont le goût et l’expression évoluent pendant la dégustation. A ce titre, ils peuvent parfois « déstabiliser » les amateurs de vins classiques.',            
             );
 
-        $auteurs = array('CB', 'AH', 'CB', 'AH', 'AH',); 
+        $authors = array('CB', 'AH', 'CB', 'AH', 'AH',); 
 
         $rangs = array(0, 1, 2, 3, 4);
 
@@ -63,9 +63,9 @@ class Tutoriel extends AbstractFixture implements OrderedFixtureInterface
             $repository->translate($tutoriel[$i], 'description', 'en', $descriptionsen[$i]); 
         }
 
-        foreach($auteurs as $i => $auteur)
+        foreach($authors as $i => $author)
         {
-            $tutoriel[$i]->setAuteur($auteur);  
+            $tutoriel[$i]->setAuthor($author);  
         
         }    
 

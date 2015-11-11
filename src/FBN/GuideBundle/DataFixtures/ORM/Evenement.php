@@ -29,7 +29,7 @@ class Evenement extends AbstractFixture implements OrderedFixtureInterface
             'C\'est une belle invitation printanière que lance Robert Plageoles. Le principe est simple, le visiteur apporte son panier pique-nique et pour accompagner le repas, le vigneron propose ses vins gratuitement à la dégustation.'
             );
 
-        $auteurs = array('CB', 'CB', 'AH', 'CB', 'AH','CB','CB','CB'); 
+        $authors = array('CB', 'CB', 'AH', 'CB', 'AH','CB','CB','CB'); 
 
         $dates = array('13 Septembre 2013', '3 Avril 2013', '2 et 3 Novembre 2013', '30 et 31 Mars 2014', '20 Septembre 2014', '5 Avril 2013', '01 et 02 Avril 2014', '15 Juin 2014');
 
@@ -101,9 +101,9 @@ class Evenement extends AbstractFixture implements OrderedFixtureInterface
             $repository->translate($evenement[$i], 'description', 'en', $descriptionsen[$i]); 
         }
 
-        foreach($auteurs as $i => $auteur)
+        foreach($authors as $i => $author)
         {
-            $evenement[$i]->setAuteur($auteur);  
+            $evenement[$i]->setAuthor($author);  
 
         
             $manager->persist($evenement[$i]);                

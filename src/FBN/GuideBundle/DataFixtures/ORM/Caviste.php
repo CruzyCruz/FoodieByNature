@@ -20,7 +20,7 @@ class Caviste extends AbstractFixture implements OrderedFixtureInterface
 
         $descriptions = array(null ,null, null, null, null);
 
-        $auteurs = array('CB', 'AH', 'CB', 'AH', 'AH');
+        $authors = array('CB', 'AH', 'CB', 'AH', 'AH');
 
         $proprios = array(null, 'Jérôme Rey', 'Philippe Lagarde', 'Christian Constant', 'Thierry Marx');
 
@@ -61,8 +61,8 @@ class Caviste extends AbstractFixture implements OrderedFixtureInterface
             $repository->translate($caviste[$i], 'description', 'en', $descriptionsen[$i]);
         }
 
-        foreach ($auteurs as $i => $auteur) {
-            $caviste[$i]->setAuteur($auteur);
+        foreach ($authors as $i => $author) {
+            $caviste[$i]->setAuthor($author);
         }
 
         foreach ($proprios as $i => $proprio) {

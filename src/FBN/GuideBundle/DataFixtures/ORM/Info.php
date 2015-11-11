@@ -45,7 +45,7 @@ class Info extends AbstractFixture implements OrderedFixtureInterface
             'Ranked 17th , Candelaria is the first French bar to enter the top 50 bars in the world. Ranking by 334 professionals, in 46 countries, unveiled in Drinks International.',
             );
 
-        $auteurs = array('CB', 'AH', 'CB', 'AH', 'AH', 'CB', 'AH', 'CB', 'AH', 'AH');         
+        $authors = array('CB', 'AH', 'CB', 'AH', 'AH', 'CB', 'AH', 'CB', 'AH', 'AH');         
         
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
@@ -65,9 +65,9 @@ class Info extends AbstractFixture implements OrderedFixtureInterface
             $repository->translate($news[$i], 'description', 'en', $descriptionsen[$i]); 
         }
 
-        foreach($auteurs as $i => $auteur)
+        foreach($authors as $i => $author)
         {
-            $news[$i]->setAuteur($auteur);  
+            $news[$i]->setAuthor($author);  
 
             $manager->persist($news[$i]);  
             

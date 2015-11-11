@@ -26,7 +26,7 @@ class Vigneron extends AbstractFixture implements OrderedFixtureInterface
             'Aussi forts de caractère que fins en bulles, les champagnes d’Anselme Selosse peuvent être déroutants lors d’une première approche. Comme l’œuvre de tout grand créateur, ils s’apprivoisent. Puis, sans que l’on s’en rende compte, ils changent votre perception du champagne en vous rendant surtout plus exigeant ! Peu de vins au monde possèdent une telle profondeur, une telle résonance. Le travail complet du vignoble, la cueillette à maturité optimale, les vinifications sous de multiples origines de bois (en assemblage façon solera, chaque millésime ancien éduque les plus jeunes dans l’esprit des grands jerez) ou encore un stock de six ans en bouteilles qui continue de croître : tous ces procédés, tous ces efforts sont au service d’une expression toujours plus harmonieuse des terroirs. Le domaine constitué par Jacques, le père d’Anselme, compte une quarantaine de parcelles sur la côte des Blancs, en chardonnay, réparties essentiellement sur Avize mais également sur Cramant, Oger et Le Mesnil-sur-Oger – complétées depuis avec du pinot noir venu d’Aÿ, d’Ambonnay et de Mareuil. La production (570 000 bouteilles/an) se compose d\'Initial, principale cuvée (330 000 bouteilles) d\'un chardonnay multimillésimé, d\'un millésimé également blanc de Blancs et de six lieux-dits dont les premières cuvées sont sorties en 2011.',
             );
 
-        $auteurs = array('CB', 'AH', 'CB', 'AH', 'AH',); 
+        $authors = array('CB', 'AH', 'CB', 'AH', 'AH',); 
     
         $descriptionsen = array(
             'Didier Barral has come a long way since its installation on the paternal Lentheric Shale in the early 1990s looking for an authentic expression of its terroir, it is sparing no effort in the vineyard. Assisted by his brother, Jean-Luc, this obstinate winemaker has developed a method of cultivation to respect the ecosystem, to promote interactions between plant and animal kingdoms, and strengthen further the immunity of the vine. The cellar, as the grapes are very healthy grapes of excellent constitution, breeding is "biblical". After a few risks taken there about ten years, the wines have returned since 2003 to a level of demand flawless. The Tradition is an entry-level to custom flavors and soft tannins. Around the trilogy syrah, grenache, mourvedre, the announcement Jadis power Barral style: a full, ripe, speaking in strength but very precisely with a phrase always a wild anything, and that ventilation is beneficial. Minimal use of sulfur explains the sometimes high volatile acidity on years of great heat; acidity in the wine Valinière exalts cocoa and peppery aromas of Syrah and Mourvedre. No direct sales to property, but Barral readily communicate the addresses of their loyal wine shops. Due to their uniqueness, their deeply original and noble peasant character, the wines of Didier Barral become part of the essential references of Languedoc.',
@@ -52,9 +52,9 @@ class Vigneron extends AbstractFixture implements OrderedFixtureInterface
             $repository->translate($vnr[$i], 'description', 'en', $descriptionsen[$i]); 
         }
 
-        foreach($auteurs as $i => $auteur)
+        foreach($authors as $i => $author)
         {
-            $vnr[$i]->setAuteur($auteur);  
+            $vnr[$i]->setAuthor($author);  
         
             $manager->persist($vnr[$i]);  
 

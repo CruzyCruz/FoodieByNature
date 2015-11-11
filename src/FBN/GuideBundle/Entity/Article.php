@@ -27,9 +27,9 @@ abstract class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="auteur", type="string", length=255)
+     * @ORM\Column(name="author", type="string", length=255)
      */
-    private $auteur;
+    private $author;
 
     /**
      * @var string
@@ -101,27 +101,27 @@ abstract class Article
     }
 
     /**
-     * Set auteur.
+     * Set author.
      *
-     * @param string $auteur
+     * @param string $author
      *
      * @return Article
      */
-    public function setAuteur($auteur)
+    public function setAuthor($author)
     {
-        $this->auteur = $auteur;
+        $this->author = $author;
 
         return $this;
     }
 
     /**
-     * Get auteur.
+     * Get author.
      *
      * @return string
      */
-    public function getAuteur()
+    public function getAuthor()
     {
-        return $this->auteur;
+        return $this->author;
     }
 
     /**
