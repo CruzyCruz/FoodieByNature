@@ -33,7 +33,7 @@ class Evenement extends AbstractFixture implements OrderedFixtureInterface
 
         $dates = array('13 Septembre 2013', '3 Avril 2013', '2 et 3 Novembre 2013', '30 et 31 Mars 2014', '20 Septembre 2014', '5 Avril 2013', '01 et 02 Avril 2014', '15 Juin 2014');
 
-        $annees = array('2013', '2013', '2013', '2013', '2014', '2014', '2014', '2014');
+        $years = array('2013', '2013', '2013', '2013', '2014', '2014', '2014', '2014');
 
         $tels = array(null, '05 61 15 55 55' , null, '06 82 01 77 08 (Loïc) / 04 75 52 51 02 (Jocelyne) / 06 88 10 59 47 (Alain)', null, null, null, null);
 
@@ -109,8 +109,8 @@ class Evenement extends AbstractFixture implements OrderedFixtureInterface
             $repository->translate($evenement[$i], 'date', 'en', $datesen[$i]);
         }
 
-        foreach ($annees as $i => $annee) {
-            $evenement[$i]->setAnnee($annee);
+        foreach ($years as $i => $year) {
+            $evenement[$i]->setYear($year);
         }
 
         foreach ($tels as $i => $tel) {

@@ -77,9 +77,9 @@ class Evenement extends Article
     /**
      * @var string
      *
-     * @ORM\Column(name="annee", type="string", length=255)
+     * @ORM\Column(name="year", type="string", length=255)
      */
-    private $annee;
+    private $year;
 
     /**
      * @var string
@@ -127,7 +127,7 @@ class Evenement extends Article
     private $useExtSite;    
 
     /**
-     * @Gedmo\Slug(fields={"name","annee"}, prefix="evenement-")
+     * @Gedmo\Slug(fields={"name","year"}, prefix="evenement-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;   
@@ -175,26 +175,26 @@ class Evenement extends Article
     } 
 
     /**
-     * Set annee
+     * Set year
      *
-     * @param string $annee
+     * @param string $year
      * @return Evenement
      */
-    public function setAnnee($annee)
+    public function setYear($year)
     {
-        $this->annee = $annee;
+        $this->year = $year;
 
         return $this;
     }
 
     /**
-     * Get annee
+     * Get year
      *
      * @return string 
      */
-    public function getAnnee()
+    public function getYear()
     {
-        return $this->annee;
+        return $this->year;
     }    
 
     /**
