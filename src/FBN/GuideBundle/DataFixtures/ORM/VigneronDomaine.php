@@ -16,9 +16,9 @@ class VigneronDomaine extends AbstractFixture implements OrderedFixtureInterface
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $domaines = array('Domaine Léon Barral', 'Domaine des Chênes', null, 'Domaine Très Cantous', 'Domaine Roucou-Cantemerle', null);
+        $domains = array('Domaine Léon Barral', 'Domaine des Chênes', null, 'Domaine Très Cantous', 'Domaine Roucou-Cantemerle', null);
 
-        $hrefs = array('http://www.domaineleonbarral.com', 'http://www.marcel-lapierre.com', 'http://http://www.eliandaros.fr', 'http://www.vins-plageoles.com', 'http://www.vins-plageoles.com', 'http://www.selosse-lesavises.com');
+        $hrefs = array('http://www.domainleonbarral.com', 'http://www.marcel-lapierre.com', 'http://http://www.eliandaros.fr', 'http://www.vins-plageoles.com', 'http://www.vins-plageoles.com', 'http://www.selosse-lesavises.com');
 
         $tels = array('04 67 90 29 13', '04 74 04 23 89', '05 53 20 75 22', '05 63 33 90 40', '05 68 38 95 45','03 26 57 53 56');
 
@@ -62,9 +62,9 @@ class VigneronDomaine extends AbstractFixture implements OrderedFixtureInterface
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        foreach ($domaines as $i => $domaine) {
+        foreach ($domains as $i => $domain) {
             $vnrdm[$i] = new Vnrdm();
-            $vnrdm[$i]->setDomaine($domaine);
+            $vnrdm[$i]->setDomain($domain);
         }
 
         foreach ($hrefs as $i => $href) {

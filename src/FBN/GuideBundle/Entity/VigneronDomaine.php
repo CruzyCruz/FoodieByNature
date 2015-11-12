@@ -45,9 +45,9 @@ class VigneronDomaine
     /**
      * @var string
      *
-     * @ORM\Column(name="domaine", type="string", length=255, nullable=true)
+     * @ORM\Column(name="domain", type="string", length=255, nullable=true)
      */
-    private $domaine;
+    private $domain;
 
     /**
      * @var string
@@ -98,26 +98,26 @@ class VigneronDomaine
     }
 
     /**
-     * Set domaine
+     * Set domain
      *
-     * @param string $domaine
+     * @param string $domain
      * @return VigneronDomaine
      */
-    public function setDomaine($domaine)
+    public function setDomain($domain)
     {
-        $this->domaine = $domaine;
+        $this->domain = $domain;
 
         return $this;
     }
 
     /**
-     * Get domaine
+     * Get domain
      *
      * @return string 
      */
-    public function getDomaine()
+    public function getDomain()
     {
-        return $this->domaine;
+        return $this->domain;
     }
 
  /**

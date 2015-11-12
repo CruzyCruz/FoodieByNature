@@ -26,8 +26,8 @@
 {% for vd in vigneron.vigneronDomaine %} 
 <h3>PAR ICI : </h3>
   <p>  
-    {% if vd.domaine is not null %} 
-      {{ vd.domaine }}
+    {% if vd.domain is not null %} 
+      {{ vd.domain }}
     {% endif %}
     {% if vd.coordonnees.coordonneesFR.divers is not null %}
       {{ vd.coordonnees.coordonneesFR.divers }}
