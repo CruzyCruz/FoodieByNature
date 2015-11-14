@@ -15,7 +15,7 @@ class VigneronRegion extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
     
-        $regions = array(
+        $areas = array(
             'Alsace',
             'Auvergne',            
             'Beaujolais',            
@@ -33,7 +33,7 @@ class VigneronRegion extends AbstractFixture implements OrderedFixtureInterface
             'Sud-Ouest',
         );     
 
-        $regionsen = array(
+        $areasen = array(
             'Alsace',
             'Auvergne',            
             'Beaujolais',            
@@ -53,12 +53,12 @@ class VigneronRegion extends AbstractFixture implements OrderedFixtureInterface
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');                
 
-        foreach($regions as $i => $region)
+        foreach($areas as $i => $area)
         {
             $vigneronregion[$i] = new VRegion();
-            $vigneronregion[$i]->setRegion($region);
+            $vigneronregion[$i]->setArea($area);
 
-            $repository->translate($vigneronregion[$i], 'region', 'en', $regionsen[$i]); 
+            $repository->translate($vigneronregion[$i], 'area', 'en', $areasen[$i]); 
 
             $manager->persist($vigneronregion[$i]);
 

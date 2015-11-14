@@ -15,7 +15,7 @@ class CoordonneesFRRegion extends AbstractFixture implements OrderedFixtureInter
     public function load(ObjectManager $manager)
     {
     
-        $regions = array(
+        $areas = array(
                         'Guadeloupe',
                         'Martinique',
                         'Guyane',
@@ -45,10 +45,10 @@ class CoordonneesFRRegion extends AbstractFixture implements OrderedFixtureInter
                         'Corse',
                         ); 
 
-        foreach($regions as $i => $region)
+        foreach($areas as $i => $area)
         {
             $coordonneesfrregion[$i] = new CoordFRRegion();
-            $coordonneesfrregion[$i]->setRegion($region);
+            $coordonneesfrregion[$i]->setArea($area);
             
             $manager->persist($coordonneesfrregion[$i]);
             

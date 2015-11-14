@@ -25,10 +25,10 @@ class VigneronRegion
     /**
      * @var string
      *
-     * @ORM\Column(name="region", type="string", length=255, unique=true)
+     * @ORM\Column(name="area", type="string", length=255, unique=true)
      * @Gedmo\Translatable     
      */
-    private $region;
+    private $area;
 
     /**
      * @var string
@@ -51,25 +51,25 @@ class VigneronRegion
     }
 
     /**
-     * Set region
+     * Set area
      *
-     * @param string $region
+     * @param string $area
      * @return VigneronRegion
      */
-    public function setRegion($region)
+    public function setArea($area)
     {
-        $this->region = $region;
+        $this->area = $area;
 
         return $this;
     }
 
     /**
-     * Get region
+     * Get area
      *
      * @return string 
      */
-    public function getRegion()
+    public function getArea()
     {
-        return $this->region;
+        return $this->area;
     }
 }

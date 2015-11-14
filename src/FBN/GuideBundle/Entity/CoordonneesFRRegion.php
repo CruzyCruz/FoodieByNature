@@ -24,9 +24,9 @@ class CoordonneesFRRegion
     /**
      * @var string
      *
-     * @ORM\Column(name="region", type="string", length=255)
+     * @ORM\Column(name="area", type="string", length=255)
      */
-    private $region;
+    private $area;
 
 
     /**
@@ -40,25 +40,25 @@ class CoordonneesFRRegion
     }
 
     /**
-     * Set region
+     * Set area
      *
-     * @param string $region
+     * @param string $area
      * @return CoordonneesFRRegion
      */
-    public function setRegion($region)
+    public function setArea($area)
     {
-        $this->region = $region;
+        $this->area = $area;
 
         return $this;
     }
 
     /**
-     * Get region
+     * Get area
      *
      * @return string 
      */
-    public function getRegion()
+    public function getArea()
     {
-        return $this->region;
+        return $this->area;
     }
 }
