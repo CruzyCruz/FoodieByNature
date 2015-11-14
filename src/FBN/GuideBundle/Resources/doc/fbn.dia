@@ -7270,13 +7270,13 @@
         <dia:point val="58.4926,8.1"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="58.4176,8.025;63.5051,15.775"/>
+        <dia:rectangle val="58.4176,8.025;65.1751,15.775"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="58.4926,8.1"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="4.9375"/>
+        <dia:real val="6.6074999999999999"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="7.5999999999999996"/>
@@ -7486,7 +7486,7 @@
         </dia:composite>
         <dia:composite type="umlattribute">
           <dia:attribute name="name">
-            <dia:string>#horaires#</dia:string>
+            <dia:string>#openingHours#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
             <dia:string>#string#</dia:string>
@@ -7575,17 +7575,17 @@
         <dia:boolean val="false"/>
       </dia:attribute>
       <dia:attribute name="obj_pos">
-        <dia:point val="60.9614,8.1"/>
+        <dia:point val="61.7964,8.1"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="19.6989,-40.975;61.5139,8.9"/>
+        <dia:rectangle val="19.6989,-40.975;62.3489,8.9"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
       </dia:attribute>
       <dia:attribute name="orth_points">
-        <dia:point val="60.9614,8.1"/>
-        <dia:point val="60.9614,-40.275"/>
+        <dia:point val="61.7964,8.1"/>
+        <dia:point val="61.7964,-40.275"/>
         <dia:point val="19.7489,-40.275"/>
         <dia:point val="19.7504,-33.7376"/>
       </dia:attribute>
