@@ -100,7 +100,7 @@ class Restaurant extends Article
      * @Gedmo\Slug(handlers={
      *      @Gedmo\SlugHandler(class="Gedmo\Sluggable\Handler\RelativeSlugHandler", options={
      *          @Gedmo\SlugHandlerOption(name="relationField", value="coordonnees"),
-     *          @Gedmo\SlugHandlerOption(name="relationSlugField", value="ville"),
+     *          @Gedmo\SlugHandlerOption(name="relationSlugField", value="city"),
      *          @Gedmo\SlugHandlerOption(name="separator", value="-"),
      *          @Gedmo\SlugHandlerOption(name="urilize", value=true)   
      *      })

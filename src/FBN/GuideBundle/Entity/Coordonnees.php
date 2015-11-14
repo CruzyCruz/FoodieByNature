@@ -51,9 +51,9 @@ class Coordonnees
     /**
      * @var string
      *
-     * @ORM\Column(name="ville", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255)
      */
-    private $ville;
+    private $city;
 
     /**
      * @var string
@@ -120,26 +120,26 @@ class Coordonnees
     }
 
     /**
-     * Set ville
+     * Set city
      *
-     * @param string $ville
+     * @param string $city
      * @return Coordonnees
      */
-    public function setVille($ville)
+    public function setCity($city)
     {
-        $this->ville = $ville;
+        $this->city = $city;
 
         return $this;
     }
 
     /**
-     * Get ville
+     * Get city
      *
      * @return string 
      */
-    public function getVille()
+    public function getCity()
     {
-        return $this->ville;
+        return $this->city;
     }   
 
     /**

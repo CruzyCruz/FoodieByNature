@@ -1180,7 +1180,7 @@
         <dia:font family="Calibri" style="0" name="Courier"/>
       </dia:attribute>
       <dia:attribute name="abstract_classname_font">
-        <dia:font family="Calibri" style="4" name="Courier"/>
+        <dia:font family="Calibri" style="0" name="Courier"/>
       </dia:attribute>
       <dia:attribute name="comment_font">
         <dia:font family="Calibri" style="0" name="Courier"/>
@@ -1275,7 +1275,7 @@
         </dia:composite>
         <dia:composite type="umlattribute">
           <dia:attribute name="name">
-            <dia:string>#ville#</dia:string>
+            <dia:string>#city#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
             <dia:string>#string#</dia:string>
@@ -2317,7 +2317,7 @@
         <dia:point val="24.67,-32.9625"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="22.3025,-33.6625;24.72,-32.0625"/>
+        <dia:rectangle val="22.6325,-33.6625;24.72,-32.0625"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
@@ -2326,7 +2326,7 @@
         <dia:point val="24.67,-32.9625"/>
         <dia:point val="23.1,-32.9625"/>
         <dia:point val="23.1,-32.9625"/>
-        <dia:point val="22.3525,-32.9625"/>
+        <dia:point val="22.6825,-32.9625"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">
         <dia:enum val="0"/>
@@ -7578,7 +7578,7 @@
         <dia:point val="61.7964,8.1"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="19.6989,-40.975;62.3489,8.9"/>
+        <dia:rectangle val="19.7012,-40.975;62.3489,8.9"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
@@ -7586,8 +7586,8 @@
       <dia:attribute name="orth_points">
         <dia:point val="61.7964,8.1"/>
         <dia:point val="61.7964,-40.275"/>
-        <dia:point val="19.7489,-40.275"/>
-        <dia:point val="19.7504,-33.7376"/>
+        <dia:point val="19.7512,-40.275"/>
+        <dia:point val="19.7512,-33.7376"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">
         <dia:enum val="1"/>

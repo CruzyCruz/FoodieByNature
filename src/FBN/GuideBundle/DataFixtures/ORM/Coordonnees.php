@@ -19,7 +19,7 @@ class Coordonnees extends AbstractFixture implements OrderedFixtureInterface
         
         $longitudes = array(2.379013, 2.296634, 2.381744, 2.294396, 2.354984, 3.142942, 4.678721, 0.039742, 1.908697, 3.142941, 4.008447, 1.342816, 4.816100, 5.390889, 1.478631, 1.453761, 2.318872, 6.018815);
         
-        $villes    = array('Paris', 'Paris', 'Paris', 'Paris', 'Paris', 'Cabrerolles', 'Villié-Morgon', 'Cocumont', 'Cahuzac-Sur-Vère', 'Cahuzac-Sur-Vère', 'Avize', 'Colomiers', 'Lyon', 'Marseille', 'L\'Union', 'Toulouse', 'Paris', 'Besançon');
+        $citys    = array('Paris', 'Paris', 'Paris', 'Paris', 'Paris', 'Cabrerolles', 'Villié-Morgon', 'Cocumont', 'Cahuzac-Sur-Vère', 'Cahuzac-Sur-Vère', 'Avize', 'Colomiers', 'Lyon', 'Marseille', 'L\'Union', 'Toulouse', 'Paris', 'Besançon');
         
         $metros    = array('Bellevile, Couronne','Avenue Emile Zola, Félix Faure, Commerce', 'Ménilmontant, Parmentier, Rue Saint-Maur', 'Ternes', 'Arts et Métiers', null, null, null, null, null, null, null, 'Gorge de Loup', 'Chartreux', null, 'François-Verdier', 'Saint-Augustin', null);
                    
@@ -35,9 +35,9 @@ class Coordonnees extends AbstractFixture implements OrderedFixtureInterface
             $coordonnees[$i]->setLongitude($longitude);
         }
 
-        foreach($villes as $i => $ville)
+        foreach($citys as $i => $city)
         {
-            $coordonnees[$i]->setVille($ville);
+            $coordonnees[$i]->setCity($city);
         }
 
         foreach($metros as $i => $metro)
