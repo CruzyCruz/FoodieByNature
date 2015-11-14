@@ -19,7 +19,7 @@ class ImageTutorielChapitreParaBiodyamie extends AbstractFixture implements Orde
 
         $path = __DIR__.'/../../../../../web/uploads/images/tutoriels';
 
-        $noms = array('tutoriel-la-biodynamie-c0-p0-i0.jpg','tutoriel-la-biodynamie-c1-p0-i0.jpg','tutoriel-la-biodynamie-c2-p0-i0.jpg');
+        $names = array('tutoriel-la-biodynamie-c0-p0-i0.jpg','tutoriel-la-biodynamie-c1-p0-i0.jpg','tutoriel-la-biodynamie-c2-p0-i0.jpg');
 
         $tailles = array(45056,57344,8192);
 
@@ -37,10 +37,10 @@ class ImageTutorielChapitreParaBiodyamie extends AbstractFixture implements Orde
             $imagetutoriel[$i]->setRank($rank);                        
         }
 
-        foreach($noms as $i => $nom)
+        foreach($names as $i => $name)
         {            
             $imagetutoriel[$i]->setPath($path);
-            $imagetutoriel[$i]->setNom($nom);                        
+            $imagetutoriel[$i]->setName($name);                        
         }
 
         foreach($tailles as $i => $taille)

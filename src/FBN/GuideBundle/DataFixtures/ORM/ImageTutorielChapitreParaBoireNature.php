@@ -19,7 +19,7 @@ class ImageTutorielChapitreParaBoireNature extends AbstractFixture implements Or
 
         $path = __DIR__.'/../../../../../web/uploads/images/tutoriels';
 
-        $noms = array('tutoriel-boire-nature-c0-p0-i0.jpg','tutoriel-boire-nature-c1-p0-i0.jpg','tutoriel-boire-nature-c1-p1-i0.jpg','tutoriel-boire-nature-c1-p2-i0.jpg','tutoriel-boire-nature-c2-p0-i0.jpg');
+        $names = array('tutoriel-boire-nature-c0-p0-i0.jpg','tutoriel-boire-nature-c1-p0-i0.jpg','tutoriel-boire-nature-c1-p1-i0.jpg','tutoriel-boire-nature-c1-p2-i0.jpg','tutoriel-boire-nature-c2-p0-i0.jpg');
 
         $tailles = array(118784,86016,28672,69632,77824);
 
@@ -37,10 +37,10 @@ class ImageTutorielChapitreParaBoireNature extends AbstractFixture implements Or
             $imagetutoriel[$i]->setRank($rank);                        
         }
 
-        foreach($noms as $i => $nom)
+        foreach($names as $i => $name)
         {            
             $imagetutoriel[$i]->setPath($path);
-            $imagetutoriel[$i]->setNom($nom);                        
+            $imagetutoriel[$i]->setName($name);                        
         }
 
         foreach($tailles as $i => $taille)

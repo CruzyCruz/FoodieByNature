@@ -19,7 +19,7 @@ class ImageTutorielChapitreParaMacerationCarbonique extends AbstractFixture impl
 
         $path = __DIR__.'/../../../../../web/uploads/images/tutoriels';
 
-        $noms = array('tutoriel-la-maceration-carbonique-c0-p0-i0.jpg','tutoriel-la-maceration-carbonique-c1-p0-i0.jpg','tutoriel-la-maceration-carbonique-c2-p0-i0.jpg');
+        $names = array('tutoriel-la-maceration-carbonique-c0-p0-i0.jpg','tutoriel-la-maceration-carbonique-c1-p0-i0.jpg','tutoriel-la-maceration-carbonique-c2-p0-i0.jpg');
 
         $tailles = array(53248,86016,53248);
 
@@ -37,10 +37,10 @@ class ImageTutorielChapitreParaMacerationCarbonique extends AbstractFixture impl
             $imagetutoriel[$i]->setRank($rank);                        
         }
 
-        foreach($noms as $i => $nom)
+        foreach($names as $i => $name)
         {            
             $imagetutoriel[$i]->setPath($path);
-            $imagetutoriel[$i]->setNom($nom);                        
+            $imagetutoriel[$i]->setName($name);                        
         }
 
         foreach($tailles as $i => $taille)

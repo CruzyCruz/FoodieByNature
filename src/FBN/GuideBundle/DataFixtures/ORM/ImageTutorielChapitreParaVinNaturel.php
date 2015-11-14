@@ -19,7 +19,7 @@ class ImageTutorielChapitreParaVinNaturel extends AbstractFixture implements Ord
 
         $path = __DIR__.'/../../../../../web/uploads/images/tutoriels';
 
-        $noms = array('tutoriel-le-vin-au-naturel-c0-p0-i0.jpg','tutoriel-le-vin-au-naturel-c1-p1-i1.jpg','tutoriel-le-vin-au-naturel-c2-p2-i2.jpg','tutoriel-le-vin-au-naturel-c3-p3-i3.jpg');
+        $names = array('tutoriel-le-vin-au-naturel-c0-p0-i0.jpg','tutoriel-le-vin-au-naturel-c1-p1-i1.jpg','tutoriel-le-vin-au-naturel-c2-p2-i2.jpg','tutoriel-le-vin-au-naturel-c3-p3-i3.jpg');
 
         $tailles = array(114688,40960,45056,49152);
 
@@ -37,10 +37,10 @@ class ImageTutorielChapitreParaVinNaturel extends AbstractFixture implements Ord
             $imagetutoriel[$i]->setRank($rank);                        
         }
 
-        foreach($noms as $i => $nom)
+        foreach($names as $i => $name)
         {            
             $imagetutoriel[$i]->setPath($path);
-            $imagetutoriel[$i]->setNom($nom);                        
+            $imagetutoriel[$i]->setName($name);                        
         }
 
         foreach($tailles as $i => $taille)
