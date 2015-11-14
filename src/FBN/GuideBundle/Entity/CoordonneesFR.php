@@ -51,9 +51,9 @@ class CoordonneesFR
     /**
      * @var string
      *
-     * @ORM\Column(name="divers", type="string", length=255, nullable=true)
+     * @ORM\Column(name="miscellaneous", type="string", length=255, nullable=true)
      */
-    private $divers;
+    private $miscellaneous;
 
     /**
      * @var string
@@ -172,26 +172,26 @@ class CoordonneesFR
     }
 
     /**
-     * Set divers
+     * Set miscellaneous
      *
-     * @param string $divers
+     * @param string $miscellaneous
      * @return Coordonnees
      */
-    public function setDivers($divers)
+    public function setMiscellaneous($miscellaneous)
     {
-        $this->divers = $divers;
+        $this->miscellaneous = $miscellaneous;
 
         return $this;
     }
 
     /**
-     * Get divers
+     * Get miscellaneous
      *
      * @return string 
      */
-    public function getDivers()
+    public function getMiscellaneous()
     {
-        return $this->divers;
+        return $this->miscellaneous;
     }     
 
     /**
