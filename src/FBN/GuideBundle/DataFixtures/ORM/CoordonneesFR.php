@@ -48,7 +48,7 @@ class CoordonneesFR extends AbstractFixture implements OrderedFixtureInterface
         }
 
         foreach ($codepostaux as $i => $codepostal) {
-            $coordonneesfr[$i]->setCodePostal($codepostal);
+            $coordonneesfr[$i]->setPostcode($codepostal);
 
             $manager->persist($coordonneesfr[$i]);
 

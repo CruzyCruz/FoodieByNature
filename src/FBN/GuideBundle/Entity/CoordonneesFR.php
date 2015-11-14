@@ -65,9 +65,9 @@ class CoordonneesFR
     /**
      * @var string
      *
-     * @ORM\Column(name="codePostal", type="string", length=255)
+     * @ORM\Column(name="postcode", type="string", length=255)
      */
-    private $codePostal;    
+    private $postcode;    
 
     /**
      * Get id
@@ -218,25 +218,25 @@ class CoordonneesFR
     } 
 
     /**
-     * Set codePostal
+     * Set postcode
      *
-     * @param string $codePostal
+     * @param string $postcode
      * @return CoordonneesFR
      */
-    public function setCodePostal($codePostal)
+    public function setPostcode($postcode)
     {
-        $this->codePostal = $codePostal;
+        $this->postcode = $postcode;
 
         return $this;
     }
 
     /**
-     * Get codePostal
+     * Get postcode
      *
      * @return string 
      */
-    public function getCodePostal()
+    public function getPostcode()
     {
-        return $this->codePostal;
+        return $this->postcode;
     }
 }
