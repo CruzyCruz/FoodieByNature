@@ -31,7 +31,7 @@
       {{ lieuevt.coordonnees.coordonneesFR.divers }}
     {% endif %}  
     <br />
-    {% if lieuevt.coordonnees.coordonneesFR.voieNom is not null %}
+    {% if lieuevt.coordonnees.coordonneesFR.laneName is not null %}
       {% if lieuevt.coordonnees.coordonneesFR.laneNum is not null %}
         {% set separateur = ', ' %}  
       {% else %}
@@ -40,7 +40,7 @@
       {{ 
       lieuevt.coordonnees.coordonneesFR.laneNum ~ separateur ~
       lieuevt.coordonnees.coordonneesFR.coordonneesFRVoie.voie ~ ' ' ~
-      lieuevt.coordonnees.coordonneesFR.voieNom
+      lieuevt.coordonnees.coordonneesFR.laneName
       }}
     {% endif %}
     <br />

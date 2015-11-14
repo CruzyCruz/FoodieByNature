@@ -18,7 +18,7 @@ class CoordonneesFR extends AbstractFixture implements OrderedFixtureInterface
     {
         $lanenums = array('102', '33 bis', '4 bis', '18', '46', null, null, null, null, null, '22', '7', '8 bis', '41', null, '23', '116', '14');
 
-        $voienoms = array('de Belleville', 'Mademoiselle', 'Jean Aicard', 'Bayen', 'de Turbigo', null, null, null, null, null, 'Ernest Vallé', 'de Gramont', 'Saint Vincent', 'Jobin', 'de Toulouse', 'Dupuy', 'Haussmann', 'de la Madeleine');
+        $lanenames = array('de Belleville', 'Mademoiselle', 'Jean Aicard', 'Bayen', 'de Turbigo', null, null, null, null, null, 'Ernest Vallé', 'de Gramont', 'Saint Vincent', 'Jobin', 'de Toulouse', 'Dupuy', 'Haussmann', 'de la Madeleine');
 
         $diverss = array(null, null, null, null, null, null, null, null, null, null, null, null, null, 'Les Grandes Tables de la Friche', 'Centre Commercial St Caprais', null, null, null);
 
@@ -35,8 +35,8 @@ class CoordonneesFR extends AbstractFixture implements OrderedFixtureInterface
             $coordonneesfr[$i]->setLaneNum($lanenum);
         }
 
-        foreach ($voienoms as $i => $voienom) {
-            $coordonneesfr[$i]->setVoieNom($voienom);
+        foreach ($lanenames as $i => $lanename) {
+            $coordonneesfr[$i]->setLaneName($lanename);
         }
 
         foreach ($diverss as $i => $divers) {

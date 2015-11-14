@@ -55,7 +55,7 @@
       {{ restaurant.coordonnees.coordonneesFR.divers }}
     {% endif %}  
     <br />  
-    {% if restaurant.coordonnees.coordonneesFR.voieNom is not null %}
+    {% if restaurant.coordonnees.coordonneesFR.laneName is not null %}
       {% if restaurant.coordonnees.coordonneesFR.laneNum is not null %}
         {% set separateur = ', ' %}  
       {% else %}
@@ -64,7 +64,7 @@
       {{ 
       restaurant.coordonnees.coordonneesFR.laneNum ~ separateur ~
       restaurant.coordonnees.coordonneesFR.coordonneesFRVoie.voie ~ ' ' ~
-      restaurant.coordonnees.coordonneesFR.voieNom
+      restaurant.coordonnees.coordonneesFR.laneName
       }}
     {% endif %}
     <br />

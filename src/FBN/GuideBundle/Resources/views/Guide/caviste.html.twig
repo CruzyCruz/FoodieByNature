@@ -40,7 +40,7 @@
       {{ sharedData.coordonnees.coordonneesFR.divers }}
     {% endif %}  
     <br />  
-    {% if sharedData.coordonnees.coordonneesFR.voieNom is not null %}
+    {% if sharedData.coordonnees.coordonneesFR.laneName is not null %}
       {% if sharedData.coordonnees.coordonneesFR.laneNum is not null %}
         {% set separateur = ', ' %}  
       {% else %}
@@ -49,7 +49,7 @@
       {{ 
       sharedData.coordonnees.coordonneesFR.laneNum ~ separateur ~
       sharedData.coordonnees.coordonneesFR.coordonneesFRVoie.voie ~ ' ' ~
-      sharedData.coordonnees.coordonneesFR.voieNom
+      sharedData.coordonnees.coordonneesFR.laneName
       }}
     {% endif %}
     <br />
