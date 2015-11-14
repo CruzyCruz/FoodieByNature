@@ -21,7 +21,7 @@ class ImageTutoriel extends AbstractFixture implements OrderedFixtureInterface
 
         $names = array('tutoriel-le-vin-au-naturel.jpg','tutoriel-la-biodynamie.jpg','tutoriel-les-labels.jpg','tutoriel-la-maceration-carbonique.jpg','tutoriel-boire-nature.jpg');
 
-        $tailles = array(65536,69632,90112,40960,69632);
+        $sizes = array(65536,69632,90112,40960,69632);
 
         $mimetype = 'image/jpeg';
 
@@ -43,9 +43,9 @@ class ImageTutoriel extends AbstractFixture implements OrderedFixtureInterface
             $imagetutoriel[$i]->setName($name);                        
         }
 
-        foreach($tailles as $i => $taille)
+        foreach($sizes as $i => $size)
         {
-            $imagetutoriel[$i]->setTaille($taille);
+            $imagetutoriel[$i]->setSize($size);
             $imagetutoriel[$i]->setMimeType($mimetype);                        
         }
 

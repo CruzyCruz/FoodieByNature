@@ -21,7 +21,7 @@ class ImageRestaurant extends AbstractFixture implements OrderedFixtureInterface
 
         $names = array('restaurant-paris-triplettes-il.jpg', 'restaurant-paris-naturellement-il.jpg', 'restaurant-paris-la-fine-mousse-il.jpg', 'restaurant-paris-dix-huit-il.jpg', 'restaurant-paris-cantine-california-il.jpg');
 
-        $tailles = array(73797, 78427, 78651, 83717, 66449);
+        $sizes = array(73797, 78427, 78651, 83717, 66449);
 
         $mimetype = 'image/jpeg';
 
@@ -43,9 +43,9 @@ class ImageRestaurant extends AbstractFixture implements OrderedFixtureInterface
             $imagerestaurant[$i]->setName($name);                        
         }
 
-        foreach($tailles as $i => $taille)
+        foreach($sizes as $i => $size)
         {
-            $imagerestaurant[$i]->setTaille($taille);
+            $imagerestaurant[$i]->setSize($size);
             $imagerestaurant[$i]->setMimeType($mimetype);                        
         }
 

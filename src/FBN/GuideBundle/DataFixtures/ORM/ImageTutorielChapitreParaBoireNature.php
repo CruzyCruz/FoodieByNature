@@ -21,7 +21,7 @@ class ImageTutorielChapitreParaBoireNature extends AbstractFixture implements Or
 
         $names = array('tutoriel-boire-nature-c0-p0-i0.jpg','tutoriel-boire-nature-c1-p0-i0.jpg','tutoriel-boire-nature-c1-p1-i0.jpg','tutoriel-boire-nature-c1-p2-i0.jpg','tutoriel-boire-nature-c2-p0-i0.jpg');
 
-        $tailles = array(118784,86016,28672,69632,77824);
+        $sizes = array(118784,86016,28672,69632,77824);
 
         $mimetype = 'image/jpeg';
 
@@ -43,9 +43,9 @@ class ImageTutorielChapitreParaBoireNature extends AbstractFixture implements Or
             $imagetutoriel[$i]->setName($name);                        
         }
 
-        foreach($tailles as $i => $taille)
+        foreach($sizes as $i => $size)
         {
-            $imagetutoriel[$i]->setTaille($taille);
+            $imagetutoriel[$i]->setSize($size);
             $imagetutoriel[$i]->setMimeType($mimetype);                        
         }
 

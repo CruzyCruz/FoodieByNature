@@ -57,10 +57,10 @@ class Image
     /**
      * @var decimal
      *
-     * @ORM\Column(name="taille", type="decimal")
+     * @ORM\Column(name="size", type="decimal")
      * @Gedmo\UploadableFileSize
      */
-    private $taille;
+    private $size;
 
     /**
      * @var string
@@ -180,26 +180,26 @@ class Image
     }
 
     /**
-     * Set taille
+     * Set size
      *
-     * @param string $taille
+     * @param string $size
      * @return Image
      */
-    public function setTaille($taille)
+    public function setSize($size)
     {
-        $this->taille = $taille;
+        $this->size = $size;
 
         return $this;
     }
 
     /**
-     * Get taille
+     * Get size
      *
      * @return string 
      */
-    public function getTaille()
+    public function getSize()
     {
-        return $this->taille;
+        return $this->size;
     }
 
     /**

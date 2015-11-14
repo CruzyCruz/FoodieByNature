@@ -21,7 +21,7 @@ class ImageTutorielChapitreParaLabels extends AbstractFixture implements Ordered
 
         $names = array('tutoriel-les-labels-c0-p0-i0.jpg','tutoriel-les-labels-c1-p0-i0.jpg','tutoriel-les-labels-c2-p0-i0.jpg');
 
-        $tailles = array(61440,49152,61440);
+        $sizes = array(61440,49152,61440);
 
         $mimetype = 'image/jpeg';
 
@@ -43,9 +43,9 @@ class ImageTutorielChapitreParaLabels extends AbstractFixture implements Ordered
             $imagetutoriel[$i]->setName($name);                        
         }
 
-        foreach($tailles as $i => $taille)
+        foreach($sizes as $i => $size)
         {
-            $imagetutoriel[$i]->setTaille($taille);
+            $imagetutoriel[$i]->setSize($size);
             $imagetutoriel[$i]->setMimeType($mimetype);                        
         }
 

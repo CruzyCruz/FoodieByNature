@@ -21,7 +21,7 @@ class ImageTutorielChapitreParaBiodyamie extends AbstractFixture implements Orde
 
         $names = array('tutoriel-la-biodynamie-c0-p0-i0.jpg','tutoriel-la-biodynamie-c1-p0-i0.jpg','tutoriel-la-biodynamie-c2-p0-i0.jpg');
 
-        $tailles = array(45056,57344,8192);
+        $sizes = array(45056,57344,8192);
 
         $mimetype = 'image/jpeg';
 
@@ -43,9 +43,9 @@ class ImageTutorielChapitreParaBiodyamie extends AbstractFixture implements Orde
             $imagetutoriel[$i]->setName($name);                        
         }
 
-        foreach($tailles as $i => $taille)
+        foreach($sizes as $i => $size)
         {
-            $imagetutoriel[$i]->setTaille($taille);
+            $imagetutoriel[$i]->setSize($size);
             $imagetutoriel[$i]->setMimeType($mimetype);                        
         }
 

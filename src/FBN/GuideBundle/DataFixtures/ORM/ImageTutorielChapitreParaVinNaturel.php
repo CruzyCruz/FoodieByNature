@@ -21,7 +21,7 @@ class ImageTutorielChapitreParaVinNaturel extends AbstractFixture implements Ord
 
         $names = array('tutoriel-le-vin-au-naturel-c0-p0-i0.jpg','tutoriel-le-vin-au-naturel-c1-p1-i1.jpg','tutoriel-le-vin-au-naturel-c2-p2-i2.jpg','tutoriel-le-vin-au-naturel-c3-p3-i3.jpg');
 
-        $tailles = array(114688,40960,45056,49152);
+        $sizes = array(114688,40960,45056,49152);
 
         $mimetype = 'image/jpeg';
 
@@ -43,9 +43,9 @@ class ImageTutorielChapitreParaVinNaturel extends AbstractFixture implements Ord
             $imagetutoriel[$i]->setName($name);                        
         }
 
-        foreach($tailles as $i => $taille)
+        foreach($sizes as $i => $size)
         {
-            $imagetutoriel[$i]->setTaille($taille);
+            $imagetutoriel[$i]->setSize($size);
             $imagetutoriel[$i]->setMimeType($mimetype);                        
         }
 

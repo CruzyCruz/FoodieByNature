@@ -21,7 +21,7 @@ class ImageVigneron extends AbstractFixture implements OrderedFixtureInterface
 
         $names = array('vigneron-didier-barral-il.jpg', 'vigneron-marcel-lapierre-il.jpg', 'vigneron-elian-da-ros-il.jpg', 'vigneron-robert-plageoles-il.jpg', 'vigneron-jacques-selosse-il.jpg');
 
-        $tailles = array(31111, 73088, 76454, 55682, 27758);
+        $sizes = array(31111, 73088, 76454, 55682, 27758);
 
         $mimetype = 'image/jpeg';
 
@@ -43,9 +43,9 @@ class ImageVigneron extends AbstractFixture implements OrderedFixtureInterface
             $imagerestaurant[$i]->setName($name);                        
         }
 
-        foreach($tailles as $i => $taille)
+        foreach($sizes as $i => $size)
         {
-            $imagerestaurant[$i]->setTaille($taille);
+            $imagerestaurant[$i]->setSize($size);
             $imagerestaurant[$i]->setMimeType($mimetype);                        
         }
 

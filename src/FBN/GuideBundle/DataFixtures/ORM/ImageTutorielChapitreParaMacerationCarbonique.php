@@ -21,7 +21,7 @@ class ImageTutorielChapitreParaMacerationCarbonique extends AbstractFixture impl
 
         $names = array('tutoriel-la-maceration-carbonique-c0-p0-i0.jpg','tutoriel-la-maceration-carbonique-c1-p0-i0.jpg','tutoriel-la-maceration-carbonique-c2-p0-i0.jpg');
 
-        $tailles = array(53248,86016,53248);
+        $sizes = array(53248,86016,53248);
 
         $mimetype = 'image/jpeg';
 
@@ -43,9 +43,9 @@ class ImageTutorielChapitreParaMacerationCarbonique extends AbstractFixture impl
             $imagetutoriel[$i]->setName($name);                        
         }
 
-        foreach($tailles as $i => $taille)
+        foreach($sizes as $i => $size)
         {
-            $imagetutoriel[$i]->setTaille($taille);
+            $imagetutoriel[$i]->setSize($size);
             $imagetutoriel[$i]->setMimeType($mimetype);                        
         }
 
