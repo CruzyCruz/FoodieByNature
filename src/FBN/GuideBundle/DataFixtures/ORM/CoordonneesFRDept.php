@@ -15,7 +15,7 @@ class CoordonneesFRDept extends AbstractFixture implements OrderedFixtureInterfa
     public function load(ObjectManager $manager)
     {
     
-        $departements = array(
+        $departments = array(
                         'Ain',
                         'Aisne',
                         'Allier',
@@ -333,10 +333,10 @@ class CoordonneesFRDept extends AbstractFixture implements OrderedFixtureInterfa
             $coordonneesfrdept[$i]->setNum($num);
         } 
 
-        foreach($departements as $i => $departement)
+        foreach($departments as $i => $department)
         {
             
-            $coordonneesfrdept[$i]->setDepartement($departement);
+            $coordonneesfrdept[$i]->setDepartment($department);
                         
             $coordonneesfrdept[$i]->setCoordonneesFRRegion($this->getReference('coordonneesfrregion-' . ($coordonneesFRRegion_ids[$i]-1)));
 

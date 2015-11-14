@@ -31,9 +31,9 @@ class CoordonneesFRDept
     /**
      * @var string
      *
-     * @ORM\Column(name="departement", type="string", length=255)
+     * @ORM\Column(name="department", type="string", length=255)
      */
-    private $departement;
+    private $department;
 
     /**
      * @var string
@@ -53,26 +53,26 @@ class CoordonneesFRDept
     }
 
     /**
-     * Set departement
+     * Set department
      *
-     * @param string $departement
+     * @param string $department
      * @return CoordonneesFRRegionDept
      */
-    public function setDepartement($departement)
+    public function setDepartment($department)
     {
-        $this->departement = $departement;
+        $this->department = $department;
 
         return $this;
     }
 
     /**
-     * Get departement
+     * Get department
      *
      * @return string 
      */
-    public function getDepartement()
+    public function getDepartment()
     {
-        return $this->departement;
+        return $this->department;
     }
 
     /**
