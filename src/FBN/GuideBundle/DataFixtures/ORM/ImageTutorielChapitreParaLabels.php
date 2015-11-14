@@ -17,7 +17,7 @@ class ImageTutorielChapitreParaLabels extends AbstractFixture implements Ordered
     
         $ranks = array(0,0,0);
 
-        $chemin = __DIR__.'/../../../../../web/uploads/images/tutoriels';
+        $path = __DIR__.'/../../../../../web/uploads/images/tutoriels';
 
         $noms = array('tutoriel-les-labels-c0-p0-i0.jpg','tutoriel-les-labels-c1-p0-i0.jpg','tutoriel-les-labels-c2-p0-i0.jpg');
 
@@ -39,7 +39,7 @@ class ImageTutorielChapitreParaLabels extends AbstractFixture implements Ordered
 
         foreach($noms as $i => $nom)
         {            
-            $imagetutoriel[$i]->setChemin($chemin);
+            $imagetutoriel[$i]->setPath($path);
             $imagetutoriel[$i]->setNom($nom);                        
         }
 

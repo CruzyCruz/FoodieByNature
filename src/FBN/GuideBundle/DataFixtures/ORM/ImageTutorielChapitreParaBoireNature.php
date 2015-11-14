@@ -17,7 +17,7 @@ class ImageTutorielChapitreParaBoireNature extends AbstractFixture implements Or
     
         $ranks = array(0,0,0,0,0);
 
-        $chemin = __DIR__.'/../../../../../web/uploads/images/tutoriels';
+        $path = __DIR__.'/../../../../../web/uploads/images/tutoriels';
 
         $noms = array('tutoriel-boire-nature-c0-p0-i0.jpg','tutoriel-boire-nature-c1-p0-i0.jpg','tutoriel-boire-nature-c1-p1-i0.jpg','tutoriel-boire-nature-c1-p2-i0.jpg','tutoriel-boire-nature-c2-p0-i0.jpg');
 
@@ -39,7 +39,7 @@ class ImageTutorielChapitreParaBoireNature extends AbstractFixture implements Or
 
         foreach($noms as $i => $nom)
         {            
-            $imagetutoriel[$i]->setChemin($chemin);
+            $imagetutoriel[$i]->setPath($path);
             $imagetutoriel[$i]->setNom($nom);                        
         }
 

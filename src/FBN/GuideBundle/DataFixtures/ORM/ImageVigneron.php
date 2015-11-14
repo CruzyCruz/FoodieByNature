@@ -17,7 +17,7 @@ class ImageVigneron extends AbstractFixture implements OrderedFixtureInterface
     
         $ranks = array(0, 0, 0, 0, 0);
 
-        $chemin = __DIR__.'/../../../../../web/uploads/images/vignerons';
+        $path = __DIR__.'/../../../../../web/uploads/images/vignerons';
 
         $noms = array('vigneron-didier-barral-il.jpg', 'vigneron-marcel-lapierre-il.jpg', 'vigneron-elian-da-ros-il.jpg', 'vigneron-robert-plageoles-il.jpg', 'vigneron-jacques-selosse-il.jpg');
 
@@ -39,7 +39,7 @@ class ImageVigneron extends AbstractFixture implements OrderedFixtureInterface
 
         foreach($noms as $i => $nom)
         {            
-            $imagerestaurant[$i]->setChemin($chemin);
+            $imagerestaurant[$i]->setPath($path);
             $imagerestaurant[$i]->setNom($nom);                        
         }
 

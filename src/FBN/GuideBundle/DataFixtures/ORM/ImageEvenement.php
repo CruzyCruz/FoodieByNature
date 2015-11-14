@@ -18,7 +18,7 @@ class ImageEvenement extends AbstractFixture implements OrderedFixtureInterface
     {
         $ranks = array(0, 0, 0, 0, 0, 0, 0, 0);
 
-        $chemin = __DIR__.'/../../../../../web/uploads/images/evenements';
+        $path = __DIR__.'/../../../../../web/uploads/images/evenements';
 
         $noms = array('evenement-yvon-metras-au-temps-des-vendanges-2013-il.jpg', 'evenement-repas-gastronomique-a-toulouse-2013-il.jpg', 'evenement-sous-les-paves-la-vigne-2014-il.jpg', 'evenement-la-remise-2013-il.jpg', 'evenement-yvon-metras-au-temps-des-vendanges-2014-il.jpg', 'evenement-repas-gastronomique-a-toulouse-2014-il.jpg', 'evenement-la-remise-2014-il.jpg', 'evenement-dejeuner-sur-l-herbe-chez-robert-plageoles-2014-il.jpg');
 
@@ -38,7 +38,7 @@ class ImageEvenement extends AbstractFixture implements OrderedFixtureInterface
         }
 
         foreach ($noms as $i => $nom) {
-            $imageevenement[$i]->setChemin($chemin);
+            $imageevenement[$i]->setPath($path);
             $imageevenement[$i]->setNom($nom);
         }
 

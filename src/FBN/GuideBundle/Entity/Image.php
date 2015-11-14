@@ -41,10 +41,10 @@ class Image
     /**
      * @var string
      *
-     * @ORM\Column(name="chemin", type="string", length=255)
+     * @ORM\Column(name="path", type="string", length=255)
      * @Gedmo\UploadableFilePath
      */
-    private $chemin;
+    private $path;
 
     /**
      * @var string
@@ -134,26 +134,26 @@ class Image
     }
 
     /**
-     * Set chemin
+     * Set path
      *
-     * @param string $chemin
+     * @param string $path
      * @return Image
      */
-    public function setChemin($chemin)
+    public function setPath($path)
     {
-        $this->chemin = $chemin;
+        $this->path = $path;
 
         return $this;
     }
 
     /**
-     * Get chemin
+     * Get path
      *
      * @return string 
      */
-    public function getChemin()
+    public function getPath()
     {
-        return $this->chemin;
+        return $this->path;
     }
 
     /**
@@ -267,8 +267,8 @@ class Image
      */
     public function getWebPath()
     {
-        $pos = strpos($this->chemin, 'uploads');
-        $dir = substr($this->chemin, $pos);
+        $pos = strpos($this->path, 'uploads');
+        $dir = substr($this->path, $pos);
 
         return $dir . '/' . $this->nom;
     }      
