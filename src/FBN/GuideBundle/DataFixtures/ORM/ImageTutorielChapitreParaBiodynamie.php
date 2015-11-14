@@ -25,9 +25,9 @@ class ImageTutorielChapitreParaBiodyamie extends AbstractFixture implements Orde
 
         $mimetype = 'image/jpeg';
 
-        $legendes = array('Les buts de l’agriculture biodynamique','Historique de l’agriculture biodynamique en France','Historique de l’agriculture biodynamique dans le monde');        
+        $legends = array('Les buts de l’agriculture biodynamique','Historique de l’agriculture biodynamique en France','Historique de l’agriculture biodynamique dans le monde');        
 
-        $legendesen = array('The goals of biodynamic agriculture','History biodynamic agriculture in France','Organic wines');        
+        $legendsen = array('The goals of biodynamic agriculture','History biodynamic agriculture in France','Organic wines');        
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');        
 
@@ -49,11 +49,11 @@ class ImageTutorielChapitreParaBiodyamie extends AbstractFixture implements Orde
             $imagetutoriel[$i]->setMimeType($mimetype);                        
         }
 
-        foreach($legendes as $i => $legende)
+        foreach($legends as $i => $legend)
         {
-            $imagetutoriel[$i]->setLegende($legende);
+            $imagetutoriel[$i]->setLegend($legend);
 
-            $repository->translate($imagetutoriel[$i], 'legende', 'en', $legendesen[$i]);             
+            $repository->translate($imagetutoriel[$i], 'legend', 'en', $legendsen[$i]);             
             
             $manager->persist($imagetutoriel[$i]);
 

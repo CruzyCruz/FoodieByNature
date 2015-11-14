@@ -25,9 +25,9 @@ class ImageRestaurant extends AbstractFixture implements OrderedFixtureInterface
 
         $mimetype = 'image/jpeg';
 
-        $legendes = array('Plutôt trois fois qu\'une', 'Nature, quoi d\'autre ?', 'So bière!', '18 (dix-huit)', 'Si tu viens to San Fransisco...');        
+        $legends = array('Plutôt trois fois qu\'une', 'Nature, quoi d\'autre ?', 'So bière!', '18 (dix-huit)', 'Si tu viens to San Fransisco...');        
 
-        $legendesen = array('Three times better than one', 'Nature, what else ?', 'So beer!', '18 (eigtheen)', 'If you come to San Fransisco...');        
+        $legendsen = array('Three times better than one', 'Nature, what else ?', 'So beer!', '18 (eigtheen)', 'If you come to San Fransisco...');        
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');        
 
@@ -49,11 +49,11 @@ class ImageRestaurant extends AbstractFixture implements OrderedFixtureInterface
             $imagerestaurant[$i]->setMimeType($mimetype);                        
         }
 
-        foreach($legendes as $i => $legende)
+        foreach($legends as $i => $legend)
         {
-            $imagerestaurant[$i]->setLegende($legende);
+            $imagerestaurant[$i]->setLegend($legend);
 
-            $repository->translate($imagerestaurant[$i], 'legende', 'en', $legendesen[$i]);             
+            $repository->translate($imagerestaurant[$i], 'legend', 'en', $legendsen[$i]);             
             
             $manager->persist($imagerestaurant[$i]);
 

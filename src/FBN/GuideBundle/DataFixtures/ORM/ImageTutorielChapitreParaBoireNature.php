@@ -25,9 +25,9 @@ class ImageTutorielChapitreParaBoireNature extends AbstractFixture implements Or
 
         $mimetype = 'image/jpeg';
 
-        $legendes = array('Des vins vivants','Des vins détendus #0','Des vins détendus #1','Des vins détendus #2','Classsique vs Naturel');        
+        $legends = array('Des vins vivants','Des vins détendus #0','Des vins détendus #1','Des vins détendus #2','Classsique vs Naturel');        
 
-        $legendesen = array('Alive wines','Relaxed Wines #0','Relaxed Wines #1','Relaxed Wines #2','Classic vs Natural');        
+        $legendsen = array('Alive wines','Relaxed Wines #0','Relaxed Wines #1','Relaxed Wines #2','Classic vs Natural');        
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');        
 
@@ -49,11 +49,11 @@ class ImageTutorielChapitreParaBoireNature extends AbstractFixture implements Or
             $imagetutoriel[$i]->setMimeType($mimetype);                        
         }
 
-        foreach($legendes as $i => $legende)
+        foreach($legends as $i => $legend)
         {
-            $imagetutoriel[$i]->setLegende($legende);
+            $imagetutoriel[$i]->setLegend($legend);
 
-            $repository->translate($imagetutoriel[$i], 'legende', 'en', $legendesen[$i]);             
+            $repository->translate($imagetutoriel[$i], 'legend', 'en', $legendsen[$i]);             
             
             $manager->persist($imagetutoriel[$i]);
 

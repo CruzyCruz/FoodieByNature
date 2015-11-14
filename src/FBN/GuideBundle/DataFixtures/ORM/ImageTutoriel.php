@@ -25,9 +25,9 @@ class ImageTutoriel extends AbstractFixture implements OrderedFixtureInterface
 
         $mimetype = 'image/jpeg';
 
-        $legendes = array('Le vin au naturel','La biodynamie','Les labels','La macération carbonique','Boire nature');        
+        $legends = array('Le vin au naturel','La biodynamie','Les labels','La macération carbonique','Boire nature');        
 
-        $legendesen = array('Natural Wine','Biodynamics','Labels','Carbonic maceration','Drink nature');        
+        $legendsen = array('Natural Wine','Biodynamics','Labels','Carbonic maceration','Drink nature');        
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');        
 
@@ -49,11 +49,11 @@ class ImageTutoriel extends AbstractFixture implements OrderedFixtureInterface
             $imagetutoriel[$i]->setMimeType($mimetype);                        
         }
 
-        foreach($legendes as $i => $legende)
+        foreach($legends as $i => $legend)
         {
-            $imagetutoriel[$i]->setLegende($legende);
+            $imagetutoriel[$i]->setLegend($legend);
 
-            $repository->translate($imagetutoriel[$i], 'legende', 'en', $legendesen[$i]);             
+            $repository->translate($imagetutoriel[$i], 'legend', 'en', $legendsen[$i]);             
             
             $manager->persist($imagetutoriel[$i]);
 

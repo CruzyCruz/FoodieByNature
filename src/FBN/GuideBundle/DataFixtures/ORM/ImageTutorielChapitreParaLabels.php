@@ -25,9 +25,9 @@ class ImageTutorielChapitreParaLabels extends AbstractFixture implements Ordered
 
         $mimetype = 'image/jpeg';
 
-        $legendes = array('AB, le B.A BA du bio','Bio cohérence, plus bio que bio','Nature et Progrès, des fermes 100% bio');        
+        $legends = array('AB, le B.A BA du bio','Bio cohérence, plus bio que bio','Nature et Progrès, des fermes 100% bio');        
 
-        $legendesen = array('AB, BA B.A the organic','Bio consistency, more organic than organic','Nature and Progress, 100% organic farms');        
+        $legendsen = array('AB, BA B.A the organic','Bio consistency, more organic than organic','Nature and Progress, 100% organic farms');        
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');        
 
@@ -49,11 +49,11 @@ class ImageTutorielChapitreParaLabels extends AbstractFixture implements Ordered
             $imagetutoriel[$i]->setMimeType($mimetype);                        
         }
 
-        foreach($legendes as $i => $legende)
+        foreach($legends as $i => $legend)
         {
-            $imagetutoriel[$i]->setLegende($legende);
+            $imagetutoriel[$i]->setLegend($legend);
 
-            $repository->translate($imagetutoriel[$i], 'legende', 'en', $legendesen[$i]);             
+            $repository->translate($imagetutoriel[$i], 'legend', 'en', $legendsen[$i]);             
             
             $manager->persist($imagetutoriel[$i]);
 

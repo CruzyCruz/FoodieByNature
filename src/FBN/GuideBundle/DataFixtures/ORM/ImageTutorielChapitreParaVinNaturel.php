@@ -25,9 +25,9 @@ class ImageTutorielChapitreParaVinNaturel extends AbstractFixture implements Ord
 
         $mimetype = 'image/jpeg';
 
-        $legendes = array('Le terroir','C\'est quoi un vin naturel ?','Les vins bio','La viticulture biodynamique');        
+        $legends = array('Le terroir','C\'est quoi un vin naturel ?','Les vins bio','La viticulture biodynamique');        
 
-        $legendesen = array('The terroir','What is a natural wine?','Organic wines','Biodynamic viticulture');        
+        $legendsen = array('The terroir','What is a natural wine?','Organic wines','Biodynamic viticulture');        
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');        
 
@@ -49,11 +49,11 @@ class ImageTutorielChapitreParaVinNaturel extends AbstractFixture implements Ord
             $imagetutoriel[$i]->setMimeType($mimetype);                        
         }
 
-        foreach($legendes as $i => $legende)
+        foreach($legends as $i => $legend)
         {
-            $imagetutoriel[$i]->setLegende($legende);
+            $imagetutoriel[$i]->setLegend($legend);
 
-            $repository->translate($imagetutoriel[$i], 'legende', 'en', $legendesen[$i]);             
+            $repository->translate($imagetutoriel[$i], 'legend', 'en', $legendsen[$i]);             
             
             $manager->persist($imagetutoriel[$i]);
 

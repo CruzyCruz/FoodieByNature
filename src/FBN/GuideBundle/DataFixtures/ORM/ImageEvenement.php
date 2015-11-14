@@ -26,9 +26,9 @@ class ImageEvenement extends AbstractFixture implements OrderedFixtureInterface
 
         $mimetype = 'image/jpeg';
 
-        $legendes = array('Métras aux Temps des Vendanges!', 'Repas Gastronomique à Toulouse', 'Sous les pavés la vigne', 'La remise', 'Métras aux Temps des Vendanges!', 'Repas Gastronomique à Toulouse', 'La remise', 'Déjeuner sur l\'herbe chez Plageoles');
+        $legends = array('Métras aux Temps des Vendanges!', 'Repas Gastronomique à Toulouse', 'Sous les pavés la vigne', 'La remise', 'Métras aux Temps des Vendanges!', 'Repas Gastronomique à Toulouse', 'La remise', 'Déjeuner sur l\'herbe chez Plageoles');
 
-        $legendesen = array('Métras at Temps des Vendanges!', 'Gourmet meal in Toulouse', 'Sous les pavés la vigne', 'La remise', 'Métras at Temps des Vendanges!', 'Gourmet meal in Toulouse', 'La remise', 'Lunch on grass at Robert Plageoles');
+        $legendsen = array('Métras at Temps des Vendanges!', 'Gourmet meal in Toulouse', 'Sous les pavés la vigne', 'La remise', 'Métras at Temps des Vendanges!', 'Gourmet meal in Toulouse', 'La remise', 'Lunch on grass at Robert Plageoles');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -47,10 +47,10 @@ class ImageEvenement extends AbstractFixture implements OrderedFixtureInterface
             $imageevenement[$i]->setMimeType($mimetype);
         }
 
-        foreach ($legendes as $i => $legende) {
-            $imageevenement[$i]->setLegende($legende);
+        foreach ($legends as $i => $legend) {
+            $imageevenement[$i]->setLegend($legend);
 
-            $repository->translate($imageevenement[$i], 'legende', 'en', $legendesen[$i]);
+            $repository->translate($imageevenement[$i], 'legend', 'en', $legendsen[$i]);
 
             $manager->persist($imageevenement[$i]);
 

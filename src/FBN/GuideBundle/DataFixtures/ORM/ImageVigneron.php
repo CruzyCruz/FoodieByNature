@@ -25,9 +25,9 @@ class ImageVigneron extends AbstractFixture implements OrderedFixtureInterface
 
         $mimetype = 'image/jpeg';
 
-        $legendes = array('Oui Didier!', 'RIP Marcel!', 'Da Da Da!', 'Roberto mio palmo!', 'The Jacky touch!');        
+        $legends = array('Oui Didier!', 'RIP Marcel!', 'Da Da Da!', 'Roberto mio palmo!', 'The Jacky touch!');        
 
-        $legendesen = array('Yes Didier!', 'RIP Marcel!', 'Da Da Da!', 'Roberto mio palmo!', 'The Jacky touch!');        
+        $legendsen = array('Yes Didier!', 'RIP Marcel!', 'Da Da Da!', 'Roberto mio palmo!', 'The Jacky touch!');        
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');        
 
@@ -49,11 +49,11 @@ class ImageVigneron extends AbstractFixture implements OrderedFixtureInterface
             $imagerestaurant[$i]->setMimeType($mimetype);                        
         }
 
-        foreach($legendes as $i => $legende)
+        foreach($legends as $i => $legend)
         {
-            $imagerestaurant[$i]->setLegende($legende);
+            $imagerestaurant[$i]->setLegend($legend);
 
-            $repository->translate($imagerestaurant[$i], 'legende', 'en', $legendesen[$i]);             
+            $repository->translate($imagerestaurant[$i], 'legend', 'en', $legendsen[$i]);             
             
             $manager->persist($imagerestaurant[$i]);
 

@@ -73,10 +73,10 @@ class Image
     /**
      * @var string
      *
-     * @ORM\Column(name="legende", type="string", length=255)
+     * @ORM\Column(name="legend", type="string", length=255)
      * @Gedmo\Translatable
      */
-    private $legende;
+    private $legend;
 
     /**
      * @var string
@@ -226,26 +226,26 @@ class Image
     }
 
     /**
-     * Set legende
+     * Set legend
      *
-     * @param string $legende
+     * @param string $legend
      * @return Image
      */
-    public function setLegende($legende)
+    public function setLegend($legend)
     {
-        $this->legende = $legende;
+        $this->legend = $legend;
 
         return $this;
     }
 
     /**
-     * Get legende
+     * Get legend
      *
      * @return string 
      */
-    public function getLegende()
+    public function getLegend()
     {
-        return $this->legende;
+        return $this->legend;
     }
 
     /**

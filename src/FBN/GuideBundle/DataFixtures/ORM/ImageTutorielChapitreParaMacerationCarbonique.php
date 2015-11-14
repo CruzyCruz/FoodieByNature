@@ -25,9 +25,9 @@ class ImageTutorielChapitreParaMacerationCarbonique extends AbstractFixture impl
 
         $mimetype = 'image/jpeg';
 
-        $legendes = array('Théorie','Mise en œuvre','Produits obtenus');        
+        $legends = array('Théorie','Mise en œuvre','Produits obtenus');        
 
-        $legendesen = array('Theory','Implementation','Products obtained');        
+        $legendsen = array('Theory','Implementation','Products obtained');        
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');        
 
@@ -49,11 +49,11 @@ class ImageTutorielChapitreParaMacerationCarbonique extends AbstractFixture impl
             $imagetutoriel[$i]->setMimeType($mimetype);                        
         }
 
-        foreach($legendes as $i => $legende)
+        foreach($legends as $i => $legend)
         {
-            $imagetutoriel[$i]->setLegende($legende);
+            $imagetutoriel[$i]->setLegend($legend);
 
-            $repository->translate($imagetutoriel[$i], 'legende', 'en', $legendesen[$i]);             
+            $repository->translate($imagetutoriel[$i], 'legend', 'en', $legendsen[$i]);             
             
             $manager->persist($imagetutoriel[$i]);
 
