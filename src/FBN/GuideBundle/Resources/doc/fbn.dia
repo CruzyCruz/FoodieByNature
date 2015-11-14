@@ -1429,7 +1429,7 @@
         <dia:font family="Calibri" style="0" name="Courier"/>
       </dia:attribute>
       <dia:attribute name="abstract_classname_font">
-        <dia:font family="Calibri" style="4" name="Courier"/>
+        <dia:font family="Calibri" style="0" name="Courier"/>
       </dia:attribute>
       <dia:attribute name="comment_font">
         <dia:font family="Calibri" style="0" name="Courier"/>
@@ -1478,7 +1478,7 @@
         </dia:composite>
         <dia:composite type="umlattribute">
           <dia:attribute name="name">
-            <dia:string>#pays#</dia:string>
+            <dia:string>#country#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
             <dia:string>#string#</dia:string>

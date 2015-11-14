@@ -1,5 +1,7 @@
 <?php
+
 // src/FBN/GuideBundle/DataFixtures/ORM/CoordonneesPays.php
+
 
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
@@ -14,39 +16,34 @@ class CoordonneesPays extends AbstractFixture implements OrderedFixtureInterface
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-    
-        $payss    = array('France');  
-        
+        $countries = array('France');
+
         $codeisos = array('FR');
 
         $latitudes = array('46.000000');
 
         $longitudes = array('2.000000');
 
-        foreach($payss as $i => $pays)
-        {
+        foreach ($countries as $i => $country) {
             $coordonneespays[$i] = new CoordPays();
-            $coordonneespays[$i]->setPays($pays);
-        } 
+            $coordonneespays[$i]->setCountry($country);
+        }
 
-        foreach($latitudes as $i => $latitude)
-        {
+        foreach ($latitudes as $i => $latitude) {
             $coordonneespays[$i]->setLatitude($latitude);
-        } 
+        }
 
-        foreach($longitudes as $i => $longitude)
-        {
+        foreach ($longitudes as $i => $longitude) {
             $coordonneespays[$i]->setLongitude($longitude);
-        } 
+        }
 
-        foreach($codeisos as $i => $codeiso)
-        {
+        foreach ($codeisos as $i => $codeiso) {
             $coordonneespays[$i]->setCodeISO($codeiso);
 
             $manager->persist($coordonneespays[$i]);
 
-            $this->addReference('coordonneespays-' . $i, $coordonneespays[$i]);
-        }   
+            $this->addReference('coordonneespays-'.$i, $coordonneespays[$i]);
+        }
 
         $manager->flush();
     }
@@ -54,5 +51,5 @@ class CoordonneesPays extends AbstractFixture implements OrderedFixtureInterface
     public function getOrder()
     {
         return 5; // l'ordre dans lequel les fichiers sont chargés
-    }  
+    }
 }

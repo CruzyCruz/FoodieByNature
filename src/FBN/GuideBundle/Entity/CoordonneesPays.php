@@ -25,9 +25,9 @@ class CoordonneesPays
     /**
      * @var string
      *
-     * @ORM\Column(name="pays", type="string", length=255, unique=true)
+     * @ORM\Column(name="country", type="string", length=255, unique=true)
      */
-    private $pays;
+    private $country;
 
     /**
      * @var string
@@ -61,26 +61,26 @@ class CoordonneesPays
     }
 
     /**
-     * Set pays
+     * Set country
      *
-     * @param string $pays
+     * @param string $country
      * @return CoordonneesPays
      */
-    public function setPays($pays)
+    public function setCountry($country)
     {
-        $this->pays = $pays;
+        $this->country = $country;
 
         return $this;
     }
 
     /**
-     * Get pays
+     * Get country
      *
      * @return string 
      */
-    public function getPays()
+    public function getCountry()
     {
-        return $this->pays;
+        return $this->country;
     }
 
     /**
