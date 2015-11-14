@@ -25,10 +25,10 @@ class TutorielRubrique
     /**
      * @var string
      *
-     * @ORM\Column(name="rubrique", type="string", length=255)
+     * @ORM\Column(name="section", type="string", length=255)
      * @Gedmo\Translatable          
      */
-    private $rubrique;
+    private $section;
 
     /**
      * @var string
@@ -51,26 +51,26 @@ class TutorielRubrique
     }
 
     /**
-     * Set rubrique
+     * Set section
      *
-     * @param string $rubrique
+     * @param string $section
      * @return TutorielRubrique
      */
-    public function setRubrique($rubrique)
+    public function setSection($section)
     {
-        $this->rubrique = $rubrique;
+        $this->section = $section;
 
         return $this;
     }
 
     /**
-     * Get rubrique
+     * Get section
      *
      * @return string 
      */
-    public function getRubrique()
+    public function getSection()
     {
-        return $this->rubrique;
+        return $this->section;
     }
 
     /**

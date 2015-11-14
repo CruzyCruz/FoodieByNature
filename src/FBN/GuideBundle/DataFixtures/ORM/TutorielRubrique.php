@@ -15,17 +15,17 @@ class TutorielRubrique extends AbstractFixture implements OrderedFixtureInterfac
     public function load(ObjectManager $manager)
     {
     
-        $rubriques = array('Comprendre', 'Boire', 'Faire');       
+        $sections = array('Comprendre', 'Boire', 'Faire');       
 
-        $rubriquesen = array('Understand', 'Drink', 'Make');   
+        $sectionsen = array('Understand', 'Drink', 'Make');   
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        foreach($rubriques as $i => $rubrique)
+        foreach($sections as $i => $section)
         {
             $tutorielrubrique[$i] = new TutoRubrique();
-            $tutorielrubrique[$i]->setRubrique($rubrique); 
-            $repository->translate($tutorielrubrique[$i], 'rubrique', 'en', $rubriquesen[$i]);   
+            $tutorielrubrique[$i]->setSection($section); 
+            $repository->translate($tutorielrubrique[$i], 'section', 'en', $sectionsen[$i]);   
 
             $this->addReference('tutorielrubrique-' . $i, $tutorielrubrique[$i]);  
         }             
