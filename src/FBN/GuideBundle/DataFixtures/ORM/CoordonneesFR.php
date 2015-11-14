@@ -22,7 +22,7 @@ class CoordonneesFR extends AbstractFixture implements OrderedFixtureInterface
 
         $miscellaneouss = array(null, null, null, null, null, null, null, null, null, null, null, null, null, 'Les Grandes Tables de la Friche', 'Centre Commercial St Caprais', null, null, null);
 
-        $lieudits = array(null, null, null, null, null, 'Lenthéric', null, 'Laclotte', null, null, null, null, null, null, null, null, null);
+        $localities = array(null, null, null, null, null, 'Lenthéric', null, 'Laclotte', null, null, null, null, null, null, null, null, null);
 
         $codepostaux = array('75020', '75015', '75011', '75017', '75003', '34480', '69910', '47250', '81140', '81140', '51190', '31770', '69001', '13003', '31240', '31000', '75008', '25000');
 
@@ -43,8 +43,8 @@ class CoordonneesFR extends AbstractFixture implements OrderedFixtureInterface
             $coordonneesfr[$i]->setMiscellaneous($miscellaneous);
         }
 
-        foreach ($lieudits as $i => $lieudit) {
-            $coordonneesfr[$i]->setLieudit($lieudit);
+        foreach ($localities as $i => $locality) {
+            $coordonneesfr[$i]->setLocality($locality);
         }
 
         foreach ($codepostaux as $i => $codepostal) {

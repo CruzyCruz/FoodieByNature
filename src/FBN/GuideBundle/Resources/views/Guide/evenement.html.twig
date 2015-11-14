@@ -44,8 +44,8 @@
       }}
     {% endif %}
     <br />
-    {% if lieuevt.coordonnees.coordonneesFR.lieudit is not null %}
-      {{ lieuevt.coordonnees.coordonneesFR.lieudit }}
+    {% if lieuevt.coordonnees.coordonneesFR.locality is not null %}
+      {{ lieuevt.coordonnees.coordonneesFR.locality }}
     {% endif %}  
     <br />
     {{ lieuevt.coordonnees.coordonneesFR.codePostal ~ ' ' ~ lieuevt.coordonnees.city }}

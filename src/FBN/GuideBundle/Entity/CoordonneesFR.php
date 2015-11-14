@@ -58,9 +58,9 @@ class CoordonneesFR
     /**
      * @var string
      *
-     * @ORM\Column(name="lieudit", type="string", length=255, nullable=true)
+     * @ORM\Column(name="locality", type="string", length=255, nullable=true)
      */
-    private $lieudit;
+    private $locality;
 
     /**
      * @var string
@@ -195,26 +195,26 @@ class CoordonneesFR
     }     
 
     /**
-     * Set lieudit
+     * Set locality
      *
-     * @param string $lieudit
+     * @param string $locality
      * @return Coordonnees
      */
-    public function setLieudit($lieudit)
+    public function setLocality($locality)
     {
-        $this->lieudit = $lieudit;
+        $this->locality = $locality;
 
         return $this;
     }
 
     /**
-     * Get lieudit
+     * Get locality
      *
      * @return string 
      */
-    public function getLieudit()
+    public function getLocality()
     {
-        return $this->lieudit;
+        return $this->locality;
     } 
 
     /**

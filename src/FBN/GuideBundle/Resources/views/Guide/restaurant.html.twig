@@ -68,8 +68,8 @@
       }}
     {% endif %}
     <br />
-    {% if restaurant.coordonnees.coordonneesFR.lieudit is not null %}
-      {{ restaurant.coordonnees.coordonneesFR.lieudit }}
+    {% if restaurant.coordonnees.coordonneesFR.locality is not null %}
+      {{ restaurant.coordonnees.coordonneesFR.locality }}
     {% endif %}  
     <br />
     {{ restaurant.coordonnees.coordonneesFR.codePostal ~ ' ' ~ restaurant.coordonnees.city }}
