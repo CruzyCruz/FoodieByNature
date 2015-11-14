@@ -22,7 +22,7 @@ class Caviste extends AbstractFixture implements OrderedFixtureInterface
 
         $authors = array('CB', 'AH', 'CB', 'AH', 'AH');
 
-        $proprios = array(null, 'Jérôme Rey', 'Philippe Lagarde', 'Christian Constant', 'Thierry Marx');
+        $owners = array(null, 'Jérôme Rey', 'Philippe Lagarde', 'Christian Constant', 'Thierry Marx');
 
         $hrefs = array(null, 'http://www.cave-vinea.com/', 'http://le-tire-bouchon.org/', 'http://www.cavesauge.com/', 'http://www.leszinzinsduvin.com/');
 
@@ -65,8 +65,8 @@ class Caviste extends AbstractFixture implements OrderedFixtureInterface
             $caviste[$i]->setAuthor($author);
         }
 
-        foreach ($proprios as $i => $proprio) {
-            $caviste[$i]->setProprio($proprio);
+        foreach ($owners as $i => $owner) {
+            $caviste[$i]->setOwner($owner);
         }
 
         foreach ($hrefs as $i => $href) {

@@ -43,9 +43,9 @@ class Caviste extends Article
     /**
      * @var string
      *
-     * @ORM\Column(name="proprio", type="string", length=255, nullable=true)
+     * @ORM\Column(name="owner", type="string", length=255, nullable=true)
      */
-    private $proprio;
+    private $owner;
 
     /**
      * @var string
@@ -176,27 +176,27 @@ class Caviste extends Article
     }
 
     /**
-     * Set proprio.
+     * Set owner.
      *
-     * @param string $proprio
+     * @param string $owner
      *
-     * @return proprio
+     * @return Caviste
      */
-    public function setProprio($proprio)
+    public function setOwner($owner)
     {
-        $this->proprio = $proprio;
+        $this->owner = $owner;
 
         return $this;
     }
 
     /**
-     * Get proprio.
+     * Get owner.
      *
      * @return string
      */
-    public function getProprio()
+    public function getOwner()
     {
-        return $this->proprio;
+        return $this->owner;
     }
 
     /**
