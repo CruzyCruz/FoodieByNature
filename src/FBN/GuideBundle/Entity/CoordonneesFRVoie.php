@@ -24,9 +24,9 @@ class CoordonneesFRVoie
     /**
      * @var string
      *
-     * @ORM\Column(name="voie", type="string", length=255, unique=true)
+     * @ORM\Column(name="lane", type="string", length=255, unique=true)
      */
-    private $voie;
+    private $lane;
 
 
     /**
@@ -40,25 +40,25 @@ class CoordonneesFRVoie
     }
 
     /**
-     * Set voie
+     * Set lane
      *
-     * @param string $voie
+     * @param string $lane
      * @return CoordonneesFRVoie
      */
-    public function setVoie($voie)
+    public function setLane($lane)
     {
-        $this->voie = $voie;
+        $this->lane = $lane;
 
         return $this;
     }
 
     /**
-     * Get voie
+     * Get lane
      *
      * @return string 
      */
-    public function getVoie()
+    public function getLane()
     {
-        return $this->voie;
+        return $this->lane;
     }
 }

@@ -15,7 +15,7 @@ class CoordonneesFRVoie extends AbstractFixture implements OrderedFixtureInterfa
     public function load(ObjectManager $manager)
     {
             
-        $voies = array(
+        $lanes = array(
                         'allée',
                         'avenue',
                         'boulevard',
@@ -34,10 +34,10 @@ class CoordonneesFRVoie extends AbstractFixture implements OrderedFixtureInterfa
                         'traverse',
                         );
 
-        foreach($voies as $i => $voie)
+        foreach($lanes as $i => $lane)
         {
             $coordonneesfrvoie[$i] = new CoordFRVoie();
-            $coordonneesfrvoie[$i]->setVoie($voie);
+            $coordonneesfrvoie[$i]->setLane($lane);
 
             $manager->persist($coordonneesfrvoie[$i]);
 

@@ -2061,7 +2061,7 @@
         <dia:font family="Calibri" style="0" name="Courier"/>
       </dia:attribute>
       <dia:attribute name="abstract_classname_font">
-        <dia:font family="Calibri" style="4" name="Courier"/>
+        <dia:font family="Calibri" style="0" name="Courier"/>
       </dia:attribute>
       <dia:attribute name="comment_font">
         <dia:font family="Calibri" style="0" name="Courier"/>
@@ -2110,7 +2110,7 @@
         </dia:composite>
         <dia:composite type="umlattribute">
           <dia:attribute name="name">
-            <dia:string>#voie#</dia:string>
+            <dia:string>#lane#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
             <dia:string>#string#</dia:string>
@@ -6846,7 +6846,7 @@
         <dia:point val="50.0938,22.4688"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="50.0437,22.4188;50.8313,27.4598"/>
+        <dia:rectangle val="50.0438,22.4188;50.8313,27.4598"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
@@ -8038,17 +8038,17 @@
         <dia:boolean val="false"/>
       </dia:attribute>
       <dia:attribute name="obj_pos">
-        <dia:point val="24.1777,-51.8058"/>
+        <dia:point val="24.1787,-51.8058"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="23.7736,-51.8559;24.7302,-47.1867"/>
+        <dia:rectangle val="23.7736,-51.8558;24.7312,-47.1867"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
       </dia:attribute>
       <dia:attribute name="orth_points">
-        <dia:point val="24.1777,-51.8058"/>
-        <dia:point val="24.1751,-48.0867"/>
+        <dia:point val="24.1787,-51.8058"/>
+        <dia:point val="24.1777,-48.0867"/>
         <dia:point val="23.8236,-48.0867"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">
