@@ -37,9 +37,9 @@ class CoordonneesFR
     /**
      * @var string
      *
-     * @ORM\Column(name="voieNum", type="string", length=255, nullable=true)
+     * @ORM\Column(name="laneNum", type="string", length=255, nullable=true)
      */
-    private $voieNum;
+    private $laneNum;
 
     /**
      * @var string
@@ -80,26 +80,26 @@ class CoordonneesFR
     }
 
     /**
-     * Set voieNum
+     * Set laneNum
      *
-     * @param string $voieNum
+     * @param string $laneNum
      * @return CordonneesFR
      */
-    public function setVoieNum($voieNum)
+    public function setLaneNum($laneNum)
     {
-        $this->voieNum = $voieNum;
+        $this->laneNum = $laneNum;
 
         return $this;
     }
 
     /**
-     * Get voieNum
+     * Get laneNum
      *
      * @return string 
      */
-    public function getVoieNum()
+    public function getLaneNum()
     {
-        return $this->voieNum;
+        return $this->laneNum;
     }
 
     /**

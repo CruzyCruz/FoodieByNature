@@ -41,13 +41,13 @@
     {% endif %}  
     <br />  
     {% if sharedData.coordonnees.coordonneesFR.voieNom is not null %}
-      {% if sharedData.coordonnees.coordonneesFR.voieNum is not null %}
+      {% if sharedData.coordonnees.coordonneesFR.laneNum is not null %}
         {% set separateur = ', ' %}  
       {% else %}
         {% set separateur = '' %}  
       {% endif %}
       {{ 
-      sharedData.coordonnees.coordonneesFR.voieNum ~ separateur ~
+      sharedData.coordonnees.coordonneesFR.laneNum ~ separateur ~
       sharedData.coordonnees.coordonneesFR.coordonneesFRVoie.voie ~ ' ' ~
       sharedData.coordonnees.coordonneesFR.voieNom
       }}

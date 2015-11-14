@@ -32,13 +32,13 @@
     {% endif %}  
     <br />
     {% if lieuevt.coordonnees.coordonneesFR.voieNom is not null %}
-      {% if lieuevt.coordonnees.coordonneesFR.voieNum is not null %}
+      {% if lieuevt.coordonnees.coordonneesFR.laneNum is not null %}
         {% set separateur = ', ' %}  
       {% else %}
         {% set separateur = '' %}  
       {% endif %}         
       {{ 
-      lieuevt.coordonnees.coordonneesFR.voieNum ~ separateur ~
+      lieuevt.coordonnees.coordonneesFR.laneNum ~ separateur ~
       lieuevt.coordonnees.coordonneesFR.coordonneesFRVoie.voie ~ ' ' ~
       lieuevt.coordonnees.coordonneesFR.voieNom
       }}

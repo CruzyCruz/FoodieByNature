@@ -56,13 +56,13 @@
     {% endif %}  
     <br />  
     {% if restaurant.coordonnees.coordonneesFR.voieNom is not null %}
-      {% if restaurant.coordonnees.coordonneesFR.voieNum is not null %}
+      {% if restaurant.coordonnees.coordonneesFR.laneNum is not null %}
         {% set separateur = ', ' %}  
       {% else %}
         {% set separateur = '' %}  
       {% endif %}      
       {{ 
-      restaurant.coordonnees.coordonneesFR.voieNum ~ separateur ~
+      restaurant.coordonnees.coordonneesFR.laneNum ~ separateur ~
       restaurant.coordonnees.coordonneesFR.coordonneesFRVoie.voie ~ ' ' ~
       restaurant.coordonnees.coordonneesFR.voieNom
       }}
