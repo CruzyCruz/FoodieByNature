@@ -39,10 +39,10 @@ class TutorielChapitrePara
     /**
      * @var string
      *
-     * @ORM\Column(name="paragraphe", type="text")
+     * @ORM\Column(name="paragraph", type="text")
      * @Gedmo\Translatable          
      */
-    private $paragraphe;
+    private $paragraph;
 
     /**
      * @var integer
@@ -72,26 +72,26 @@ class TutorielChapitrePara
     }
 
     /**
-     * Set paragraphe
+     * Set paragraph
      *
-     * @param string $paragraphe
+     * @param string $paragraph
      * @return TutorielChapitrePara
      */
-    public function setParagraphe($paragraphe)
+    public function setParagraph($paragraph)
     {
-        $this->paragraphe = $paragraphe;
+        $this->paragraph = $paragraph;
 
         return $this;
     }
 
     /**
-     * Get paragraphe
+     * Get paragraph
      *
      * @return string 
      */
-    public function getParagraphe()
+    public function getParagraph()
     {
-        return $this->paragraphe;
+        return $this->paragraph;
     }
 
     /**

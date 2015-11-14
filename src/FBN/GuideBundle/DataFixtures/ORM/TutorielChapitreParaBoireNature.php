@@ -16,7 +16,7 @@ class TutorielChapitreParaBoireNature extends AbstractFixture implements Ordered
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $paragraphes = array(
+        $paragraphs = array(
             'Avec l’élaboration de tels vins, « nature » ou « naturels », le goût du raisin et la typicité du terroir retrouvent toute leur importance. Alors que la vinification classique qui utilise le soufre comme antioxydant fixe les arômes dominants, la vinification des vins « nature » produit des vins plus complexes, dans lesquels on perçoit des parfums et des goûts plus nombreux et plus subtils. Non stabilisés, les vins naturels sont des vins vivants dont le goût et l’expression évoluent pendant la dégustation. A ce titre, ils peuvent parfois « déstabiliser » les amateurs de vins classiques : ils demandent que l’on oublie un peu ce que l’on sait, que l’on s’ouvre à de nouvelles sensations. Ce n’est pas le moindre de leur charme que d’offrir en effet des expériences de dégustations nouvelles, dans un univers où les produits sont de plus en plus standardisés et finissent tous par se ressembler.',
             'Le léger perlant, qu’on leur reproche parfois et qui excite les papilles à l’ouverture de la bouteille, peut plaire ou non : il disparaît avec un carafage, qui permet au vin de dégazer.',
             'Le nez, parfois rustique au premier abord, s’affine rapidement, avec des arômes qui évoluent beaucoup au cours de la dégustation.',
@@ -25,7 +25,7 @@ class TutorielChapitreParaBoireNature extends AbstractFixture implements Ordered
 
         $ranks = array(0, 0, 1, 2, 0);
 
-        $paragraphesen = array(
+        $paragraphsen = array(
             'With the development of such wines, "nature" or "natural", the taste of the grape and characteristics of the terroir regain their importance. While classical winemaking using sulfur as antioxidant sets the dominant aromas, wine making wine "nature" produces complex wines, in which we perceive scents and more numerous and subtle tastes. Unstabilized, natural wines are living wines whose taste and expression change during the tasting. As such, they can sometimes "destabilize" the lovers of classic wines: they ask that we forget a little what we know, that we are open to new sensations. This is not the least of their charm as offer indeed new tasting experiences in a world where products are increasingly standardized and all end up looking the same.',
             'The slight beading, sometimes blame them and excites the taste buds at the opening of the bottle, can please or not: it disappears with a carafe, which allows the wine to degas.',
             'Nose, sometimes rustic at first, matures quickly, with flavors that change a lot during the tasting.',
@@ -42,10 +42,10 @@ class TutorielChapitreParaBoireNature extends AbstractFixture implements Ordered
             3,
             );
 
-        foreach ($paragraphes as $i => $paragraphe) {
+        foreach ($paragraphs as $i => $paragraph) {
             $tutorielchapitrepara[$i] = new TutoChapitrePara();
-            $tutorielchapitrepara[$i]->setParagraphe($paragraphe);
-            $repository->translate($tutorielchapitrepara[$i], 'paragraphe', 'en', $paragraphesen[$i]);
+            $tutorielchapitrepara[$i]->setParagraph($paragraph);
+            $repository->translate($tutorielchapitrepara[$i], 'paragraph', 'en', $paragraphsen[$i]);
         }
 
         foreach ($ranks as $i => $rank) {

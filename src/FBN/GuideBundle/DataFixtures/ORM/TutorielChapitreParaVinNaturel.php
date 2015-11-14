@@ -15,7 +15,7 @@ class TutorielChapitreParaVinNaturel extends AbstractFixture implements OrderedF
     public function load(ObjectManager $manager)
     {
     
-        $paragraphes = array(
+        $paragraphs = array(
             'Le terroir c\'est des ceps de vignes choisis et intégrés dans un écosystème, un sol labouré, la nature du sous-sol dans lequel les racines de la plante se nourrissent, la microflore du sol, nourriture de la plante. C\'est également un vigneron et des techniques de travail plus ou moins interventionnistes.',
             'Un vin naturel est élaboré à partir de raisins mûrs issus de l’agriculture biologique ou biodynamique ayant subi le minimum de manipulations et exempts de tous produits chimiques ou de synthèse, à partir de raisins vendangés manuellement,avec des levures et bactéries naturelles ou indigènes, sans utiliser d’intrants œnologiques chimiques visant à accélérer la stabilisation ou modifier les jus, avec des techniques douces et respectueuses de l’environnement et sans l’usage du soufre ou avec des dosages homéopathiques (jusqu’à 5 fois moins de soufre pour les vins rouges et 10 fois moins pour les vins blancs que les dosages autorisés par les commissions européennes).',
             'Les vins bio proviennent de vignes cultivées selon un cahier des charges précis sans désherbage chimique et sans utilisation de produits de traitement de synthèse sont issus d’une production agricole basée sur le respect du vivant et des cycles naturels, sont contrôlés et certifiés par des organismes privés gestionnaires de marque et liés au label AB, seront 100% bio à partir de la récolte 2012 (auparavant la vinification n’était pas réglementée) et distingués par un logo de l’Union Européenne.',
@@ -23,7 +23,7 @@ class TutorielChapitreParaVinNaturel extends AbstractFixture implements OrderedF
 
         $ranks = array(0, 0, 0, 0);
 
-        $paragraphesen = array(
+        $paragraphsen = array(
             'The soil\'s selected vines and integrated into an ecosystem, a plowed ground, the nature of the subsoil in which the roots of the plant feed, soil microflora, plant food. It\'s also a winemaker and more or less interventionist techniques work.',
             'A natural wine is made from ripe grapes from organic or biodynamic agriculture has undergone the minimum fuss and free of any chemicals or synthetic, from grapes harvested by hand with natural yeasts and bacteria or indigenous, without the use of chemical inputs oenological to accelerate the stabilization or modify the juice with gentle techniques that respect the environment and without the use of sulfur or with homeopathic dosages (up to 5 times less sulfur for red wine and 10 times less for white wines that dosages allowed by European commissions).',
             'Organic wines come from vines grown on a precise specification without chemical weed control and without the use of synthetic processing products come from agricultural production based on respect for nature and natural cycles are controlled and certified by organizations private brand managers and related AB label, will 100% organic from the 2012 harvest (before vinification was not regulated) and distinguished by an EU logo.',
@@ -39,11 +39,11 @@ class TutorielChapitreParaVinNaturel extends AbstractFixture implements OrderedF
             4
             );            
 
-        foreach($paragraphes as $i => $paragraphe)
+        foreach($paragraphs as $i => $paragraph)
         {
             $tutorielchapitrepara[$i] = new TutoChapitrePara();
-            $tutorielchapitrepara[$i]->setParagraphe($paragraphe); 
-            $repository->translate($tutorielchapitrepara[$i], 'paragraphe', 'en', $paragraphesen[$i]);           
+            $tutorielchapitrepara[$i]->setParagraph($paragraph); 
+            $repository->translate($tutorielchapitrepara[$i], 'paragraph', 'en', $paragraphsen[$i]);           
         }     
 
         foreach($ranks as $i => $rank)
