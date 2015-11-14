@@ -21,7 +21,7 @@ class TutorielChapitreParaVinNaturel extends AbstractFixture implements OrderedF
             'Les vins bio proviennent de vignes cultivées selon un cahier des charges précis sans désherbage chimique et sans utilisation de produits de traitement de synthèse sont issus d’une production agricole basée sur le respect du vivant et des cycles naturels, sont contrôlés et certifiés par des organismes privés gestionnaires de marque et liés au label AB, seront 100% bio à partir de la récolte 2012 (auparavant la vinification n’était pas réglementée) et distingués par un logo de l’Union Européenne.',
             'La viticulture biodynamique se base sur des pratiques agricoles durables et l’utilisation d’outils légers qui respectent la vie du sol, a pour but de renforcer la plante en améliorant les échanges entre les micro-organismes du sol et le système racinaire de la vigne, a pour objectif de dynamiser les effets bénéfiques de la lumière solaire sur le système foliaire de la plante,  recherche une optimisation de l’expression du terroir, tient compte des cycles lunaires ayant une influence sur la croissance et la vie des plantes et utilise des composts organiques et autres préparations à base de plantes destinés à nourrir les êtres vivants du sol.');        
 
-        $rangs = array(0, 0, 0, 0);
+        $ranks = array(0, 0, 0, 0);
 
         $paragraphesen = array(
             'The soil\'s selected vines and integrated into an ecosystem, a plowed ground, the nature of the subsoil in which the roots of the plant feed, soil microflora, plant food. It\'s also a winemaker and more or less interventionist techniques work.',
@@ -46,9 +46,9 @@ class TutorielChapitreParaVinNaturel extends AbstractFixture implements OrderedF
             $repository->translate($tutorielchapitrepara[$i], 'paragraphe', 'en', $paragraphesen[$i]);           
         }     
 
-        foreach($rangs as $i => $rang)
+        foreach($ranks as $i => $rank)
         {
-            $tutorielchapitrepara[$i]->setRang($rang);  
+            $tutorielchapitrepara[$i]->setRank($rank);  
 
             $manager->persist($tutorielchapitrepara[$i]);  
 

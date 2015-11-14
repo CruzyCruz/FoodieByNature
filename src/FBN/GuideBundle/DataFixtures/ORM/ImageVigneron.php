@@ -15,7 +15,7 @@ class ImageVigneron extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
     
-        $rangs = array(0, 0, 0, 0, 0);
+        $ranks = array(0, 0, 0, 0, 0);
 
         $chemin = __DIR__.'/../../../../../web/uploads/images/vignerons';
 
@@ -31,10 +31,10 @@ class ImageVigneron extends AbstractFixture implements OrderedFixtureInterface
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');        
 
-        foreach($rangs as $i => $rang)
+        foreach($ranks as $i => $rank)
         {
             $imagerestaurant[$i] = new Image();
-            $imagerestaurant[$i]->setRang($rang);                        
+            $imagerestaurant[$i]->setRank($rank);                        
         }
 
         foreach($noms as $i => $nom)

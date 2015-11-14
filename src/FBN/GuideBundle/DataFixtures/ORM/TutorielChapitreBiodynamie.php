@@ -17,7 +17,7 @@ class TutorielChapitreBiodynamie extends AbstractFixture implements OrderedFixtu
     
         $titres = array('Les buts de l’agriculture biodynamique', 'Historique de l’agriculture biodynamique en France', 'Historique de l’agriculture biodynamique dans le monde');        
 
-        $rangs = array(0, 1, 2);
+        $ranks = array(0, 1, 2);
 
         $titresen = array('The goals of biodynamic agriculture', 'History biodynamic agriculture in France', 'Organic wines', 'History biodynamic agriculture in the world');
 
@@ -37,9 +37,9 @@ class TutorielChapitreBiodynamie extends AbstractFixture implements OrderedFixtu
             $repository->translate($tutorielchapitre[$i], 'titre', 'en', $titresen[$i]);           
         }             
 
-        foreach($rangs as $i => $rang)
+        foreach($ranks as $i => $rank)
         {
-            $tutorielchapitre[$i]->setRang($rang);  
+            $tutorielchapitre[$i]->setRank($rank);  
 
             $manager->persist($tutorielchapitre[$i]);  
 

@@ -21,7 +21,7 @@ class TutorielChapitreParaMacerationCarbonique extends AbstractFixture implement
             'Utilisée depuis longtemps en Beaujolais, cette technique a été mise en avant pour la production de vins nouveaux ou primeurs. Il ne faut cependant pas la réduire à ce segment de marché, puisque dans le même vignoble, elle sert à élaborer des vins de garde dans les crus comme Morgon ou Moulin à vent.',
             );        
 
-        $rangs = array(0, 0, 0);
+        $ranks = array(0, 0, 0);
 
         $paragraphesen = array(
             'It requires intact grape berries: So we must always do the harvest by hand down containers. The technique is to put the whole bunches, not scratched and not steps, in a sealed tank saturated with carbon dioxide. This produces an intracellular fermentation Louis Pasteur after Lechartier and Bellamy had already described.',
@@ -44,9 +44,9 @@ class TutorielChapitreParaMacerationCarbonique extends AbstractFixture implement
             $repository->translate($tutorielchapitrepara[$i], 'paragraphe', 'en', $paragraphesen[$i]);           
         }     
 
-        foreach($rangs as $i => $rang)
+        foreach($ranks as $i => $rank)
         {
-            $tutorielchapitrepara[$i]->setRang($rang);  
+            $tutorielchapitrepara[$i]->setRank($rank);  
 
             $manager->persist($tutorielchapitrepara[$i]);  
 

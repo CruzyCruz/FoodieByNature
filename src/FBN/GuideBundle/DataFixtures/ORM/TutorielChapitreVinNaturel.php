@@ -17,7 +17,7 @@ class TutorielChapitreVinNaturel extends AbstractFixture implements OrderedFixtu
     
         $titres = array('Le terroir', 'C\'est quoi un vin naturel ?', 'Les vins bio', 'La viticulture biodynamique');        
 
-        $rangs = array(0, 1, 2, 3);
+        $ranks = array(0, 1, 2, 3);
 
         $titresen = array('The terroir', 'What is a natural wine?', 'Organic wines', 'Biodynamic viticulture');
 
@@ -37,9 +37,9 @@ class TutorielChapitreVinNaturel extends AbstractFixture implements OrderedFixtu
             $repository->translate($tutorielchapitre[$i], 'titre', 'en', $titresen[$i]);           
         }             
 
-        foreach($rangs as $i => $rang)
+        foreach($ranks as $i => $rank)
         {
-            $tutorielchapitre[$i]->setRang($rang);  
+            $tutorielchapitre[$i]->setRank($rank);  
 
             $manager->persist($tutorielchapitre[$i]);  
 

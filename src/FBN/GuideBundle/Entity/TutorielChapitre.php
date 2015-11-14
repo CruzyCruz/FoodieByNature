@@ -22,7 +22,7 @@ class TutorielChapitre
 
   /**
    * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorielChapitrePara", mappedBy="tutorielChapitre")
-   * @ORM\OrderBy({"rang" = "ASC"})
+   * @ORM\OrderBy({"rank" = "ASC"})
    */
   private $tutorielChapitrePara; 
  
@@ -47,9 +47,9 @@ class TutorielChapitre
     /**
      * @var integer
      *
-     * @ORM\Column(name="rang", type="integer")
+     * @ORM\Column(name="rank", type="integer")
      */
-    private $rang;  
+    private $rank;  
 
     /**
      * @var string
@@ -94,26 +94,26 @@ class TutorielChapitre
     }
 
     /**
-     * Set rang
+     * Set rank
      *
-     * @param integer $rang
+     * @param integer $rank
      * @return TutorielChapitre
      */
-    public function setRang($rang)
+    public function setRank($rank)
     {
-        $this->rang = $rang;
+        $this->rank = $rank;
 
         return $this;
     }
 
     /**
-     * Get rang
+     * Get rank
      *
      * @return integer 
      */
-    public function getRang()
+    public function getRank()
     {
-        return $this->rang;
+        return $this->rank;
     }
 
     /**

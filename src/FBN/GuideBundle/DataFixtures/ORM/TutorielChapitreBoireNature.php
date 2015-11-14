@@ -17,7 +17,7 @@ class TutorielChapitreBoireNature extends AbstractFixture implements OrderedFixt
     
         $titres = array('Des vins vivants', 'Des vins détendus', 'Classsique vs Naturel');        
 
-        $rangs = array(0, 1, 2);
+        $ranks = array(0, 1, 2);
 
         $titresen = array('Alive wines', 'Relaxed Wines', 'Classic vs Natural');
 
@@ -37,9 +37,9 @@ class TutorielChapitreBoireNature extends AbstractFixture implements OrderedFixt
             $repository->translate($tutorielchapitre[$i], 'titre', 'en', $titresen[$i]);           
         }             
 
-        foreach($rangs as $i => $rang)
+        foreach($ranks as $i => $rank)
         {
-            $tutorielchapitre[$i]->setRang($rang);  
+            $tutorielchapitre[$i]->setRank($rank);  
 
             $manager->persist($tutorielchapitre[$i]);  
 

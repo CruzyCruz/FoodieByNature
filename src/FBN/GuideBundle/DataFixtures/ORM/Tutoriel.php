@@ -27,7 +27,7 @@ class Tutoriel extends AbstractFixture implements OrderedFixtureInterface
 
         $authors = array('CB', 'AH', 'CB', 'AH', 'AH',); 
 
-        $rangs = array(0, 1, 2, 3, 4);
+        $ranks = array(0, 1, 2, 3, 4);
 
         $namesen = array('The natural wine', 'Biodynamics', 'Labels', 'Carbonic maceration', 'Drink Nature');
 
@@ -69,9 +69,9 @@ class Tutoriel extends AbstractFixture implements OrderedFixtureInterface
         
         }    
 
-        foreach($rangs as $i => $rang)
+        foreach($ranks as $i => $rank)
         {
-            $tutoriel[$i]->setRang($rang);   
+            $tutoriel[$i]->setRank($rank);   
 
             $manager->persist($tutoriel[$i]); 
 

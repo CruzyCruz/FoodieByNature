@@ -16,7 +16,7 @@ class ImageEvenement extends AbstractFixture implements OrderedFixtureInterface
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $rangs = array(0, 0, 0, 0, 0, 0, 0, 0);
+        $ranks = array(0, 0, 0, 0, 0, 0, 0, 0);
 
         $chemin = __DIR__.'/../../../../../web/uploads/images/evenements';
 
@@ -32,9 +32,9 @@ class ImageEvenement extends AbstractFixture implements OrderedFixtureInterface
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        foreach ($rangs as $i => $rang) {
+        foreach ($ranks as $i => $rank) {
             $imageevenement[$i] = new Image();
-            $imageevenement[$i]->setRang($rang);
+            $imageevenement[$i]->setRank($rank);
         }
 
         foreach ($noms as $i => $nom) {

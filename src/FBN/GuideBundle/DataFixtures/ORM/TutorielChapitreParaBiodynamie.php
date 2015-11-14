@@ -21,7 +21,7 @@ class TutorielChapitreParaBiodynamie extends AbstractFixture implements OrderedF
             '1990 à nos jours : L’agriculture biodynamique poursuit son extension sur tous les continents, en particulier en Asie (Inde, Chine, etc…) et en Amérique du Sud. Une initiative particulièrement innovante : Sekem a reçu le prix Nobel alternatif.L’agriculture biodynamique représente 5000 producteurs, grossistes et transformateurs certifiés Demeter sur une surface de 150 000 hectares à travers le monde. L’association Demeter International regroupe 45 pays gestionnaires de la marque .Permanence d’un délégué Demeter au Conseil de l’Europe à Bruxelles.',
             );        
 
-        $rangs = array(0, 0, 0);
+        $ranks = array(0, 0, 0);
 
         $paragraphesen = array(
             'Heal the land and maintain soil fertility, regeneration, shaping and maintaining the landscape, provide human quality food that nourishes body, soul and spirit, develop the approach of life and understand the role of the peasant to nature, plants and animals, opening new social perspectives on farms: linking producers and consumers (by including merchants), link citizens to land (urban-rural partnership).',
@@ -44,9 +44,9 @@ class TutorielChapitreParaBiodynamie extends AbstractFixture implements OrderedF
             $repository->translate($tutorielchapitrepara[$i], 'paragraphe', 'en', $paragraphesen[$i]);           
         }     
 
-        foreach($rangs as $i => $rang)
+        foreach($ranks as $i => $rank)
         {
-            $tutorielchapitrepara[$i]->setRang($rang);  
+            $tutorielchapitrepara[$i]->setRank($rank);  
 
             $manager->persist($tutorielchapitrepara[$i]);  
 

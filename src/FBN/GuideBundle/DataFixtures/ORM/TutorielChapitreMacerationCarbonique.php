@@ -17,7 +17,7 @@ class TutorielChapitreMacerationCarbonique extends AbstractFixture implements Or
     
         $titres = array('Théorie', 'Mise en œuvre', 'Produits obtenus');        
 
-        $rangs = array(0, 1, 2);
+        $ranks = array(0, 1, 2);
 
         $titresen = array('Theory', 'Implementation', 'Products obtained');
 
@@ -37,9 +37,9 @@ class TutorielChapitreMacerationCarbonique extends AbstractFixture implements Or
             $repository->translate($tutorielchapitre[$i], 'titre', 'en', $titresen[$i]);           
         }             
 
-        foreach($rangs as $i => $rang)
+        foreach($ranks as $i => $rank)
         {
-            $tutorielchapitre[$i]->setRang($rang);  
+            $tutorielchapitre[$i]->setRank($rank);  
 
             $manager->persist($tutorielchapitre[$i]);  
 

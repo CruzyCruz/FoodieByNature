@@ -21,7 +21,7 @@ class TutorielChapitreParaLabels extends AbstractFixture implements OrderedFixtu
             'Ce n’est pas un label mais une mention proposée et contrôlée par des commissions maison réunissant consommateurs et professionnels (on appelle ça les Comac, commissions mixtes d’agrément et de contrôle locaux). Le tout est validé par la Fédération nationale Nature et Progrès.',
             );        
 
-        $rangs = array(0, 0, 0);
+        $ranks = array(0, 0, 0);
 
         $paragraphesen = array(
             'Two letters on a green background, this label then inevitably you know it. Property of the Ministry of Agriculture, it is most prevalent in France. Since 2009, the specifications brand expenses is aligned with the European regulations losing some requirements to the passage (the co-existence of organic and non-organic crops on the same site, for example). It is also found in the form of a starry sheet.',
@@ -45,9 +45,9 @@ class TutorielChapitreParaLabels extends AbstractFixture implements OrderedFixtu
             $repository->translate($tutorielchapitrepara[$i], 'paragraphe', 'en', $paragraphesen[$i]);           
         }     
 
-        foreach($rangs as $i => $rang)
+        foreach($ranks as $i => $rank)
         {
-            $tutorielchapitrepara[$i]->setRang($rang);  
+            $tutorielchapitrepara[$i]->setRank($rank);  
 
             $manager->persist($tutorielchapitrepara[$i]);  
 

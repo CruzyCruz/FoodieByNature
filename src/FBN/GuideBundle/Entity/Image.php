@@ -34,9 +34,9 @@ class Image
     /**
      * @var integer
      *
-     * @ORM\Column(name="rang", type="integer")
+     * @ORM\Column(name="rank", type="integer")
      */
-    private $rang;    
+    private $rank;    
 
     /**
      * @var string
@@ -111,26 +111,26 @@ class Image
     }
 
     /**
-     * Set rang
+     * Set rank
      *
-     * @param integer $rang
+     * @param integer $rank
      * @return Image
      */
-    public function setRang($rang)
+    public function setRank($rank)
     {
-        $this->rang = $rang;
+        $this->rank = $rank;
 
         return $this;
     }
 
     /**
-     * Get rang
+     * Get rank
      *
      * @return integer 
      */
-    public function getRang()
+    public function getRank()
     {
-        return $this->rang;
+        return $this->rank;
     }
 
     /**

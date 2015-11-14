@@ -17,7 +17,7 @@ class TutorielChapitreLabels extends AbstractFixture implements OrderedFixtureIn
     
         $titres = array('AB, le B.A BA du bio', 'Bio cohérence, plus bio que bio', 'Nature et Progrès, des fermes 100% bio');
 
-        $rangs = array(0, 1, 2);
+        $ranks = array(0, 1, 2);
 
         $titresen = array('AB, BA B.A the organic', 'Bio consistency, more organic than organic', 'Nature and Progress, 100% organic farms');
 
@@ -37,9 +37,9 @@ class TutorielChapitreLabels extends AbstractFixture implements OrderedFixtureIn
             $repository->translate($tutorielchapitre[$i], 'titre', 'en', $titresen[$i]);           
         }             
 
-        foreach($rangs as $i => $rang)
+        foreach($ranks as $i => $rank)
         {
-            $tutorielchapitre[$i]->setRang($rang);  
+            $tutorielchapitre[$i]->setRank($rank);  
 
             $manager->persist($tutorielchapitre[$i]);  
 
