@@ -60,7 +60,7 @@ class Vigneron extends AbstractFixture implements OrderedFixtureInterface
 
             // Remarque : ici on a pas besoin de renseigner l'attribut $vigneronDdomaine de l'entite Vigneron
             // car ce n'est pas un attribut mappé. Il permet uniquement de rendre la relation bi-directionnelle.
-            // L'attribut $vigneron de l'entite VigneronDomaine est renseigné par la datafixture VigneronDomaine.php
+            // L'attribut $vigneron de l'entite WinemakerDomain est renseigné par la datafixture WinemakerDomain.php
                                                 
             $this->addReference('vigneron-' . $i, $vnr[$i]);
 

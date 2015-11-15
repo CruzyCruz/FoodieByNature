@@ -96,7 +96,7 @@ class GuideController extends Controller
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        foreach ($vigneron->getVigneronDomaine() as $vd) {
+        foreach ($vigneron->getWinemakerDomain() as $vd) {
             $latlngs[] = array('lat' => $vd->getCoordonnees()->getLatitude(), 'lng' => $vd->getCoordonnees()->getLongitude());
         }
 
@@ -128,7 +128,7 @@ class GuideController extends Controller
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        ($lieuevt = $evenement->getRestaurant()) || ($lieuevt = $evenement->getCaviste()) || ($lieuevt = $evenement->getVigneronDomaine()) || ($lieuevt = $evenement->getEvenementPast()) || ($lieuevt = $evenement);
+        ($lieuevt = $evenement->getRestaurant()) || ($lieuevt = $evenement->getCaviste()) || ($lieuevt = $evenement->getWinemakerDomain()) || ($lieuevt = $evenement->getEvenementPast()) || ($lieuevt = $evenement);
 
         $latlngs[] = array('lat' => $lieuevt->getCoordonnees()->getLatitude(), 'lng' => $lieuevt->getCoordonnees()->getLongitude());
 

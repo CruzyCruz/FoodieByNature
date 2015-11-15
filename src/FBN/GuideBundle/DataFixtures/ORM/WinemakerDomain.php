@@ -1,6 +1,6 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/VigneronDomaine.php
+// src/FBN/GuideBundle/DataFixtures/ORM/WinemakerDomain.php
 
 
 namespace FBN\GuideBundle\DataFixtures\ORM;
@@ -9,9 +9,9 @@ namespace FBN\GuideBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use FBN\GuideBundle\Entity\VigneronDomaine as Vnrdm;
+use FBN\GuideBundle\Entity\WinemakerDomain as WmkrDmn;
 
-class VigneronDomaine extends AbstractFixture implements OrderedFixtureInterface
+class WinemakerDomain extends AbstractFixture implements OrderedFixtureInterface
 {
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
@@ -63,34 +63,34 @@ class VigneronDomaine extends AbstractFixture implements OrderedFixtureInterface
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
         foreach ($domains as $i => $domain) {
-            $vnrdm[$i] = new Vnrdm();
-            $vnrdm[$i]->setDomain($domain);
+            $wmkrDmn[$i] = new WmkrDmn();
+            $wmkrDmn[$i]->setDomain($domain);
         }
 
         foreach ($hrefs as $i => $href) {
-            $vnrdm[$i]->setHref($href);
+            $wmkrDmn[$i]->setHref($href);
         }
 
         foreach ($tels as $i => $tel) {
-            $vnrdm[$i]->setTel($tel);
+            $wmkrDmn[$i]->setTel($tel);
         }
 
         foreach ($sites as $i => $site) {
-            $vnrdm[$i]->setSite($site);
+            $wmkrDmn[$i]->setSite($site);
         }
 
         foreach ($openingHours as $i => $openingHour) {
-            $vnrdm[$i]->setOpeningHours($openingHour);
+            $wmkrDmn[$i]->setOpeningHours($openingHour);
 
-            $repository->translate($vnrdm[$i], 'openingHours', 'en', $openingHoursen[$i]);
+            $repository->translate($wmkrDmn[$i], 'openingHours', 'en', $openingHoursen[$i]);
 
-            $manager->persist($vnrdm[$i]);
+            $manager->persist($wmkrDmn[$i]);
 
-            $vnrdm[$i]->setVigneron($this->getReference('vigneron-'.($vigneron_ids[$i] - 1)));
-            $vnrdm[$i]->setVigneronRegion($this->getReference('vigneronregion-'.($vigneronregion_ids[$i] - 1)));
-            $vnrdm[$i]->setCoordonnees($this->getReference('coordonnees-'.($i + 5)));
+            $wmkrDmn[$i]->setVigneron($this->getReference('vigneron-'.($vigneron_ids[$i] - 1)));
+            $wmkrDmn[$i]->setVigneronRegion($this->getReference('vigneronregion-'.($vigneronregion_ids[$i] - 1)));
+            $wmkrDmn[$i]->setCoordonnees($this->getReference('coordonnees-'.($i + 5)));
 
-            $this->addReference('vignerondomaine-'.$i, $vnrdm[$i]);
+            $this->addReference('winemakerdomain-'.$i, $wmkrDmn[$i]);
         }
 
         $manager->flush();

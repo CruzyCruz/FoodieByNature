@@ -168,7 +168,7 @@ class Evenement extends AbstractFixture implements OrderedFixtureInterface
         $evenement[6]->setEvenementPast($this->getReference('evenement-3'));
 
         $evenement[7]->setEvenementType($this->getReference('evenementtype-3'));
-        $evenement[7]->setVigneronDomaine($this->getReference('vignerondomaine-4'));
+        $evenement[7]->setWinemakerDomain($this->getReference('winemakerdomain-4'));
 
         $manager->flush();
     }

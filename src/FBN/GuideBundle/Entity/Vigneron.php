@@ -15,9 +15,9 @@ class Vigneron extends Article
 {
 
   /**
-   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\VigneronDomaine", mappedBy="vigneron")
+   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\WinemakerDomain", mappedBy="vigneron")
    */
-  private $vigneronDomaine;   
+  private $winemakerDomain;   
 
   /**
    * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Image", cascade={"persist"})
@@ -46,7 +46,7 @@ class Vigneron extends Article
     public function __construct()
     {
         parent::__construct(); 
-        $this->vigneronDomaine = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->winemakerDomain = new \Doctrine\Common\Collections\ArrayCollection();
 
     }
 
@@ -107,36 +107,36 @@ class Vigneron extends Article
     }   
 
     /**
-     * Add vigneronDomaine
+     * Add winemakerDomain
      *
-     * @param \FBN\GuideBundle\Entity\VigneronDomaine $vigneronDomaine
+     * @param \FBN\GuideBundle\Entity\WinemakerDomain $winemakerDomain
      * @return Vigneron
      */
-    public function addVigneronDomaine(\FBN\GuideBundle\Entity\VigneronDomaine $vigneronDomaine)
+    public function addWinemakerDomain(\FBN\GuideBundle\Entity\WinemakerDomain $winemakerDomain)
     {
-        $this->vigneronDomaine[] = $vigneronDomaine;
-        $vigneronDomaine->setVigneron($this); 
+        $this->winemakerDomain[] = $winemakerDomain;
+        $winemakerDomain->setVigneron($this); 
 
         return $this;
     }
 
     /**
-     * Remove vigneronDomaine
+     * Remove winemakerDomain
      *
-     * @param \FBN\GuideBundle\Entity\VigneronDomaine $vigneronDomaine
+     * @param \FBN\GuideBundle\Entity\WinemakerDomain $winemakerDomain
      */
-    public function removeVigneronDomaine(\FBN\GuideBundle\Entity\VigneronDomaine $vigneronDomaine)
+    public function removeWinemakerDomain(\FBN\GuideBundle\Entity\WinemakerDomain $winemakerDomain)
     {
-        $this->vigneronDomaine->removeElement($vigneronDomaine);
+        $this->winemakerDomain->removeElement($winemakerDomain);
     }
 
     /**
-     * Get vigneronDomaine
+     * Get winemakerDomain
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getVigneronDomaine()
+    public function getWinemakerDomain()
     {
-        return $this->vigneronDomaine;
+        return $this->winemakerDomain;
     }
 }

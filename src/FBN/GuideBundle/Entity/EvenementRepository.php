@@ -43,7 +43,7 @@ class EvenementRepository extends EntityRepository
                    ->addSelect('er')
                    ->leftJoin('e.caviste', 'ec')
                    ->addSelect('ec')
-                   ->leftJoin('e.vigneronDomaine', 'ev')
+                   ->leftJoin('e.winemakerDomain', 'ev')
                    ->addSelect('ev')
                    ->leftJoin('ev.vigneron', 'evv')
                    ->addSelect('evv')

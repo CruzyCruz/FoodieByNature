@@ -6,35 +6,34 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * VigneronDomaine
+ * WinemakerDomain.
  *
- * @ORM\Table(name="vignerondomaine")
- * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\VigneronDomaineRepository")
- * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\VigneronDomaineTranslation")  
+ * @ORM\Table(name="winemakerdomain")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\WinemakerDomainRepository")
+ * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\WinemakerDomainTranslation")  
  */
-class VigneronDomaine
+class WinemakerDomain
 {
-
     /**
-     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Vigneron", inversedBy="vigneronDomaine")
+     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Vigneron", inversedBy="winemakerDomain")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $vigneron;    
+    private $vigneron;
 
     /**
      * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\VigneronRegion")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $vigneronRegion;      
+    private $vigneronRegion;
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordonnees", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $coordonnees;  
+    private $coordonnees;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -54,7 +53,7 @@ class VigneronDomaine
      *
      * @ORM\Column(name="tel", type="string", length=255, nullable=true)
      */
-    private $tel;    
+    private $tel;
 
     /**
      * @var string
@@ -68,7 +67,7 @@ class VigneronDomaine
      *
      * @ORM\Column(name="href", type="string", length=255, nullable=true)
      */
-    private $href;     
+    private $href;
 
     /**
      * @var string
@@ -85,12 +84,12 @@ class VigneronDomaine
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
      */
-    private $locale;   
+    private $locale;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -98,10 +97,11 @@ class VigneronDomaine
     }
 
     /**
-     * Set domain
+     * Set domain.
      *
      * @param string $domain
-     * @return VigneronDomaine
+     *
+     * @return WinemakerDomain
      */
     public function setDomain($domain)
     {
@@ -111,19 +111,20 @@ class VigneronDomaine
     }
 
     /**
-     * Get domain
+     * Get domain.
      *
-     * @return string 
+     * @return string
      */
     public function getDomain()
     {
         return $this->domain;
     }
 
- /**
-     * Set openingHours
+    /**
+     * Set openingHours.
      *
      * @param string $openingHours
+     *
      * @return Vigneron
      */
     public function setOpeningHours($openingHours)
@@ -134,9 +135,9 @@ class VigneronDomaine
     }
 
     /**
-     * Get openingHours
+     * Get openingHours.
      *
-     * @return string 
+     * @return string
      */
     public function getOpeningHours()
     {
@@ -144,9 +145,10 @@ class VigneronDomaine
     }
 
     /**
-     * Set tel
+     * Set tel.
      *
      * @param string $tel
+     *
      * @return Coordonnees
      */
     public function setTel($tel)
@@ -157,9 +159,9 @@ class VigneronDomaine
     }
 
     /**
-     * Get tel
+     * Get tel.
      *
-     * @return string 
+     * @return string
      */
     public function getTel()
     {
@@ -167,9 +169,10 @@ class VigneronDomaine
     }
 
     /**
-     * Set site
+     * Set site.
      *
      * @param string $site
+     *
      * @return Vigneron
      */
     public function setSite($site)
@@ -180,9 +183,9 @@ class VigneronDomaine
     }
 
     /**
-     * Get site
+     * Get site.
      *
-     * @return string 
+     * @return string
      */
     public function getSite()
     {
@@ -190,9 +193,10 @@ class VigneronDomaine
     }
 
     /**
-     * Set href
+     * Set href.
      *
      * @param string $href
+     *
      * @return Vigneron
      */
     public function setHref($href)
@@ -203,31 +207,31 @@ class VigneronDomaine
     }
 
     /**
-     * Get href
+     * Get href.
      *
-     * @return string 
+     * @return string
      */
     public function getHref()
     {
         return $this->href;
-    }       
+    }
 
     /**
-     * Set locale
+     * Set locale.
      *
      * @param string $locale
-     * 
      */
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
-    }     
+    }
 
     /**
-     * Set vigneron
+     * Set vigneron.
      *
      * @param \FBN\GuideBundle\Entity\Vigneron $vigneron
-     * @return VigneronDomaine
+     *
+     * @return WinemakerDomain
      */
     public function setVigneron(\FBN\GuideBundle\Entity\Vigneron $vigneron)
     {
@@ -237,9 +241,9 @@ class VigneronDomaine
     }
 
     /**
-     * Get vigneron
+     * Get vigneron.
      *
-     * @return \FBN\GuideBundle\Entity\Vigneron 
+     * @return \FBN\GuideBundle\Entity\Vigneron
      */
     public function getVigneron()
     {
@@ -247,10 +251,11 @@ class VigneronDomaine
     }
 
     /**
-     * Set vigneronRegion
+     * Set vigneronRegion.
      *
      * @param \FBN\GuideBundle\Entity\VigneronRegion $vigneronRegion
-     * @return VigneronDomaine
+     *
+     * @return WinemakerDomain
      */
     public function setVigneronRegion(\FBN\GuideBundle\Entity\VigneronRegion $vigneronRegion)
     {
@@ -260,9 +265,9 @@ class VigneronDomaine
     }
 
     /**
-     * Get vigneronRegion
+     * Get vigneronRegion.
      *
-     * @return \FBN\GuideBundle\Entity\VigneronRegion 
+     * @return \FBN\GuideBundle\Entity\VigneronRegion
      */
     public function getVigneronRegion()
     {
@@ -270,10 +275,11 @@ class VigneronDomaine
     }
 
     /**
-     * Set coordonnees
+     * Set coordonnees.
      *
      * @param \FBN\GuideBundle\Entity\Coordonnees $coordonnees
-     * @return VigneronDomaine
+     *
+     * @return WinemakerDomain
      */
     public function setCoordonnees(\FBN\GuideBundle\Entity\Coordonnees $coordonnees)
     {
@@ -283,12 +289,12 @@ class VigneronDomaine
     }
 
     /**
-     * Get coordonnees
+     * Get coordonnees.
      *
-     * @return \FBN\GuideBundle\Entity\Coordonnees 
+     * @return \FBN\GuideBundle\Entity\Coordonnees
      */
     public function getCoordonnees()
     {
         return $this->coordonnees;
-    }    
+    }
 }

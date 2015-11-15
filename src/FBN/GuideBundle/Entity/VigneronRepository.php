@@ -35,7 +35,7 @@ class VigneronRepository extends EntityRepository
         $qb = $this->createQueryBuilder('v')
                    ->leftJoin('v.image', 'i')
                    ->addSelect('i')
-                   ->leftJoin('v.vigneronDomaine', 'vd')
+                   ->leftJoin('v.winemakerDomain', 'vd')
                    ->addSelect('vd')
                    ->leftJoin('vd.vigneronRegion', 'vr')
                    ->addSelect('vr')

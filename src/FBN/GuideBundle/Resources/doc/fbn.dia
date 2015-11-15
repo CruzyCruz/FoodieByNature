@@ -5133,7 +5133,7 @@
         <dia:point val="29.2776,11.6875"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="25.61,10.9875;29.3276,14.9625"/>
+        <dia:rectangle val="26.025,10.9875;29.3276,14.9625"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
@@ -5142,7 +5142,7 @@
         <dia:point val="29.2776,11.6875"/>
         <dia:point val="28.2867,11.6875"/>
         <dia:point val="28.2867,14.0625"/>
-        <dia:point val="25.66,14.0625"/>
+        <dia:point val="26.075,14.0625"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">
         <dia:enum val="0"/>
@@ -6879,19 +6879,19 @@
         <dia:point val="18.77,12.1625"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="18.695,12.0875;25.735,19.0375"/>
+        <dia:rectangle val="18.695,12.0875;26.15,19.0375"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="18.77,12.1625"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="6.8899999999999997"/>
+        <dia:real val="7.3049999999999997"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="6.8000000000000007"/>
       </dia:attribute>
       <dia:attribute name="name">
-        <dia:string>#VigneronDomaine#</dia:string>
+        <dia:string>#WinemakerDomain#</dia:string>
       </dia:attribute>
       <dia:attribute name="stereotype">
         <dia:string>##</dia:string>
@@ -7230,19 +7230,19 @@
         <dia:boolean val="false"/>
       </dia:attribute>
       <dia:attribute name="obj_pos">
-        <dia:point val="22.215,18.9625"/>
+        <dia:point val="22.4225,18.9625"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="21.165,18.9125;22.7675,23.2458"/>
+        <dia:rectangle val="21.2867,18.9125;22.975,23.2458"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
       </dia:attribute>
       <dia:attribute name="orth_points">
-        <dia:point val="22.215,18.9625"/>
-        <dia:point val="22.215,20.0125"/>
-        <dia:point val="21.215,20.0125"/>
-        <dia:point val="21.215,22.3458"/>
+        <dia:point val="22.4225,18.9625"/>
+        <dia:point val="22.4225,20.0125"/>
+        <dia:point val="21.3367,20.0125"/>
+        <dia:point val="21.3367,22.3458"/>
         <dia:point val="22.3867,22.3458"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">

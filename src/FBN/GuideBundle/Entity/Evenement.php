@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Evenement
+ * Evenement.
  *
  * @ORM\Table(name="evenement")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\EvenementRepository")
@@ -14,12 +14,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Evenement extends Article
 {
-
-  /**
+    /**
    * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\EvenementType")
    * @ORM\JoinColumn(nullable=false)
    */
-  private $evenementType; 
+  private $evenementType;
 
   /**
    * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Image", cascade={"persist"})
@@ -37,28 +36,28 @@ class Evenement extends Article
    * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Caviste")
    * @ORM\JoinColumn(nullable=true)
    */
-  private $caviste;  
+  private $caviste;
 
   /**
-   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\VigneronDomaine")
+   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\WinemakerDomain")
    * @ORM\JoinColumn(nullable=true)
    */
-  private $vigneronDomaine;
+  private $winemakerDomain;
 
   /**
    * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Coordonnees", cascade={"persist"})
    * @ORM\JoinColumn(nullable=true)
    */
-  private $coordonnees;    
+  private $coordonnees;
 
   /**
    * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Evenement")
    * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
    */
-  private $evenementPast;  
+  private $evenementPast;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -86,7 +85,7 @@ class Evenement extends Article
      *
      * @ORM\Column(name="tel", type="string", length=255, nullable=true)
      */
-    private $tel;    
+    private $tel;
 
     /**
      * @var string
@@ -100,7 +99,7 @@ class Evenement extends Article
      *
      * @ORM\Column(name="href", type="string", length=255, nullable=true)
      */
-    private $href;     
+    private $href;
 
     /**
      * @var string
@@ -111,26 +110,24 @@ class Evenement extends Article
     private $openingHours;
 
     /**
-    *
-    * @var boolean
-    *
-    * @ORM\Column(name="useExtTel", type="boolean")
-    */
+     * @var bool
+     *
+     * @ORM\Column(name="useExtTel", type="boolean")
+     */
     private $useExtTel;
 
     /**
-    *
-    * @var boolean
-    *
-    * @ORM\Column(name="useExtSite", type="boolean")
-    */
-    private $useExtSite;    
+     * @var bool
+     *
+     * @ORM\Column(name="useExtSite", type="boolean")
+     */
+    private $useExtSite;
 
     /**
      * @Gedmo\Slug(fields={"name","year"}, prefix="evenement-")
      * @ORM\Column(length=128, unique=true)
      */
-    private $slug;   
+    private $slug;
 
     /**
      * @var string
@@ -139,12 +136,12 @@ class Evenement extends Article
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
      */
-    private $locale; 
+    private $locale;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -152,9 +149,10 @@ class Evenement extends Article
     }
 
     /**
-     * Set date
+     * Set date.
      *
      * @param string $date
+     *
      * @return Evenement
      */
     public function setDate($date)
@@ -165,19 +163,20 @@ class Evenement extends Article
     }
 
     /**
-     * Get date
+     * Get date.
      *
-     * @return string 
+     * @return string
      */
     public function getDate()
     {
         return $this->date;
-    } 
+    }
 
     /**
-     * Set year
+     * Set year.
      *
      * @param string $year
+     *
      * @return Evenement
      */
     public function setYear($year)
@@ -188,19 +187,20 @@ class Evenement extends Article
     }
 
     /**
-     * Get year
+     * Get year.
      *
-     * @return string 
+     * @return string
      */
     public function getYear()
     {
         return $this->year;
-    }    
+    }
 
     /**
-     * Set openingHours
+     * Set openingHours.
      *
      * @param string $openingHours
+     *
      * @return Evenement
      */
     public function setOpeningHours($openingHours)
@@ -211,9 +211,9 @@ class Evenement extends Article
     }
 
     /**
-     * Get openingHours
+     * Get openingHours.
      *
-     * @return string 
+     * @return string
      */
     public function getOpeningHours()
     {
@@ -221,9 +221,10 @@ class Evenement extends Article
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
+     *
      * @return Evenement
      */
     public function setSlug($slug)
@@ -234,9 +235,9 @@ class Evenement extends Article
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -244,9 +245,10 @@ class Evenement extends Article
     }
 
     /**
-     * Set evenementType
+     * Set evenementType.
      *
      * @param \FBN\GuideBundle\Entity\EvenementType $evenementType
+     *
      * @return Evenement
      */
     public function setEvenementType(\FBN\GuideBundle\Entity\EvenementType $evenementType)
@@ -257,20 +259,20 @@ class Evenement extends Article
     }
 
     /**
-     * Get restaurant
+     * Get restaurant.
      *
-     * @return \FBN\GuideBundle\Entity\EvenementType 
+     * @return \FBN\GuideBundle\Entity\EvenementType
      */
     public function getEvenementType()
     {
         return $this->evenementType;
     }
 
-
     /**
-     * Set image
+     * Set image.
      *
      * @param \FBN\GuideBundle\Entity\Image $image
+     *
      * @return Evenement
      */
     public function setImage(\FBN\GuideBundle\Entity\Image $image)
@@ -281,9 +283,9 @@ class Evenement extends Article
     }
 
     /**
-     * Get image
+     * Get image.
      *
-     * @return \FBN\GuideBundle\Entity\Image 
+     * @return \FBN\GuideBundle\Entity\Image
      */
     public function getImage()
     {
@@ -291,9 +293,10 @@ class Evenement extends Article
     }
 
     /**
-     * Set restaurant
+     * Set restaurant.
      *
      * @param \FBN\GuideBundle\Entity\Restaurant $restaurant
+     *
      * @return Evenement
      */
     public function setRestaurant(\FBN\GuideBundle\Entity\Restaurant $restaurant = null)
@@ -304,9 +307,9 @@ class Evenement extends Article
     }
 
     /**
-     * Get restaurant
+     * Get restaurant.
      *
-     * @return \FBN\GuideBundle\Entity\Restaurant 
+     * @return \FBN\GuideBundle\Entity\Restaurant
      */
     public function getRestaurant()
     {
@@ -314,9 +317,10 @@ class Evenement extends Article
     }
 
     /**
-     * Set caviste
+     * Set caviste.
      *
      * @param \FBN\GuideBundle\Entity\caviste $caviste
+     *
      * @return Evenement
      */
     public function setCaviste(\FBN\GuideBundle\Entity\caviste $caviste = null)
@@ -327,42 +331,44 @@ class Evenement extends Article
     }
 
     /**
-     * Get caviste
+     * Get caviste.
      *
-     * @return \FBN\GuideBundle\Entity\caviste 
+     * @return \FBN\GuideBundle\Entity\caviste
      */
     public function getCaviste()
     {
         return $this->caviste;
-    }    
+    }
 
     /**
-     * Set vigneronDomaine
+     * Set winemakerDomain.
      *
-     * @param \FBN\GuideBundle\Entity\VigneronDomaine $vigneronDomaine
+     * @param \FBN\GuideBundle\Entity\WinemakerDomain $winemakerDomain
+     *
      * @return Evenement
      */
-    public function setVigneronDomaine(\FBN\GuideBundle\Entity\VigneronDomaine $vigneronDomaine = null)
+    public function setWinemakerDomain(\FBN\GuideBundle\Entity\WinemakerDomain $winemakerDomain = null)
     {
-        $this->vigneronDomaine = $vigneronDomaine;
+        $this->winemakerDomain = $winemakerDomain;
 
         return $this;
     }
 
     /**
-     * Get vigneronDomaine
+     * Get winemakerDomain.
      *
-     * @return \FBN\GuideBundle\Entity\VigneronDomaine 
+     * @return \FBN\GuideBundle\Entity\WinemakerDomain
      */
-    public function getVigneronDomaine()
+    public function getWinemakerDomain()
     {
-        return $this->vigneronDomaine;
+        return $this->winemakerDomain;
     }
 
     /**
-     * Set coordonnees
+     * Set coordonnees.
      *
      * @param \FBN\GuideBundle\Entity\Coordonnees $coordonnees
+     *
      * @return Evenement
      */
     public function setCoordonnees(\FBN\GuideBundle\Entity\Coordonnees $coordonnees = null)
@@ -373,9 +379,9 @@ class Evenement extends Article
     }
 
     /**
-     * Get coordonnees
+     * Get coordonnees.
      *
-     * @return \FBN\GuideBundle\Entity\Coordonnees 
+     * @return \FBN\GuideBundle\Entity\Coordonnees
      */
     public function getCoordonnees()
     {
@@ -383,9 +389,10 @@ class Evenement extends Article
     }
 
     /**
-     * Set evenementPast
+     * Set evenementPast.
      *
      * @param \FBN\GuideBundle\Entity\evenement $evenement
+     *
      * @return Evenement
      */
     public function setEvenementPast(\FBN\GuideBundle\Entity\Evenement $evenement = null)
@@ -396,9 +403,9 @@ class Evenement extends Article
     }
 
     /**
-     * Get evenement
+     * Get evenement.
      *
-     * @return \FBN\GuideBundle\Entity\evenement 
+     * @return \FBN\GuideBundle\Entity\evenement
      */
     public function getEvenementPast()
     {
@@ -406,9 +413,10 @@ class Evenement extends Article
     }
 
     /**
-     * Set tel
+     * Set tel.
      *
      * @param string $tel
+     *
      * @return Coordonnees
      */
     public function setTel($tel)
@@ -419,9 +427,9 @@ class Evenement extends Article
     }
 
     /**
-     * Get tel
+     * Get tel.
      *
-     * @return string 
+     * @return string
      */
     public function getTel()
     {
@@ -429,9 +437,10 @@ class Evenement extends Article
     }
 
     /**
-     * Set site
+     * Set site.
      *
      * @param string $site
+     *
      * @return Evenement
      */
     public function setSite($site)
@@ -442,9 +451,9 @@ class Evenement extends Article
     }
 
     /**
-     * Get site
+     * Get site.
      *
-     * @return string 
+     * @return string
      */
     public function getSite()
     {
@@ -452,9 +461,10 @@ class Evenement extends Article
     }
 
     /**
-     * Set href
+     * Set href.
      *
      * @param string $href
+     *
      * @return Evenement
      */
     public function setHref($href)
@@ -465,19 +475,20 @@ class Evenement extends Article
     }
 
     /**
-     * Get href
+     * Get href.
      *
-     * @return string 
+     * @return string
      */
     public function getHref()
     {
         return $this->href;
-    }  
+    }
 
     /**
-     * Set useExtTel
+     * Set useExtTel.
      *
-     * @param boolean $useExtTel
+     * @param bool $useExtTel
+     *
      * @return Evenement
      */
     public function setUseExtTel($useExtTel)
@@ -488,9 +499,9 @@ class Evenement extends Article
     }
 
     /**
-     * Get useExtTel
+     * Get useExtTel.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getUseExtTel()
     {
@@ -498,9 +509,10 @@ class Evenement extends Article
     }
 
     /**
-     * Set useExtSite
+     * Set useExtSite.
      *
-     * @param boolean $useExtSite
+     * @param bool $useExtSite
+     *
      * @return Evenement
      */
     public function setUseExtSite($useExtSite)
@@ -511,23 +523,22 @@ class Evenement extends Article
     }
 
     /**
-     * Get useExtSite
+     * Get useExtSite.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getUseExtSite()
     {
         return $this->useExtSite;
-    }    
+    }
 
     /**
-     * Set locale
+     * Set locale.
      *
      * @param string $locale
-     * 
      */
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
-    }        
+    }
 }
