@@ -44,7 +44,7 @@ class GuideController extends Controller
 
         $repomenu = $em->getRepository('FBNGuideBundle:Menu');
 
-        $menu = $repomenu->findOneBy(array('entite' => $entite));
+        $menu = $repomenu->findOneBy(array('section' => $entite));
 
         $articles = $em->getRepository('FBNGuideBundle:'.$entite)->getArticlesImages();
 

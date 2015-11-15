@@ -5245,13 +5245,13 @@
         <dia:point val="30.7696,-54.9429"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="30.6946,-55.0179;35.0371,-51.2679"/>
+        <dia:rectangle val="30.6946,-55.0179;35.4996,-51.2679"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="30.7696,-54.9429"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="4.1924999999999999"/>
+        <dia:real val="4.6549999999999994"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="3.6000000000000001"/>
@@ -5320,7 +5320,7 @@
         <dia:font family="Calibri" style="0" name="Courier"/>
       </dia:attribute>
       <dia:attribute name="abstract_classname_font">
-        <dia:font family="Calibri" style="4" name="Courier"/>
+        <dia:font family="Calibri" style="0" name="Courier"/>
       </dia:attribute>
       <dia:attribute name="comment_font">
         <dia:font family="Calibri" style="0" name="Courier"/>
@@ -5346,7 +5346,7 @@
       <dia:attribute name="attributes">
         <dia:composite type="umlattribute">
           <dia:attribute name="name">
-            <dia:string>#entite#</dia:string>
+            <dia:string>#section#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
             <dia:string>#string#</dia:string>

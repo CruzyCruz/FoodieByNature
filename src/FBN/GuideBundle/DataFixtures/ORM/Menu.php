@@ -15,7 +15,7 @@ class Menu extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
 
-        $entites = array('Info', 'Restaurant', 'Vigneron', 'Evenement', 'Tutoriel', 'Caviste');
+        $sections = array('Info', 'Restaurant', 'Vigneron', 'Evenement', 'Tutoriel', 'Caviste');
 
         $intros = array('Mais qu\'est ce qui se passe ?', 'La crème de la crème des tables au naturel', 'L\'élite', 'Ca se passe où et quand ?', 'Naturel kezako ?', 'Les rois du goulot');
 
@@ -23,10 +23,10 @@ class Menu extends AbstractFixture implements OrderedFixtureInterface
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        foreach($entites as $i => $entite)
+        foreach($sections as $i => $section)
         {
             $menu[$i] = new Mnu();            
-            $menu[$i]->setEntite($entite);
+            $menu[$i]->setSection($section);
         } 
 
         foreach($intros as $i => $intro)

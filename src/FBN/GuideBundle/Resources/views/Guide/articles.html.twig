@@ -3,7 +3,7 @@
 {% extends "FBNGuideBundle::layout.html.twig" %}
 
 {% block title %}
-	{{ menu.entite ~ 's' }}
+	{{ menu.section ~ 's' }}
 {% endblock %}
 
 {% block body %}
@@ -11,11 +11,11 @@
 <p> {{ menu.intro }}</p>
 
 
-{% if menu.entite | lower ~ 's' in 'restaurants-vignerons-evenements-tutoriels-cavistes' %}
+{% if menu.section | lower ~ 's' in 'restaurants-vignerons-evenements-tutoriels-cavistes' %}
 
   {% include 'FBNGuideBundle:Guide:restaurants-vignerons-evenements-tutoriels-cavistes.html.twig' %}
 
-{% elseif menu.entite | lower ~ 's' in 'infos' %}
+{% elseif menu.section | lower ~ 's' in 'infos' %}
 
  {% include 'FBNGuideBundle:Guide:infos.html.twig' %}
 
