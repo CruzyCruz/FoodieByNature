@@ -37,7 +37,7 @@ class VigneronRepository extends EntityRepository
                    ->addSelect('i')
                    ->leftJoin('v.winemakerDomain', 'vd')
                    ->addSelect('vd')
-                   ->leftJoin('vd.vigneronRegion', 'vr')
+                   ->leftJoin('vd.winemakerArea', 'vr')
                    ->addSelect('vr')
                    ->leftJoin('vd.coordonnees', 'c')
                    ->addSelect('c')

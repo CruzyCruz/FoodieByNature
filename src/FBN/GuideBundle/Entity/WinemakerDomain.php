@@ -21,10 +21,10 @@ class WinemakerDomain
     private $vigneron;
 
     /**
-     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\VigneronRegion")
+     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\WinemakerArea")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $vigneronRegion;
+    private $winemakerArea;
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordonnees", cascade={"persist"})
@@ -251,27 +251,27 @@ class WinemakerDomain
     }
 
     /**
-     * Set vigneronRegion.
+     * Set winemakerArea.
      *
-     * @param \FBN\GuideBundle\Entity\VigneronRegion $vigneronRegion
+     * @param \FBN\GuideBundle\Entity\WinemakerArea $winemakerArea
      *
      * @return WinemakerDomain
      */
-    public function setVigneronRegion(\FBN\GuideBundle\Entity\VigneronRegion $vigneronRegion)
+    public function setWinemakerArea(\FBN\GuideBundle\Entity\WinemakerArea $winemakerArea)
     {
-        $this->vigneronRegion = $vigneronRegion;
+        $this->winemakerArea = $winemakerArea;
 
         return $this;
     }
 
     /**
-     * Get vigneronRegion.
+     * Get winemakerArea.
      *
-     * @return \FBN\GuideBundle\Entity\VigneronRegion
+     * @return \FBN\GuideBundle\Entity\WinemakerArea
      */
-    public function getVigneronRegion()
+    public function getWinemakerArea()
     {
-        return $this->vigneronRegion;
+        return $this->winemakerArea;
     }
 
     /**

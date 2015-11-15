@@ -51,7 +51,7 @@ class WinemakerDomain extends AbstractFixture implements OrderedFixtureInterface
             5,
             );
 
-        $vigneronregion_ids = array(
+        $winemakerarea_ids = array(
             10,
             3,
             15,
@@ -87,7 +87,7 @@ class WinemakerDomain extends AbstractFixture implements OrderedFixtureInterface
             $manager->persist($wmkrDmn[$i]);
 
             $wmkrDmn[$i]->setVigneron($this->getReference('vigneron-'.($vigneron_ids[$i] - 1)));
-            $wmkrDmn[$i]->setVigneronRegion($this->getReference('vigneronregion-'.($vigneronregion_ids[$i] - 1)));
+            $wmkrDmn[$i]->setWinemakerArea($this->getReference('winemakerarea-'.($winemakerarea_ids[$i] - 1)));
             $wmkrDmn[$i]->setCoordonnees($this->getReference('coordonnees-'.($i + 5)));
 
             $this->addReference('winemakerdomain-'.$i, $wmkrDmn[$i]);

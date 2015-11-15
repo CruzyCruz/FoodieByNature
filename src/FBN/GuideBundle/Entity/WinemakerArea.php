@@ -6,15 +6,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * VigneronRegion
+ * WinemakerArea.
  *
- * @ORM\Table(name="vigneronregion")
- * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\VigneronRegionRepository")
+ * @ORM\Table(name="winemakerarea")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\WinemakerAreaRepository")
  */
-class VigneronRegion
+class WinemakerArea
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -37,13 +37,12 @@ class VigneronRegion
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
      */
-    private $locale;      
-
+    private $locale;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -51,10 +50,11 @@ class VigneronRegion
     }
 
     /**
-     * Set area
+     * Set area.
      *
      * @param string $area
-     * @return VigneronRegion
+     *
+     * @return WinemakerArea
      */
     public function setArea($area)
     {
@@ -64,9 +64,9 @@ class VigneronRegion
     }
 
     /**
-     * Get area
+     * Get area.
      *
-     * @return string 
+     * @return string
      */
     public function getArea()
     {

@@ -12,7 +12,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 abstract class Article
 {
-    const NUM_ITEMS = 5;
+    const NUM_ITEMS = 8;
     const NUM_ITEMS_HOMEPAGE = 4;
 
     /**
