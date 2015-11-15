@@ -1,29 +1,29 @@
-{# src/FBN/GuideBundle/Resources/views/vigneron.html.twig #}
+{# src/FBN/GuideBundle/Resources/views/winemaker.html.twig #}
 
 {% extends "FBNGuideBundle::layout.html.twig" %}
 
 {% block title %}
-	{{ vigneron.name }}
+	{{ winemaker.name }}
 {% endblock %}
 
 {% block body %}
 
-{% set  entiteId = vigneron.id %} 
+{% set  entiteId = winemaker.id %} 
 {% include 'FBNGuideBundle:Guide:entite-bookmark-manage.html.twig' %}
 
-<h1>{{ vigneron.name }}</h1>
+<h1>{{ winemaker.name }}</h1>
 
-{% if vigneron.image is not null %}
+{% if winemaker.image is not null %}
   <img 
-    src="{{ asset(vigneron.image.webPath) }}"
-    alt="{{ vigneron.name }}"
+    src="{{ asset(winemaker.image.webPath) }}"
+    alt="{{ winemaker.name }}"
   />
 {% endif %}    
 
-<p>{{ vigneron.description }}</p>  
+<p>{{ winemaker.description }}</p>  
 
 
-{% for vd in vigneron.winemakerDomain %} 
+{% for vd in winemaker.winemakerDomain %} 
 <h3>PAR ICI : </h3>
   <p>  
     {% if vd.domain is not null %} 

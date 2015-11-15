@@ -8,15 +8,15 @@ fbn_guide_articles:
     path:  /{articles}
     defaults: { _controller: FBNGuideBundle:Guide:articles }
     requirements : 
-        articles : infos|restaurants|vignerons|evenements|tutoriels|cavistes
+        articles : infos|restaurants|winemakers|evenements|tutoriels|cavistes
 
 fbn_guide_restaurants:
     path:  /restaurants/{slug}
     defaults: { _controller: FBNGuideBundle:Guide:restaurant }
 
-fbn_guide_vignerons:
-    path:  /vignerons/{slug}
-    defaults: { _controller: FBNGuideBundle:Guide:vigneron }
+fbn_guide_winemakers:
+    path:  /winemakers/{slug}
+    defaults: { _controller: FBNGuideBundle:Guide:winemaker }
 
 fbn_guide_evenements:
     path:  /evenements/{slug}

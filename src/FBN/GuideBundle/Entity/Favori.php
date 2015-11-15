@@ -19,10 +19,10 @@ class Favori
     private $restaurant;
 
     /**
-     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Vigneron")
+     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Winemaker")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $vigneron;
+    private $winemaker;
 
     /**
      * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Caviste")
@@ -80,27 +80,27 @@ class Favori
     }
 
     /**
-     * Set vigneron.
+     * Set winemaker.
      *
-     * @param \FBN\GuideBundle\Entity\Vigneron $vigneron
+     * @param \FBN\GuideBundle\Entity\Winemaker $winemaker
      *
-     * @return Vigneron
+     * @return Winemaker
      */
-    public function setVigneron(\FBN\GuideBundle\Entity\Vigneron $vigneron)
+    public function setWinemaker(\FBN\GuideBundle\Entity\Winemaker $winemaker)
     {
-        $this->vigneron = $vigneron;
+        $this->winemaker = $winemaker;
 
         return $this;
     }
 
     /**
-     * Get vigneron.
+     * Get winemaker.
      *
-     * @return \FBN\GuideBundle\Entity\Vigneron
+     * @return \FBN\GuideBundle\Entity\Winemaker
      */
-    public function getVigneron()
+    public function getWinemaker()
     {
-        return $this->vigneron;
+        return $this->winemaker;
     }
 
     /**

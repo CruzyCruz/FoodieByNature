@@ -38,9 +38,9 @@ class MenuBuilder
             'routeParameters' => array( 'articles' => 'restaurants' )
             ));        
 
-        $mainmenu->addChild('fbn.guide.mainmenu.vignerons' , array(
+        $mainmenu->addChild('fbn.guide.mainmenu.winemakers' , array(
             'route'           => 'fbn_guide_articles',
-            'routeParameters' => array( 'articles' => 'vignerons' )
+            'routeParameters' => array( 'articles' => 'winemakers' )
             ));   
 
         $mainmenu->addChild('fbn.guide.mainmenu.evenements' , array(

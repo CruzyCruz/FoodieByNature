@@ -15,7 +15,7 @@ class Menu extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
 
-        $sections = array('Info', 'Restaurant', 'Vigneron', 'Evenement', 'Tutoriel', 'Caviste');
+        $sections = array('Info', 'Restaurant', 'Winemaker', 'Evenement', 'Tutoriel', 'Caviste');
 
         $intros = array('Mais qu\'est ce qui se passe ?', 'La crème de la crème des tables au naturel', 'L\'élite', 'Ca se passe où et quand ?', 'Naturel kezako ?', 'Les rois du goulot');
 

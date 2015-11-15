@@ -41,13 +41,13 @@
 
   {% endif %}
 
-  {% if (vignerons|length > 0) %}
+  {% if (winemakers|length > 0) %}
 
-    <div class="vignerons">
+    <div class="winemakers">
       <h3>MES VIGNERONS</h3>
-      {% for favoris in vignerons %}
+      {% for favoris in winemakers %}
         <div class="bookmark" id="{{'bookmark-' ~ favoris.id}}">
-          <a href="{{ path('fbn_guide_vignerons', {'slug': favoris.vigneron.slug} ) }}">{{ favoris.vigneron.name }}</a>
+          <a href="{{ path('fbn_guide_winemakers', {'slug': favoris.winemaker.slug} ) }}">{{ favoris.winemaker.name }}</a>
           <br>
           <br>
           <button id="{{'bookmark-button-' ~ favoris.id}}" data-path="{{path('fbn_guide_favoris_manage')}}" data-bookmark-action="remove_only" data-bookmark-id="{{favoris.id}}">

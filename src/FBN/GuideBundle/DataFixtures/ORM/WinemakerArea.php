@@ -9,7 +9,7 @@ namespace FBN\GuideBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use FBN\GuideBundle\Entity\WinemakerArea as VRegion;
+use FBN\GuideBundle\Entity\WinemakerArea as WmkrArea;
 
 class WinemakerArea extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -55,7 +55,7 @@ class WinemakerArea extends AbstractFixture implements OrderedFixtureInterface
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
         foreach ($areas as $i => $area) {
-            $winemakerarea[$i] = new VRegion();
+            $winemakerarea[$i] = new WmkrArea();
             $winemakerarea[$i]->setArea($area);
 
             $repository->translate($winemakerarea[$i], 'area', 'en', $areasen[$i]);

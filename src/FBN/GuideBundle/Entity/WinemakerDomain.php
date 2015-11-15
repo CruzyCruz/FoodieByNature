@@ -15,10 +15,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class WinemakerDomain
 {
     /**
-     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Vigneron", inversedBy="winemakerDomain")
+     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Winemaker", inversedBy="winemakerDomain")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $vigneron;
+    private $winemaker;
 
     /**
      * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\WinemakerArea")
@@ -125,7 +125,7 @@ class WinemakerDomain
      *
      * @param string $openingHours
      *
-     * @return Vigneron
+     * @return Winemaker
      */
     public function setOpeningHours($openingHours)
     {
@@ -173,7 +173,7 @@ class WinemakerDomain
      *
      * @param string $site
      *
-     * @return Vigneron
+     * @return Winemaker
      */
     public function setSite($site)
     {
@@ -197,7 +197,7 @@ class WinemakerDomain
      *
      * @param string $href
      *
-     * @return Vigneron
+     * @return Winemaker
      */
     public function setHref($href)
     {
@@ -227,27 +227,27 @@ class WinemakerDomain
     }
 
     /**
-     * Set vigneron.
+     * Set winemaker.
      *
-     * @param \FBN\GuideBundle\Entity\Vigneron $vigneron
+     * @param \FBN\GuideBundle\Entity\Winemaker $winemaker
      *
      * @return WinemakerDomain
      */
-    public function setVigneron(\FBN\GuideBundle\Entity\Vigneron $vigneron)
+    public function setWinemaker(\FBN\GuideBundle\Entity\Winemaker $winemaker)
     {
-        $this->vigneron = $vigneron;
+        $this->winemaker = $winemaker;
 
         return $this;
     }
 
     /**
-     * Get vigneron.
+     * Get winemaker.
      *
-     * @return \FBN\GuideBundle\Entity\Vigneron
+     * @return \FBN\GuideBundle\Entity\Winemaker
      */
-    public function getVigneron()
+    public function getWinemaker()
     {
-        return $this->vigneron;
+        return $this->winemaker;
     }
 
     /**

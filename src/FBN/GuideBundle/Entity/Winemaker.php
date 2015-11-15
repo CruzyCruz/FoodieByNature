@@ -6,27 +6,26 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Vigneron
+ * Winemaker.
  *
- * @ORM\Table(name="vigneron")
- * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\VigneronRepository")
+ * @ORM\Table(name="winemaker")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\WinemakerRepository")
  */
-class Vigneron extends Article
+class Winemaker extends Article
 {
-
-  /**
-   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\WinemakerDomain", mappedBy="vigneron")
+    /**
+   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\WinemakerDomain", mappedBy="winemaker")
    */
-  private $winemakerDomain;   
+  private $winemakerDomain;
 
   /**
    * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Image", cascade={"persist"})
    * @ORM\JoinColumn(nullable=false)
    */
-  private $image;    
- 
+  private $image;
+
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -35,36 +34,36 @@ class Vigneron extends Article
     private $id;
 
     /**
-     * @Gedmo\Slug(fields={"name"}, prefix="vigneron-")
+     * @Gedmo\Slug(fields={"name"}, prefix="winemaker-")
      * @ORM\Column(length=128, unique=true)
      */
-    private $slug;      
+    private $slug;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
-        parent::__construct(); 
+        parent::__construct();
         $this->winemakerDomain = new \Doctrine\Common\Collections\ArrayCollection();
-
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
         return $this->id;
     }
-   
+
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
-     * @return Vigneron
+     *
+     * @return Winemaker
      */
     public function setSlug($slug)
     {
@@ -74,9 +73,9 @@ class Vigneron extends Article
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -84,10 +83,11 @@ class Vigneron extends Article
     }
 
     /**
-     * Set image
+     * Set image.
      *
      * @param \FBN\GuideBundle\Entity\Image $image
-     * @return Vigneron
+     *
+     * @return Winemaker
      */
     public function setImage(\FBN\GuideBundle\Entity\Image $image)
     {
@@ -97,31 +97,32 @@ class Vigneron extends Article
     }
 
     /**
-     * Get image
+     * Get image.
      *
-     * @return \FBN\GuideBundle\Entity\Image 
+     * @return \FBN\GuideBundle\Entity\Image
      */
     public function getImage()
     {
         return $this->image;
-    }   
+    }
 
     /**
-     * Add winemakerDomain
+     * Add winemakerDomain.
      *
      * @param \FBN\GuideBundle\Entity\WinemakerDomain $winemakerDomain
-     * @return Vigneron
+     *
+     * @return Winemaker
      */
     public function addWinemakerDomain(\FBN\GuideBundle\Entity\WinemakerDomain $winemakerDomain)
     {
         $this->winemakerDomain[] = $winemakerDomain;
-        $winemakerDomain->setVigneron($this); 
+        $winemakerDomain->setWinemaker($this);
 
         return $this;
     }
 
     /**
-     * Remove winemakerDomain
+     * Remove winemakerDomain.
      *
      * @param \FBN\GuideBundle\Entity\WinemakerDomain $winemakerDomain
      */
@@ -131,9 +132,9 @@ class Vigneron extends Article
     }
 
     /**
-     * Get winemakerDomain
+     * Get winemakerDomain.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getWinemakerDomain()
     {

@@ -84,33 +84,33 @@ class GuideController extends Controller
         ));
     }
 
-    public function vigneronAction($slug)
+    public function winemakerAction($slug)
     {
-        $vigneron = $this
+        $winemaker = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('FBNGuideBundle:Vigneron')
-            ->getVigneron($slug);
+            ->getRepository('FBNGuideBundle:Winemaker')
+            ->getWinemaker($slug);
 
-        if (null === $vigneron) {
+        if (null === $winemaker) {
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        foreach ($vigneron->getWinemakerDomain() as $vd) {
+        foreach ($winemaker->getWinemakerDomain() as $vd) {
             $latlngs[] = array('lat' => $vd->getCoordonnees()->getLatitude(), 'lng' => $vd->getCoordonnees()->getLongitude());
         }
 
-        $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'vigneron');
+        $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'winemaker');
 
         $bookmarkManager = $this->container->get('fbn_guide.bookmark_manager');
-        $bookmarkStatus = $bookmarkManager->checkStatus('vigneron', $vigneron->getId());
+        $bookmarkStatus = $bookmarkManager->checkStatus('winemaker', $winemaker->getId());
         $bookmarkAction = $bookmarkStatus['bookmarkAction'];
         $bookmarkId = $bookmarkStatus['bookmarkId'];
 
-        return $this->render('FBNGuideBundle:Guide:vigneron.html.twig', array(
-            'vigneron' => $vigneron,
+        return $this->render('FBNGuideBundle:Guide:winemaker.html.twig', array(
+            'winemaker' => $winemaker,
             'map' => $map,
-            'entite' => 'vigneron',
+            'entite' => 'winemaker',
             'bookmarkAction' => $bookmarkAction,
             'bookmarkId' => $bookmarkId,
         ));
@@ -202,10 +202,10 @@ class GuideController extends Controller
             ->getRepository('FBNGuideBundle:Favori');
 
         $restaurants = $favoriRepo->getFavorisByEntite($userId, 'restaurant');
-        $vignerons = $favoriRepo->getFavorisByEntite($userId, 'vigneron');
+        $winemakers = $favoriRepo->getFavorisByEntite($userId, 'winemaker');
         $cavistes = $favoriRepo->getFavorisByEntite($userId, 'caviste');
 
-        $bookmarks = array_merge($restaurants, $vignerons, $cavistes);
+        $bookmarks = array_merge($restaurants, $winemakers, $cavistes);
         $bookmarkIds = array();
         foreach ($bookmarks as $bookmark) {
             $bookmarkIds[] = $bookmark['id'];
@@ -215,7 +215,7 @@ class GuideController extends Controller
 
         return $this->render('FBNGuideBundle:Guide:favoris.html.twig', array(
             'restaurants' => $restaurants,
-            'vignerons' => $vignerons,
+            'winemakers' => $winemakers,
             'cavistes' => $cavistes,
             'bookmarkIds' => $bookmarkIds,
         ));

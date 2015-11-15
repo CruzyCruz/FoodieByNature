@@ -42,7 +42,7 @@ class WinemakerDomain extends AbstractFixture implements OrderedFixtureInterface
                         'Everyday, from 8am to 12pm and from 14pm to 19pm.',
                         );
 
-        $vigneron_ids = array(
+        $winemaker_ids = array(
             1,
             2,
             3,
@@ -86,7 +86,7 @@ class WinemakerDomain extends AbstractFixture implements OrderedFixtureInterface
 
             $manager->persist($wmkrDmn[$i]);
 
-            $wmkrDmn[$i]->setVigneron($this->getReference('vigneron-'.($vigneron_ids[$i] - 1)));
+            $wmkrDmn[$i]->setWinemaker($this->getReference('winemaker-'.($winemaker_ids[$i] - 1)));
             $wmkrDmn[$i]->setWinemakerArea($this->getReference('winemakerarea-'.($winemakerarea_ids[$i] - 1)));
             $wmkrDmn[$i]->setCoordonnees($this->getReference('coordonnees-'.($i + 5)));
 

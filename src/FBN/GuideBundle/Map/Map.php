@@ -18,17 +18,17 @@ class Map
 	protected $zoom;		
 
 	protected $zoomClose;
-	protected $zoomVigneron;
+	protected $zoomWinemaker;
 	protected $worldDimHeight;
 	protected $worldDimWidth;
 	protected $zoomMax;
 	protected $mapDimHeight;
 	protected $mapDimWidth;
 
-	public function __construct($zoomClose, $zoomVigneron, $worldDimHeight, $worldDimWidth, $zoomMax, $mapDimHeight, $mapDimWidth)
+	public function __construct($zoomClose, $zoomWinemaker, $worldDimHeight, $worldDimWidth, $zoomMax, $mapDimHeight, $mapDimWidth)
 	{
 		$this->zoomClose		= $zoomClose;
-		$this->zoomVigneron		= $zoomVigneron;
+		$this->zoomWinemaker		= $zoomWinemaker;
 		$this->worldDimHeight	= $worldDimHeight;
 		$this->worldDimWidth	= $worldDimWidth;
 		$this->zoomMax			= $zoomMax;
@@ -151,16 +151,16 @@ class Map
     	{
     		$this->zoom = $this->zoomClose;
     	}
-    	elseif ($this->rubrique == 'vigneron' && $this->nbMarkers == 1)
+    	elseif ($this->rubrique == 'winemaker' && $this->nbMarkers == 1)
     	{
-    		$this->zoom = $this->zoomVigneron;
+    		$this->zoom = $this->zoomWinemaker;
     	}	
     	else
 		{
 		$latZoom = $this->zoom($mapDimH, $this->worldDimHeight, $latFraction);
         $lngZoom = $this->zoom($mapDimW, $this->mapDimWidth,  $lngFraction);
 
-        $this->zoom = min($this->zoomVigneron, floor(min($latZoom, $lngZoom)), $this->zoomMax);
+        $this->zoom = min($this->zoomWinemaker, floor(min($latZoom, $lngZoom)), $this->zoomMax);
 		}    		
     	
     }

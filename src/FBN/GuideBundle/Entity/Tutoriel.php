@@ -181,12 +181,12 @@ class Tutoriel extends Article
      * Add tutorielChapitre
      *
      * @param \FBN\GuideBundle\Entity\TutorielChapitre $tutorielChapitre
-     * @return Vigneron
+     * @return Winemaker
      */
     public function addTutorielChapitre(\FBN\GuideBundle\Entity\TutorielChapitre $tutorielChapitre)
     {
         $this->tutorielChapitre[] = $tutorielChapitre;
-        $tutorielChapitre->setVigneron($this); 
+        $tutorielChapitre->setWinemaker($this); 
 
         return $this;
     }
