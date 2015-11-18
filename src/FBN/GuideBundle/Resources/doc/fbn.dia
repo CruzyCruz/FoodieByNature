@@ -653,19 +653,19 @@
         <dia:point val="6.92,16.85"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="6.845,16.775;12.7875,20.525"/>
+        <dia:rectangle val="6.845,16.775;13.2325,20.525"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="6.92,16.85"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="5.7924999999999995"/>
+        <dia:real val="6.2374999999999998"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="3.6000000000000001"/>
       </dia:attribute>
       <dia:attribute name="name">
-        <dia:string>#RestaurantPrix#</dia:string>
+        <dia:string>#RestaurantPrice#</dia:string>
       </dia:attribute>
       <dia:attribute name="stereotype">
         <dia:string>##</dia:string>
@@ -8038,17 +8038,17 @@
         <dia:boolean val="false"/>
       </dia:attribute>
       <dia:attribute name="obj_pos">
-        <dia:point val="24.1787,-51.8058"/>
+        <dia:point val="24.1791,-51.8058"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="23.7736,-51.8558;24.7312,-47.1867"/>
+        <dia:rectangle val="23.7736,-51.8558;24.7316,-47.1867"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
       </dia:attribute>
       <dia:attribute name="orth_points">
-        <dia:point val="24.1787,-51.8058"/>
-        <dia:point val="24.1777,-48.0867"/>
+        <dia:point val="24.1791,-51.8058"/>
+        <dia:point val="24.1787,-48.0867"/>
         <dia:point val="23.8236,-48.0867"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">

@@ -100,7 +100,7 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface
 
             $manager->persist($restaurant[$i]);
 
-            $restaurant[$i]->setRestaurantPrix($this->getReference('restaurantprix-'.rand(0, 3)));
+            $restaurant[$i]->setRestaurantPrice($this->getReference('restaurantprice-'.rand(0, 3)));
             $restaurant[$i]->addRestaurantStyle($this->getReference('restaurantstyle-'.rand(0, 1)));
             $restaurant[$i]->addRestaurantStyle($this->getReference('restaurantstyle-'.rand(2, 3)));
             $restaurant[$i]->addRestaurantBonus($this->getReference('restaurantbonus-'.rand(0, 1)));

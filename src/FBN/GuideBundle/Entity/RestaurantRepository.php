@@ -36,7 +36,7 @@ class RestaurantRepository extends EntityRepository
         $qb = $this->createQueryBuilder('r')
                    ->leftJoin('r.image', 'i')
                    ->addSelect('i')
-                   ->leftJoin('r.restaurantPrix', 'rp')
+                   ->leftJoin('r.restaurantPrice', 'rp')
                    ->addSelect('rp')
                    ->leftJoin('r.restaurantStyle', 'rs')
                    ->addSelect('rs')

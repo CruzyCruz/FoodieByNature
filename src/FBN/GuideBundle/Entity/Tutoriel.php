@@ -146,7 +146,7 @@ class Tutoriel extends Article
     /**
      * Set tutorielRubrique
      *
-     * @param \FBN\GuideBundle\Entity\RestaurantPrix $tutorielRubrique
+     * @param \FBN\GuideBundle\Entity\RestaurantPrice $tutorielRubrique
      * @return Restaurant
      */
     public function setTutorielRubrique(\FBN\GuideBundle\Entity\TutorielRubrique $tutorielRubrique)

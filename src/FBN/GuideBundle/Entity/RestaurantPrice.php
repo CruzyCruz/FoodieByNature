@@ -6,15 +6,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * RestaurantPrix
+ * RestaurantPrice.
  *
- * @ORM\Table(name="restaurantprix")
- * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\RestaurantPrixRepository")
+ * @ORM\Table(name="restaurantprice")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\RestaurantPriceRepository")
  */
-class RestaurantPrix
+class RestaurantPrice
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -37,12 +37,12 @@ class RestaurantPrix
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
      */
-    private $locale; 
+    private $locale;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -50,10 +50,11 @@ class RestaurantPrix
     }
 
     /**
-     * Set price
+     * Set price.
      *
      * @param string $price
-     * @return RestaurantPrix
+     *
+     * @return RestaurantPrice
      */
     public function setPrice($price)
     {
@@ -63,9 +64,9 @@ class RestaurantPrix
     }
 
     /**
-     * Get price
+     * Get price.
      *
-     * @return string 
+     * @return string
      */
     public function getPrice()
     {
@@ -73,13 +74,12 @@ class RestaurantPrix
     }
 
     /**
-     * Set locale
+     * Set locale.
      *
      * @param string $locale
-     * 
      */
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
-    }        
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/RestaurantPrix.php
+// src/FBN/GuideBundle/DataFixtures/ORM/RestaurantPrice.php
 
 
 namespace FBN\GuideBundle\DataFixtures\ORM;
@@ -9,9 +9,9 @@ namespace FBN\GuideBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use FBN\GuideBundle\Entity\RestaurantPrix as RestoPrix;
+use FBN\GuideBundle\Entity\RestaurantPrice as RestPrice;
 
-class RestaurantPrix extends AbstractFixture implements OrderedFixtureInterface
+class RestaurantPrice extends AbstractFixture implements OrderedFixtureInterface
 {
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
@@ -23,14 +23,14 @@ class RestaurantPrix extends AbstractFixture implements OrderedFixtureInterface
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
         foreach ($prices as $i => $price) {
-            $restaurantprix[$i] = new RestoPrix();
-            $restaurantprix[$i]->setPrice($price);
+            $restaurantprice[$i] = new RestPrice();
+            $restaurantprice[$i]->setPrice($price);
 
-            $repository->translate($restaurantprix[$i], 'price', 'en', $pricesen[$i]);
+            $repository->translate($restaurantprice[$i], 'price', 'en', $pricesen[$i]);
 
-            $manager->persist($restaurantprix[$i]);
+            $manager->persist($restaurantprice[$i]);
 
-            $this->addReference('restaurantprix-'.$i, $restaurantprix[$i]);
+            $this->addReference('restaurantprice-'.$i, $restaurantprice[$i]);
         }
 
         $manager->flush();

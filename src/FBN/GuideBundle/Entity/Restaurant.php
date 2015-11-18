@@ -16,10 +16,10 @@ class Restaurant extends Article
 {
 
     /**
-     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\RestaurantPrix")
+     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\RestaurantPrice")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $restaurantPrix;    
+    private $restaurantPrice;    
 
     /**
      * @ORM\ManyToMany(targetEntity="FBN\GuideBundle\Entity\RestaurantStyle")
@@ -182,26 +182,26 @@ class Restaurant extends Article
     }
 
     /**
-     * Set restaurantPrix
+     * Set restaurantPrice
      *
-     * @param \FBN\GuideBundle\Entity\RestaurantPrix $restaurantPrix
+     * @param \FBN\GuideBundle\Entity\RestaurantPrice $restaurantPrice
      * @return Restaurant
      */
-    public function setRestaurantPrix(\FBN\GuideBundle\Entity\RestaurantPrix $restaurantPrix)
+    public function setRestaurantPrice(\FBN\GuideBundle\Entity\RestaurantPrice $restaurantPrice)
     {
-        $this->restaurantPrix = $restaurantPrix;
+        $this->restaurantPrice = $restaurantPrice;
 
         return $this;
     }
 
     /**
-     * Get restaurantPrix
+     * Get restaurantPrice
      *
-     * @return \FBN\GuideBundle\Entity\RestaurantPrix 
+     * @return \FBN\GuideBundle\Entity\RestaurantPrice 
      */
-    public function getRestaurantPrix()
+    public function getRestaurantPrice()
     {
-        return $this->restaurantPrix;
+        return $this->restaurantPrice;
     }
 
     /**
