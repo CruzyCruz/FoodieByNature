@@ -128,7 +128,7 @@ class GuideController extends Controller
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        ($lieuevt = $evenement->getRestaurant()) || ($lieuevt = $evenement->getCaviste()) || ($lieuevt = $evenement->getWinemakerDomain()) || ($lieuevt = $evenement->getEvenementPast()) || ($lieuevt = $evenement);
+        ($lieuevt = $evenement->getRestaurant()) || ($lieuevt = $evenement->getCaviste()) || ($lieuevt = $evenement->getWinemakerDomain()) || ($lieuevt = $evenement->getEventPast()) || ($lieuevt = $evenement);
 
         $latlngs[] = array('lat' => $lieuevt->getCoordonnees()->getLatitude(), 'lng' => $lieuevt->getCoordonnees()->getLongitude());
 

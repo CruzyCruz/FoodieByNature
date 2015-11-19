@@ -54,7 +54,7 @@ class Evenement extends Article
    * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Evenement")
    * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
    */
-  private $evenementPast;
+  private $eventPast;
 
     /**
      * @var int
@@ -389,15 +389,15 @@ class Evenement extends Article
     }
 
     /**
-     * Set evenementPast.
+     * Set eventPast.
      *
      * @param \FBN\GuideBundle\Entity\evenement $evenement
      *
      * @return Evenement
      */
-    public function setEvenementPast(\FBN\GuideBundle\Entity\Evenement $evenement = null)
+    public function setEventPast(\FBN\GuideBundle\Entity\Evenement $evenement = null)
     {
-        $this->evenementPast = $evenement;
+        $this->eventPast = $evenement;
 
         return $this;
     }
@@ -407,9 +407,9 @@ class Evenement extends Article
      *
      * @return \FBN\GuideBundle\Entity\evenement
      */
-    public function getEvenementPast()
+    public function getEventPast()
     {
-        return $this->evenementPast;
+        return $this->eventPast;
     }
 
     /**

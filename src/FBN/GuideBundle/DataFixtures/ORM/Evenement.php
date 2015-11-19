@@ -158,14 +158,14 @@ class Evenement extends AbstractFixture implements OrderedFixtureInterface
         $evenement[3]->setCoordonnees($this->getReference('coordonnees-13'));
 
         $evenement[4]->setEvenementType($this->getReference('evenementtype-0'));
-        //$evenement[4]->setEvenementPast($this->getReference('evenement-0'));   
+        //$evenement[4]->setEventPast($this->getReference('evenement-0'));   
         $evenement[4]->setRestaurant($this->getReference('restaurant-0'));
 
         $evenement[5]->setEvenementType($this->getReference('evenementtype-3'));
-        $evenement[5]->setEvenementPast($this->getReference('evenement-1'));
+        $evenement[5]->setEventPast($this->getReference('evenement-1'));
 
         $evenement[6]->setEvenementType($this->getReference('evenementtype-1'));
-        $evenement[6]->setEvenementPast($this->getReference('evenement-3'));
+        $evenement[6]->setEventPast($this->getReference('evenement-3'));
 
         $evenement[7]->setEvenementType($this->getReference('evenementtype-3'));
         $evenement[7]->setWinemakerDomain($this->getReference('winemakerdomain-4'));

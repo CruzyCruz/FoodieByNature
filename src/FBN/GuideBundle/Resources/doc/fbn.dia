@@ -5805,7 +5805,7 @@
     </dia:object>
     <dia:object type="UML - Association" version="2" id="O45">
       <dia:attribute name="name">
-        <dia:string>#evenementPast#</dia:string>
+        <dia:string>#eventPast#</dia:string>
       </dia:attribute>
       <dia:attribute name="direction">
         <dia:enum val="1"/>
@@ -5844,7 +5844,7 @@
         <dia:point val="35.8851,18.1875"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="33.3396,14.1875;37.9221,20.0375"/>
+        <dia:rectangle val="33.8617,14.1875;37.4,20.0375"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
@@ -8038,17 +8038,17 @@
         <dia:boolean val="false"/>
       </dia:attribute>
       <dia:attribute name="obj_pos">
-        <dia:point val="24.1791,-51.8058"/>
+        <dia:point val="24.1793,-51.8058"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="23.7736,-51.8558;24.7316,-47.1867"/>
+        <dia:rectangle val="23.7736,-51.8558;24.7318,-47.1867"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
       </dia:attribute>
       <dia:attribute name="orth_points">
-        <dia:point val="24.1791,-51.8058"/>
-        <dia:point val="24.1787,-48.0867"/>
+        <dia:point val="24.1793,-51.8058"/>
+        <dia:point val="24.1791,-48.0867"/>
         <dia:point val="23.8236,-48.0867"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">
