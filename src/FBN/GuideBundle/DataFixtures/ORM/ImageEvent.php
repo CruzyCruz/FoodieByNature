@@ -1,6 +1,6 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/ImageEvenement.php
+// src/FBN/GuideBundle/DataFixtures/ORM/ImageEvent.php
 
 
 namespace FBN\GuideBundle\DataFixtures\ORM;
@@ -11,16 +11,16 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use FBN\GuideBundle\Entity\Image;
 
-class ImageEvenement extends AbstractFixture implements OrderedFixtureInterface
+class ImageEvent extends AbstractFixture implements OrderedFixtureInterface
 {
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
         $ranks = array(0, 0, 0, 0, 0, 0, 0, 0);
 
-        $path = __DIR__.'/../../../../../web/uploads/images/evenements';
+        $path = __DIR__.'/../../../../../web/uploads/images/events';
 
-        $names = array('evenement-yvon-metras-au-temps-des-vendanges-2013-il.jpg', 'evenement-repas-gastronomique-a-toulouse-2013-il.jpg', 'evenement-sous-les-paves-la-vigne-2014-il.jpg', 'evenement-la-remise-2013-il.jpg', 'evenement-yvon-metras-au-temps-des-vendanges-2014-il.jpg', 'evenement-repas-gastronomique-a-toulouse-2014-il.jpg', 'evenement-la-remise-2014-il.jpg', 'evenement-dejeuner-sur-l-herbe-chez-robert-plageoles-2014-il.jpg');
+        $names = array('event-yvon-metras-au-temps-des-vendanges-2013-il.jpg', 'event-repas-gastronomique-a-toulouse-2013-il.jpg', 'event-sous-les-paves-la-vigne-2014-il.jpg', 'event-la-remise-2013-il.jpg', 'event-yvon-metras-au-temps-des-vendanges-2014-il.jpg', 'event-repas-gastronomique-a-toulouse-2014-il.jpg', 'event-la-remise-2014-il.jpg', 'event-dejeuner-sur-l-herbe-chez-robert-plageoles-2014-il.jpg');
 
         $sizes = array(65536, 69632, 155648, 24576, 32768, 98304, 221184, 196608);
 
@@ -33,30 +33,30 @@ class ImageEvenement extends AbstractFixture implements OrderedFixtureInterface
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
         foreach ($ranks as $i => $rank) {
-            $imageevenement[$i] = new Image();
-            $imageevenement[$i]->setRank($rank);
+            $imageevent[$i] = new Image();
+            $imageevent[$i]->setRank($rank);
         }
 
         foreach ($names as $i => $name) {
-            $imageevenement[$i]->setPath($path);
-            $imageevenement[$i]->setName($name);
+            $imageevent[$i]->setPath($path);
+            $imageevent[$i]->setName($name);
         }
 
         foreach ($sizes as $i => $size) {
-            $imageevenement[$i]->setSize($size);
-            $imageevenement[$i]->setMimeType($mimetype);
+            $imageevent[$i]->setSize($size);
+            $imageevent[$i]->setMimeType($mimetype);
         }
 
         foreach ($legends as $i => $legend) {
-            $imageevenement[$i]->setLegend($legend);
+            $imageevent[$i]->setLegend($legend);
 
-            $repository->translate($imageevenement[$i], 'legend', 'en', $legendsen[$i]);
+            $repository->translate($imageevent[$i], 'legend', 'en', $legendsen[$i]);
 
-            $manager->persist($imageevenement[$i]);
+            $manager->persist($imageevent[$i]);
 
-            $this->addReference('imageevenement-'.$i, $imageevenement[$i]);
+            $this->addReference('imageevent-'.$i, $imageevent[$i]);
 
-            $imageevenement[$i]->setImageType($this->getReference('imagetype-0'));
+            $imageevent[$i]->setImageType($this->getReference('imagetype-0'));
         }
 
         $manager->flush();

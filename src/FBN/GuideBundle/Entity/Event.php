@@ -6,13 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Evenement.
+ * Event.
  *
- * @ORM\Table(name="evenement")
- * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\EvenementRepository")
- * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\EvenementTranslation") 
+ * @ORM\Table(name="event")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\EventRepository")
+ * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\EventTranslation") 
  */
-class Evenement extends Article
+class Event extends Article
 {
     /**
    * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\EventType")
@@ -51,7 +51,7 @@ class Evenement extends Article
   private $coordonnees;
 
   /**
-   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Evenement")
+   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Event")
    * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
    */
   private $eventPast;
@@ -124,7 +124,7 @@ class Evenement extends Article
     private $useExtSite;
 
     /**
-     * @Gedmo\Slug(fields={"name","year"}, prefix="evenement-")
+     * @Gedmo\Slug(fields={"name","year"}, prefix="event-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
@@ -153,7 +153,7 @@ class Evenement extends Article
      *
      * @param string $date
      *
-     * @return Evenement
+     * @return Event
      */
     public function setDate($date)
     {
@@ -177,7 +177,7 @@ class Evenement extends Article
      *
      * @param string $year
      *
-     * @return Evenement
+     * @return Event
      */
     public function setYear($year)
     {
@@ -201,7 +201,7 @@ class Evenement extends Article
      *
      * @param string $openingHours
      *
-     * @return Evenement
+     * @return Event
      */
     public function setOpeningHours($openingHours)
     {
@@ -225,7 +225,7 @@ class Evenement extends Article
      *
      * @param string $slug
      *
-     * @return Evenement
+     * @return Event
      */
     public function setSlug($slug)
     {
@@ -249,7 +249,7 @@ class Evenement extends Article
      *
      * @param \FBN\GuideBundle\Entity\EventType $eventType
      *
-     * @return Evenement
+     * @return Event
      */
     public function setEventType(\FBN\GuideBundle\Entity\EventType $eventType)
     {
@@ -273,7 +273,7 @@ class Evenement extends Article
      *
      * @param \FBN\GuideBundle\Entity\Image $image
      *
-     * @return Evenement
+     * @return Event
      */
     public function setImage(\FBN\GuideBundle\Entity\Image $image)
     {
@@ -297,7 +297,7 @@ class Evenement extends Article
      *
      * @param \FBN\GuideBundle\Entity\Restaurant $restaurant
      *
-     * @return Evenement
+     * @return Event
      */
     public function setRestaurant(\FBN\GuideBundle\Entity\Restaurant $restaurant = null)
     {
@@ -321,7 +321,7 @@ class Evenement extends Article
      *
      * @param \FBN\GuideBundle\Entity\caviste $caviste
      *
-     * @return Evenement
+     * @return Event
      */
     public function setCaviste(\FBN\GuideBundle\Entity\caviste $caviste = null)
     {
@@ -345,7 +345,7 @@ class Evenement extends Article
      *
      * @param \FBN\GuideBundle\Entity\WinemakerDomain $winemakerDomain
      *
-     * @return Evenement
+     * @return Event
      */
     public function setWinemakerDomain(\FBN\GuideBundle\Entity\WinemakerDomain $winemakerDomain = null)
     {
@@ -369,7 +369,7 @@ class Evenement extends Article
      *
      * @param \FBN\GuideBundle\Entity\Coordonnees $coordonnees
      *
-     * @return Evenement
+     * @return Event
      */
     public function setCoordonnees(\FBN\GuideBundle\Entity\Coordonnees $coordonnees = null)
     {
@@ -391,21 +391,21 @@ class Evenement extends Article
     /**
      * Set eventPast.
      *
-     * @param \FBN\GuideBundle\Entity\evenement $evenement
+     * @param \FBN\GuideBundle\Entity\event $event
      *
-     * @return Evenement
+     * @return Event
      */
-    public function setEventPast(\FBN\GuideBundle\Entity\Evenement $evenement = null)
+    public function setEventPast(\FBN\GuideBundle\Entity\Event $event = null)
     {
-        $this->eventPast = $evenement;
+        $this->eventPast = $event;
 
         return $this;
     }
 
     /**
-     * Get evenement.
+     * Get event.
      *
-     * @return \FBN\GuideBundle\Entity\evenement
+     * @return \FBN\GuideBundle\Entity\event
      */
     public function getEventPast()
     {
@@ -441,7 +441,7 @@ class Evenement extends Article
      *
      * @param string $site
      *
-     * @return Evenement
+     * @return Event
      */
     public function setSite($site)
     {
@@ -465,7 +465,7 @@ class Evenement extends Article
      *
      * @param string $href
      *
-     * @return Evenement
+     * @return Event
      */
     public function setHref($href)
     {
@@ -489,7 +489,7 @@ class Evenement extends Article
      *
      * @param bool $useExtTel
      *
-     * @return Evenement
+     * @return Event
      */
     public function setUseExtTel($useExtTel)
     {
@@ -513,7 +513,7 @@ class Evenement extends Article
      *
      * @param bool $useExtSite
      *
-     * @return Evenement
+     * @return Event
      */
     public function setUseExtSite($useExtSite)
     {

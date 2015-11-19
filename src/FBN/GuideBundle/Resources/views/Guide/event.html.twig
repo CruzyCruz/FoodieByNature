@@ -1,28 +1,28 @@
-{# src/FBN/GuideBundle/Resources/views/evenement.html.twig #}
+{# src/FBN/GuideBundle/Resources/views/event.html.twig #}
 
 {% extends "FBNGuideBundle::layout.html.twig" %}
 
 {% block title %}
-	{{ evenement.name }}
+	{{ event.name }}
 {% endblock %}
 
 {% block body %}
 
 
-<h1>{{ evenement.name }}</h1>
+<h1>{{ event.name }}</h1>
 
 <h3>TYPE : </h3>
-  <p>{{ evenement.eventType.type }}</p> 
+  <p>{{ event.eventType.type }}</p> 
 
 
-{% if evenement.image is not null %}
+{% if event.image is not null %}
   <img 
-    src="{{ asset(evenement.image.webPath) }}"
-    alt="{{ evenement.name }}"
+    src="{{ asset(event.image.webPath) }}"
+    alt="{{ event.name }}"
   />
 {% endif %}  
 
-<p>{{ evenement.description }}</p> 
+<p>{{ event.description }}</p> 
 
   <h3>PAR ICI : </h3>
 
@@ -51,15 +51,15 @@
     {{ lieuevt.coordonnees.coordonneesFR.postcode ~ ' ' ~ lieuevt.coordonnees.city }}
   </p>
 
-  {% if evenement.useexttel %}
+  {% if event.useexttel %}
     {% if lieuevt.tel is not null %}
       <h3>ALLO : </h3>  
       <p>{{ lieuevt.tel }}</p>  
     {% endif %} 
   {% else %}
-    {% if evenement.tel is not null %}
+    {% if event.tel is not null %}
       <h3>ALLO : </h3>  
-      <p>{{ evenement.tel }}</p>  
+      <p>{{ event.tel }}</p>  
     {% endif %} 
   {% endif %} 
  
@@ -69,15 +69,15 @@
     <p>{{ lieuevt.coordonnees.metro }}</p> 
   {% endif %}  
 
-  {% if evenement.useextsite %}
+  {% if event.useextsite %}
     {% if lieuevt.site is not null %}
       <h3>SITE : </h3>
       <a href="{{ lieuevt.href }}">{{ lieuevt.site }}</a> 
     {% endif %} 
   {% else %}
-    {% if evenement.site is not null %}
+    {% if event.site is not null %}
       <h3>SITE : </h3>
-      <a href="{{ evenement.href }}">{{ evenement.site }}</a> 
+      <a href="{{ event.href }}">{{ event.site }}</a> 
     {% endif %} 
   {% endif %} 
 

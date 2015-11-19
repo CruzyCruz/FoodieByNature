@@ -1,6 +1,6 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/Evenement.php
+// src/FBN/GuideBundle/DataFixtures/ORM/Event.php
 
 
 namespace FBN\GuideBundle\DataFixtures\ORM;
@@ -9,9 +9,9 @@ namespace FBN\GuideBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use FBN\GuideBundle\Entity\Evenement as Evt;
+use FBN\GuideBundle\Entity\Event as Evt;
 
-class Evenement extends AbstractFixture implements OrderedFixtureInterface
+class Event extends AbstractFixture implements OrderedFixtureInterface
 {
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
@@ -85,90 +85,90 @@ class Evenement extends AbstractFixture implements OrderedFixtureInterface
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
         foreach ($names as $i => $name) {
-            $evenement[$i] = new Evt();
-            $evenement[$i]->setName($name);
+            $event[$i] = new Evt();
+            $event[$i]->setName($name);
 
-            $repository->translate($evenement[$i], 'name', 'en', $namesen[$i]);
+            $repository->translate($event[$i], 'name', 'en', $namesen[$i]);
         }
 
         foreach ($descriptions as $i => $description) {
-            $evenement[$i]->setDescription($description);
+            $event[$i]->setDescription($description);
 
-            $repository->translate($evenement[$i], 'description', 'en', $descriptionsen[$i]);
+            $repository->translate($event[$i], 'description', 'en', $descriptionsen[$i]);
         }
 
         foreach ($authors as $i => $author) {
-            $evenement[$i]->setAuthor($author);
+            $event[$i]->setAuthor($author);
 
-            $manager->persist($evenement[$i]);
+            $manager->persist($event[$i]);
         }
 
         foreach ($dates as $i => $date) {
-            $evenement[$i]->setDate($date);
+            $event[$i]->setDate($date);
 
-            $repository->translate($evenement[$i], 'date', 'en', $datesen[$i]);
+            $repository->translate($event[$i], 'date', 'en', $datesen[$i]);
         }
 
         foreach ($years as $i => $year) {
-            $evenement[$i]->setYear($year);
+            $event[$i]->setYear($year);
         }
 
         foreach ($tels as $i => $tel) {
-            $evenement[$i]->setTel($tel);
+            $event[$i]->setTel($tel);
         }
 
         foreach ($hrefs as $i => $href) {
-            $evenement[$i]->setHref($href);
+            $event[$i]->setHref($href);
         }
 
         foreach ($sites as $i => $site) {
-            $evenement[$i]->setSite($site);
+            $event[$i]->setSite($site);
         }
 
         foreach ($useexttels as $i => $useexttel) {
-            $evenement[$i]->setUseExtTel($useexttel);
+            $event[$i]->setUseExtTel($useexttel);
         }
 
         foreach ($useextsites as $i => $useextsite) {
-            $evenement[$i]->setUseExtSite($useextsite);
+            $event[$i]->setUseExtSite($useextsite);
         }
 
         foreach ($openingHours as $i => $openingHour) {
-            $evenement[$i]->setOpeningHours($openingHour);
+            $event[$i]->setOpeningHours($openingHour);
 
-            $repository->translate($evenement[$i], 'openingHours', 'en', $openingHoursen[$i]);
+            $repository->translate($event[$i], 'openingHours', 'en', $openingHoursen[$i]);
 
-            $manager->persist($evenement[$i]);
+            $manager->persist($event[$i]);
 
-            $this->addReference('evenement-'.$i, $evenement[$i]);
+            $this->addReference('event-'.$i, $event[$i]);
 
-            $evenement[$i]->setImage($this->getReference('imageevenement-'.$i));
+            $event[$i]->setImage($this->getReference('imageevent-'.$i));
         }
 
-        $evenement[0]->setEventType($this->getReference('eventtype-0'));
-        $evenement[0]->setRestaurant($this->getReference('restaurant-0'));
+        $event[0]->setEventType($this->getReference('eventtype-0'));
+        $event[0]->setRestaurant($this->getReference('restaurant-0'));
 
-        $evenement[1]->setEventType($this->getReference('eventtype-3'));
-        $evenement[1]->setCoordonnees($this->getReference('coordonnees-11'));
+        $event[1]->setEventType($this->getReference('eventtype-3'));
+        $event[1]->setCoordonnees($this->getReference('coordonnees-11'));
 
-        $evenement[2]->setEventType($this->getReference('eventtype-1'));
-        $evenement[2]->setCoordonnees($this->getReference('coordonnees-12'));
+        $event[2]->setEventType($this->getReference('eventtype-1'));
+        $event[2]->setCoordonnees($this->getReference('coordonnees-12'));
 
-        $evenement[3]->setEventType($this->getReference('eventtype-1'));
-        $evenement[3]->setCoordonnees($this->getReference('coordonnees-13'));
+        $event[3]->setEventType($this->getReference('eventtype-1'));
+        $event[3]->setCoordonnees($this->getReference('coordonnees-13'));
 
-        $evenement[4]->setEventType($this->getReference('eventtype-0'));
-        //$evenement[4]->setEventPast($this->getReference('evenement-0'));   
-        $evenement[4]->setRestaurant($this->getReference('restaurant-0'));
+        $event[4]->setEventType($this->getReference('eventtype-0'));
+        //$event[4]->setEventPast($this->getReference('event-0'));   
+        $event[4]->setRestaurant($this->getReference('restaurant-0'));
 
-        $evenement[5]->setEventType($this->getReference('eventtype-3'));
-        $evenement[5]->setEventPast($this->getReference('evenement-1'));
+        $event[5]->setEventType($this->getReference('eventtype-3'));
+        $event[5]->setEventPast($this->getReference('event-1'));
 
-        $evenement[6]->setEventType($this->getReference('eventtype-1'));
-        $evenement[6]->setEventPast($this->getReference('evenement-3'));
+        $event[6]->setEventType($this->getReference('eventtype-1'));
+        $event[6]->setEventPast($this->getReference('event-3'));
 
-        $evenement[7]->setEventType($this->getReference('eventtype-3'));
-        $evenement[7]->setWinemakerDomain($this->getReference('winemakerdomain-4'));
+        $event[7]->setEventType($this->getReference('eventtype-3'));
+        $event[7]->setWinemakerDomain($this->getReference('winemakerdomain-4'));
 
         $manager->flush();
     }

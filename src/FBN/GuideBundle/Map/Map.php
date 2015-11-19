@@ -147,7 +147,7 @@ class Map
 
     	$lngFraction = (($lngDiff < 0) ? ($lngDiff + 360) : $lngDiff) / 360;
 
-    	if ($this->rubrique == 'restaurant' || $this->rubrique == 'evenement' || $this->rubrique == 'caviste')
+    	if ($this->rubrique == 'restaurant' || $this->rubrique == 'event' || $this->rubrique == 'caviste')
     	{
     		$this->zoom = $this->zoomClose;
     	}

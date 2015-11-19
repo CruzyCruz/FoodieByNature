@@ -3014,7 +3014,7 @@
         <dia:real val="10"/>
       </dia:attribute>
       <dia:attribute name="name">
-        <dia:string>#Evenement#</dia:string>
+        <dia:string>#Event#</dia:string>
       </dia:attribute>
       <dia:attribute name="stereotype">
         <dia:string>##</dia:string>
@@ -3343,7 +3343,7 @@
         <dia:point val="21.9175,-1.2"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="21.8675,-2.05;32.6314,8.23754"/>
+        <dia:rectangle val="21.8675,-2.05;32.6313,8.23754"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>

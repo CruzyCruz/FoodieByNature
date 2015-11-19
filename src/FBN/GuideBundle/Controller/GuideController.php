@@ -116,26 +116,26 @@ class GuideController extends Controller
         ));
     }
 
-    public function evenementAction($slug)
+    public function eventAction($slug)
     {
-        $evenement = $this
+        $event = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('FBNGuideBundle:Evenement')
-            ->getEvenement($slug);
+            ->getRepository('FBNGuideBundle:Event')
+            ->getEvent($slug);
 
-        if (null === $evenement) {
+        if (null === $event) {
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        ($lieuevt = $evenement->getRestaurant()) || ($lieuevt = $evenement->getCaviste()) || ($lieuevt = $evenement->getWinemakerDomain()) || ($lieuevt = $evenement->getEventPast()) || ($lieuevt = $evenement);
+        ($lieuevt = $event->getRestaurant()) || ($lieuevt = $event->getCaviste()) || ($lieuevt = $event->getWinemakerDomain()) || ($lieuevt = $event->getEventPast()) || ($lieuevt = $event);
 
         $latlngs[] = array('lat' => $lieuevt->getCoordonnees()->getLatitude(), 'lng' => $lieuevt->getCoordonnees()->getLongitude());
 
-        $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'evenement');
+        $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'event');
 
-        return $this->render('FBNGuideBundle:Guide:evenement.html.twig', array(
-            'evenement' => $evenement,
+        return $this->render('FBNGuideBundle:Guide:event.html.twig', array(
+            'event' => $event,
             'lieuevt' => $lieuevt,
             'map' => $map,
         ));

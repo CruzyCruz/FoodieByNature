@@ -2,7 +2,7 @@ parameters:
 
 #   fbn_guide.map
 
-#   zoom de proximité restos / evenements
+#   zoom de proximité restos / events
     fbn_guide.map.zoom_close : 15
 #   zoom winemaker si un seul marker    
     fbn_guide.map.zoom_winemaker : 10
