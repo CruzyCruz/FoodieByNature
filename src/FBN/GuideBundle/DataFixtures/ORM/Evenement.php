@@ -145,29 +145,29 @@ class Evenement extends AbstractFixture implements OrderedFixtureInterface
             $evenement[$i]->setImage($this->getReference('imageevenement-'.$i));
         }
 
-        $evenement[0]->setEvenementType($this->getReference('evenementtype-0'));
+        $evenement[0]->setEventType($this->getReference('eventtype-0'));
         $evenement[0]->setRestaurant($this->getReference('restaurant-0'));
 
-        $evenement[1]->setEvenementType($this->getReference('evenementtype-3'));
+        $evenement[1]->setEventType($this->getReference('eventtype-3'));
         $evenement[1]->setCoordonnees($this->getReference('coordonnees-11'));
 
-        $evenement[2]->setEvenementType($this->getReference('evenementtype-1'));
+        $evenement[2]->setEventType($this->getReference('eventtype-1'));
         $evenement[2]->setCoordonnees($this->getReference('coordonnees-12'));
 
-        $evenement[3]->setEvenementType($this->getReference('evenementtype-1'));
+        $evenement[3]->setEventType($this->getReference('eventtype-1'));
         $evenement[3]->setCoordonnees($this->getReference('coordonnees-13'));
 
-        $evenement[4]->setEvenementType($this->getReference('evenementtype-0'));
+        $evenement[4]->setEventType($this->getReference('eventtype-0'));
         //$evenement[4]->setEventPast($this->getReference('evenement-0'));   
         $evenement[4]->setRestaurant($this->getReference('restaurant-0'));
 
-        $evenement[5]->setEvenementType($this->getReference('evenementtype-3'));
+        $evenement[5]->setEventType($this->getReference('eventtype-3'));
         $evenement[5]->setEventPast($this->getReference('evenement-1'));
 
-        $evenement[6]->setEvenementType($this->getReference('evenementtype-1'));
+        $evenement[6]->setEventType($this->getReference('eventtype-1'));
         $evenement[6]->setEventPast($this->getReference('evenement-3'));
 
-        $evenement[7]->setEvenementType($this->getReference('evenementtype-3'));
+        $evenement[7]->setEventType($this->getReference('eventtype-3'));
         $evenement[7]->setWinemakerDomain($this->getReference('winemakerdomain-4'));
 
         $manager->flush();

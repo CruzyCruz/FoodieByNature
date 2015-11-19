@@ -6,15 +6,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * EvenementType
+ * EventType.
  *
- * @ORM\Table(name="evenementtype")
- * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\EvenementTypeRepository")
+ * @ORM\Table(name="eventtype")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\EventTypeRepository")
  */
-class EvenementType
+class EventType
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -37,12 +37,12 @@ class EvenementType
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
      */
-    private $locale; 
+    private $locale;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -50,10 +50,11 @@ class EvenementType
     }
 
     /**
-     * Set type
+     * Set type.
      *
      * @param string $type
-     * @return EvenementType
+     *
+     * @return EventType
      */
     public function setType($type)
     {
@@ -63,9 +64,9 @@ class EvenementType
     }
 
     /**
-     * Get type
+     * Get type.
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
@@ -73,13 +74,12 @@ class EvenementType
     }
 
     /**
-     * Set locale
+     * Set locale.
      *
      * @param string $locale
-     * 
      */
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
-    }    
+    }
 }

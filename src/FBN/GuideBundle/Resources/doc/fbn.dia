@@ -6404,19 +6404,19 @@
         <dia:point val="32.77,20.7"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="32.695,20.625;39.125,24.375"/>
+        <dia:rectangle val="32.695,20.625;37.1225,24.375"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="32.77,20.7"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="6.2799999999999994"/>
+        <dia:real val="4.2774999999999999"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="3.6000000000000001"/>
       </dia:attribute>
       <dia:attribute name="name">
-        <dia:string>#EvenementType#</dia:string>
+        <dia:string>#EventType#</dia:string>
       </dia:attribute>
       <dia:attribute name="stereotype">
         <dia:string>##</dia:string>
@@ -6479,7 +6479,7 @@
         <dia:font family="Calibri" style="0" name="Courier"/>
       </dia:attribute>
       <dia:attribute name="abstract_classname_font">
-        <dia:font family="Calibri" style="4" name="Courier"/>
+        <dia:font family="Calibri" style="0" name="Courier"/>
       </dia:attribute>
       <dia:attribute name="comment_font">
         <dia:font family="Calibri" style="0" name="Courier"/>

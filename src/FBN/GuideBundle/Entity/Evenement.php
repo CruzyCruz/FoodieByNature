@@ -15,10 +15,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class Evenement extends Article
 {
     /**
-   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\EvenementType")
+   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\EventType")
    * @ORM\JoinColumn(nullable=false)
    */
-  private $evenementType;
+  private $eventType;
 
   /**
    * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Image", cascade={"persist"})
@@ -245,15 +245,15 @@ class Evenement extends Article
     }
 
     /**
-     * Set evenementType.
+     * Set eventType.
      *
-     * @param \FBN\GuideBundle\Entity\EvenementType $evenementType
+     * @param \FBN\GuideBundle\Entity\EventType $eventType
      *
      * @return Evenement
      */
-    public function setEvenementType(\FBN\GuideBundle\Entity\EvenementType $evenementType)
+    public function setEventType(\FBN\GuideBundle\Entity\EventType $eventType)
     {
-        $this->evenementType = $evenementType;
+        $this->eventType = $eventType;
 
         return $this;
     }
@@ -261,11 +261,11 @@ class Evenement extends Article
     /**
      * Get restaurant.
      *
-     * @return \FBN\GuideBundle\Entity\EvenementType
+     * @return \FBN\GuideBundle\Entity\EventType
      */
-    public function getEvenementType()
+    public function getEventType()
     {
-        return $this->evenementType;
+        return $this->eventType;
     }
 
     /**

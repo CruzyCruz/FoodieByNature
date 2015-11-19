@@ -35,7 +35,7 @@ class EvenementRepository extends EntityRepository
         $qb = $this->createQueryBuilder('e')
                    ->leftJoin('e.image', 'i')
                    ->addSelect('i')
-                   ->leftJoin('e.evenementType', 'et')
+                   ->leftJoin('e.eventType', 'et')
                    ->addSelect('et')
                    ->leftJoin('e.eventPast', 'ep')
                    ->addSelect('ep')
