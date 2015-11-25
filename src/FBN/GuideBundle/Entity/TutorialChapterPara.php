@@ -6,29 +6,28 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * TutorielChapitrePara
+ * TutorialChapterPara.
  *
- * @ORM\Table(name="tutorielchapitrepara")
- * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\TutorielChapitreParaRepository")
- * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\TutorielChapitreParaTranslation") 
+ * @ORM\Table(name="tutorialchapterpara")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\TutorialChapterParaRepository")
+ * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\TutorialChapterParaTranslation") 
  */
-class TutorielChapitrePara
+class TutorialChapterPara
 {
-
     /**
-     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\TutorielChapitre", inversedBy="tutorielChapitrePara")
+     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\TutorielChapitre", inversedBy="TutorialChapterPara")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $tutorielChapitre;       
- 
+    private $tutorielChapitre;
+
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Image", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
-    private $image;    
+    private $image;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -45,7 +44,7 @@ class TutorielChapitrePara
     private $paragraph;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="rank", type="integer")
      */
@@ -58,13 +57,12 @@ class TutorielChapitrePara
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
      */
-    private $locale;     
-
+    private $locale;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -72,10 +70,11 @@ class TutorielChapitrePara
     }
 
     /**
-     * Set paragraph
+     * Set paragraph.
      *
      * @param string $paragraph
-     * @return TutorielChapitrePara
+     *
+     * @return TutorialChapterPara
      */
     public function setParagraph($paragraph)
     {
@@ -85,9 +84,9 @@ class TutorielChapitrePara
     }
 
     /**
-     * Get paragraph
+     * Get paragraph.
      *
-     * @return string 
+     * @return string
      */
     public function getParagraph()
     {
@@ -95,10 +94,11 @@ class TutorielChapitrePara
     }
 
     /**
-     * Set rank
+     * Set rank.
      *
-     * @param integer $rank
-     * @return TutorielChapitrePara
+     * @param int $rank
+     *
+     * @return TutorialChapterPara
      */
     public function setRank($rank)
     {
@@ -108,9 +108,9 @@ class TutorielChapitrePara
     }
 
     /**
-     * Get rank
+     * Get rank.
      *
-     * @return integer 
+     * @return int
      */
     public function getRank()
     {
@@ -118,10 +118,11 @@ class TutorielChapitrePara
     }
 
     /**
-     * Set tutorielChapitre
+     * Set tutorielChapitre.
      *
      * @param \FBN\GuideBundle\Entity\TutorielChapitre $tutorielChapitre
-     * @return TutorielChapitrePara
+     *
+     * @return TutorialChapterPara
      */
     public function setTutorielChapitre(\FBN\GuideBundle\Entity\TutorielChapitre $tutorielChapitre)
     {
@@ -131,20 +132,21 @@ class TutorielChapitrePara
     }
 
     /**
-     * Get tutorielChapitre
+     * Get tutorielChapitre.
      *
      * @return \FBN\GuideBundle\Entity\TutorielChapitre
      */
     public function getTutorielChapitre()
     {
         return $this->tutorielChapitre;
-    }    
+    }
 
     /**
-     * Set image
+     * Set image.
      *
      * @param \FBN\GuideBundle\Entity\Image $image
-     * @return TutorielChapitrePara
+     *
+     * @return TutorialChapterPara
      */
     public function setImage(\FBN\GuideBundle\Entity\Image $image)
     {
@@ -154,23 +156,22 @@ class TutorielChapitrePara
     }
 
     /**
-     * Get image
+     * Get image.
      *
-     * @return \FBN\GuideBundle\Entity\Image 
+     * @return \FBN\GuideBundle\Entity\Image
      */
     public function getImage()
     {
-        return $this->image;    
+        return $this->image;
     }
 
     /**
-     * Set locale
+     * Set locale.
      *
      * @param string $locale
-     * 
      */
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
-    }     
+    }
 }

@@ -21,10 +21,10 @@ class TutorielChapitre
   private $tutoriel;       
 
   /**
-   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorielChapitrePara", mappedBy="tutorielChapitre")
+   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorialChapterPara", mappedBy="tutorielChapitre")
    * @ORM\OrderBy({"rank" = "ASC"})
    */
-  private $tutorielChapitrePara; 
+  private $TutorialChapterPara; 
  
 
     /**
@@ -151,37 +151,37 @@ class TutorielChapitre
     }     
 
     /**
-     * Add tutorielChapitrePara
+     * Add TutorialChapterPara
      *
-     * @param \FBN\GuideBundle\Entity\TutorielChapitrePara $tutorielChapitrePara
+     * @param \FBN\GuideBundle\Entity\TutorialChapterPara $TutorialChapterPara
      * @return Vigneron
      */
-    public function addTutorielChapitrePara(\FBN\GuideBundle\Entity\TutorielChapitrePara $tutorielChapitrePara)
+    public function addTutorialChapterPara(\FBN\GuideBundle\Entity\TutorialChapterPara $TutorialChapterPara)
     {
-        $this->tutorielChapitrePara[] = $tutorielChapitrePara;
-        $tutorielChapitrePara->setVigneron($this); 
+        $this->TutorialChapterPara[] = $TutorialChapterPara;
+        $TutorialChapterPara->setVigneron($this); 
 
         return $this;
     }
 
     /**
-     * Remove tutorielChapitrePara
+     * Remove TutorialChapterPara
      *
-     * @param \FBN\GuideBundle\Entity\TutorielChapitrePara $tutorielChapitrePara
+     * @param \FBN\GuideBundle\Entity\TutorialChapterPara $TutorialChapterPara
      */
-    public function removeTutorielChapitrePara(\FBN\GuideBundle\Entity\TutorielChapitrePara $tutorielChapitrePara)
+    public function removeTutorialChapterPara(\FBN\GuideBundle\Entity\TutorialChapterPara $TutorialChapterPara)
     {
-        $this->tutorielChapitrePara->removeElement($tutorielChapitrePara);
+        $this->TutorialChapterPara->removeElement($TutorialChapterPara);
     }
 
     /**
-     * Get tutorielChapitrePara
+     * Get TutorialChapterPara
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getTutorielChapitrePara()
+    public function getTutorialChapterPara()
     {
-        return $this->tutorielChapitrePara;
+        return $this->TutorialChapterPara;
     }
 
 }

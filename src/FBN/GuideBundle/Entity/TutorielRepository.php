@@ -39,7 +39,7 @@ class TutorielRepository extends EntityRepository
                    ->addSelect('tr')
                    ->leftJoin('t.tutorielChapitre', 'tc')
                    ->addSelect('tc')
-                   ->leftJoin('tc.tutorielChapitrePara', 'tcp')
+                   ->leftJoin('tc.TutorialChapterPara', 'tcp')
                    ->addSelect('tcp')
                     ->where('t.slug = :slug')
                     ->setParameter('slug', $slug);

@@ -1,6 +1,6 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/TutorielChapitreParaBoireNature.php
+// src/FBN/GuideBundle/DataFixtures/ORM/TutorialChapterParaBoireNature.php
 
 
 namespace FBN\GuideBundle\DataFixtures\ORM;
@@ -9,9 +9,9 @@ namespace FBN\GuideBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use FBN\GuideBundle\Entity\TutorielChapitrePara as TutoChapitrePara;
+use FBN\GuideBundle\Entity\TutorialChapterPara as TutoChapterPara;
 
-class TutorielChapitreParaBoireNature extends AbstractFixture implements OrderedFixtureInterface
+class TutorialChapterParaBoireNature extends AbstractFixture implements OrderedFixtureInterface
 {
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
@@ -43,21 +43,21 @@ class TutorielChapitreParaBoireNature extends AbstractFixture implements Ordered
             );
 
         foreach ($paragraphs as $i => $paragraph) {
-            $tutorielchapitrepara[$i] = new TutoChapitrePara();
-            $tutorielchapitrepara[$i]->setParagraph($paragraph);
-            $repository->translate($tutorielchapitrepara[$i], 'paragraph', 'en', $paragraphsen[$i]);
+            $tutorialchapterpara[$i] = new TutoChapterPara();
+            $tutorialchapterpara[$i]->setParagraph($paragraph);
+            $repository->translate($tutorialchapterpara[$i], 'paragraph', 'en', $paragraphsen[$i]);
         }
 
         foreach ($ranks as $i => $rank) {
-            $tutorielchapitrepara[$i]->setRank($rank);
+            $tutorialchapterpara[$i]->setRank($rank);
 
-            $manager->persist($tutorielchapitrepara[$i]);
+            $manager->persist($tutorialchapterpara[$i]);
 
-            $tutorielchapitrepara[$i]->setTutorielChapitre($this->getReference('tutorielchapitreboirenature-'.($tutorielchapitre_ids[$i] - 1)));
+            $tutorialchapterpara[$i]->setTutorielChapitre($this->getReference('tutorielchapitreboirenature-'.($tutorielchapitre_ids[$i] - 1)));
 
-            $this->addReference('tutorielchapitreparaboirenature-'.$i, $tutorielchapitrepara[$i]);
+            $this->addReference('tutorialchapterparaboirenature-'.$i, $tutorialchapterpara[$i]);
 
-            $tutorielchapitrepara[$i]->setImage($this->getReference('imagetutorielchapitreparaboirenature-'.$i));
+            $tutorialchapterpara[$i]->setImage($this->getReference('imagetutorialchapterparaboirenature-'.$i));
         }
 
         $manager->flush();
