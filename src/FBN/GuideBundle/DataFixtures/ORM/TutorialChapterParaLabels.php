@@ -32,7 +32,7 @@ class TutorialChapterParaLabels extends AbstractFixture implements OrderedFixtur
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        $tutorielchapitre_ids = array(
+        $tutorialchapter_ids = array(
             1,
             2,
             3,
@@ -49,7 +49,7 @@ class TutorialChapterParaLabels extends AbstractFixture implements OrderedFixtur
 
             $manager->persist($tutorialchapterpara[$i]);
 
-            $tutorialchapterpara[$i]->setTutorielChapitre($this->getReference('tutorielchapitrelabels-'.($tutorielchapitre_ids[$i] - 1)));
+            $tutorialchapterpara[$i]->setTutorialChapter($this->getReference('tutorialchapterlabels-'.($tutorialchapter_ids[$i] - 1)));
 
             $this->addReference('tutorialchapterparalabels-'.$i, $tutorialchapterpara[$i]);
 

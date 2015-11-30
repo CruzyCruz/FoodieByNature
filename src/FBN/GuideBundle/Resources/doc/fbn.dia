@@ -4237,19 +4237,19 @@
         <dia:point val="47.0125,18.0688"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="46.9375,17.9938;53.25,22.5438"/>
+        <dia:rectangle val="46.9375,17.9938;53.0725,22.5438"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="47.0125,18.0688"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="6.1624999999999996"/>
+        <dia:real val="5.9850000000000003"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="4.4000000000000004"/>
       </dia:attribute>
       <dia:attribute name="name">
-        <dia:string>#TutorielChapitre#</dia:string>
+        <dia:string>#TutorialChapter#</dia:string>
       </dia:attribute>
       <dia:attribute name="stereotype">
         <dia:string>##</dia:string>
@@ -6843,17 +6843,17 @@
         <dia:boolean val="false"/>
       </dia:attribute>
       <dia:attribute name="obj_pos">
-        <dia:point val="50.0938,22.4688"/>
+        <dia:point val="50.005,22.4688"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="50.0438,22.4188;50.7426,27.4598"/>
+        <dia:rectangle val="49.955,22.4188;50.7426,27.4598"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
       </dia:attribute>
       <dia:attribute name="orth_points">
-        <dia:point val="50.0938,22.4688"/>
-        <dia:point val="50.0938,26.5598"/>
+        <dia:point val="50.005,22.4688"/>
+        <dia:point val="50.005,26.5598"/>
         <dia:point val="50.6926,26.5598"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">

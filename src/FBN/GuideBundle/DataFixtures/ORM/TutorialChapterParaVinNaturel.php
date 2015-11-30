@@ -32,7 +32,7 @@ class TutorialChapterParaVinNaturel extends AbstractFixture implements OrderedFi
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        $tutorielchapitre_ids = array(
+        $tutorialchapter_ids = array(
             1,
             2,
             3,
@@ -50,7 +50,7 @@ class TutorialChapterParaVinNaturel extends AbstractFixture implements OrderedFi
 
             $manager->persist($tutorialchapterpara[$i]);
 
-            $tutorialchapterpara[$i]->setTutorielChapitre($this->getReference('tutorielchapitrevinnaturel-'.($tutorielchapitre_ids[$i] - 1)));
+            $tutorialchapterpara[$i]->setTutorialChapter($this->getReference('tutorialchaptervinnaturel-'.($tutorialchapter_ids[$i] - 1)));
 
             $this->addReference('tutorialchapterparavinnaturel-'.$i, $tutorialchapterpara[$i]);
 

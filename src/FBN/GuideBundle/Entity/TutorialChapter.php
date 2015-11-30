@@ -6,29 +6,27 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * TutorielChapitre
+ * TutorialChapter.
  *
- * @ORM\Table(name="tutorielchapitre")
- * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\TutorielChapitreRepository")
+ * @ORM\Table(name="tutorialchapter")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\TutorialChapterRepository")
  */
-class TutorielChapitre
+class TutorialChapter
 {
-
-  /**
-   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Tutoriel", inversedBy="tutorielChapitre")
+    /**
+   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Tutoriel", inversedBy="tutorialChapter")
    * @ORM\JoinColumn(nullable=false)
    */
-  private $tutoriel;       
+  private $tutoriel;
 
   /**
-   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorialChapterPara", mappedBy="tutorielChapitre")
+   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorialChapterPara", mappedBy="tutorialChapter")
    * @ORM\OrderBy({"rank" = "ASC"})
    */
-  private $TutorialChapterPara; 
- 
+  private $TutorialChapterPara;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -45,11 +43,11 @@ class TutorielChapitre
     private $titre;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="rank", type="integer")
      */
-    private $rank;  
+    private $rank;
 
     /**
      * @var string
@@ -58,12 +56,12 @@ class TutorielChapitre
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
      */
-    private $locale;     
+    private $locale;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -71,9 +69,10 @@ class TutorielChapitre
     }
 
     /**
-     * Set titre
+     * Set titre.
      *
      * @param string $titre
+     *
      * @return Chapitre
      */
     public function setTitre($titre)
@@ -84,9 +83,9 @@ class TutorielChapitre
     }
 
     /**
-     * Get titre
+     * Get titre.
      *
-     * @return string 
+     * @return string
      */
     public function getTitre()
     {
@@ -94,10 +93,11 @@ class TutorielChapitre
     }
 
     /**
-     * Set rank
+     * Set rank.
      *
-     * @param integer $rank
-     * @return TutorielChapitre
+     * @param int $rank
+     *
+     * @return TutorialChapter
      */
     public function setRank($rank)
     {
@@ -107,9 +107,9 @@ class TutorielChapitre
     }
 
     /**
-     * Get rank
+     * Get rank.
      *
-     * @return integer 
+     * @return int
      */
     public function getRank()
     {
@@ -117,10 +117,11 @@ class TutorielChapitre
     }
 
     /**
-     * Set tutoriel
+     * Set tutoriel.
      *
      * @param \FBN\GuideBundle\Entity\Tutoriel $tutoriel
-     * @return TutorielChapitre
+     *
+     * @return TutorialChapter
      */
     public function setTutoriel(\FBN\GuideBundle\Entity\Tutoriel $tutoriel)
     {
@@ -130,9 +131,9 @@ class TutorielChapitre
     }
 
     /**
-     * Get tutoriel
+     * Get tutoriel.
      *
-     * @return \FBN\GuideBundle\Entity\Tutoriel 
+     * @return \FBN\GuideBundle\Entity\Tutoriel
      */
     public function getTutoriel()
     {
@@ -140,32 +141,32 @@ class TutorielChapitre
     }
 
     /**
-     * Set locale
+     * Set locale.
      *
      * @param string $locale
-     * 
      */
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
-    }     
+    }
 
     /**
-     * Add TutorialChapterPara
+     * Add TutorialChapterPara.
      *
      * @param \FBN\GuideBundle\Entity\TutorialChapterPara $TutorialChapterPara
+     *
      * @return Vigneron
      */
     public function addTutorialChapterPara(\FBN\GuideBundle\Entity\TutorialChapterPara $TutorialChapterPara)
     {
         $this->TutorialChapterPara[] = $TutorialChapterPara;
-        $TutorialChapterPara->setVigneron($this); 
+        $TutorialChapterPara->setVigneron($this);
 
         return $this;
     }
 
     /**
-     * Remove TutorialChapterPara
+     * Remove TutorialChapterPara.
      *
      * @param \FBN\GuideBundle\Entity\TutorialChapterPara $TutorialChapterPara
      */
@@ -175,13 +176,12 @@ class TutorielChapitre
     }
 
     /**
-     * Get TutorialChapterPara
+     * Get TutorialChapterPara.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTutorialChapterPara()
     {
         return $this->TutorialChapterPara;
     }
-
 }

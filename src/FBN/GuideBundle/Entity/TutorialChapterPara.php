@@ -15,10 +15,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class TutorialChapterPara
 {
     /**
-     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\TutorielChapitre", inversedBy="TutorialChapterPara")
+     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\TutorialChapter", inversedBy="TutorialChapterPara")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $tutorielChapitre;
+    private $tutorialChapter;
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Image", cascade={"persist"})
@@ -118,27 +118,27 @@ class TutorialChapterPara
     }
 
     /**
-     * Set tutorielChapitre.
+     * Set tutorialChapter.
      *
-     * @param \FBN\GuideBundle\Entity\TutorielChapitre $tutorielChapitre
+     * @param \FBN\GuideBundle\Entity\TutorialChapter $tutorialChapter
      *
      * @return TutorialChapterPara
      */
-    public function setTutorielChapitre(\FBN\GuideBundle\Entity\TutorielChapitre $tutorielChapitre)
+    public function setTutorialChapter(\FBN\GuideBundle\Entity\TutorialChapter $tutorialChapter)
     {
-        $this->tutorielChapitre = $tutorielChapitre;
+        $this->tutorialChapter = $tutorialChapter;
 
         return $this;
     }
 
     /**
-     * Get tutorielChapitre.
+     * Get tutorialChapter.
      *
-     * @return \FBN\GuideBundle\Entity\TutorielChapitre
+     * @return \FBN\GuideBundle\Entity\TutorialChapter
      */
-    public function getTutorielChapitre()
+    public function getTutorialChapter()
     {
-        return $this->tutorielChapitre;
+        return $this->tutorialChapter;
     }
 
     /**

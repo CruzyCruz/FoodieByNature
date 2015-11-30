@@ -37,7 +37,7 @@ class TutorielRepository extends EntityRepository
                    ->addSelect('i')
                    ->leftJoin('t.tutorielRubrique', 'tr')
                    ->addSelect('tr')
-                   ->leftJoin('t.tutorielChapitre', 'tc')
+                   ->leftJoin('t.tutorialChapter', 'tc')
                    ->addSelect('tc')
                    ->leftJoin('tc.TutorialChapterPara', 'tcp')
                    ->addSelect('tcp')

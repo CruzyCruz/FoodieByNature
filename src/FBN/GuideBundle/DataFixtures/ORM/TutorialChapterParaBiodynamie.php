@@ -31,7 +31,7 @@ class TutorialChapterParaBiodynamie extends AbstractFixture implements OrderedFi
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        $tutorielchapitre_ids = array(
+        $tutorialchapter_ids = array(
             1,
             2,
             3,
@@ -48,7 +48,7 @@ class TutorialChapterParaBiodynamie extends AbstractFixture implements OrderedFi
 
             $manager->persist($tutorialchapterpara[$i]);
 
-            $tutorialchapterpara[$i]->setTutorielChapitre($this->getReference('tutorielchapitrebiodynamie-'.($tutorielchapitre_ids[$i] - 1)));
+            $tutorialchapterpara[$i]->setTutorialChapter($this->getReference('tutorialchapterbiodynamie-'.($tutorialchapter_ids[$i] - 1)));
 
             $this->addReference('tutorialchapterparabiodynamie-'.$i, $tutorialchapterpara[$i]);
 

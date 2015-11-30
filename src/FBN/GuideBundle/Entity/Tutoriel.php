@@ -15,10 +15,10 @@ class Tutoriel extends Article
 {
 
   /**
-   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorielChapitre", mappedBy="tutoriel")
+   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorialChapter", mappedBy="tutoriel")
    * @ORM\OrderBy({"rank" = "ASC"})
    */
-  private $tutorielChapitre;     
+  private $tutorialChapter;     
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Image", cascade={"persist"})
@@ -178,36 +178,36 @@ class Tutoriel extends Article
     }     
 
     /**
-     * Add tutorielChapitre
+     * Add tutorialChapter
      *
-     * @param \FBN\GuideBundle\Entity\TutorielChapitre $tutorielChapitre
+     * @param \FBN\GuideBundle\Entity\TutorialChapter $tutorialChapter
      * @return Winemaker
      */
-    public function addTutorielChapitre(\FBN\GuideBundle\Entity\TutorielChapitre $tutorielChapitre)
+    public function addTutorialChapter(\FBN\GuideBundle\Entity\TutorialChapter $tutorialChapter)
     {
-        $this->tutorielChapitre[] = $tutorielChapitre;
-        $tutorielChapitre->setWinemaker($this); 
+        $this->tutorialChapter[] = $tutorialChapter;
+        $tutorialChapter->setWinemaker($this); 
 
         return $this;
     }
 
     /**
-     * Remove tutorielChapitre
+     * Remove tutorialChapter
      *
-     * @param \FBN\GuideBundle\Entity\TutorielChapitre $tutorielChapitre
+     * @param \FBN\GuideBundle\Entity\TutorialChapter $tutorialChapter
      */
-    public function removeTutorielChapitre(\FBN\GuideBundle\Entity\TutorielChapitre $tutorielChapitre)
+    public function removeTutorialChapter(\FBN\GuideBundle\Entity\TutorialChapter $tutorialChapter)
     {
-        $this->tutorielChapitre->removeElement($tutorielChapitre);
+        $this->tutorialChapter->removeElement($tutorialChapter);
     }
 
     /**
-     * Get tutorielChapitre
+     * Get tutorialChapter
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getTutorielChapitre()
+    public function getTutorialChapter()
     {
-        return $this->tutorielChapitre;
+        return $this->tutorialChapter;
     }    
 }
