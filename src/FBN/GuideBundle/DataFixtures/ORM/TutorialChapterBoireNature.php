@@ -16,11 +16,11 @@ class TutorialChapterBoireNature extends AbstractFixture implements OrderedFixtu
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $titres = array('Des vins vivants', 'Des vins détendus', 'Classsique vs Naturel');
+        $titles = array('Des vins vivants', 'Des vins détendus', 'Classsique vs Naturel');
 
         $ranks = array(0, 1, 2);
 
-        $titresen = array('Alive wines', 'Relaxed Wines', 'Classic vs Natural');
+        $titlesen = array('Alive wines', 'Relaxed Wines', 'Classic vs Natural');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -31,10 +31,10 @@ class TutorialChapterBoireNature extends AbstractFixture implements OrderedFixtu
             5,
             );
 
-        foreach ($titres as $i => $titre) {
+        foreach ($titles as $i => $title) {
             $tutorialchapter[$i] = new TutoChapter();
-            $tutorialchapter[$i]->setTitre($titre);
-            $repository->translate($tutorialchapter[$i], 'titre', 'en', $titresen[$i]);
+            $tutorialchapter[$i]->setTitle($title);
+            $repository->translate($tutorialchapter[$i], 'title', 'en', $titlesen[$i]);
         }
 
         foreach ($ranks as $i => $rank) {

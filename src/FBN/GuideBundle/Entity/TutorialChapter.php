@@ -37,10 +37,10 @@ class TutorialChapter
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255)
      * @Gedmo\Translatable          
      */
-    private $titre;
+    private $title;
 
     /**
      * @var int
@@ -69,27 +69,27 @@ class TutorialChapter
     }
 
     /**
-     * Set titre.
+     * Set title.
      *
-     * @param string $titre
+     * @param string $title
      *
      * @return Chapitre
      */
-    public function setTitre($titre)
+    public function setTitle($title)
     {
-        $this->titre = $titre;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get titre.
+     * Get title.
      *
      * @return string
      */
-    public function getTitre()
+    public function getTitle()
     {
-        return $this->titre;
+        return $this->title;
     }
 
     /**

@@ -16,11 +16,11 @@ class TutorialChapterBiodynamie extends AbstractFixture implements OrderedFixtur
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $titres = array('Les buts de l’agriculture biodynamique', 'Historique de l’agriculture biodynamique en France', 'Historique de l’agriculture biodynamique dans le monde');
+        $titles = array('Les buts de l’agriculture biodynamique', 'Historique de l’agriculture biodynamique en France', 'Historique de l’agriculture biodynamique dans le monde');
 
         $ranks = array(0, 1, 2);
 
-        $titresen = array('The goals of biodynamic agriculture', 'History biodynamic agriculture in France', 'Organic wines', 'History biodynamic agriculture in the world');
+        $titlesen = array('The goals of biodynamic agriculture', 'History biodynamic agriculture in France', 'Organic wines', 'History biodynamic agriculture in the world');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -31,10 +31,10 @@ class TutorialChapterBiodynamie extends AbstractFixture implements OrderedFixtur
             2,
             );
 
-        foreach ($titres as $i => $titre) {
+        foreach ($titles as $i => $title) {
             $tutorialchapter[$i] = new TutoChapter();
-            $tutorialchapter[$i]->setTitre($titre);
-            $repository->translate($tutorialchapter[$i], 'titre', 'en', $titresen[$i]);
+            $tutorialchapter[$i]->setTitle($title);
+            $repository->translate($tutorialchapter[$i], 'title', 'en', $titlesen[$i]);
         }
 
         foreach ($ranks as $i => $rank) {

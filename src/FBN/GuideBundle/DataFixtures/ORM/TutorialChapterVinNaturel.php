@@ -16,11 +16,11 @@ class TutorialChapterVinNaturel extends AbstractFixture implements OrderedFixtur
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $titres = array('Le terroir', 'C\'est quoi un vin naturel ?', 'Les vins bio', 'La viticulture biodynamique');
+        $titles = array('Le terroir', 'C\'est quoi un vin naturel ?', 'Les vins bio', 'La viticulture biodynamique');
 
         $ranks = array(0, 1, 2, 3);
 
-        $titresen = array('The terroir', 'What is a natural wine?', 'Organic wines', 'Biodynamic viticulture');
+        $titlesen = array('The terroir', 'What is a natural wine?', 'Organic wines', 'Biodynamic viticulture');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -31,10 +31,10 @@ class TutorialChapterVinNaturel extends AbstractFixture implements OrderedFixtur
             1,
             );
 
-        foreach ($titres as $i => $titre) {
+        foreach ($titles as $i => $title) {
             $tutorialchapter[$i] = new TutoChapter();
-            $tutorialchapter[$i]->setTitre($titre);
-            $repository->translate($tutorialchapter[$i], 'titre', 'en', $titresen[$i]);
+            $tutorialchapter[$i]->setTitle($title);
+            $repository->translate($tutorialchapter[$i], 'title', 'en', $titlesen[$i]);
         }
 
         foreach ($ranks as $i => $rank) {

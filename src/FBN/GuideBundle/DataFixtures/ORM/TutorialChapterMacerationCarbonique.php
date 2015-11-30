@@ -16,11 +16,11 @@ class TutorialChapterMacerationCarbonique extends AbstractFixture implements Ord
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $titres = array('Théorie', 'Mise en œuvre', 'Produits obtenus');
+        $titles = array('Théorie', 'Mise en œuvre', 'Produits obtenus');
 
         $ranks = array(0, 1, 2);
 
-        $titresen = array('Theory', 'Implementation', 'Products obtained');
+        $titlesen = array('Theory', 'Implementation', 'Products obtained');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -31,10 +31,10 @@ class TutorialChapterMacerationCarbonique extends AbstractFixture implements Ord
             4,
             );
 
-        foreach ($titres as $i => $titre) {
+        foreach ($titles as $i => $title) {
             $tutorialchapter[$i] = new TutoChapter();
-            $tutorialchapter[$i]->setTitre($titre);
-            $repository->translate($tutorialchapter[$i], 'titre', 'en', $titresen[$i]);
+            $tutorialchapter[$i]->setTitle($title);
+            $repository->translate($tutorialchapter[$i], 'title', 'en', $titlesen[$i]);
         }
 
         foreach ($ranks as $i => $rank) {
