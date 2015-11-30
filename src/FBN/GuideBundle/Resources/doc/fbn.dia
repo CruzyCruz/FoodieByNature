@@ -6178,19 +6178,19 @@
         <dia:point val="48.9867,13.0667"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="48.9117,12.9917;55.4467,16.7417"/>
+        <dia:rectangle val="48.9117,12.9917;54.8667,16.7417"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="48.9867,13.0667"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="6.3849999999999998"/>
+        <dia:real val="5.8049999999999997"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="3.6000000000000001"/>
       </dia:attribute>
       <dia:attribute name="name">
-        <dia:string>#TutorielRubrique#</dia:string>
+        <dia:string>#TutorialSection#</dia:string>
       </dia:attribute>
       <dia:attribute name="stereotype">
         <dia:string>##</dia:string>

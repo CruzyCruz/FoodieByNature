@@ -35,7 +35,7 @@ class TutorielRepository extends EntityRepository
         $qb = $this->createQueryBuilder('t')
                    ->leftJoin('t.image', 'i')
                    ->addSelect('i')
-                   ->leftJoin('t.tutorielRubrique', 'tr')
+                   ->leftJoin('t.tutorialSection', 'tr')
                    ->addSelect('tr')
                    ->leftJoin('t.tutorialChapter', 'tc')
                    ->addSelect('tc')

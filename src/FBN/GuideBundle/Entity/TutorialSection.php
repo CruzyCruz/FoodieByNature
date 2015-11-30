@@ -6,15 +6,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * TutorielRubrique
+ * TutorialSection.
  *
- * @ORM\Table(name="tutorielrubrique")
- * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\TutorielRubriqueRepository")
+ * @ORM\Table(name="tutorialsection")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\TutorialSectionRepository")
  */
-class TutorielRubrique
+class TutorialSection
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -37,13 +37,12 @@ class TutorielRubrique
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
      */
-    private $locale;     
-
+    private $locale;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -51,10 +50,11 @@ class TutorielRubrique
     }
 
     /**
-     * Set section
+     * Set section.
      *
      * @param string $section
-     * @return TutorielRubrique
+     *
+     * @return TutorialSection
      */
     public function setSection($section)
     {
@@ -64,9 +64,9 @@ class TutorielRubrique
     }
 
     /**
-     * Get section
+     * Get section.
      *
-     * @return string 
+     * @return string
      */
     public function getSection()
     {
@@ -74,13 +74,12 @@ class TutorielRubrique
     }
 
     /**
-     * Set locale
+     * Set locale.
      *
      * @param string $locale
-     * 
      */
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
-    }     
+    }
 }

@@ -27,10 +27,10 @@ class Tutoriel extends Article
     private $image; 
 
     /**
-     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\TutorielRubrique", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\TutorialSection", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $tutorielRubrique;        
+    private $tutorialSection;        
 
     /**
      * @var integer
@@ -144,26 +144,26 @@ class Tutoriel extends Article
     }
 
     /**
-     * Set tutorielRubrique
+     * Set tutorialSection
      *
-     * @param \FBN\GuideBundle\Entity\RestaurantPrice $tutorielRubrique
+     * @param \FBN\GuideBundle\Entity\RestaurantPrice $tutorialSection
      * @return Restaurant
      */
-    public function setTutorielRubrique(\FBN\GuideBundle\Entity\TutorielRubrique $tutorielRubrique)
+    public function setTutorialSection(\FBN\GuideBundle\Entity\TutorialSection $tutorialSection)
     {
-        $this->tutorielRubrique = $tutorielRubrique;
+        $this->tutorialSection = $tutorialSection;
 
         return $this;
     }
 
     /**
-     * Get tutorielRubrique
+     * Get tutorialSection
      *
-     * @return \FBN\GuideBundle\Entity\TutorielRubrique 
+     * @return \FBN\GuideBundle\Entity\TutorialSection 
      */
-    public function getTutorielRubrique()
+    public function getTutorialSection()
     {
-        return $this->tutorielRubrique;
+        return $this->tutorialSection;
     }    
 
     /**

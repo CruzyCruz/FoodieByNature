@@ -41,7 +41,7 @@ class Tutoriel extends AbstractFixture implements OrderedFixtureInterface
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        $tutorielrubrique_ids = array(
+        $tutorialsection_ids = array(
             1,
             1,
             1,
@@ -77,7 +77,7 @@ class Tutoriel extends AbstractFixture implements OrderedFixtureInterface
 
             $this->addReference('tutoriel-' . $i, $tutoriel[$i]);
 
-            $tutoriel[$i]->setTutorielRubrique($this->getReference('tutorielrubrique-' . ($tutorielrubrique_ids[$i]-1)));                       
+            $tutoriel[$i]->setTutorialSection($this->getReference('tutorialsection-' . ($tutorialsection_ids[$i]-1)));                       
             $tutoriel[$i]->setImage($this->getReference('imagetutoriel-' . $i));
                           
         }         
