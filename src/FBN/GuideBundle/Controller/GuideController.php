@@ -141,20 +141,20 @@ class GuideController extends Controller
         ));
     }
 
-    public function tutorielAction($slug)
+    public function tutorialAction($slug)
     {
-        $tutoriel = $this
+        $tutorial = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('FBNGuideBundle:Tutoriel')
-            ->getTutoriel($slug);
+            ->getRepository('FBNGuideBundle:Tutorial')
+            ->getTutorial($slug);
 
-        if (null === $tutoriel) {
+        if (null === $tutorial) {
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        return $this->render('FBNGuideBundle:Guide:tutoriel.html.twig', array(
-            'tutoriel' => $tutoriel,
+        return $this->render('FBNGuideBundle:Guide:tutorial.html.twig', array(
+            'tutorial' => $tutorial,
         ));
     }
 

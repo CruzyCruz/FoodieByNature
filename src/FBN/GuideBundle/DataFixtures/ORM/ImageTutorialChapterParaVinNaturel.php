@@ -18,9 +18,9 @@ class ImageTutorialChapterParaVinNaturel extends AbstractFixture implements Orde
     {
         $ranks = array(0,0,0,0);
 
-        $path = __DIR__.'/../../../../../web/uploads/images/tutoriels';
+        $path = __DIR__.'/../../../../../web/uploads/images/tutorials';
 
-        $names = array('tutoriel-le-vin-au-naturel-c0-p0-i0.jpg','tutoriel-le-vin-au-naturel-c1-p1-i1.jpg','tutoriel-le-vin-au-naturel-c2-p2-i2.jpg','tutoriel-le-vin-au-naturel-c3-p3-i3.jpg');
+        $names = array('tutorial-le-vin-au-naturel-c0-p0-i0.jpg','tutorial-le-vin-au-naturel-c1-p1-i1.jpg','tutorial-le-vin-au-naturel-c2-p2-i2.jpg','tutorial-le-vin-au-naturel-c3-p3-i3.jpg');
 
         $sizes = array(114688,40960,45056,49152);
 
@@ -33,30 +33,30 @@ class ImageTutorialChapterParaVinNaturel extends AbstractFixture implements Orde
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
         foreach ($ranks as $i => $rank) {
-            $imagetutoriel[$i] = new Image();
-            $imagetutoriel[$i]->setRank($rank);
+            $imagetutorial[$i] = new Image();
+            $imagetutorial[$i]->setRank($rank);
         }
 
         foreach ($names as $i => $name) {
-            $imagetutoriel[$i]->setPath($path);
-            $imagetutoriel[$i]->setName($name);
+            $imagetutorial[$i]->setPath($path);
+            $imagetutorial[$i]->setName($name);
         }
 
         foreach ($sizes as $i => $size) {
-            $imagetutoriel[$i]->setSize($size);
-            $imagetutoriel[$i]->setMimeType($mimetype);
+            $imagetutorial[$i]->setSize($size);
+            $imagetutorial[$i]->setMimeType($mimetype);
         }
 
         foreach ($legends as $i => $legend) {
-            $imagetutoriel[$i]->setLegend($legend);
+            $imagetutorial[$i]->setLegend($legend);
 
-            $repository->translate($imagetutoriel[$i], 'legend', 'en', $legendsen[$i]);
+            $repository->translate($imagetutorial[$i], 'legend', 'en', $legendsen[$i]);
 
-            $manager->persist($imagetutoriel[$i]);
+            $manager->persist($imagetutorial[$i]);
 
-            $imagetutoriel[$i]->setImageType($this->getReference('imagetype-0'));
+            $imagetutorial[$i]->setImageType($this->getReference('imagetype-0'));
 
-            $this->addReference('imagetutorialchapterparavinnaturel-'.$i, $imagetutoriel[$i]);
+            $this->addReference('imagetutorialchapterparavinnaturel-'.$i, $imagetutorial[$i]);
         }
 
         $manager->flush();

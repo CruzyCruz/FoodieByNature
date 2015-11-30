@@ -14,10 +14,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class TutorialChapter
 {
     /**
-   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Tutoriel", inversedBy="tutorialChapter")
+   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Tutorial", inversedBy="tutorialChapter")
    * @ORM\JoinColumn(nullable=false)
    */
-  private $tutoriel;
+  private $tutorial;
 
   /**
    * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorialChapterPara", mappedBy="tutorialChapter")
@@ -117,27 +117,27 @@ class TutorialChapter
     }
 
     /**
-     * Set tutoriel.
+     * Set tutorial.
      *
-     * @param \FBN\GuideBundle\Entity\Tutoriel $tutoriel
+     * @param \FBN\GuideBundle\Entity\Tutorial $tutorial
      *
      * @return TutorialChapter
      */
-    public function setTutoriel(\FBN\GuideBundle\Entity\Tutoriel $tutoriel)
+    public function setTutorial(\FBN\GuideBundle\Entity\Tutorial $tutorial)
     {
-        $this->tutoriel = $tutoriel;
+        $this->tutorial = $tutorial;
 
         return $this;
     }
 
     /**
-     * Get tutoriel.
+     * Get tutorial.
      *
-     * @return \FBN\GuideBundle\Entity\Tutoriel
+     * @return \FBN\GuideBundle\Entity\Tutorial
      */
-    public function getTutoriel()
+    public function getTutorial()
     {
-        return $this->tutoriel;
+        return $this->tutorial;
     }
 
     /**

@@ -18,9 +18,9 @@ class ImageTutorialChapterParaBiodynamie extends AbstractFixture implements Orde
     {
         $ranks = array(0,0,0);
 
-        $path = __DIR__.'/../../../../../web/uploads/images/tutoriels';
+        $path = __DIR__.'/../../../../../web/uploads/images/tutorials';
 
-        $names = array('tutoriel-la-biodynamie-c0-p0-i0.jpg','tutoriel-la-biodynamie-c1-p0-i0.jpg','tutoriel-la-biodynamie-c2-p0-i0.jpg');
+        $names = array('tutorial-la-biodynamie-c0-p0-i0.jpg','tutorial-la-biodynamie-c1-p0-i0.jpg','tutorial-la-biodynamie-c2-p0-i0.jpg');
 
         $sizes = array(45056,57344,8192);
 
@@ -33,30 +33,30 @@ class ImageTutorialChapterParaBiodynamie extends AbstractFixture implements Orde
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
         foreach ($ranks as $i => $rank) {
-            $imagetutoriel[$i] = new Image();
-            $imagetutoriel[$i]->setRank($rank);
+            $imagetutorial[$i] = new Image();
+            $imagetutorial[$i]->setRank($rank);
         }
 
         foreach ($names as $i => $name) {
-            $imagetutoriel[$i]->setPath($path);
-            $imagetutoriel[$i]->setName($name);
+            $imagetutorial[$i]->setPath($path);
+            $imagetutorial[$i]->setName($name);
         }
 
         foreach ($sizes as $i => $size) {
-            $imagetutoriel[$i]->setSize($size);
-            $imagetutoriel[$i]->setMimeType($mimetype);
+            $imagetutorial[$i]->setSize($size);
+            $imagetutorial[$i]->setMimeType($mimetype);
         }
 
         foreach ($legends as $i => $legend) {
-            $imagetutoriel[$i]->setLegend($legend);
+            $imagetutorial[$i]->setLegend($legend);
 
-            $repository->translate($imagetutoriel[$i], 'legend', 'en', $legendsen[$i]);
+            $repository->translate($imagetutorial[$i], 'legend', 'en', $legendsen[$i]);
 
-            $manager->persist($imagetutoriel[$i]);
+            $manager->persist($imagetutorial[$i]);
 
-            $imagetutoriel[$i]->setImageType($this->getReference('imagetype-0'));
+            $imagetutorial[$i]->setImageType($this->getReference('imagetype-0'));
 
-            $this->addReference('imagetutorialchapterparabiodynamie-'.$i, $imagetutoriel[$i]);
+            $this->addReference('imagetutorialchapterparabiodynamie-'.$i, $imagetutorial[$i]);
         }
 
         $manager->flush();

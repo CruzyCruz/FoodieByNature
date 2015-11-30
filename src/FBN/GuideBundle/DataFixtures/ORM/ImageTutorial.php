@@ -1,6 +1,6 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/ImageTutorialChapterParaMacerationCarbonique.php
+// src/FBN/GuideBundle/DataFixtures/ORM/ImageTutorial.php
 
 
 namespace FBN\GuideBundle\DataFixtures\ORM;
@@ -11,24 +11,24 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use FBN\GuideBundle\Entity\Image;
 
-class ImageTutorialChapterParaMacerationCarbonique extends AbstractFixture implements OrderedFixtureInterface
+class ImageTutorial extends AbstractFixture implements OrderedFixtureInterface
 {
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $ranks = array(0,0,0);
+        $ranks = array(0,0,0,0,0);
 
         $path = __DIR__.'/../../../../../web/uploads/images/tutorials';
 
-        $names = array('tutorial-la-maceration-carbonique-c0-p0-i0.jpg','tutorial-la-maceration-carbonique-c1-p0-i0.jpg','tutorial-la-maceration-carbonique-c2-p0-i0.jpg');
+        $names = array('tutorial-le-vin-au-naturel.jpg','tutorial-la-biodynamie.jpg','tutorial-les-labels.jpg','tutorial-la-maceration-carbonique.jpg','tutorial-boire-nature.jpg');
 
-        $sizes = array(53248,86016,53248);
+        $sizes = array(65536,69632,90112,40960,69632);
 
         $mimetype = 'image/jpeg';
 
-        $legends = array('Théorie','Mise en œuvre','Produits obtenus');
+        $legends = array('Le vin au naturel','La biodynamie','Les labels','La macération carbonique','Boire nature');
 
-        $legendsen = array('Theory','Implementation','Products obtained');
+        $legendsen = array('Natural Wine','Biodynamics','Labels','Carbonic maceration','Drink nature');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -56,7 +56,7 @@ class ImageTutorialChapterParaMacerationCarbonique extends AbstractFixture imple
 
             $imagetutorial[$i]->setImageType($this->getReference('imagetype-0'));
 
-            $this->addReference('imagetutorialchapterparamacerationcarbonique-'.$i, $imagetutorial[$i]);
+            $this->addReference('imagetutorial-'.$i, $imagetutorial[$i]);
         }
 
         $manager->flush();
@@ -64,6 +64,6 @@ class ImageTutorialChapterParaMacerationCarbonique extends AbstractFixture imple
 
     public function getOrder()
     {
-        return 109; // l'ordre dans lequel les fichiers sont chargés
+        return 105; // l'ordre dans lequel les fichiers sont chargés
     }
 }

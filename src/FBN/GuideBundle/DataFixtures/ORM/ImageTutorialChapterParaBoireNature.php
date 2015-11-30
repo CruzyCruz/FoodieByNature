@@ -18,9 +18,9 @@ class ImageTutorialChapterParaBoireNature extends AbstractFixture implements Ord
     {
         $ranks = array(0,0,0,0,0);
 
-        $path = __DIR__.'/../../../../../web/uploads/images/tutoriels';
+        $path = __DIR__.'/../../../../../web/uploads/images/tutorials';
 
-        $names = array('tutoriel-boire-nature-c0-p0-i0.jpg','tutoriel-boire-nature-c1-p0-i0.jpg','tutoriel-boire-nature-c1-p1-i0.jpg','tutoriel-boire-nature-c1-p2-i0.jpg','tutoriel-boire-nature-c2-p0-i0.jpg');
+        $names = array('tutorial-boire-nature-c0-p0-i0.jpg','tutorial-boire-nature-c1-p0-i0.jpg','tutorial-boire-nature-c1-p1-i0.jpg','tutorial-boire-nature-c1-p2-i0.jpg','tutorial-boire-nature-c2-p0-i0.jpg');
 
         $sizes = array(118784,86016,28672,69632,77824);
 
@@ -33,30 +33,30 @@ class ImageTutorialChapterParaBoireNature extends AbstractFixture implements Ord
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
         foreach ($ranks as $i => $rank) {
-            $imagetutoriel[$i] = new Image();
-            $imagetutoriel[$i]->setRank($rank);
+            $imagetutorial[$i] = new Image();
+            $imagetutorial[$i]->setRank($rank);
         }
 
         foreach ($names as $i => $name) {
-            $imagetutoriel[$i]->setPath($path);
-            $imagetutoriel[$i]->setName($name);
+            $imagetutorial[$i]->setPath($path);
+            $imagetutorial[$i]->setName($name);
         }
 
         foreach ($sizes as $i => $size) {
-            $imagetutoriel[$i]->setSize($size);
-            $imagetutoriel[$i]->setMimeType($mimetype);
+            $imagetutorial[$i]->setSize($size);
+            $imagetutorial[$i]->setMimeType($mimetype);
         }
 
         foreach ($legends as $i => $legend) {
-            $imagetutoriel[$i]->setLegend($legend);
+            $imagetutorial[$i]->setLegend($legend);
 
-            $repository->translate($imagetutoriel[$i], 'legend', 'en', $legendsen[$i]);
+            $repository->translate($imagetutorial[$i], 'legend', 'en', $legendsen[$i]);
 
-            $manager->persist($imagetutoriel[$i]);
+            $manager->persist($imagetutorial[$i]);
 
-            $imagetutoriel[$i]->setImageType($this->getReference('imagetype-0'));
+            $imagetutorial[$i]->setImageType($this->getReference('imagetype-0'));
 
-            $this->addReference('imagetutorialchapterparaboirenature-'.$i, $imagetutoriel[$i]);
+            $this->addReference('imagetutorialchapterparaboirenature-'.$i, $imagetutorial[$i]);
         }
 
         $manager->flush();

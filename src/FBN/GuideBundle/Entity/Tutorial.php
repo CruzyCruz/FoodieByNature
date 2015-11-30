@@ -6,16 +6,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Tutoriel
+ * Tutorial
  *
- * @ORM\Table(name="tutoriel")
- * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\TutorielRepository")
+ * @ORM\Table(name="tutorial")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\TutorialRepository")
  */
-class Tutoriel extends Article
+class Tutorial extends Article
 {
 
   /**
-   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorialChapter", mappedBy="tutoriel")
+   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorialChapter", mappedBy="tutorial")
    * @ORM\OrderBy({"rank" = "ASC"})
    */
   private $tutorialChapter;     
@@ -58,7 +58,7 @@ class Tutoriel extends Article
     private $locale;  
 
     /**
-     * @Gedmo\Slug(fields={"name"}, prefix="tutoriel-")
+     * @Gedmo\Slug(fields={"name"}, prefix="tutorial-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;   
@@ -78,7 +78,7 @@ class Tutoriel extends Article
      * Set rank
      *
      * @param integer $rank
-     * @return Tutoriel
+     * @return Tutorial
      */
     public function setRank($rank)
     {
@@ -101,7 +101,7 @@ class Tutoriel extends Article
      * Set slug
      *
      * @param string $slug
-     * @return Tutoriel
+     * @return Tutorial
      */
     public function setSlug($slug)
     {
@@ -124,7 +124,7 @@ class Tutoriel extends Article
      * Set image
      *
      * @param \FBN\GuideBundle\Entity\Image $image
-     * @return Tutoriel
+     * @return Tutorial
      */
     public function setImage(\FBN\GuideBundle\Entity\Image $image)
     {

@@ -48,9 +48,9 @@ class MenuBuilder
             'routeParameters' => array( 'articles' => 'events' )
             ));      
         
-        $mainmenu->addChild('fbn.guide.mainmenu.tutoriels' , array(
+        $mainmenu->addChild('fbn.guide.mainmenu.tutorials' , array(
             'route'           => 'fbn_guide_articles',
-            'routeParameters' => array( 'articles' => 'tutoriels' )
+            'routeParameters' => array( 'articles' => 'tutorials' )
             ));   
 
         $mainmenu->addChild('fbn.guide.mainmenu.cavistes' , array(

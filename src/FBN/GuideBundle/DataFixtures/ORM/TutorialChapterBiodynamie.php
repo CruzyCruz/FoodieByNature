@@ -24,7 +24,7 @@ class TutorialChapterBiodynamie extends AbstractFixture implements OrderedFixtur
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        $tutoriel_ids = array(
+        $tutorial_ids = array(
             2,
             2,
             2,
@@ -44,7 +44,7 @@ class TutorialChapterBiodynamie extends AbstractFixture implements OrderedFixtur
 
             $this->addReference('tutorialchapterbiodynamie-'.$i, $tutorialchapter[$i]);
 
-            $tutorialchapter[$i]->setTutoriel($this->getReference('tutoriel-'.($tutoriel_ids[$i] - 1)));
+            $tutorialchapter[$i]->setTutorial($this->getReference('tutorial-'.($tutorial_ids[$i] - 1)));
         }
 
         $manager->flush();

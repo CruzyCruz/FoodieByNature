@@ -24,7 +24,7 @@ class TutorialChapterMacerationCarbonique extends AbstractFixture implements Ord
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        $tutoriel_ids = array(
+        $tutorial_ids = array(
             4,
             4,
             4,
@@ -44,7 +44,7 @@ class TutorialChapterMacerationCarbonique extends AbstractFixture implements Ord
 
             $this->addReference('tutorialchaptermacerationcarbonique-'.$i, $tutorialchapter[$i]);
 
-            $tutorialchapter[$i]->setTutoriel($this->getReference('tutoriel-'.($tutoriel_ids[$i] - 1)));
+            $tutorialchapter[$i]->setTutorial($this->getReference('tutorial-'.($tutorial_ids[$i] - 1)));
         }
 
         $manager->flush();
