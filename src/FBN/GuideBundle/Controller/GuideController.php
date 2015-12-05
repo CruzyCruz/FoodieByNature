@@ -191,19 +191,19 @@ class GuideController extends Controller
         ));
     }
 
-    public function favorisAction()
+    public function bookmarksAction()
     {
         // User connexion is checked using custom LoginEntryPoint
         $userId = $this->getUser()->getId();
         $bookmarkManager = $this->container->get('fbn_guide.bookmark_manager');
-        $favoriRepo = $this
+        $bookmarkRepo = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('FBNGuideBundle:Favori');
+            ->getRepository('FBNGuideBundle:Bookmark');
 
-        $restaurants = $favoriRepo->getFavorisByEntite($userId, 'restaurant');
-        $winemakers = $favoriRepo->getFavorisByEntite($userId, 'winemaker');
-        $shops = $favoriRepo->getFavorisByEntite($userId, 'shop');
+        $restaurants = $bookmarkRepo->getBookmarksByEntite($userId, 'restaurant');
+        $winemakers = $bookmarkRepo->getBookmarksByEntite($userId, 'winemaker');
+        $shops = $bookmarkRepo->getBookmarksByEntite($userId, 'shop');
 
         $bookmarks = array_merge($restaurants, $winemakers, $shops);
         $bookmarkIds = array();
@@ -213,7 +213,7 @@ class GuideController extends Controller
 
         $bookmarkManager->setSessionVariable(array('remove_only'), $bookmarkIds, array(null), array(null));
 
-        return $this->render('FBNGuideBundle:Guide:favoris.html.twig', array(
+        return $this->render('FBNGuideBundle:Guide:bookmarks.html.twig', array(
             'restaurants' => $restaurants,
             'winemakers' => $winemakers,
             'shops' => $shops,
@@ -221,7 +221,7 @@ class GuideController extends Controller
         ));
     }
 
-    public function favoriManageAction(Request $request)
+    public function bookmarkManageAction(Request $request)
     {
         if ($request->isXmlHttpRequest()) {
             $bookmarkAction = $request->request->get('bookmarkAction');

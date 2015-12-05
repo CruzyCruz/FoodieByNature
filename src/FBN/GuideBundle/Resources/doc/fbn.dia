@@ -7800,19 +7800,19 @@
         <dia:point val="22.5749,-48.0867"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="22.4999,-48.1617;25.3724,-45.2117"/>
+        <dia:rectangle val="22.4999,-48.1617;26.7524,-45.2117"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="22.5749,-48.0867"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="2.7225000000000001"/>
+        <dia:real val="4.1025"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="2.7999999999999998"/>
       </dia:attribute>
       <dia:attribute name="name">
-        <dia:string>#Favori#</dia:string>
+        <dia:string>#Bookmark#</dia:string>
       </dia:attribute>
       <dia:attribute name="stereotype">
         <dia:string>##</dia:string>
@@ -7875,7 +7875,7 @@
         <dia:font family="Calibri" style="0" name="Courier"/>
       </dia:attribute>
       <dia:attribute name="abstract_classname_font">
-        <dia:font family="Calibri" style="4" name="Courier"/>
+        <dia:font family="Calibri" style="0" name="Courier"/>
       </dia:attribute>
       <dia:attribute name="comment_font">
         <dia:font family="Calibri" style="0" name="Courier"/>
@@ -8041,7 +8041,7 @@
         <dia:point val="24.0981,-51.8058"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="23.7736,-51.8558;24.6506,-47.1867"/>
+        <dia:rectangle val="24.0481,-51.8558;24.6761,-47.1867"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
@@ -8049,7 +8049,7 @@
       <dia:attribute name="orth_points">
         <dia:point val="24.0981,-51.8058"/>
         <dia:point val="24.0981,-48.0867"/>
-        <dia:point val="23.8236,-48.0867"/>
+        <dia:point val="24.6261,-48.0867"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">
         <dia:enum val="1"/>

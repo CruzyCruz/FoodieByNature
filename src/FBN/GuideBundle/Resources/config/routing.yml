@@ -30,13 +30,13 @@ fbn_guide_shops:
     path:  /shops/{slug}
     defaults: { _controller: FBNGuideBundle:Guide:shop }
 
-fbn_guide_favoris:
-    path:  /favoris
-    defaults: { _controller: FBNGuideBundle:Guide:favoris }
+fbn_guide_bookmarks:
+    path:  /bookmarks
+    defaults: { _controller: FBNGuideBundle:Guide:bookmarks }
 
-fbn_guide_favoris_manage:
-    path:  /favoris/manage
-    defaults: { _controller: FBNGuideBundle:Guide:favoriManage }
+fbn_guide_bookmarks_manage:
+    path:  /bookmarks/manage
+    defaults: { _controller: FBNGuideBundle:Guide:bookmarkManage }
     options:
         expose: true
     requirements:

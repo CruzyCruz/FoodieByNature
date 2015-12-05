@@ -12,8 +12,8 @@ $(function() {
         $.ajax({
             type: 'POST',                  
             // The commented syntax below append parameters to url even for POST requests, so it not possible to use $request->request->request() at controller level ($request->query->get() instead)
-            //url: Routing.generate('fbn_guide_manage_favori', { action : action, entite : entite, entiteId : entiteId }),
-            url: Routing.generate('fbn_guide_favoris_manage'),
+            //url: Routing.generate('fbn_guide_manage_bookmark', { action : action, entite : entite, entiteId : entiteId }),
+            url: Routing.generate('fbn_guide_bookmarks_manage'),
             data : { bookmarkAction : bookmarkAction, bookmarkEntite : bookmarkEntite, bookmarkEntiteId : bookmarkEntiteId, bookmarkId : bookmarkId },
             success: function(data) {
                 $('#bookmark').data('bookmark-action', data.bookmarkAction);

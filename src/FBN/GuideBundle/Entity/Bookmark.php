@@ -5,12 +5,12 @@ namespace FBN\GuideBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Favori.
+ * Bookmark.
  *
- * @ORM\Table(name="favori")
- * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\FavoriRepository")
+ * @ORM\Table(name="bookmark")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\BookmarkRepository")
  */
-class Favori
+class Bookmark
 {
     /**
      * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Restaurant")

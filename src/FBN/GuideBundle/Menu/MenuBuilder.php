@@ -58,8 +58,8 @@ class MenuBuilder
             'routeParameters' => array( 'articles' => 'shops' )
             ));
 
-        $mainmenu->addChild('fbn.guide.mainmenu.favoris' , array(
-            'route'           => 'fbn_guide_favoris'
+        $mainmenu->addChild('fbn.guide.mainmenu.bookmarks' , array(
+            'route'           => 'fbn_guide_bookmarks'
             ));                                                     
 
         return $mainmenu;

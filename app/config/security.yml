@@ -80,6 +80,5 @@ security:
         - { path: ^/(fr|en)/connect, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/(fr|en)/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/(fr|en)/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/(fr|en)/favoris$, role: ROLE_USER }
-        - { path: ^/(fr|en)/favoris/manage$, role: ROLE_USER }
-        #- { path: ^/(fr|en)/favoris/delete$, role: ROLE_USER }
+        - { path: ^/(fr|en)/bookmarks$, role: ROLE_USER }
+        - { path: ^/(fr|en)/bookmarks/manage$, role: ROLE_USER }

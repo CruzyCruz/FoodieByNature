@@ -1,4 +1,4 @@
-{# src/FBN/GuideBundle/Resources/views/favoris.html.twig #}
+{# src/FBN/GuideBundle/Resources/views/bookmarks.html.twig #}
 
 {% extends "FBNGuideBundle::layout.html.twig" %}
 
@@ -25,12 +25,12 @@
 
     <div class="restaurants">
       <h3>MES RESTOS</h3>
-      {% for favoris in restaurants %}
-        <div class="bookmark" id="{{'bookmark-' ~ favoris.id}}">
-          <a href="{{ path('fbn_guide_restaurants', {'slug': favoris.restaurant.slug} ) }}">{{ favoris.restaurant.name }}</a>
+      {% for bookmarks in restaurants %}
+        <div class="bookmark" id="{{'bookmark-' ~ bookmarks.id}}">
+          <a href="{{ path('fbn_guide_restaurants', {'slug': bookmarks.restaurant.slug} ) }}">{{ bookmarks.restaurant.name }}</a>
           <br>
           <br>
-          <button id="{{'bookmark-button-' ~ favoris.id}}" data-path="{{path('fbn_guide_favoris_manage')}}" data-bookmark-action="remove_only" data-bookmark-id="{{favoris.id}}">
+          <button id="{{'bookmark-button-' ~ bookmarks.id}}" data-path="{{path('fbn_guide_bookmarks_manage')}}" data-bookmark-action="remove_only" data-bookmark-id="{{bookmarks.id}}">
           SUPPRIMER DES FAVORIS
           </button>      
           <br>
@@ -45,12 +45,12 @@
 
     <div class="winemakers">
       <h3>MES VIGNERONS</h3>
-      {% for favoris in winemakers %}
-        <div class="bookmark" id="{{'bookmark-' ~ favoris.id}}">
-          <a href="{{ path('fbn_guide_winemakers', {'slug': favoris.winemaker.slug} ) }}">{{ favoris.winemaker.name }}</a>
+      {% for bookmarks in winemakers %}
+        <div class="bookmark" id="{{'bookmark-' ~ bookmarks.id}}">
+          <a href="{{ path('fbn_guide_winemakers', {'slug': bookmarks.winemaker.slug} ) }}">{{ bookmarks.winemaker.name }}</a>
           <br>
           <br>
-          <button id="{{'bookmark-button-' ~ favoris.id}}" data-path="{{path('fbn_guide_favoris_manage')}}" data-bookmark-action="remove_only" data-bookmark-id="{{favoris.id}}">
+          <button id="{{'bookmark-button-' ~ bookmarks.id}}" data-path="{{path('fbn_guide_bookmarks_manage')}}" data-bookmark-action="remove_only" data-bookmark-id="{{bookmarks.id}}">
           SUPPRIMER DES FAVORIS
           </button>      
           <br>
@@ -65,12 +65,12 @@
 
     <div class="shops">
       <h3>MES CAVISTES</h3>
-      {% for favoris in shops %}
-        <div class="bookmark" id="{{'bookmark-' ~ favoris.id}}">
-          <a href="{{ path('fbn_guide_shops', {'slug': favoris.shop.slug} ) }}">{{ favoris.shop.name }}</a>
+      {% for bookmarks in shops %}
+        <div class="bookmark" id="{{'bookmark-' ~ bookmarks.id}}">
+          <a href="{{ path('fbn_guide_shops', {'slug': bookmarks.shop.slug} ) }}">{{ bookmarks.shop.name }}</a>
           <br>
           <br>
-          <button id="{{'bookmark-button-' ~ favoris.id}}" data-path="{{path('fbn_guide_favoris_manage')}}" data-bookmark-action="remove_only" data-bookmark-id="{{favoris.id}}">
+          <button id="{{'bookmark-button-' ~ bookmarks.id}}" data-path="{{path('fbn_guide_bookmarks_manage')}}" data-bookmark-action="remove_only" data-bookmark-id="{{bookmarks.id}}">
           SUPPRIMER DES FAVORIS
           </button>      
           <br>
