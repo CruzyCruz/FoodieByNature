@@ -27,34 +27,34 @@
   <h3>PAR ICI : </h3>
 
   <p>   
-    {% if lieuevt.coordinates.coordinatesFR.miscellaneous is not null %}
-      {{ lieuevt.coordinates.coordinatesFR.miscellaneous }}
+    {% if placeEvt.coordinates.coordinatesFR.miscellaneous is not null %}
+      {{ placeEvt.coordinates.coordinatesFR.miscellaneous }}
     {% endif %}  
     <br />
-    {% if lieuevt.coordinates.coordinatesFR.laneName is not null %}
-      {% if lieuevt.coordinates.coordinatesFR.laneNum is not null %}
+    {% if placeEvt.coordinates.coordinatesFR.laneName is not null %}
+      {% if placeEvt.coordinates.coordinatesFR.laneNum is not null %}
         {% set separateur = ', ' %}  
       {% else %}
         {% set separateur = '' %}  
       {% endif %}         
       {{ 
-      lieuevt.coordinates.coordinatesFR.laneNum ~ separateur ~
-      lieuevt.coordinates.coordinatesFR.coordinatesFRLane.lane ~ ' ' ~
-      lieuevt.coordinates.coordinatesFR.laneName
+      placeEvt.coordinates.coordinatesFR.laneNum ~ separateur ~
+      placeEvt.coordinates.coordinatesFR.coordinatesFRLane.lane ~ ' ' ~
+      placeEvt.coordinates.coordinatesFR.laneName
       }}
     {% endif %}
     <br />
-    {% if lieuevt.coordinates.coordinatesFR.locality is not null %}
-      {{ lieuevt.coordinates.coordinatesFR.locality }}
+    {% if placeEvt.coordinates.coordinatesFR.locality is not null %}
+      {{ placeEvt.coordinates.coordinatesFR.locality }}
     {% endif %}  
     <br />
-    {{ lieuevt.coordinates.coordinatesFR.postcode ~ ' ' ~ lieuevt.coordinates.city }}
+    {{ placeEvt.coordinates.coordinatesFR.postcode ~ ' ' ~ placeEvt.coordinates.city }}
   </p>
 
   {% if event.useexttel %}
-    {% if lieuevt.tel is not null %}
+    {% if placeEvt.tel is not null %}
       <h3>ALLO : </h3>  
-      <p>{{ lieuevt.tel }}</p>  
+      <p>{{ placeEvt.tel }}</p>  
     {% endif %} 
   {% else %}
     {% if event.tel is not null %}
@@ -64,15 +64,15 @@
   {% endif %} 
  
 
-  {% if lieuevt.coordinates.metro is not null %}
+  {% if placeEvt.coordinates.metro is not null %}
     <h3>METRO : </h3>  
-    <p>{{ lieuevt.coordinates.metro }}</p> 
+    <p>{{ placeEvt.coordinates.metro }}</p> 
   {% endif %}  
 
   {% if event.useextsite %}
-    {% if lieuevt.site is not null %}
+    {% if placeEvt.site is not null %}
       <h3>SITE : </h3>
-      <a href="{{ lieuevt.href }}">{{ lieuevt.site }}</a> 
+      <a href="{{ placeEvt.href }}">{{ placeEvt.site }}</a> 
     {% endif %} 
   {% else %}
     {% if event.site is not null %}

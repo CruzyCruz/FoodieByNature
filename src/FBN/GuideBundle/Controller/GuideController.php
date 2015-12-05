@@ -128,15 +128,15 @@ class GuideController extends Controller
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        ($lieuevt = $event->getRestaurant()) || ($lieuevt = $event->getShop()) || ($lieuevt = $event->getWinemakerDomain()) || ($lieuevt = $event->getEventPast()) || ($lieuevt = $event);
+        ($placeEvt = $event->getRestaurant()) || ($placeEvt = $event->getShop()) || ($placeEvt = $event->getWinemakerDomain()) || ($placeEvt = $event->getEventPast()) || ($placeEvt = $event);
 
-        $latlngs[] = array('lat' => $lieuevt->getCoordinates()->getLatitude(), 'lng' => $lieuevt->getCoordinates()->getLongitude());
+        $latlngs[] = array('lat' => $placeEvt->getCoordinates()->getLatitude(), 'lng' => $placeEvt->getCoordinates()->getLongitude());
 
         $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'event');
 
         return $this->render('FBNGuideBundle:Guide:event.html.twig', array(
             'event' => $event,
-            'lieuevt' => $lieuevt,
+            'placeEvt' => $placeEvt,
             'map' => $map,
         ));
     }
