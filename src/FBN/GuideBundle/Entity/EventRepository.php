@@ -41,7 +41,7 @@ class EventRepository extends EntityRepository
                    ->addSelect('ep')
                    ->leftJoin('e.restaurant', 'er')
                    ->addSelect('er')
-                   ->leftJoin('e.caviste', 'ec')
+                   ->leftJoin('e.shop', 'ec')
                    ->addSelect('ec')
                    ->leftJoin('e.winemakerDomain', 'ev')
                    ->addSelect('ev')

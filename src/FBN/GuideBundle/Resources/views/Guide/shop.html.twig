@@ -1,4 +1,4 @@
-{# src/FBN/GuideBundle/Resources/views/caviste.html.twig #}
+{# src/FBN/GuideBundle/Resources/views/shop.html.twig #}
 
 {% extends "FBNGuideBundle::layout.html.twig" %}
 
@@ -8,28 +8,28 @@
 
 {% block body %}
 
-{% set  entiteId = caviste.id %} 
+{% set  entiteId = shop.id %} 
 {% include 'FBNGuideBundle:Guide:entite-bookmark-manage.html.twig' %}  
 
 <h1>{{ sharedData.name }}</h1>
 
-  {% if caviste.restaurant is not null %}
+  {% if shop.restaurant is not null %}
     <p>[<a href="{{ path('fbn_guide_restaurants', {'slug': sharedData.slug} ) }}">LE RESTO DU CAVISTE</a>]</p>
   {% endif %}  
 
   <h3>HORAIRES : </h3>
 
-  <p>{{ caviste.openingHours }}</p> 
+  <p>{{ shop.openingHours }}</p> 
 
-  {% if caviste.image is not null %}
+  {% if shop.image is not null %}
     <img 
-      src="{{ asset(caviste.image.webPath) }}"
-      alt="{{ caviste.name }}"
+      src="{{ asset(shop.image.webPath) }}"
+      alt="{{ shop.name }}"
     />
   {% endif %}    
 
-  {% if caviste.description is not null %}
-    <p>{{ caviste.description }}</p>  
+  {% if shop.description is not null %}
+    <p>{{ shop.description }}</p>  
   {% endif %}  
 
   <h3>PAR ICI : </h3>

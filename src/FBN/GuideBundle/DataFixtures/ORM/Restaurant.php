@@ -113,7 +113,7 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface
             $this->addReference('restaurant-'.$i, $restaurant[$i]);
         }
 
-        $restaurant[0]->setCaviste($this->getReference('caviste-0'));
+        $restaurant[0]->setShop($this->getReference('shop-0'));
 
         $manager->flush();
     }

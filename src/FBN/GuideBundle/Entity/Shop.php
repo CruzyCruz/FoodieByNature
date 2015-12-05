@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Caviste.
+ * Shop.
  *
- * @ORM\Table(name="caviste")
- * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CavisteRepository")
+ * @ORM\Table(name="shop")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\ShopRepository")
  */
-class Caviste extends Article
+class Shop extends Article
 {
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordonnees", cascade={"persist"})
@@ -26,7 +26,7 @@ class Caviste extends Article
       private $image;
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Restaurant", mappedBy="caviste")
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Restaurant", mappedBy="shop")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $restaurant;
@@ -77,7 +77,7 @@ class Caviste extends Article
     private $openingHours;
 
     /**
-     * @Gedmo\Slug(fields={"name"}, prefix="caviste-")
+     * @Gedmo\Slug(fields={"name"}, prefix="shop-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
@@ -180,7 +180,7 @@ class Caviste extends Article
      *
      * @param string $owner
      *
-     * @return Caviste
+     * @return Shop
      */
     public function setOwner($owner)
     {
@@ -204,7 +204,7 @@ class Caviste extends Article
      *
      * @param string $tel
      *
-     * @return Caviste
+     * @return Shop
      */
     public function setTel($tel)
     {
@@ -228,7 +228,7 @@ class Caviste extends Article
      *
      * @param string $site
      *
-     * @return Caviste
+     * @return Shop
      */
     public function setSite($site)
     {
@@ -252,7 +252,7 @@ class Caviste extends Article
      *
      * @param string $href
      *
-     * @return Caviste
+     * @return Shop
      */
     public function setHref($href)
     {
@@ -276,7 +276,7 @@ class Caviste extends Article
      *
      * @param string $openingHours
      *
-     * @return Caviste
+     * @return Shop
      */
     public function setOpeningHours($openingHours)
     {
@@ -300,7 +300,7 @@ class Caviste extends Article
      *
      * @param string $slug
      *
-     * @return Caviste
+     * @return Shop
      */
     public function setSlug($slug)
     {

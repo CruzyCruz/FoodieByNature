@@ -25,10 +25,10 @@ class Favori
     private $winemaker;
 
     /**
-     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Caviste")
+     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Shop")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $caviste;
+    private $shop;
 
     /**
      * @ORM\ManyToOne(targetEntity="FBN\UserBundle\Entity\User")
@@ -104,27 +104,27 @@ class Favori
     }
 
     /**
-     * Set caviste.
+     * Set shop.
      *
-     * @param \FBN\GuideBundle\Entity\Caviste $caviste
+     * @param \FBN\GuideBundle\Entity\Shop $shop
      *
-     * @return Caviste
+     * @return Shop
      */
-    public function setCaviste(\FBN\GuideBundle\Entity\Caviste $caviste)
+    public function setShop(\FBN\GuideBundle\Entity\Shop $shop)
     {
-        $this->caviste = $caviste;
+        $this->shop = $shop;
 
         return $this;
     }
 
     /**
-     * Get caviste.
+     * Get shop.
      *
-     * @return \FBN\GuideBundle\Entity\Caviste
+     * @return \FBN\GuideBundle\Entity\Shop
      */
-    public function getCaviste()
+    public function getShop()
     {
-        return $this->caviste;
+        return $this->shop;
     }
 
     /**

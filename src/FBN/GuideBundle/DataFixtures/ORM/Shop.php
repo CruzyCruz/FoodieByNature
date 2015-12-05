@@ -1,6 +1,6 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/Caviste.php
+// src/FBN/GuideBundle/DataFixtures/ORM/Shop.php
 
 
 namespace FBN\GuideBundle\DataFixtures\ORM;
@@ -9,9 +9,9 @@ namespace FBN\GuideBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use FBN\GuideBundle\Entity\Caviste as Kviste;
+use FBN\GuideBundle\Entity\Shop as Shp;
 
-class Caviste extends AbstractFixture implements OrderedFixtureInterface
+class Shop extends AbstractFixture implements OrderedFixtureInterface
 {
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
@@ -51,48 +51,48 @@ class Caviste extends AbstractFixture implements OrderedFixtureInterface
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
         foreach ($names as $i => $name) {
-            $caviste[$i] = new Kviste();
-            $caviste[$i]->setName($name);
+            $shop[$i] = new Shp();
+            $shop[$i]->setName($name);
         }
 
         foreach ($descriptions as $i => $description) {
-            $caviste[$i]->setDescription($description);
+            $shop[$i]->setDescription($description);
 
-            $repository->translate($caviste[$i], 'description', 'en', $descriptionsen[$i]);
+            $repository->translate($shop[$i], 'description', 'en', $descriptionsen[$i]);
         }
 
         foreach ($authors as $i => $author) {
-            $caviste[$i]->setAuthor($author);
+            $shop[$i]->setAuthor($author);
         }
 
         foreach ($owners as $i => $owner) {
-            $caviste[$i]->setOwner($owner);
+            $shop[$i]->setOwner($owner);
         }
 
         foreach ($hrefs as $i => $href) {
-            $caviste[$i]->setHref($href);
+            $shop[$i]->setHref($href);
         }
 
         foreach ($tels as $i => $tel) {
-            $caviste[$i]->setTel($tel);
+            $shop[$i]->setTel($tel);
         }
 
         foreach ($sites as $i => $site) {
-            $caviste[$i]->setSite($site);
+            $shop[$i]->setSite($site);
         }
 
         foreach ($openingHours as $i => $openingHour) {
-            $caviste[$i]->setOpeningHours($openingHour);
+            $shop[$i]->setOpeningHours($openingHour);
 
-            $repository->translate($caviste[$i], 'openingHours', 'en', $openingHoursen[$i]);
+            $repository->translate($shop[$i], 'openingHours', 'en', $openingHoursen[$i]);
 
-            $manager->persist($caviste[$i]);
+            $manager->persist($shop[$i]);
 
             if ($i != 0) {
-                $caviste[$i]->setCoordonnees($this->getReference('coordonnees-'.($i + 13)));
+                $shop[$i]->setCoordonnees($this->getReference('coordonnees-'.($i + 13)));
             }
 
-            $this->addReference('caviste-'.$i, $caviste[$i]);
+            $this->addReference('shop-'.$i, $shop[$i]);
         }
 
         $manager->flush();

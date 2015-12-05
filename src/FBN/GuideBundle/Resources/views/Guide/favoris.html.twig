@@ -61,13 +61,13 @@
 
   {% endif %}
 
-  {% if (cavistes|length > 0) %}
+  {% if (shops|length > 0) %}
 
-    <div class="cavistes">
+    <div class="shops">
       <h3>MES CAVISTES</h3>
-      {% for favoris in cavistes %}
+      {% for favoris in shops %}
         <div class="bookmark" id="{{'bookmark-' ~ favoris.id}}">
-          <a href="{{ path('fbn_guide_cavistes', {'slug': favoris.caviste.slug} ) }}">{{ favoris.caviste.name }}</a>
+          <a href="{{ path('fbn_guide_shops', {'slug': favoris.shop.slug} ) }}">{{ favoris.shop.name }}</a>
           <br>
           <br>
           <button id="{{'bookmark-button-' ~ favoris.id}}" data-path="{{path('fbn_guide_favoris_manage')}}" data-bookmark-action="remove_only" data-bookmark-id="{{favoris.id}}">

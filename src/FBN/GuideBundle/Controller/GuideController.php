@@ -128,7 +128,7 @@ class GuideController extends Controller
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        ($lieuevt = $event->getRestaurant()) || ($lieuevt = $event->getCaviste()) || ($lieuevt = $event->getWinemakerDomain()) || ($lieuevt = $event->getEventPast()) || ($lieuevt = $event);
+        ($lieuevt = $event->getRestaurant()) || ($lieuevt = $event->getShop()) || ($lieuevt = $event->getWinemakerDomain()) || ($lieuevt = $event->getEventPast()) || ($lieuevt = $event);
 
         $latlngs[] = array('lat' => $lieuevt->getCoordonnees()->getLatitude(), 'lng' => $lieuevt->getCoordonnees()->getLongitude());
 
@@ -158,34 +158,34 @@ class GuideController extends Controller
         ));
     }
 
-    public function cavisteAction($slug)
+    public function shopAction($slug)
     {
-        $caviste = $this
+        $shop = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('FBNGuideBundle:Caviste')
-            ->getcaviste($slug);
+            ->getRepository('FBNGuideBundle:Shop')
+            ->getshop($slug);
 
-        if (null === $caviste) {
+        if (null === $shop) {
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        ($sharedData = $caviste->getRestaurant()) || ($sharedData = $caviste);
+        ($sharedData = $shop->getRestaurant()) || ($sharedData = $shop);
 
         $latlngs[] = array('lat' => $sharedData->getCoordonnees()->getLatitude(), 'lng' => $sharedData->getCoordonnees()->getLongitude());
 
-        $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'caviste');
+        $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'shop');
 
         $bookmarkManager = $this->container->get('fbn_guide.bookmark_manager');
-        $bookmarkStatus = $bookmarkManager->checkStatus('caviste', $caviste->getId());
+        $bookmarkStatus = $bookmarkManager->checkStatus('shop', $shop->getId());
         $bookmarkAction = $bookmarkStatus['bookmarkAction'];
         $bookmarkId = $bookmarkStatus['bookmarkId'];
 
-        return $this->render('FBNGuideBundle:Guide:caviste.html.twig', array(
-            'caviste' => $caviste,
+        return $this->render('FBNGuideBundle:Guide:shop.html.twig', array(
+            'shop' => $shop,
             'sharedData' => $sharedData,
             'map' => $map,
-            'entite' => 'caviste',
+            'entite' => 'shop',
             'bookmarkAction' => $bookmarkAction,
             'bookmarkId' => $bookmarkId,
         ));
@@ -203,9 +203,9 @@ class GuideController extends Controller
 
         $restaurants = $favoriRepo->getFavorisByEntite($userId, 'restaurant');
         $winemakers = $favoriRepo->getFavorisByEntite($userId, 'winemaker');
-        $cavistes = $favoriRepo->getFavorisByEntite($userId, 'caviste');
+        $shops = $favoriRepo->getFavorisByEntite($userId, 'shop');
 
-        $bookmarks = array_merge($restaurants, $winemakers, $cavistes);
+        $bookmarks = array_merge($restaurants, $winemakers, $shops);
         $bookmarkIds = array();
         foreach ($bookmarks as $bookmark) {
             $bookmarkIds[] = $bookmark['id'];
@@ -216,7 +216,7 @@ class GuideController extends Controller
         return $this->render('FBNGuideBundle:Guide:favoris.html.twig', array(
             'restaurants' => $restaurants,
             'winemakers' => $winemakers,
-            'cavistes' => $cavistes,
+            'shops' => $shops,
             'bookmarkIds' => $bookmarkIds,
         ));
     }

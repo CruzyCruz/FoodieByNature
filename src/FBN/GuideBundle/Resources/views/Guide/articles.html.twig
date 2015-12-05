@@ -11,9 +11,9 @@
 <p> {{ menu.intro }}</p>
 
 
-{% if menu.section | lower ~ 's' in 'restaurants-winemakers-events-tutorials-cavistes' %}
+{% if menu.section | lower ~ 's' in 'restaurants-winemakers-events-tutorials-shops' %}
 
-  {% include 'FBNGuideBundle:Guide:restaurants-winemakers-events-tutorials-cavistes.html.twig' %}
+  {% include 'FBNGuideBundle:Guide:restaurants-winemakers-events-tutorials-shops.html.twig' %}
 
 {% elseif menu.section | lower ~ 's' in 'infos' %}
 

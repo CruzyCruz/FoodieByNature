@@ -33,10 +33,10 @@ class Event extends Article
   private $restaurant;
 
   /**
-   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Caviste")
+   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Shop")
    * @ORM\JoinColumn(nullable=true)
    */
-  private $caviste;
+  private $shop;
 
   /**
    * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\WinemakerDomain")
@@ -317,27 +317,27 @@ class Event extends Article
     }
 
     /**
-     * Set caviste.
+     * Set shop.
      *
-     * @param \FBN\GuideBundle\Entity\caviste $caviste
+     * @param \FBN\GuideBundle\Entity\shop $shop
      *
      * @return Event
      */
-    public function setCaviste(\FBN\GuideBundle\Entity\caviste $caviste = null)
+    public function setShop(\FBN\GuideBundle\Entity\shop $shop = null)
     {
-        $this->caviste = $caviste;
+        $this->shop = $shop;
 
         return $this;
     }
 
     /**
-     * Get caviste.
+     * Get shop.
      *
-     * @return \FBN\GuideBundle\Entity\caviste
+     * @return \FBN\GuideBundle\Entity\shop
      */
-    public function getCaviste()
+    public function getShop()
     {
-        return $this->caviste;
+        return $this->shop;
     }
 
     /**

@@ -46,10 +46,10 @@ class Restaurant extends Article
     private $coordonnees;
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Caviste", inversedBy="restaurant")
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Shop", inversedBy="restaurant")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
-    private $caviste;            
+    private $shop;            
 
     /**
      * @var integer
@@ -294,28 +294,28 @@ class Restaurant extends Article
     }
 
     /**
-     * Set caviste
+     * Set shop
      *
-     * @param \FBN\GuideBundle\Entity\Caviste $caviste
-     * @return caviste
+     * @param \FBN\GuideBundle\Entity\Shop $shop
+     * @return shop
      */
-    public function setCaviste(\FBN\GuideBundle\Entity\Caviste $caviste)
+    public function setShop(\FBN\GuideBundle\Entity\Shop $shop)
     {
-        $this->caviste = $caviste;
-        $caviste->setRestaurant($this);
-        $caviste->setName($this->getName()); 
+        $this->shop = $shop;
+        $shop->setRestaurant($this);
+        $shop->setName($this->getName()); 
 
         return $this;
     }
 
     /**
-     * Get caviste
+     * Get shop
      *
-     * @return \FBN\GuideBundle\Entity\Caviste 
+     * @return \FBN\GuideBundle\Entity\Shop 
      */
-    public function getCaviste()
+    public function getShop()
     {
-        return $this->caviste;
+        return $this->shop;
     }    
 
     /**

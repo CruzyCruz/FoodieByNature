@@ -14,8 +14,8 @@
 
 <h1>{{ restaurant.name }}</h1>
 
-  {% if restaurant.caviste is not null %}
-    <p>[<a href="{{ path('fbn_guide_cavistes', {'slug': restaurant.caviste.slug} ) }}">LA CAVE DU RESTO</a>]</p>
+  {% if restaurant.shop is not null %}
+    <p>[<a href="{{ path('fbn_guide_shops', {'slug': restaurant.shop.slug} ) }}">LA CAVE DU RESTO</a>]</p>
   {% endif %}  
 
 <h3>STYLE : </h3>

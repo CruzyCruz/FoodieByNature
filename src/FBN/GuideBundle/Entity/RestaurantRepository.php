@@ -44,7 +44,7 @@ class RestaurantRepository extends EntityRepository
                    ->addSelect('rb')
                    ->leftJoin('r.coordonnees', 'c')
                    ->addSelect('c')
-                   ->leftJoin('r.caviste', 'rc')
+                   ->leftJoin('r.shop', 'rc')
                    ->addSelect('rc')
                    ->where('r.slug = :slug')
                    ->setParameter('slug', $slug);
