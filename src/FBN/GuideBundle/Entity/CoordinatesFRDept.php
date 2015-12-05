@@ -5,22 +5,21 @@ namespace FBN\GuideBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CoordonneesFRDept
+ * CoordinatesFRDept.
  *
- * @ORM\Table(name="coordonneesfrdept")
+ * @ORM\Table(name="coordinatesfrdept")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordinatesFRAreaRepository")
  */
-class CoordonneesFRDept
+class CoordinatesFRDept
 {
-
-  /**
+    /**
    * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFRArea")
    * @ORM\JoinColumn(nullable=false)
    */
   private $coordinatesFRArea;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -40,12 +39,12 @@ class CoordonneesFRDept
      *
      * @ORM\Column(name="num", type="string", length=255)
      */
-    private $num;    
+    private $num;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -53,9 +52,10 @@ class CoordonneesFRDept
     }
 
     /**
-     * Set department
+     * Set department.
      *
      * @param string $department
+     *
      * @return CoordinatesFRAreaDept
      */
     public function setDepartment($department)
@@ -66,9 +66,9 @@ class CoordonneesFRDept
     }
 
     /**
-     * Get department
+     * Get department.
      *
-     * @return string 
+     * @return string
      */
     public function getDepartment()
     {
@@ -76,9 +76,10 @@ class CoordonneesFRDept
     }
 
     /**
-     * Set num
+     * Set num.
      *
      * @param string $num
+     *
      * @return CoordinatesFRAreaDept
      */
     public function setNum($num)
@@ -89,19 +90,20 @@ class CoordonneesFRDept
     }
 
     /**
-     * Get num
+     * Get num.
      *
-     * @return string 
+     * @return string
      */
     public function getNum()
     {
         return $this->num;
-    }    
+    }
 
     /**
-     * Set coordinatesFRArea
+     * Set coordinatesFRArea.
      *
      * @param \FBN\GuideBundle\Entity\coordinatesFRArea $coordinatesFRArea
+     *
      * @return Restaurant
      */
     public function setCoordinatesFRArea(\FBN\GuideBundle\Entity\coordinatesFRArea $coordinatesFRArea)
@@ -112,12 +114,12 @@ class CoordonneesFRDept
     }
 
     /**
-     * Get coordinatesFRArea
+     * Get coordinatesFRArea.
      *
-     * @return \FBN\GuideBundle\Entity\coordinatesFRArea 
+     * @return \FBN\GuideBundle\Entity\coordinatesFRArea
      */
     public function getCoordinatesFRArea()
     {
         return $this->coordinatesFRArea;
-    }    
+    }
 }

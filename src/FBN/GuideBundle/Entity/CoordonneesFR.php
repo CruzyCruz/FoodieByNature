@@ -20,10 +20,10 @@ class CoordonneesFR
    private $coordonneesFRVoie;
 
    /**
-    * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordonneesFRDept")
+    * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFRDept")
     * @ORM\JoinColumn(nullable=false)
     */
-   private $coordonneesFRDept;
+   private $coordinatesFRDept;
 
     /**
      * @var integer
@@ -126,26 +126,26 @@ class CoordonneesFR
     }
 
     /**
-     * Set coordonneesFRDept
+     * Set coordinatesFRDept
      *
-     * @param \FBN\GuideBundle\Entity\CoordonneesFRDept $coordonneesFRDept
+     * @param \FBN\GuideBundle\Entity\CoordinatesFRDept $coordinatesFRDept
      * @return CoordonneesFR
      */
-    public function setCoordonneesFRDept(\FBN\GuideBundle\Entity\CoordonneesFRDept $coordonneesFRDept)
+    public function setCoordinatesFRDept(\FBN\GuideBundle\Entity\CoordinatesFRDept $coordinatesFRDept)
     {
-        $this->coordonneesFRDept = $coordonneesFRDept;
+        $this->coordinatesFRDept = $coordinatesFRDept;
 
         return $this;
     }
 
     /**
-     * Get coordonneesFRDept
+     * Get coordinatesFRDept
      *
-     * @return \FBN\GuideBundle\Entity\CoordonneesFRDept 
+     * @return \FBN\GuideBundle\Entity\CoordinatesFRDept 
      */
-    public function getCoordonneesFRDept()
+    public function getCoordinatesFRDept()
     {
-        return $this->coordonneesFRDept;
+        return $this->coordinatesFRDept;
     }
 
     /**
