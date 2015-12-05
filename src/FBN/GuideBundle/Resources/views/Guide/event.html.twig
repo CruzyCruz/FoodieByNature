@@ -27,28 +27,28 @@
   <h3>PAR ICI : </h3>
 
   <p>   
-    {% if lieuevt.coordonnees.coordinatesFR.miscellaneous is not null %}
-      {{ lieuevt.coordonnees.coordinatesFR.miscellaneous }}
+    {% if lieuevt.coordinates.coordinatesFR.miscellaneous is not null %}
+      {{ lieuevt.coordinates.coordinatesFR.miscellaneous }}
     {% endif %}  
     <br />
-    {% if lieuevt.coordonnees.coordinatesFR.laneName is not null %}
-      {% if lieuevt.coordonnees.coordinatesFR.laneNum is not null %}
+    {% if lieuevt.coordinates.coordinatesFR.laneName is not null %}
+      {% if lieuevt.coordinates.coordinatesFR.laneNum is not null %}
         {% set separateur = ', ' %}  
       {% else %}
         {% set separateur = '' %}  
       {% endif %}         
       {{ 
-      lieuevt.coordonnees.coordinatesFR.laneNum ~ separateur ~
-      lieuevt.coordonnees.coordinatesFR.coordinatesFRLane.lane ~ ' ' ~
-      lieuevt.coordonnees.coordinatesFR.laneName
+      lieuevt.coordinates.coordinatesFR.laneNum ~ separateur ~
+      lieuevt.coordinates.coordinatesFR.coordinatesFRLane.lane ~ ' ' ~
+      lieuevt.coordinates.coordinatesFR.laneName
       }}
     {% endif %}
     <br />
-    {% if lieuevt.coordonnees.coordinatesFR.locality is not null %}
-      {{ lieuevt.coordonnees.coordinatesFR.locality }}
+    {% if lieuevt.coordinates.coordinatesFR.locality is not null %}
+      {{ lieuevt.coordinates.coordinatesFR.locality }}
     {% endif %}  
     <br />
-    {{ lieuevt.coordonnees.coordinatesFR.postcode ~ ' ' ~ lieuevt.coordonnees.city }}
+    {{ lieuevt.coordinates.coordinatesFR.postcode ~ ' ' ~ lieuevt.coordinates.city }}
   </p>
 
   {% if event.useexttel %}
@@ -64,9 +64,9 @@
   {% endif %} 
  
 
-  {% if lieuevt.coordonnees.metro is not null %}
+  {% if lieuevt.coordinates.metro is not null %}
     <h3>METRO : </h3>  
-    <p>{{ lieuevt.coordonnees.metro }}</p> 
+    <p>{{ lieuevt.coordinates.metro }}</p> 
   {% endif %}  
 
   {% if event.useextsite %}

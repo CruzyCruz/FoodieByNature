@@ -89,7 +89,7 @@ class Shop extends AbstractFixture implements OrderedFixtureInterface
             $manager->persist($shop[$i]);
 
             if ($i != 0) {
-                $shop[$i]->setCoordonnees($this->getReference('coordonnees-'.($i + 13)));
+                $shop[$i]->setCoordinates($this->getReference('coordinates-'.($i + 13)));
             }
 
             $this->addReference('shop-'.$i, $shop[$i]);

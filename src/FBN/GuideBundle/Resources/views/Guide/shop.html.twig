@@ -36,28 +36,28 @@
 
 
   <p>     
-    {% if sharedData.coordonnees.coordinatesFR.miscellaneous is not null %}
-      {{ sharedData.coordonnees.coordinatesFR.miscellaneous }}
+    {% if sharedData.coordinates.coordinatesFR.miscellaneous is not null %}
+      {{ sharedData.coordinates.coordinatesFR.miscellaneous }}
     {% endif %}  
     <br />  
-    {% if sharedData.coordonnees.coordinatesFR.laneName is not null %}
-      {% if sharedData.coordonnees.coordinatesFR.laneNum is not null %}
+    {% if sharedData.coordinates.coordinatesFR.laneName is not null %}
+      {% if sharedData.coordinates.coordinatesFR.laneNum is not null %}
         {% set separateur = ', ' %}  
       {% else %}
         {% set separateur = '' %}  
       {% endif %}
       {{ 
-      sharedData.coordonnees.coordinatesFR.laneNum ~ separateur ~
-      sharedData.coordonnees.coordinatesFR.coordinatesFRLane.lane ~ ' ' ~
-      sharedData.coordonnees.coordinatesFR.laneName
+      sharedData.coordinates.coordinatesFR.laneNum ~ separateur ~
+      sharedData.coordinates.coordinatesFR.coordinatesFRLane.lane ~ ' ' ~
+      sharedData.coordinates.coordinatesFR.laneName
       }}
     {% endif %}
     <br />
-    {% if sharedData.coordonnees.coordinatesFR.locality is not null %}
-      {{ sharedData.coordonnees.coordinatesFR.locality }}
+    {% if sharedData.coordinates.coordinatesFR.locality is not null %}
+      {{ sharedData.coordinates.coordinatesFR.locality }}
     {% endif %}  
     <br />
-    {{ sharedData.coordonnees.coordinatesFR.postcode ~ ' ' ~ sharedData.coordonnees.city }}
+    {{ sharedData.coordinates.coordinatesFR.postcode ~ ' ' ~ sharedData.coordinates.city }}
   </p>
 
   {% if sharedData.tel is not null %}
@@ -65,9 +65,9 @@
     <p>{{ sharedData.tel }}</p>  
   {% endif %}  
 
-  {% if sharedData.coordonnees.metro is not null %}
+  {% if sharedData.coordinates.metro is not null %}
     <h3>METRO : </h3>  
-    <p>{{ sharedData.coordonnees.metro }}</p> 
+    <p>{{ sharedData.coordinates.metro }}</p> 
   {% endif %}  
 
   {% if sharedData.site is not null %}

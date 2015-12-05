@@ -112,7 +112,7 @@ class CoordinatesCountry
      *
      * @param string $latitude
      *
-     * @return Coordonnees
+     * @return Coordinates
      */
     public function setLatitude($latitude)
     {
@@ -136,7 +136,7 @@ class CoordinatesCountry
      *
      * @param string $longitude
      *
-     * @return Coordonnees
+     * @return Coordinates
      */
     public function setLongitude($longitude)
     {

@@ -179,7 +179,7 @@ class CoordinatesFR
      *
      * @param string $miscellaneous
      *
-     * @return Coordonnees
+     * @return Coordinates
      */
     public function setMiscellaneous($miscellaneous)
     {
@@ -203,7 +203,7 @@ class CoordinatesFR
      *
      * @param string $locality
      *
-     * @return Coordonnees
+     * @return Coordinates
      */
     public function setLocality($locality)
     {

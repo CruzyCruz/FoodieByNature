@@ -40,10 +40,10 @@ class Restaurant extends Article
     private $image;        
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordonnees", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $coordonnees;
+    private $coordinates;
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Shop", inversedBy="restaurant")
@@ -99,7 +99,7 @@ class Restaurant extends Article
     /**
      * @Gedmo\Slug(handlers={
      *      @Gedmo\SlugHandler(class="Gedmo\Sluggable\Handler\RelativeSlugHandler", options={
-     *          @Gedmo\SlugHandlerOption(name="relationField", value="coordonnees"),
+     *          @Gedmo\SlugHandlerOption(name="relationField", value="coordinates"),
      *          @Gedmo\SlugHandlerOption(name="relationSlugField", value="city"),
      *          @Gedmo\SlugHandlerOption(name="separator", value="-"),
      *          @Gedmo\SlugHandlerOption(name="urilize", value=true)   
@@ -319,33 +319,33 @@ class Restaurant extends Article
     }    
 
     /**
-     * Set coordonnees
+     * Set coordinates
      *
-     * @param \FBN\GuideBundle\Entity\Coordonnees $coordonnees
+     * @param \FBN\GuideBundle\Entity\Coordinates $coordinates
      * @return Restaurant
      */
-    public function setCoordonnees(\FBN\GuideBundle\Entity\Coordonnees $coordonnees)
+    public function setCoordinates(\FBN\GuideBundle\Entity\Coordinates $coordinates)
     {
-        $this->coordonnees = $coordonnees;
+        $this->coordinates = $coordinates;
 
         return $this;
     }
 
     /**
-     * Get coordonnees
+     * Get coordinates
      *
-     * @return \FBN\GuideBundle\Entity\Coordonnees 
+     * @return \FBN\GuideBundle\Entity\Coordinates 
      */
-    public function getCoordonnees()
+    public function getCoordinates()
     {
-        return $this->coordonnees;
+        return $this->coordinates;
     }
 
     /**
      * Set tel
      *
      * @param string $tel
-     * @return Coordonnees
+     * @return Coordinates
      */
     public function setTel($tel)
     {

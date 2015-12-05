@@ -106,7 +106,7 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface
             $restaurant[$i]->addRestaurantBonus($this->getReference('restaurantbonus-'.rand(0, 1)));
             $restaurant[$i]->addRestaurantBonus($this->getReference('restaurantbonus-'.rand(2, 3)));
 
-            $restaurant[$i]->setCoordonnees($this->getReference('coordonnees-'.$i));
+            $restaurant[$i]->setCoordinates($this->getReference('coordinates-'.$i));
 
             $restaurant[$i]->setImage($this->getReference('imagerestaurant-'.$i));
 

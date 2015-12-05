@@ -66,7 +66,7 @@ class GuideController extends Controller
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        $latlngs[] = array('lat' => $restaurant->getCoordonnees()->getLatitude(), 'lng' => $restaurant->getCoordonnees()->getLongitude());
+        $latlngs[] = array('lat' => $restaurant->getCoordinates()->getLatitude(), 'lng' => $restaurant->getCoordinates()->getLongitude());
 
         $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'restaurant');
 
@@ -97,7 +97,7 @@ class GuideController extends Controller
         }
 
         foreach ($winemaker->getWinemakerDomain() as $vd) {
-            $latlngs[] = array('lat' => $vd->getCoordonnees()->getLatitude(), 'lng' => $vd->getCoordonnees()->getLongitude());
+            $latlngs[] = array('lat' => $vd->getCoordinates()->getLatitude(), 'lng' => $vd->getCoordinates()->getLongitude());
         }
 
         $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'winemaker');
@@ -130,7 +130,7 @@ class GuideController extends Controller
 
         ($lieuevt = $event->getRestaurant()) || ($lieuevt = $event->getShop()) || ($lieuevt = $event->getWinemakerDomain()) || ($lieuevt = $event->getEventPast()) || ($lieuevt = $event);
 
-        $latlngs[] = array('lat' => $lieuevt->getCoordonnees()->getLatitude(), 'lng' => $lieuevt->getCoordonnees()->getLongitude());
+        $latlngs[] = array('lat' => $lieuevt->getCoordinates()->getLatitude(), 'lng' => $lieuevt->getCoordinates()->getLongitude());
 
         $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'event');
 
@@ -172,7 +172,7 @@ class GuideController extends Controller
 
         ($sharedData = $shop->getRestaurant()) || ($sharedData = $shop);
 
-        $latlngs[] = array('lat' => $sharedData->getCoordonnees()->getLatitude(), 'lng' => $sharedData->getCoordonnees()->getLongitude());
+        $latlngs[] = array('lat' => $sharedData->getCoordinates()->getLatitude(), 'lng' => $sharedData->getCoordinates()->getLongitude());
 
         $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'shop');
 

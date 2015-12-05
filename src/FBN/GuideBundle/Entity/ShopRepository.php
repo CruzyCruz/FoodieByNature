@@ -35,7 +35,7 @@ class ShopRepository extends EntityRepository
         $qb = $this->createQueryBuilder('cav')
                    ->leftJoin('cav.image', 'i')
                    ->addSelect('i')
-                   ->leftJoin('cav.coordonnees', 'c')
+                   ->leftJoin('cav.coordinates', 'c')
                    ->addSelect('c')
                    ->leftJoin('cav.restaurant', 'cr')
                    ->addSelect('cr')
@@ -43,7 +43,7 @@ class ShopRepository extends EntityRepository
                     ->setParameter('slug', $slug);
 
         $cr = $this->_em
-                    ->getRepository('FBNGuideBundle:Coordonnees');
+                    ->getRepository('FBNGuideBundle:Coordinates');
 
         $qb = $cr->joinCoord($qb);
 

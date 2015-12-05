@@ -47,13 +47,13 @@ class EventRepository extends EntityRepository
                    ->addSelect('ev')
                    ->leftJoin('ev.winemaker', 'evv')
                    ->addSelect('evv')
-                   ->leftJoin('e.coordonnees', 'c')
+                   ->leftJoin('e.coordinates', 'c')
                    ->addSelect('c')
                     ->where('e.slug = :slug')
                     ->setParameter('slug', $slug);
 
         $cr = $this->_em
-                    ->getRepository('FBNGuideBundle:Coordonnees');
+                    ->getRepository('FBNGuideBundle:Coordinates');
 
         $qb = $cr->joinCoord($qb);
 

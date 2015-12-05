@@ -88,7 +88,7 @@ class WinemakerDomain extends AbstractFixture implements OrderedFixtureInterface
 
             $wmkrDmn[$i]->setWinemaker($this->getReference('winemaker-'.($winemaker_ids[$i] - 1)));
             $wmkrDmn[$i]->setWinemakerArea($this->getReference('winemakerarea-'.($winemakerarea_ids[$i] - 1)));
-            $wmkrDmn[$i]->setCoordonnees($this->getReference('coordonnees-'.($i + 5)));
+            $wmkrDmn[$i]->setCoordinates($this->getReference('coordinates-'.($i + 5)));
 
             $this->addReference('winemakerdomain-'.$i, $wmkrDmn[$i]);
         }

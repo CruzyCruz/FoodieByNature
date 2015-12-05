@@ -5,28 +5,27 @@ namespace FBN\GuideBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Coordonnees
+ * Coordinates.
  *
- * @ORM\Table(name="coordonnees")
- * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordonneesRepository")
+ * @ORM\Table(name="coordinates")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordinatesRepository")
  */
-class Coordonnees
+class Coordinates
 {
- 
-  /**
+    /**
    * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesCountry")
    * @ORM\JoinColumn(nullable=false)
    */
-  private $coordinatesCountry; 
+  private $coordinatesCountry;
 
   /**
    * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFR", cascade={"persist"})
    * @ORM\JoinColumn(nullable=false)
    */
-  private $coordinatesFR;  
-   
+  private $coordinatesFR;
+
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -62,11 +61,10 @@ class Coordonnees
      */
     private $metro;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -74,10 +72,11 @@ class Coordonnees
     }
 
     /**
-     * Set latitude
+     * Set latitude.
      *
      * @param string $latitude
-     * @return Coordonnees
+     *
+     * @return Coordinates
      */
     public function setLatitude($latitude)
     {
@@ -87,9 +86,9 @@ class Coordonnees
     }
 
     /**
-     * Get latitude
+     * Get latitude.
      *
-     * @return string 
+     * @return string
      */
     public function getLatitude()
     {
@@ -97,10 +96,11 @@ class Coordonnees
     }
 
     /**
-     * Set longitude
+     * Set longitude.
      *
      * @param string $longitude
-     * @return Coordonnees
+     *
+     * @return Coordinates
      */
     public function setLongitude($longitude)
     {
@@ -110,9 +110,9 @@ class Coordonnees
     }
 
     /**
-     * Get longitude
+     * Get longitude.
      *
-     * @return string 
+     * @return string
      */
     public function getLongitude()
     {
@@ -120,10 +120,11 @@ class Coordonnees
     }
 
     /**
-     * Set city
+     * Set city.
      *
      * @param string $city
-     * @return Coordonnees
+     *
+     * @return Coordinates
      */
     public function setCity($city)
     {
@@ -133,20 +134,21 @@ class Coordonnees
     }
 
     /**
-     * Get city
+     * Get city.
      *
-     * @return string 
+     * @return string
      */
     public function getCity()
     {
         return $this->city;
-    }   
+    }
 
     /**
-     * Set metro
+     * Set metro.
      *
      * @param string $metro
-     * @return Coordonnees
+     *
+     * @return Coordinates
      */
     public function setMetro($metro)
     {
@@ -156,9 +158,9 @@ class Coordonnees
     }
 
     /**
-     * Get metro
+     * Get metro.
      *
-     * @return string 
+     * @return string
      */
     public function getMetro()
     {
@@ -166,10 +168,11 @@ class Coordonnees
     }
 
     /**
-     * Set coordinatesCountry
+     * Set coordinatesCountry.
      *
      * @param \FBN\GuideBundle\Entity\CoordinatesCountry $coordinatesCountry
-     * @return Coordonnees
+     *
+     * @return Coordinates
      */
     public function setCoordinatesCountry(\FBN\GuideBundle\Entity\CoordinatesCountry $coordinatesCountry)
     {
@@ -179,9 +182,9 @@ class Coordonnees
     }
 
     /**
-     * Get coordinatesCountry
+     * Get coordinatesCountry.
      *
-     * @return \FBN\GuideBundle\Entity\CoordinatesCountry 
+     * @return \FBN\GuideBundle\Entity\CoordinatesCountry
      */
     public function getCoordinatesCountry()
     {
@@ -189,10 +192,11 @@ class Coordonnees
     }
 
     /**
-     * Set coordinatesFR
+     * Set coordinatesFR.
      *
      * @param \FBN\GuideBundle\Entity\CoordinatesFR $coordinatesFR
-     * @return Coordonnees
+     *
+     * @return Coordinates
      */
     public function setCoordinatesFR(\FBN\GuideBundle\Entity\CoordinatesFR $coordinatesFR)
     {
@@ -202,9 +206,9 @@ class Coordonnees
     }
 
     /**
-     * Get coordinatesFR
+     * Get coordinatesFR.
      *
-     * @return \FBN\GuideBundle\Entity\CoordinatesFR 
+     * @return \FBN\GuideBundle\Entity\CoordinatesFR
      */
     public function getCoordinatesFR()
     {
@@ -212,10 +216,11 @@ class Coordonnees
     }
 
     /**
-     * Set winemaker
+     * Set winemaker.
      *
      * @param \FBN\GuideBundle\Entity\Winemaker $winemaker
-     * @return Coordonnees
+     *
+     * @return Coordinates
      */
     public function setWinemaker(\FBN\GuideBundle\Entity\Winemaker $winemaker)
     {
@@ -225,12 +230,12 @@ class Coordonnees
     }
 
     /**
-     * Get winemaker
+     * Get winemaker.
      *
-     * @return \FBN\GuideBundle\Entity\Winemaker 
+     * @return \FBN\GuideBundle\Entity\Winemaker
      */
     public function getWinemaker()
     {
         return $this->winemaker;
-    }    
+    }
 }

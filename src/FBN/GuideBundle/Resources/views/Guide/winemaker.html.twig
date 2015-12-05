@@ -29,23 +29,23 @@
     {% if vd.domain is not null %} 
       {{ vd.domain }}
     {% endif %}
-    {% if vd.coordonnees.coordinatesFR.miscellaneous is not null %}
-      {{ vd.coordonnees.coordinatesFR.miscellaneous }}
+    {% if vd.coordinates.coordinatesFR.miscellaneous is not null %}
+      {{ vd.coordinates.coordinatesFR.miscellaneous }}
     {% endif %}  
     <br />          
-    {% if vd.coordonnees.coordinatesFR.laneName is not null %}
+    {% if vd.coordinates.coordinatesFR.laneName is not null %}
       {{ 
-      vd.coordonnees.coordinatesFR.laneNum ~ ', ' ~
-      vd.coordonnees.coordinatesFR.coordinatesFRLane.lane ~ ' ' ~
-      vd.coordonnees.coordinatesFR.laneName
+      vd.coordinates.coordinatesFR.laneNum ~ ', ' ~
+      vd.coordinates.coordinatesFR.coordinatesFRLane.lane ~ ' ' ~
+      vd.coordinates.coordinatesFR.laneName
       }}
     {% endif %}
     <br />
-    {% if vd.coordonnees.coordinatesFR.locality is not null %}
-      {{ vd.coordonnees.coordinatesFR.locality }}
+    {% if vd.coordinates.coordinatesFR.locality is not null %}
+      {{ vd.coordinates.coordinatesFR.locality }}
     {% endif %}  
     <br />
-    {{ vd.coordonnees.coordinatesFR.postcode ~ ' ' ~ vd.coordonnees.city }}
+    {{ vd.coordinates.coordinatesFR.postcode ~ ' ' ~ vd.coordinates.city }}
   </p>
 
   {% if vd.tel is not null %}
@@ -57,9 +57,9 @@
 
   <p>{{ vd.openingHours }}</p>
 
-    {% if vd.coordonnees.metro is not null %}
+    {% if vd.coordinates.metro is not null %}
       <h3>METRO : </h3>  
-      <p>{{ vd.coordonnees.metro }}</p> 
+      <p>{{ vd.coordinates.metro }}</p> 
     {% endif %}  
 
   {% if vd.site is not null %}

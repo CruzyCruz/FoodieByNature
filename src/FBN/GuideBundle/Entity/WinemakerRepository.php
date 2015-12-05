@@ -39,13 +39,13 @@ class WinemakerRepository extends EntityRepository
                    ->addSelect('vd')
                    ->leftJoin('vd.winemakerArea', 'vr')
                    ->addSelect('vr')
-                   ->leftJoin('vd.coordonnees', 'c')
+                   ->leftJoin('vd.coordinates', 'c')
                    ->addSelect('c')
                     ->where('v.slug = :slug')
                     ->setParameter('slug', $slug);
 
         $cr = $this->_em
-                    ->getRepository('FBNGuideBundle:Coordonnees');
+                    ->getRepository('FBNGuideBundle:Coordinates');
 
         $qb = $cr->joinCoord($qb);
 

@@ -149,13 +149,13 @@ class Event extends AbstractFixture implements OrderedFixtureInterface
         $event[0]->setRestaurant($this->getReference('restaurant-0'));
 
         $event[1]->setEventType($this->getReference('eventtype-3'));
-        $event[1]->setCoordonnees($this->getReference('coordonnees-11'));
+        $event[1]->setCoordinates($this->getReference('coordinates-11'));
 
         $event[2]->setEventType($this->getReference('eventtype-1'));
-        $event[2]->setCoordonnees($this->getReference('coordonnees-12'));
+        $event[2]->setCoordinates($this->getReference('coordinates-12'));
 
         $event[3]->setEventType($this->getReference('eventtype-1'));
-        $event[3]->setCoordonnees($this->getReference('coordonnees-13'));
+        $event[3]->setCoordinates($this->getReference('coordinates-13'));
 
         $event[4]->setEventType($this->getReference('eventtype-0'));
         //$event[4]->setEventPast($this->getReference('event-0'));   

@@ -42,7 +42,7 @@ class RestaurantRepository extends EntityRepository
                    ->addSelect('rs')
                    ->leftJoin('r.restaurantBonus', 'rb')
                    ->addSelect('rb')
-                   ->leftJoin('r.coordonnees', 'c')
+                   ->leftJoin('r.coordinates', 'c')
                    ->addSelect('c')
                    ->leftJoin('r.shop', 'rc')
                    ->addSelect('rc')
@@ -50,7 +50,7 @@ class RestaurantRepository extends EntityRepository
                    ->setParameter('slug', $slug);
 
         $cr = $this->_em
-                    ->getRepository('FBNGuideBundle:Coordonnees');
+                    ->getRepository('FBNGuideBundle:Coordinates');
 
         $qb = $cr->joinCoord($qb);
 
