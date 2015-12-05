@@ -8,16 +8,16 @@ use Doctrine\ORM\Mapping as ORM;
  * CoordonneesFRDept
  *
  * @ORM\Table(name="coordonneesfrdept")
- * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordonneesFRRegionRepository")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordinatesFRAreaRepository")
  */
 class CoordonneesFRDept
 {
 
   /**
-   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordonneesFRRegion")
+   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFRArea")
    * @ORM\JoinColumn(nullable=false)
    */
-  private $coordonneesFRRegion;
+  private $coordinatesFRArea;
 
     /**
      * @var integer
@@ -56,7 +56,7 @@ class CoordonneesFRDept
      * Set department
      *
      * @param string $department
-     * @return CoordonneesFRRegionDept
+     * @return CoordinatesFRAreaDept
      */
     public function setDepartment($department)
     {
@@ -79,7 +79,7 @@ class CoordonneesFRDept
      * Set num
      *
      * @param string $num
-     * @return CoordonneesFRRegionDept
+     * @return CoordinatesFRAreaDept
      */
     public function setNum($num)
     {
@@ -99,25 +99,25 @@ class CoordonneesFRDept
     }    
 
     /**
-     * Set coordonneesFRRegion
+     * Set coordinatesFRArea
      *
-     * @param \FBN\GuideBundle\Entity\coordonneesFRRegion $coordonneesFRRegion
+     * @param \FBN\GuideBundle\Entity\coordinatesFRArea $coordinatesFRArea
      * @return Restaurant
      */
-    public function setCoordonneesFRRegion(\FBN\GuideBundle\Entity\coordonneesFRRegion $coordonneesFRRegion)
+    public function setCoordinatesFRArea(\FBN\GuideBundle\Entity\coordinatesFRArea $coordinatesFRArea)
     {
-        $this->coordonneesFRRegion = $coordonneesFRRegion;
+        $this->coordinatesFRArea = $coordinatesFRArea;
 
         return $this;
     }
 
     /**
-     * Get coordonneesFRRegion
+     * Get coordinatesFRArea
      *
-     * @return \FBN\GuideBundle\Entity\coordonneesFRRegion 
+     * @return \FBN\GuideBundle\Entity\coordinatesFRArea 
      */
-    public function getCoordonneesFRRegion()
+    public function getCoordinatesFRArea()
     {
-        return $this->coordonneesFRRegion;
+        return $this->coordinatesFRArea;
     }    
 }

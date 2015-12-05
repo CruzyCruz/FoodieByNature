@@ -223,7 +223,7 @@ class CoordonneesFRDept extends AbstractFixture implements OrderedFixtureInterfa
                     '976',
                         ); 
 
-        $coordonneesFRRegion_ids = array(
+        $coordinatesFRArea_ids = array(
                                         23,
                                         8,
                                         24,
@@ -338,7 +338,7 @@ class CoordonneesFRDept extends AbstractFixture implements OrderedFixtureInterfa
             
             $coordonneesfrdept[$i]->setDepartment($department);
                         
-            $coordonneesfrdept[$i]->setCoordonneesFRRegion($this->getReference('coordonneesfrregion-' . ($coordonneesFRRegion_ids[$i]-1)));
+            $coordonneesfrdept[$i]->setCoordinatesFRArea($this->getReference('coordinatesfrarea-' . ($coordinatesFRArea_ids[$i]-1)));
 
             $this->addReference('coordonneesfrdept-' . $i, $coordonneesfrdept[$i]);
 

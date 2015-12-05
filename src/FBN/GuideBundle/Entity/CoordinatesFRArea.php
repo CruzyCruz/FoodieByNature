@@ -5,15 +5,15 @@ namespace FBN\GuideBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CoordonneesFRRegion
+ * CoordinatesFRArea.
  *
- * @ORM\Table(name="coordonneesfrregion")
- * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordonneesFRRegionRepository")
+ * @ORM\Table(name="coordinatesfrarea")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordinatesFRAreaRepository")
  */
-class CoordonneesFRRegion
+class CoordinatesFRArea
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -28,11 +28,10 @@ class CoordonneesFRRegion
      */
     private $area;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -40,10 +39,11 @@ class CoordonneesFRRegion
     }
 
     /**
-     * Set area
+     * Set area.
      *
      * @param string $area
-     * @return CoordonneesFRRegion
+     *
+     * @return CoordinatesFRArea
      */
     public function setArea($area)
     {
@@ -53,9 +53,9 @@ class CoordonneesFRRegion
     }
 
     /**
-     * Get area
+     * Get area.
      *
-     * @return string 
+     * @return string
      */
     public function getArea()
     {

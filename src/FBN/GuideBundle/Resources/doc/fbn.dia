@@ -5582,19 +5582,19 @@
         <dia:point val="31.82,-8.7375"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="31.745,-8.8125;40.8,-5.0625"/>
+        <dia:rectangle val="31.745,-8.8125;39.465,-5.0625"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="31.82,-8.7375"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="8.9049999999999994"/>
+        <dia:real val="7.5700000000000003"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="3.6000000000000001"/>
       </dia:attribute>
       <dia:attribute name="name">
-        <dia:string>#CoordonneesFRRegion#</dia:string>
+        <dia:string>#CoordinatesFRArea#</dia:string>
       </dia:attribute>
       <dia:attribute name="stereotype">
         <dia:string>##</dia:string>
