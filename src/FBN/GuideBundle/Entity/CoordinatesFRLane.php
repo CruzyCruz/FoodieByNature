@@ -5,15 +5,15 @@ namespace FBN\GuideBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CoordonneesFRVoie
+ * CoordinatesFRLane.
  *
- * @ORM\Table(name="coordonneesfrvoie")
- * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordonneesFRVoieRepository")
+ * @ORM\Table(name="coordinatesfrlane")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordinatesFRLaneRepository")
  */
-class CoordonneesFRVoie
+class CoordinatesFRLane
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -28,11 +28,10 @@ class CoordonneesFRVoie
      */
     private $lane;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -40,10 +39,11 @@ class CoordonneesFRVoie
     }
 
     /**
-     * Set lane
+     * Set lane.
      *
      * @param string $lane
-     * @return CoordonneesFRVoie
+     *
+     * @return CoordinatesFRLane
      */
     public function setLane($lane)
     {
@@ -53,9 +53,9 @@ class CoordonneesFRVoie
     }
 
     /**
-     * Get lane
+     * Get lane.
      *
-     * @return string 
+     * @return string
      */
     public function getLane()
     {

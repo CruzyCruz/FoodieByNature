@@ -1986,19 +1986,19 @@
         <dia:point val="26.32,-18.1125"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="26.245,-18.1875;34.305,-14.4375"/>
+        <dia:rectangle val="26.245,-18.1875;34.055,-14.4375"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="26.32,-18.1125"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="7.9099999999999993"/>
+        <dia:real val="7.6599999999999993"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="3.6000000000000001"/>
       </dia:attribute>
       <dia:attribute name="name">
-        <dia:string>#CoordonneesFRVoie#</dia:string>
+        <dia:string>#CoordinatesFRLane#</dia:string>
       </dia:attribute>
       <dia:attribute name="stereotype">
         <dia:string>##</dia:string>

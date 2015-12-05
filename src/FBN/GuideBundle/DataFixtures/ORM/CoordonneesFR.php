@@ -28,7 +28,7 @@ class CoordonneesFR extends AbstractFixture implements OrderedFixtureInterface
 
         $coordinatesfrdepts = array(76, 76, 76, 76, 76, 35, 70, 48, 82, 82, 52, 32, 70, 14, 32, 32, 76, 26);
 
-        $coordonneesfrvoies = array(3, 14, 2, 14, 14, null, null, null, null, null, 14, 4, 11, 14, 2, 9, 3, 14);
+        $coordinatesfrlanes = array(3, 14, 2, 14, 14, null, null, null, null, null, 14, 4, 11, 14, 2, 9, 3, 14);
 
         foreach ($lanenums as $i => $lanenum) {
             $coordonneesfr[$i] = new CoordFR();
@@ -54,8 +54,8 @@ class CoordonneesFR extends AbstractFixture implements OrderedFixtureInterface
 
             $coordonneesfr[$i]->setCoordinatesFRDept($this->getReference('coordinatesfrdept-'.($coordinatesfrdepts[$i] - 1)));
 
-            if ($coordonneesfrvoies[$i]) {
-                $coordonneesfr[$i]->setCoordonneesFRVoie($this->getReference('coordonneesfrvoie-'.($coordonneesfrvoies[$i] - 1)));
+            if ($coordinatesfrlanes[$i]) {
+                $coordonneesfr[$i]->setCoordinatesFRLane($this->getReference('coordinatesfrlane-'.($coordinatesfrlanes[$i] - 1)));
             }
 
             $this->addReference('coordonneesfr-'.$i, $coordonneesfr[$i]);
