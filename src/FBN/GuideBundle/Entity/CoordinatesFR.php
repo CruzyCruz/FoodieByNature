@@ -5,15 +5,14 @@ namespace FBN\GuideBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CoordonneesFR
+ * CoordinatesFR.
  *
- * @ORM\Table(name="coordonneesfr")
- * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordonneesFRRepository")
+ * @ORM\Table(name="coordinatesfr")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordinatesFRRepository")
  */
-class CoordonneesFR
+class CoordinatesFR
 {
-
-   /**
+    /**
     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFRLane")
     * @ORM\JoinColumn(nullable=true)
     */
@@ -26,7 +25,7 @@ class CoordonneesFR
    private $coordinatesFRDept;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -67,12 +66,12 @@ class CoordonneesFR
      *
      * @ORM\Column(name="postcode", type="string", length=255)
      */
-    private $postcode;    
+    private $postcode;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -80,9 +79,10 @@ class CoordonneesFR
     }
 
     /**
-     * Set laneNum
+     * Set laneNum.
      *
      * @param string $laneNum
+     *
      * @return CordonneesFR
      */
     public function setLaneNum($laneNum)
@@ -93,9 +93,9 @@ class CoordonneesFR
     }
 
     /**
-     * Get laneNum
+     * Get laneNum.
      *
-     * @return string 
+     * @return string
      */
     public function getLaneNum()
     {
@@ -103,10 +103,11 @@ class CoordonneesFR
     }
 
     /**
-     * Set coordinatesFRLane
+     * Set coordinatesFRLane.
      *
      * @param \FBN\GuideBundle\Entity\CoordinatesFRLane $coordinatesFRLane
-     * @return CoordonneesFR
+     *
+     * @return CoordinatesFR
      */
     public function setCoordinatesFRLane(\FBN\GuideBundle\Entity\CoordinatesFRLane $coordinatesFRLane)
     {
@@ -116,9 +117,9 @@ class CoordonneesFR
     }
 
     /**
-     * Get coordinatesFRLane
+     * Get coordinatesFRLane.
      *
-     * @return \FBN\GuideBundle\Entity\CoordinatesFRLane 
+     * @return \FBN\GuideBundle\Entity\CoordinatesFRLane
      */
     public function getCoordinatesFRLane()
     {
@@ -126,10 +127,11 @@ class CoordonneesFR
     }
 
     /**
-     * Set coordinatesFRDept
+     * Set coordinatesFRDept.
      *
      * @param \FBN\GuideBundle\Entity\CoordinatesFRDept $coordinatesFRDept
-     * @return CoordonneesFR
+     *
+     * @return CoordinatesFR
      */
     public function setCoordinatesFRDept(\FBN\GuideBundle\Entity\CoordinatesFRDept $coordinatesFRDept)
     {
@@ -139,9 +141,9 @@ class CoordonneesFR
     }
 
     /**
-     * Get coordinatesFRDept
+     * Get coordinatesFRDept.
      *
-     * @return \FBN\GuideBundle\Entity\CoordinatesFRDept 
+     * @return \FBN\GuideBundle\Entity\CoordinatesFRDept
      */
     public function getCoordinatesFRDept()
     {
@@ -149,10 +151,11 @@ class CoordonneesFR
     }
 
     /**
-     * Set laneName
+     * Set laneName.
      *
      * @param string $laneName
-     * @return CoordonneesFR
+     *
+     * @return CoordinatesFR
      */
     public function setLaneName($laneName)
     {
@@ -162,9 +165,9 @@ class CoordonneesFR
     }
 
     /**
-     * Get laneName
+     * Get laneName.
      *
-     * @return string 
+     * @return string
      */
     public function getLaneName()
     {
@@ -172,9 +175,10 @@ class CoordonneesFR
     }
 
     /**
-     * Set miscellaneous
+     * Set miscellaneous.
      *
      * @param string $miscellaneous
+     *
      * @return Coordonnees
      */
     public function setMiscellaneous($miscellaneous)
@@ -185,19 +189,20 @@ class CoordonneesFR
     }
 
     /**
-     * Get miscellaneous
+     * Get miscellaneous.
      *
-     * @return string 
+     * @return string
      */
     public function getMiscellaneous()
     {
         return $this->miscellaneous;
-    }     
+    }
 
     /**
-     * Set locality
+     * Set locality.
      *
      * @param string $locality
+     *
      * @return Coordonnees
      */
     public function setLocality($locality)
@@ -208,20 +213,21 @@ class CoordonneesFR
     }
 
     /**
-     * Get locality
+     * Get locality.
      *
-     * @return string 
+     * @return string
      */
     public function getLocality()
     {
         return $this->locality;
-    } 
+    }
 
     /**
-     * Set postcode
+     * Set postcode.
      *
      * @param string $postcode
-     * @return CoordonneesFR
+     *
+     * @return CoordinatesFR
      */
     public function setPostcode($postcode)
     {
@@ -231,9 +237,9 @@ class CoordonneesFR
     }
 
     /**
-     * Get postcode
+     * Get postcode.
      *
-     * @return string 
+     * @return string
      */
     public function getPostcode()
     {

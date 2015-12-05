@@ -1,6 +1,6 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/CoordonneesFR.php
+// src/FBN/GuideBundle/DataFixtures/ORM/CoordinatesFR.php
 
 
 namespace FBN\GuideBundle\DataFixtures\ORM;
@@ -9,9 +9,9 @@ namespace FBN\GuideBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use FBN\GuideBundle\Entity\CoordonneesFR as CoordFR;
+use FBN\GuideBundle\Entity\CoordinatesFR as CoordFR;
 
-class CoordonneesFR extends AbstractFixture implements OrderedFixtureInterface
+class CoordinatesFR extends AbstractFixture implements OrderedFixtureInterface
 {
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
@@ -31,34 +31,34 @@ class CoordonneesFR extends AbstractFixture implements OrderedFixtureInterface
         $coordinatesfrlanes = array(3, 14, 2, 14, 14, null, null, null, null, null, 14, 4, 11, 14, 2, 9, 3, 14);
 
         foreach ($lanenums as $i => $lanenum) {
-            $coordonneesfr[$i] = new CoordFR();
-            $coordonneesfr[$i]->setLaneNum($lanenum);
+            $coordinatesfr[$i] = new CoordFR();
+            $coordinatesfr[$i]->setLaneNum($lanenum);
         }
 
         foreach ($lanenames as $i => $lanename) {
-            $coordonneesfr[$i]->setLaneName($lanename);
+            $coordinatesfr[$i]->setLaneName($lanename);
         }
 
         foreach ($miscellaneouss as $i => $miscellaneous) {
-            $coordonneesfr[$i]->setMiscellaneous($miscellaneous);
+            $coordinatesfr[$i]->setMiscellaneous($miscellaneous);
         }
 
         foreach ($localities as $i => $locality) {
-            $coordonneesfr[$i]->setLocality($locality);
+            $coordinatesfr[$i]->setLocality($locality);
         }
 
         foreach ($codepostaux as $i => $codepostal) {
-            $coordonneesfr[$i]->setPostcode($codepostal);
+            $coordinatesfr[$i]->setPostcode($codepostal);
 
-            $manager->persist($coordonneesfr[$i]);
+            $manager->persist($coordinatesfr[$i]);
 
-            $coordonneesfr[$i]->setCoordinatesFRDept($this->getReference('coordinatesfrdept-'.($coordinatesfrdepts[$i] - 1)));
+            $coordinatesfr[$i]->setCoordinatesFRDept($this->getReference('coordinatesfrdept-'.($coordinatesfrdepts[$i] - 1)));
 
             if ($coordinatesfrlanes[$i]) {
-                $coordonneesfr[$i]->setCoordinatesFRLane($this->getReference('coordinatesfrlane-'.($coordinatesfrlanes[$i] - 1)));
+                $coordinatesfr[$i]->setCoordinatesFRLane($this->getReference('coordinatesfrlane-'.($coordinatesfrlanes[$i] - 1)));
             }
 
-            $this->addReference('coordonneesfr-'.$i, $coordonneesfr[$i]);
+            $this->addReference('coordinatesfr-'.$i, $coordinatesfr[$i]);
         }
 
         $manager->flush();

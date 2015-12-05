@@ -29,23 +29,23 @@
     {% if vd.domain is not null %} 
       {{ vd.domain }}
     {% endif %}
-    {% if vd.coordonnees.coordonneesFR.miscellaneous is not null %}
-      {{ vd.coordonnees.coordonneesFR.miscellaneous }}
+    {% if vd.coordonnees.coordinatesFR.miscellaneous is not null %}
+      {{ vd.coordonnees.coordinatesFR.miscellaneous }}
     {% endif %}  
     <br />          
-    {% if vd.coordonnees.coordonneesFR.laneName is not null %}
+    {% if vd.coordonnees.coordinatesFR.laneName is not null %}
       {{ 
-      vd.coordonnees.coordonneesFR.laneNum ~ ', ' ~
-      vd.coordonnees.coordonneesFR.coordinatesFRLane.lane ~ ' ' ~
-      vd.coordonnees.coordonneesFR.laneName
+      vd.coordonnees.coordinatesFR.laneNum ~ ', ' ~
+      vd.coordonnees.coordinatesFR.coordinatesFRLane.lane ~ ' ' ~
+      vd.coordonnees.coordinatesFR.laneName
       }}
     {% endif %}
     <br />
-    {% if vd.coordonnees.coordonneesFR.locality is not null %}
-      {{ vd.coordonnees.coordonneesFR.locality }}
+    {% if vd.coordonnees.coordinatesFR.locality is not null %}
+      {{ vd.coordonnees.coordinatesFR.locality }}
     {% endif %}  
     <br />
-    {{ vd.coordonnees.coordonneesFR.postcode ~ ' ' ~ vd.coordonnees.city }}
+    {{ vd.coordonnees.coordinatesFR.postcode ~ ' ' ~ vd.coordonnees.city }}
   </p>
 
   {% if vd.tel is not null %}

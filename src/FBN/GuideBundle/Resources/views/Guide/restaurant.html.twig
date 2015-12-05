@@ -51,28 +51,28 @@
   <h3>PAR ICI : </h3>
 
   <p>     
-    {% if restaurant.coordonnees.coordonneesFR.miscellaneous is not null %}
-      {{ restaurant.coordonnees.coordonneesFR.miscellaneous }}
+    {% if restaurant.coordonnees.coordinatesFR.miscellaneous is not null %}
+      {{ restaurant.coordonnees.coordinatesFR.miscellaneous }}
     {% endif %}  
     <br />  
-    {% if restaurant.coordonnees.coordonneesFR.laneName is not null %}
-      {% if restaurant.coordonnees.coordonneesFR.laneNum is not null %}
+    {% if restaurant.coordonnees.coordinatesFR.laneName is not null %}
+      {% if restaurant.coordonnees.coordinatesFR.laneNum is not null %}
         {% set separateur = ', ' %}  
       {% else %}
         {% set separateur = '' %}  
       {% endif %}      
       {{ 
-      restaurant.coordonnees.coordonneesFR.laneNum ~ separateur ~
-      restaurant.coordonnees.coordonneesFR.coordinatesFRLane.lane ~ ' ' ~
-      restaurant.coordonnees.coordonneesFR.laneName
+      restaurant.coordonnees.coordinatesFR.laneNum ~ separateur ~
+      restaurant.coordonnees.coordinatesFR.coordinatesFRLane.lane ~ ' ' ~
+      restaurant.coordonnees.coordinatesFR.laneName
       }}
     {% endif %}
     <br />
-    {% if restaurant.coordonnees.coordonneesFR.locality is not null %}
-      {{ restaurant.coordonnees.coordonneesFR.locality }}
+    {% if restaurant.coordonnees.coordinatesFR.locality is not null %}
+      {{ restaurant.coordonnees.coordinatesFR.locality }}
     {% endif %}  
     <br />
-    {{ restaurant.coordonnees.coordonneesFR.postcode ~ ' ' ~ restaurant.coordonnees.city }}
+    {{ restaurant.coordonnees.coordinatesFR.postcode ~ ' ' ~ restaurant.coordonnees.city }}
   </p>
 
   {% if restaurant.tel is not null %}

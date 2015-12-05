@@ -15,7 +15,7 @@ class CoordonneesRepository extends EntityRepository
 
 	public function joinCoord(\Doctrine\ORM\QueryBuilder $qb)
 	{
-	   	$qb->leftJoin('c.coordonneesFR', 'cfr')
+	   	$qb->leftJoin('c.coordinatesFR', 'cfr')
 	       ->addSelect('cfr')	
 	       ->leftJoin('cfr.coordinatesFRLane', 'cfrv')
 	       ->addSelect('cfrv')

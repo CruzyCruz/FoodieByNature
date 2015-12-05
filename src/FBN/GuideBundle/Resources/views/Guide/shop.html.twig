@@ -36,28 +36,28 @@
 
 
   <p>     
-    {% if sharedData.coordonnees.coordonneesFR.miscellaneous is not null %}
-      {{ sharedData.coordonnees.coordonneesFR.miscellaneous }}
+    {% if sharedData.coordonnees.coordinatesFR.miscellaneous is not null %}
+      {{ sharedData.coordonnees.coordinatesFR.miscellaneous }}
     {% endif %}  
     <br />  
-    {% if sharedData.coordonnees.coordonneesFR.laneName is not null %}
-      {% if sharedData.coordonnees.coordonneesFR.laneNum is not null %}
+    {% if sharedData.coordonnees.coordinatesFR.laneName is not null %}
+      {% if sharedData.coordonnees.coordinatesFR.laneNum is not null %}
         {% set separateur = ', ' %}  
       {% else %}
         {% set separateur = '' %}  
       {% endif %}
       {{ 
-      sharedData.coordonnees.coordonneesFR.laneNum ~ separateur ~
-      sharedData.coordonnees.coordonneesFR.coordinatesFRLane.lane ~ ' ' ~
-      sharedData.coordonnees.coordonneesFR.laneName
+      sharedData.coordonnees.coordinatesFR.laneNum ~ separateur ~
+      sharedData.coordonnees.coordinatesFR.coordinatesFRLane.lane ~ ' ' ~
+      sharedData.coordonnees.coordinatesFR.laneName
       }}
     {% endif %}
     <br />
-    {% if sharedData.coordonnees.coordonneesFR.locality is not null %}
-      {{ sharedData.coordonnees.coordonneesFR.locality }}
+    {% if sharedData.coordonnees.coordinatesFR.locality is not null %}
+      {{ sharedData.coordonnees.coordinatesFR.locality }}
     {% endif %}  
     <br />
-    {{ sharedData.coordonnees.coordonneesFR.postcode ~ ' ' ~ sharedData.coordonnees.city }}
+    {{ sharedData.coordonnees.coordinatesFR.postcode ~ ' ' ~ sharedData.coordonnees.city }}
   </p>
 
   {% if sharedData.tel is not null %}
