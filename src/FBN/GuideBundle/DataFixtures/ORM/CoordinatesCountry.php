@@ -1,6 +1,6 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/CoordonneesPays.php
+// src/FBN/GuideBundle/DataFixtures/ORM/CoordinatesCountry.php
 
 
 namespace FBN\GuideBundle\DataFixtures\ORM;
@@ -9,9 +9,9 @@ namespace FBN\GuideBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use FBN\GuideBundle\Entity\CoordonneesPays as CoordPays;
+use FBN\GuideBundle\Entity\CoordinatesCountry as CoordCntr;
 
-class CoordonneesPays extends AbstractFixture implements OrderedFixtureInterface
+class CoordinatesCountry extends AbstractFixture implements OrderedFixtureInterface
 {
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
@@ -25,24 +25,24 @@ class CoordonneesPays extends AbstractFixture implements OrderedFixtureInterface
         $longitudes = array('2.000000');
 
         foreach ($countries as $i => $country) {
-            $coordonneespays[$i] = new CoordPays();
-            $coordonneespays[$i]->setCountry($country);
+            $coordinatescountry[$i] = new CoordCntr();
+            $coordinatescountry[$i]->setCountry($country);
         }
 
         foreach ($latitudes as $i => $latitude) {
-            $coordonneespays[$i]->setLatitude($latitude);
+            $coordinatescountry[$i]->setLatitude($latitude);
         }
 
         foreach ($longitudes as $i => $longitude) {
-            $coordonneespays[$i]->setLongitude($longitude);
+            $coordinatescountry[$i]->setLongitude($longitude);
         }
 
         foreach ($codeisos as $i => $codeiso) {
-            $coordonneespays[$i]->setCodeISO($codeiso);
+            $coordinatescountry[$i]->setCodeISO($codeiso);
 
-            $manager->persist($coordonneespays[$i]);
+            $manager->persist($coordinatescountry[$i]);
 
-            $this->addReference('coordonneespays-'.$i, $coordonneespays[$i]);
+            $this->addReference('coordinatescountry-'.$i, $coordinatescountry[$i]);
         }
 
         $manager->flush();

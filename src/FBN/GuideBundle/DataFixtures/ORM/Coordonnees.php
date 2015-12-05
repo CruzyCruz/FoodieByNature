@@ -47,7 +47,7 @@ class Coordonnees extends AbstractFixture implements OrderedFixtureInterface
             $manager->persist($coordonnees[$i]);
 
             $coordonnees[$i]->setCoordinatesFR($this->getReference('coordinatesfr-' . $i));
-            $coordonnees[$i]->setCoordonneesPays($this->getReference('coordonneespays-0'));
+            $coordonnees[$i]->setCoordinatesCountry($this->getReference('coordinatescountry-0'));
 
             $this->addReference('coordonnees-' . $i, $coordonnees[$i]);            
         }
@@ -59,7 +59,7 @@ class Coordonnees extends AbstractFixture implements OrderedFixtureInterface
             $manager->persist($coordonnees[$i]);
 
             $coordonnees[$i]->setCoordinatesFR($this->getReference('coordinatesfr-' . $i));
-            $coordonnees[$i]->setCoordonneesPays($this->getReference('coordonneespays-0'));
+            $coordonnees[$i]->setCoordinatesCountry($this->getReference('coordinatescountry-0'));
 
             $this->addReference('coordonnees-' . $i, $coordonnees[$i]);            
         }  */      

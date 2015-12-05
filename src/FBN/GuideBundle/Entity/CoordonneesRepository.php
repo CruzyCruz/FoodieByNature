@@ -19,7 +19,7 @@ class CoordonneesRepository extends EntityRepository
 	       ->addSelect('cfr')	
 	       ->leftJoin('cfr.coordinatesFRLane', 'cfrv')
 	       ->addSelect('cfrv')
-	       ->leftJoin('c.coordonneesPays', 'cp')
+	       ->leftJoin('c.coordinatesCountry', 'cp')
 	       ->addSelect('cp');
 
 	   	return $qb; 

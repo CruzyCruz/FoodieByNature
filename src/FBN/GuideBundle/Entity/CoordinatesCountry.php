@@ -5,16 +5,15 @@ namespace FBN\GuideBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CoordonneesPays
+ * CoordinatesCountry.
  *
- * @ORM\Table(name="coordonneespays")
- * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordonneesPaysRepository")
+ * @ORM\Table(name="coordinatescountry")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordinatesCountryRepository")
  */
-class CoordonneesPays
+class CoordinatesCountry
 {
-
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -51,9 +50,9 @@ class CoordonneesPays
     private $longitude;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -61,10 +60,11 @@ class CoordonneesPays
     }
 
     /**
-     * Set country
+     * Set country.
      *
      * @param string $country
-     * @return CoordonneesPays
+     *
+     * @return CoordinatesCountry
      */
     public function setCountry($country)
     {
@@ -74,9 +74,9 @@ class CoordonneesPays
     }
 
     /**
-     * Get country
+     * Get country.
      *
-     * @return string 
+     * @return string
      */
     public function getCountry()
     {
@@ -84,10 +84,11 @@ class CoordonneesPays
     }
 
     /**
-     * Set codeISO
+     * Set codeISO.
      *
      * @param string $codeISO
-     * @return CoordonneesPays
+     *
+     * @return CoordinatesCountry
      */
     public function setCodeISO($codeISO)
     {
@@ -97,19 +98,20 @@ class CoordonneesPays
     }
 
     /**
-     * Get codeISO
+     * Get codeISO.
      *
-     * @return string 
+     * @return string
      */
     public function getCodeISO()
     {
         return $this->codeISO;
     }
 
- /**
-     * Set latitude
+    /**
+     * Set latitude.
      *
      * @param string $latitude
+     *
      * @return Coordonnees
      */
     public function setLatitude($latitude)
@@ -120,9 +122,9 @@ class CoordonneesPays
     }
 
     /**
-     * Get latitude
+     * Get latitude.
      *
-     * @return string 
+     * @return string
      */
     public function getLatitude()
     {
@@ -130,9 +132,10 @@ class CoordonneesPays
     }
 
     /**
-     * Set longitude
+     * Set longitude.
      *
      * @param string $longitude
+     *
      * @return Coordonnees
      */
     public function setLongitude($longitude)
@@ -143,12 +146,12 @@ class CoordonneesPays
     }
 
     /**
-     * Get longitude
+     * Get longitude.
      *
-     * @return string 
+     * @return string
      */
     public function getLongitude()
     {
         return $this->longitude;
-    }    
+    }
 }

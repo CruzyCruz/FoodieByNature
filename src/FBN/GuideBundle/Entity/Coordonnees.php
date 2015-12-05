@@ -14,10 +14,10 @@ class Coordonnees
 {
  
   /**
-   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordonneesPays")
+   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesCountry")
    * @ORM\JoinColumn(nullable=false)
    */
-  private $coordonneesPays; 
+  private $coordinatesCountry; 
 
   /**
    * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFR", cascade={"persist"})
@@ -166,26 +166,26 @@ class Coordonnees
     }
 
     /**
-     * Set coordonneesPays
+     * Set coordinatesCountry
      *
-     * @param \FBN\GuideBundle\Entity\CoordonneesPays $coordonneesPays
+     * @param \FBN\GuideBundle\Entity\CoordinatesCountry $coordinatesCountry
      * @return Coordonnees
      */
-    public function setCoordonneesPays(\FBN\GuideBundle\Entity\CoordonneesPays $coordonneesPays)
+    public function setCoordinatesCountry(\FBN\GuideBundle\Entity\CoordinatesCountry $coordinatesCountry)
     {
-        $this->coordonneesPays = $coordonneesPays;
+        $this->coordinatesCountry = $coordinatesCountry;
 
         return $this;
     }
 
     /**
-     * Get coordonneesPays
+     * Get coordinatesCountry
      *
-     * @return \FBN\GuideBundle\Entity\CoordonneesPays 
+     * @return \FBN\GuideBundle\Entity\CoordinatesCountry 
      */
-    public function getCoordonneesPays()
+    public function getCoordinatesCountry()
     {
-        return $this->coordonneesPays;
+        return $this->coordinatesCountry;
     }
 
     /**
