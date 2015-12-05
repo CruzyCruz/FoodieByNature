@@ -15,7 +15,7 @@ class GuideController extends Controller
         $route = $this->container->get('router')->getRouteCollection()->get('fbn_guide_articles');
         $requirements = explode('|', $route->getRequirement('articles'));
 
-        $lastarticles = new \ArrayObject();
+        $lastArticles = new \ArrayObject();
 
         $em = $this->getDoctrine()->getManager();
 
@@ -25,14 +25,14 @@ class GuideController extends Controller
             $articles = $em->getRepository('FBNGuideBundle:'.$entite)->getArticlesImages(0, Article::NUM_ITEMS_HOMEPAGE);
 
             foreach ($articles as $article) {
-                $lastarticles->append($article);
+                $lastArticles->append($article);
             }
         }
 
-        $lastarticles->uasort('FBN\GuideBundle\Controller\GuideController::compareDate');
+        $lastArticles->uasort('FBN\GuideBundle\Controller\GuideController::compareDate');
 
         return $this->render('FBNGuideBundle:Guide:index.html.twig', array(
-            'lastarticles' => $lastarticles,
+            'lastArticles' => $lastArticles,
         ));
     }
 

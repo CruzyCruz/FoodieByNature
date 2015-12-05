@@ -7,7 +7,7 @@
 
 {% block body %}
 <ul>
-  {% for article in lastarticles %}
+  {% for article in lastArticles %}
   	{% if article.class | lower ~ 's' =='infos' %}
   		<a href="{{ path('fbn_guide_articles', {'articles': article.class | lower ~ 's'} ) }}#{{ article.slug }}">{{ article.name }}</a>  		
   	{% else %}
