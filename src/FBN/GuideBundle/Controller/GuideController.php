@@ -42,9 +42,9 @@ class GuideController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $repomenu = $em->getRepository('FBNGuideBundle:Menu');
+        $repoMenu = $em->getRepository('FBNGuideBundle:Menu');
 
-        $menu = $repomenu->findOneBy(array('section' => $entite));
+        $menu = $repoMenu->findOneBy(array('section' => $entite));
 
         $articles = $em->getRepository('FBNGuideBundle:'.$entite)->getArticlesImages();
 
