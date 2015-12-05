@@ -27,8 +27,8 @@ $(function() {
                         else if ($('.winemakers .bookmark').length == 1) {                              
                             $('.winemakers').remove();
                         }                        
-                        else if ($('.cavistes .bookmark').length == 1) {                            
-                            $('.cavistes').remove();
+                        else if ($('.shops .bookmark').length == 1) {                            
+                            $('.shops').remove();
                         }  
                         else {
                             $('#bookmark-' + data.bookmarkId).remove();
