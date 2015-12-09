@@ -12,25 +12,25 @@ use Doctrine\ORM\EntityRepository;
  */
 class BookmarkRepository extends EntityRepository
 {
-    public function getBookmarkByEntiteId($userId, $entite, $entiteId)
+    public function getBookmarkByEntityId($userId, $entity, $entityId)
     {
         $qb = $this->createQueryBuilder('f')
                     ->where('f.user = :user_id')
                     ->setParameter('user_id', $userId)
-                    ->andwhere('f.'.$entite.' = :entite_id')
-                    ->setParameter('entite_id', $entiteId);
+                    ->andwhere('f.'.$entity.' = :entity_id')
+                    ->setParameter('entity_id', $entityId);
 
         return $qb->getQuery()
             ->getOneOrNullResult();
     }
 
-    public function getBookmarksByEntite($userId, $entite)
+    public function getBookmarksByEntity($userId, $entity)
     {
         // Using join to only take data with correspondances
         $qb = $this->createQueryBuilder('f')
                     ->where('f.user = :user_id')
                     ->setParameter('user_id', $userId)
-                   ->join('f.'.$entite, 'fr')
+                   ->join('f.'.$entity, 'fr')
                    ->addSelect('fr');
 
         return $qb->getQuery()

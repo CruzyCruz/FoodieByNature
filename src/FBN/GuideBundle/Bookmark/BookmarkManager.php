@@ -40,7 +40,7 @@ class BookmarkManager
         $this->accessor = PropertyAccess::createPropertyAccessor();
     }
 
-    public function manage($bookmarkAction, $bookmarkId, $bookmarkEntite, $bookmarkEntiteId)
+    public function manage($bookmarkAction, $bookmarkId, $bookmarkEntity, $bookmarkEntityId)
     {
 
         // Only authorized actions and bookmarks
@@ -51,11 +51,11 @@ class BookmarkManager
         if ($bookmarkAction == 'add') {
 
             // Only authorized entities
-            if (!in_array($bookmarkEntite, $this->session->get('bookmarkEntite')) || !in_array($bookmarkEntiteId, $this->session->get('bookmarkEntiteId'))) {
+            if (!in_array($bookmarkEntity, $this->session->get('bookmarkEntity')) || !in_array($bookmarkEntityId, $this->session->get('bookmarkEntityId'))) {
                 return new JsonResponse('', 403);
             }
 
-            $bookmark = $this->add($bookmarkEntite, $bookmarkEntiteId);
+            $bookmark = $this->add($bookmarkEntity, $bookmarkEntityId);
 
             if (null === $bookmark) {
                 return new JsonResponse('', 404);
@@ -96,16 +96,16 @@ class BookmarkManager
         }
     }
 
-    private function add($entite, $entiteId)
+    private function add($entity, $entityId)
     {
         // To access add function user connection is mandatory du to login entry point
         $user = $this->getUser();
 
-        $entite = ucfirst($entite);
+        $entity = ucfirst($entity);
 
-        $repo = $this->em->getRepository('FBNGuideBundle:'.$entite);
+        $repo = $this->em->getRepository('FBNGuideBundle:'.$entity);
 
-        $instance = $repo->findOneBy(array('id' => $entiteId));
+        $instance = $repo->findOneBy(array('id' => $entityId));
 
         if (null === $instance) {
             return;
@@ -113,7 +113,7 @@ class BookmarkManager
 
         $bookmark = new Bookmark();
         $bookmark->setUser($user);
-        $this->accessor->setValue($bookmark, $entite, $instance);
+        $this->accessor->setValue($bookmark, $entity, $instance);
 
         $this->em->persist($bookmark);
         $this->em->flush();
@@ -136,7 +136,7 @@ class BookmarkManager
         return $bookmark;
     }
 
-    public function checkStatus($entite, $entiteId)
+    public function checkStatus($entity, $entityId)
     {
         // Default if user is not connected
         $bookmarkAction = 'add';
@@ -147,7 +147,7 @@ class BookmarkManager
                 $userId = $user->getId();
 
                 $bookmark = $this->em->getRepository('FBNGuideBundle:Bookmark')
-                        ->getBookmarkByEntiteId($userId, $entite, $entiteId);
+                        ->getBookmarkByEntityId($userId, $entity, $entityId);
 
                 if (null !== $bookmark) {
                     $bookmarkAction = 'remove';
@@ -156,19 +156,19 @@ class BookmarkManager
             }
         }
 
-        $this->setSessionVariable(array($bookmarkAction), array($bookmarkId), array($entite), array($entiteId));
+        $this->setSessionVariable(array($bookmarkAction), array($bookmarkId), array($entity), array($entityId));
 
         return array('bookmarkAction' => $bookmarkAction,
             'bookmarkId' => $bookmarkId,
         );
     }
 
-    public function setSessionVariable($bookmarkAction, $bookmarkId, $entite, $entiteId)
+    public function setSessionVariable($bookmarkAction, $bookmarkId, $entity, $entityId)
     {
         $this->session->set('bookmarkAction', $bookmarkAction);
         $this->session->set('bookmarkId', $bookmarkId);
-        $this->session->set('bookmarkEntite', $entite);
-        $this->session->set('bookmarkEntiteId', $entiteId);
+        $this->session->set('bookmarkEntity', $entity);
+        $this->session->set('bookmarkEntityId', $entityId);
     }
 
     private function getUser()

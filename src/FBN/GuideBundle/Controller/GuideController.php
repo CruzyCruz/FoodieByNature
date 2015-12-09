@@ -20,9 +20,9 @@ class GuideController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         foreach ($requirements as $requirement) {
-            $entite = $this->requirementToEntity($requirement);
+            $entity = $this->requirementToEntity($requirement);
 
-            $articles = $em->getRepository('FBNGuideBundle:'.$entite)->getArticlesImages(0, Article::NUM_ITEMS_HOMEPAGE);
+            $articles = $em->getRepository('FBNGuideBundle:'.$entity)->getArticlesImages(0, Article::NUM_ITEMS_HOMEPAGE);
 
             foreach ($articles as $article) {
                 $lastArticles->append($article);
@@ -38,15 +38,15 @@ class GuideController extends Controller
 
     public function articlesAction($articles)
     {
-        $entite = $this->requirementToEntity($articles);
+        $entity = $this->requirementToEntity($articles);
 
         $em = $this->getDoctrine()->getManager();
 
         $repoMenu = $em->getRepository('FBNGuideBundle:Menu');
 
-        $menu = $repoMenu->findOneBy(array('section' => $entite));
+        $menu = $repoMenu->findOneBy(array('section' => $entity));
 
-        $articles = $em->getRepository('FBNGuideBundle:'.$entite)->getArticlesImages();
+        $articles = $em->getRepository('FBNGuideBundle:'.$entity)->getArticlesImages();
 
         return $this->render('FBNGuideBundle:Guide:articles.html.twig', array(
             'menu' => $menu,
@@ -78,7 +78,7 @@ class GuideController extends Controller
         return $this->render('FBNGuideBundle:Guide:restaurant.html.twig', array(
             'restaurant' => $restaurant,
             'map' => $map,
-            'entite' => 'restaurant',
+            'entity' => 'restaurant',
             'bookmarkAction' => $bookmarkAction,
             'bookmarkId' => $bookmarkId,
         ));
@@ -110,7 +110,7 @@ class GuideController extends Controller
         return $this->render('FBNGuideBundle:Guide:winemaker.html.twig', array(
             'winemaker' => $winemaker,
             'map' => $map,
-            'entite' => 'winemaker',
+            'entity' => 'winemaker',
             'bookmarkAction' => $bookmarkAction,
             'bookmarkId' => $bookmarkId,
         ));
@@ -185,7 +185,7 @@ class GuideController extends Controller
             'shop' => $shop,
             'sharedData' => $sharedData,
             'map' => $map,
-            'entite' => 'shop',
+            'entity' => 'shop',
             'bookmarkAction' => $bookmarkAction,
             'bookmarkId' => $bookmarkId,
         ));
@@ -201,9 +201,9 @@ class GuideController extends Controller
             ->getManager()
             ->getRepository('FBNGuideBundle:Bookmark');
 
-        $restaurants = $bookmarkRepo->getBookmarksByEntite($userId, 'restaurant');
-        $winemakers = $bookmarkRepo->getBookmarksByEntite($userId, 'winemaker');
-        $shops = $bookmarkRepo->getBookmarksByEntite($userId, 'shop');
+        $restaurants = $bookmarkRepo->getBookmarksByEntity($userId, 'restaurant');
+        $winemakers = $bookmarkRepo->getBookmarksByEntity($userId, 'winemaker');
+        $shops = $bookmarkRepo->getBookmarksByEntity($userId, 'shop');
 
         $bookmarks = array_merge($restaurants, $winemakers, $shops);
         $bookmarkIds = array();
@@ -226,12 +226,12 @@ class GuideController extends Controller
         if ($request->isXmlHttpRequest()) {
             $bookmarkAction = $request->request->get('bookmarkAction');
             $bookmarkId = $request->request->get('bookmarkId');
-            $bookmarkEntite = $request->request->get('bookmarkEntite');
-            $bookmarkEntiteId = $request->request->get('bookmarkEntiteId');
+            $bookmarkEntity = $request->request->get('bookmarkEntity');
+            $bookmarkEntityId = $request->request->get('bookmarkEntityId');
 
             $bookmarkManager = $this->container->get('fbn_guide.bookmark_manager');
 
-            return  $bookmarkManager->manage($bookmarkAction, $bookmarkId, $bookmarkEntite, $bookmarkEntiteId);
+            return  $bookmarkManager->manage($bookmarkAction, $bookmarkId, $bookmarkEntity, $bookmarkEntityId);
         }
     }
 
