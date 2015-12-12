@@ -1,8 +1,8 @@
 # src/FBN/GuideBundle/Resources/config/routing.yml
 
-fbn_guide_accueil:
+fbn_guide_home:
     path:  /
-    defaults: { _controller: FBNGuideBundle:Guide:accueil }
+    defaults: { _controller: FBNGuideBundle:Guide:home }
 
 fbn_guide_articles:
     path:  /{articles}

@@ -79,7 +79,7 @@ class AlreadyLoggedListener implements EventSubscriberInterface
             {
                 if (in_array($route,$this->blockedRoutes))
                 {
-                    $url = $this->router->generate('fbn_guide_accueil');
+                    $url = $this->router->generate('fbn_guide_home');
                     $event->setResponse(new RedirectResponse($url));                        
 
                     $event = new Event();                        

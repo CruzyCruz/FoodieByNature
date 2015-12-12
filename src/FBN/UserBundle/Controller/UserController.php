@@ -40,7 +40,7 @@ class UserController extends Controller
             $dispatcher = $this->get('event_dispatcher');
             $dispatcher->dispatch(FBNUserEvents::PROFILE_USER_DELETED, $event);
 
-            $url = $this->generateUrl('fbn_guide_accueil');
+            $url = $this->generateUrl('fbn_guide_home');
 
             return new RedirectResponse($url);
         }

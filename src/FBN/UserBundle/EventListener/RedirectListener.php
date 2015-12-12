@@ -39,7 +39,7 @@ class RedirectListener implements EventSubscriberInterface
 
     public function onSuccess(Event $event)
     {
-        $url = $this->router->generate('fbn_guide_accueil');
+        $url = $this->router->generate('fbn_guide_home');
 
         $event->setResponse(new RedirectResponse($url));
     }

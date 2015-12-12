@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class GuideController extends Controller
 {
-    public function accueilAction()
+    public function homeAction()
     {
         $route = $this->container->get('router')->getRouteCollection()->get('fbn_guide_articles');
         $requirements = explode('|', $route->getRequirement('articles'));

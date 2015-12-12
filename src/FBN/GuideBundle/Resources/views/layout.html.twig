@@ -1,7 +1,7 @@
 {# src/FBN/GuideBundle/Resources/views/layout.html.twig #}
 
 {# Coming to homepage from another template using render(controller()) (flash messages) #}
-{% set route = app.request.get('_route') ? app.request.get('_route') : 'fbn_guide_accueil' %}
+{% set route = app.request.get('_route') ? app.request.get('_route') : 'fbn_guide_home' %}
 {% set route_params = app.request.get('_route_params') ? app.request.get('_route_params') : { '_locale' : ''} %}
 
 {% extends "::layout.html.twig" %}
@@ -38,7 +38,7 @@
   {% endif %}     
   
 	<nav>      
-    <a href="{{ path('fbn_guide_accueil') }}">FBN</a> 
+    <a href="{{ path('fbn_guide_home') }}">FBN</a> 
 
     </br>
 
