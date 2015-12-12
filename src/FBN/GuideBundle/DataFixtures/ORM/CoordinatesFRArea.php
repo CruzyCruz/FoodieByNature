@@ -9,7 +9,7 @@ namespace FBN\GuideBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use FBN\GuideBundle\Entity\CoordinatesFRArea as CoordFRRegion;
+use FBN\GuideBundle\Entity\CoordinatesFRArea as CoordFRArea;
 
 class CoordinatesFRArea extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -47,7 +47,7 @@ class CoordinatesFRArea extends AbstractFixture implements OrderedFixtureInterfa
                         );
 
         foreach ($areas as $i => $area) {
-            $coordinatesfrarea[$i] = new CoordFRRegion();
+            $coordinatesfrarea[$i] = new CoordFRArea();
             $coordinatesfrarea[$i]->setArea($area);
 
             $manager->persist($coordinatesfrarea[$i]);

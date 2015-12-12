@@ -9,7 +9,7 @@ namespace FBN\GuideBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use FBN\GuideBundle\Entity\RestaurantPrice as RestPrice;
+use FBN\GuideBundle\Entity\RestaurantPrice as RestrntPrice;
 
 class RestaurantPrice extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -23,7 +23,7 @@ class RestaurantPrice extends AbstractFixture implements OrderedFixtureInterface
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
         foreach ($prices as $i => $price) {
-            $restaurantprice[$i] = new RestPrice();
+            $restaurantprice[$i] = new RestrntPrice();
             $restaurantprice[$i]->setPrice($price);
 
             $repository->translate($restaurantprice[$i], 'price', 'en', $pricesen[$i]);

@@ -9,7 +9,7 @@ namespace FBN\GuideBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use FBN\GuideBundle\Entity\Restaurant as Resto;
+use FBN\GuideBundle\Entity\Restaurant as Restrnt;
 
 class Restaurant extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -63,7 +63,7 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
         foreach ($names as $i => $name) {
-            $restaurant[$i] = new Resto();
+            $restaurant[$i] = new Restrnt();
             $restaurant[$i]->setName($name);
         }
 

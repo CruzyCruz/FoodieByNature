@@ -9,7 +9,7 @@ namespace FBN\GuideBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use FBN\GuideBundle\Entity\CoordinatesFRLane as CoordFRVoie;
+use FBN\GuideBundle\Entity\CoordinatesFRLane as CoordFRLane;
 
 class CoordinatesFRLane extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -36,7 +36,7 @@ class CoordinatesFRLane extends AbstractFixture implements OrderedFixtureInterfa
                         );
 
         foreach ($lanes as $i => $lane) {
-            $coordinatesfrlane[$i] = new CoordFRVoie();
+            $coordinatesfrlane[$i] = new CoordFRLane();
             $coordinatesfrlane[$i]->setLane($lane);
 
             $manager->persist($coordinatesfrlane[$i]);
