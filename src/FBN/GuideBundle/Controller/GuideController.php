@@ -10,43 +10,43 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class GuideController extends Controller
 {
-    public function accueilAction()
+    public function homeAction()
     {
         $route = $this->container->get('router')->getRouteCollection()->get('fbn_guide_articles');
         $requirements = explode('|', $route->getRequirement('articles'));
 
-        $lastarticles = new \ArrayObject();
+        $lastArticles = new \ArrayObject();
 
         $em = $this->getDoctrine()->getManager();
 
         foreach ($requirements as $requirement) {
-            $entite = $this->requirementToEntity($requirement);
+            $entity = $this->requirementToEntity($requirement);
 
-            $articles = $em->getRepository('FBNGuideBundle:'.$entite)->getArticlesImages(0, Article::NUM_ITEMS_HOMEPAGE);
+            $articles = $em->getRepository('FBNGuideBundle:'.$entity)->getArticlesImages(0, Article::NUM_ITEMS_HOMEPAGE);
 
             foreach ($articles as $article) {
-                $lastarticles->append($article);
+                $lastArticles->append($article);
             }
         }
 
-        $lastarticles->uasort('FBN\GuideBundle\Controller\GuideController::compareDate');
+        $lastArticles->uasort('FBN\GuideBundle\Controller\GuideController::compareDate');
 
         return $this->render('FBNGuideBundle:Guide:index.html.twig', array(
-            'lastarticles' => $lastarticles,
+            'lastArticles' => $lastArticles,
         ));
     }
 
     public function articlesAction($articles)
     {
-        $entite = $this->requirementToEntity($articles);
+        $entity = $this->requirementToEntity($articles);
 
         $em = $this->getDoctrine()->getManager();
 
-        $repomenu = $em->getRepository('FBNGuideBundle:Menu');
+        $repoMenu = $em->getRepository('FBNGuideBundle:Menu');
 
-        $menu = $repomenu->findOneBy(array('entite' => $entite));
+        $menu = $repoMenu->findOneBy(array('section' => $entity));
 
-        $articles = $em->getRepository('FBNGuideBundle:'.$entite)->getArticlesImages();
+        $articles = $em->getRepository('FBNGuideBundle:'.$entity)->getArticlesImages();
 
         return $this->render('FBNGuideBundle:Guide:articles.html.twig', array(
             'menu' => $menu,
@@ -66,7 +66,7 @@ class GuideController extends Controller
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        $latlngs[] = array('lat' => $restaurant->getCoordonnees()->getLatitude(), 'lng' => $restaurant->getCoordonnees()->getLongitude());
+        $latlngs[] = array('lat' => $restaurant->getCoordinates()->getLatitude(), 'lng' => $restaurant->getCoordinates()->getLongitude());
 
         $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'restaurant');
 
@@ -78,134 +78,134 @@ class GuideController extends Controller
         return $this->render('FBNGuideBundle:Guide:restaurant.html.twig', array(
             'restaurant' => $restaurant,
             'map' => $map,
-            'entite' => 'restaurant',
+            'entity' => 'restaurant',
             'bookmarkAction' => $bookmarkAction,
             'bookmarkId' => $bookmarkId,
         ));
     }
 
-    public function vigneronAction($slug)
+    public function winemakerAction($slug)
     {
-        $vigneron = $this
+        $winemaker = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('FBNGuideBundle:Vigneron')
-            ->getVigneron($slug);
+            ->getRepository('FBNGuideBundle:Winemaker')
+            ->getWinemaker($slug);
 
-        if (null === $vigneron) {
+        if (null === $winemaker) {
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        foreach ($vigneron->getVigneronDomaine() as $vd) {
-            $latlngs[] = array('lat' => $vd->getCoordonnees()->getLatitude(), 'lng' => $vd->getCoordonnees()->getLongitude());
+        foreach ($winemaker->getWinemakerDomain() as $vd) {
+            $latlngs[] = array('lat' => $vd->getCoordinates()->getLatitude(), 'lng' => $vd->getCoordinates()->getLongitude());
         }
 
-        $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'vigneron');
+        $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'winemaker');
 
         $bookmarkManager = $this->container->get('fbn_guide.bookmark_manager');
-        $bookmarkStatus = $bookmarkManager->checkStatus('vigneron', $vigneron->getId());
+        $bookmarkStatus = $bookmarkManager->checkStatus('winemaker', $winemaker->getId());
         $bookmarkAction = $bookmarkStatus['bookmarkAction'];
         $bookmarkId = $bookmarkStatus['bookmarkId'];
 
-        return $this->render('FBNGuideBundle:Guide:vigneron.html.twig', array(
-            'vigneron' => $vigneron,
+        return $this->render('FBNGuideBundle:Guide:winemaker.html.twig', array(
+            'winemaker' => $winemaker,
             'map' => $map,
-            'entite' => 'vigneron',
+            'entity' => 'winemaker',
             'bookmarkAction' => $bookmarkAction,
             'bookmarkId' => $bookmarkId,
         ));
     }
 
-    public function evenementAction($slug)
+    public function eventAction($slug)
     {
-        $evenement = $this
+        $event = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('FBNGuideBundle:Evenement')
-            ->getEvenement($slug);
+            ->getRepository('FBNGuideBundle:Event')
+            ->getEvent($slug);
 
-        if (null === $evenement) {
+        if (null === $event) {
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        ($lieuevt = $evenement->getRestaurant()) || ($lieuevt = $evenement->getCaviste()) || ($lieuevt = $evenement->getVigneronDomaine()) || ($lieuevt = $evenement->getEvenementPast()) || ($lieuevt = $evenement);
+        ($placeEvt = $event->getRestaurant()) || ($placeEvt = $event->getShop()) || ($placeEvt = $event->getWinemakerDomain()) || ($placeEvt = $event->getEventPast()) || ($placeEvt = $event);
 
-        $latlngs[] = array('lat' => $lieuevt->getCoordonnees()->getLatitude(), 'lng' => $lieuevt->getCoordonnees()->getLongitude());
+        $latlngs[] = array('lat' => $placeEvt->getCoordinates()->getLatitude(), 'lng' => $placeEvt->getCoordinates()->getLongitude());
 
-        $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'evenement');
+        $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'event');
 
-        return $this->render('FBNGuideBundle:Guide:evenement.html.twig', array(
-            'evenement' => $evenement,
-            'lieuevt' => $lieuevt,
+        return $this->render('FBNGuideBundle:Guide:event.html.twig', array(
+            'event' => $event,
+            'placeEvt' => $placeEvt,
             'map' => $map,
         ));
     }
 
-    public function tutorielAction($slug)
+    public function tutorialAction($slug)
     {
-        $tutoriel = $this
+        $tutorial = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('FBNGuideBundle:Tutoriel')
-            ->getTutoriel($slug);
+            ->getRepository('FBNGuideBundle:Tutorial')
+            ->getTutorial($slug);
 
-        if (null === $tutoriel) {
+        if (null === $tutorial) {
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        return $this->render('FBNGuideBundle:Guide:tutoriel.html.twig', array(
-            'tutoriel' => $tutoriel,
+        return $this->render('FBNGuideBundle:Guide:tutorial.html.twig', array(
+            'tutorial' => $tutorial,
         ));
     }
 
-    public function cavisteAction($slug)
+    public function shopAction($slug)
     {
-        $caviste = $this
+        $shop = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('FBNGuideBundle:Caviste')
-            ->getcaviste($slug);
+            ->getRepository('FBNGuideBundle:Shop')
+            ->getshop($slug);
 
-        if (null === $caviste) {
+        if (null === $shop) {
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        ($sharedData = $caviste->getRestaurant()) || ($sharedData = $caviste);
+        ($sharedData = $shop->getRestaurant()) || ($sharedData = $shop);
 
-        $latlngs[] = array('lat' => $sharedData->getCoordonnees()->getLatitude(), 'lng' => $sharedData->getCoordonnees()->getLongitude());
+        $latlngs[] = array('lat' => $sharedData->getCoordinates()->getLatitude(), 'lng' => $sharedData->getCoordinates()->getLongitude());
 
-        $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'caviste');
+        $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'shop');
 
         $bookmarkManager = $this->container->get('fbn_guide.bookmark_manager');
-        $bookmarkStatus = $bookmarkManager->checkStatus('caviste', $caviste->getId());
+        $bookmarkStatus = $bookmarkManager->checkStatus('shop', $shop->getId());
         $bookmarkAction = $bookmarkStatus['bookmarkAction'];
         $bookmarkId = $bookmarkStatus['bookmarkId'];
 
-        return $this->render('FBNGuideBundle:Guide:caviste.html.twig', array(
-            'caviste' => $caviste,
+        return $this->render('FBNGuideBundle:Guide:shop.html.twig', array(
+            'shop' => $shop,
             'sharedData' => $sharedData,
             'map' => $map,
-            'entite' => 'caviste',
+            'entity' => 'shop',
             'bookmarkAction' => $bookmarkAction,
             'bookmarkId' => $bookmarkId,
         ));
     }
 
-    public function favorisAction()
+    public function bookmarksAction()
     {
         // User connexion is checked using custom LoginEntryPoint
         $userId = $this->getUser()->getId();
         $bookmarkManager = $this->container->get('fbn_guide.bookmark_manager');
-        $favoriRepo = $this
+        $bookmarkRepo = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('FBNGuideBundle:Favori');
+            ->getRepository('FBNGuideBundle:Bookmark');
 
-        $restaurants = $favoriRepo->getFavorisByEntite($userId, 'restaurant');
-        $vignerons = $favoriRepo->getFavorisByEntite($userId, 'vigneron');
-        $cavistes = $favoriRepo->getFavorisByEntite($userId, 'caviste');
+        $restaurants = $bookmarkRepo->getBookmarksByEntity($userId, 'restaurant');
+        $winemakers = $bookmarkRepo->getBookmarksByEntity($userId, 'winemaker');
+        $shops = $bookmarkRepo->getBookmarksByEntity($userId, 'shop');
 
-        $bookmarks = array_merge($restaurants, $vignerons, $cavistes);
+        $bookmarks = array_merge($restaurants, $winemakers, $shops);
         $bookmarkIds = array();
         foreach ($bookmarks as $bookmark) {
             $bookmarkIds[] = $bookmark['id'];
@@ -213,25 +213,25 @@ class GuideController extends Controller
 
         $bookmarkManager->setSessionVariable(array('remove_only'), $bookmarkIds, array(null), array(null));
 
-        return $this->render('FBNGuideBundle:Guide:favoris.html.twig', array(
+        return $this->render('FBNGuideBundle:Guide:bookmarks.html.twig', array(
             'restaurants' => $restaurants,
-            'vignerons' => $vignerons,
-            'cavistes' => $cavistes,
+            'winemakers' => $winemakers,
+            'shops' => $shops,
             'bookmarkIds' => $bookmarkIds,
         ));
     }
 
-    public function favoriManageAction(Request $request)
+    public function bookmarkManageAction(Request $request)
     {
         if ($request->isXmlHttpRequest()) {
             $bookmarkAction = $request->request->get('bookmarkAction');
             $bookmarkId = $request->request->get('bookmarkId');
-            $bookmarkEntite = $request->request->get('bookmarkEntite');
-            $bookmarkEntiteId = $request->request->get('bookmarkEntiteId');
+            $bookmarkEntity = $request->request->get('bookmarkEntity');
+            $bookmarkEntityId = $request->request->get('bookmarkEntityId');
 
             $bookmarkManager = $this->container->get('fbn_guide.bookmark_manager');
 
-            return  $bookmarkManager->manage($bookmarkAction, $bookmarkId, $bookmarkEntite, $bookmarkEntiteId);
+            return  $bookmarkManager->manage($bookmarkAction, $bookmarkId, $bookmarkEntity, $bookmarkEntityId);
         }
     }
 

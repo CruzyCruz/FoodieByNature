@@ -25,9 +25,9 @@ class Menu
     /**
      * @var string
      *
-     * @ORM\Column(name="entite", type="string", length=255, unique=true)
+     * @ORM\Column(name="section", type="string", length=255, unique=true)
      */
-    private $entite;
+    private $section;
 
     /**
      * @var string
@@ -57,26 +57,26 @@ class Menu
     }
 
     /**
-     * Set entite
+     * Set section
      *
-     * @param string $entite
+     * @param string $section
      * @return Menu
      */
-    public function setEntite($entite)
+    public function setSection($section)
     {
-        $this->entite = $entite;
+        $this->section = $section;
 
         return $this;
     }
 
     /**
-     * Get entite
+     * Get section
      *
      * @return string 
      */
-    public function getEntite()
+    public function getSection()
     {
-        return $this->entite;
+        return $this->section;
     }
 
     /**

@@ -17,18 +17,18 @@ $(function() {
 
                 $.ajax({
                     type: 'POST',                                     
-                    url: Routing.generate('fbn_guide_favoris_manage'),
+                    url: Routing.generate('fbn_guide_bookmarks_manage'),
                     data : { bookmarkAction : bookmarkAction, bookmarkId : bookmarkId },
                     success: function(data) {
                         // Checking removal of last element in category                        
                         if ($('.restaurants .bookmark').length == 1) {                                
                             $('.restaurants').remove();
                         }                                                
-                        else if ($('.vignerons .bookmark').length == 1) {                              
-                            $('.vignerons').remove();
+                        else if ($('.winemakers .bookmark').length == 1) {                              
+                            $('.winemakers').remove();
                         }                        
-                        else if ($('.cavistes .bookmark').length == 1) {                            
-                            $('.cavistes').remove();
+                        else if ($('.shops .bookmark').length == 1) {                            
+                            $('.shops').remove();
                         }  
                         else {
                             $('#bookmark-' + data.bookmarkId).remove();

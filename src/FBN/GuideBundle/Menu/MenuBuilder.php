@@ -38,28 +38,28 @@ class MenuBuilder
             'routeParameters' => array( 'articles' => 'restaurants' )
             ));        
 
-        $mainmenu->addChild('fbn.guide.mainmenu.vignerons' , array(
+        $mainmenu->addChild('fbn.guide.mainmenu.winemakers' , array(
             'route'           => 'fbn_guide_articles',
-            'routeParameters' => array( 'articles' => 'vignerons' )
+            'routeParameters' => array( 'articles' => 'winemakers' )
             ));   
 
-        $mainmenu->addChild('fbn.guide.mainmenu.evenements' , array(
+        $mainmenu->addChild('fbn.guide.mainmenu.events' , array(
             'route'           => 'fbn_guide_articles',
-            'routeParameters' => array( 'articles' => 'evenements' )
+            'routeParameters' => array( 'articles' => 'events' )
             ));      
         
-        $mainmenu->addChild('fbn.guide.mainmenu.tutoriels' , array(
+        $mainmenu->addChild('fbn.guide.mainmenu.tutorials' , array(
             'route'           => 'fbn_guide_articles',
-            'routeParameters' => array( 'articles' => 'tutoriels' )
+            'routeParameters' => array( 'articles' => 'tutorials' )
             ));   
 
-        $mainmenu->addChild('fbn.guide.mainmenu.cavistes' , array(
+        $mainmenu->addChild('fbn.guide.mainmenu.shops' , array(
             'route'           => 'fbn_guide_articles',
-            'routeParameters' => array( 'articles' => 'cavistes' )
+            'routeParameters' => array( 'articles' => 'shops' )
             ));
 
-        $mainmenu->addChild('fbn.guide.mainmenu.favoris' , array(
-            'route'           => 'fbn_guide_favoris'
+        $mainmenu->addChild('fbn.guide.mainmenu.bookmarks' , array(
+            'route'           => 'fbn_guide_bookmarks'
             ));                                                     
 
         return $mainmenu;

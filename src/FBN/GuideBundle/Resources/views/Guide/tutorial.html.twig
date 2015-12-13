@@ -1,0 +1,43 @@
+{# src/FBN/GuideBundle/Resources/views/winemaker.html.twig #}
+
+{% extends "FBNGuideBundle::layout.html.twig" %}
+
+{% block title %}
+	{{ tutorial.name }}
+{% endblock %}
+
+{% block body %}
+
+
+<h1>{{ tutorial.name  }}</h1>
+
+{% if tutorial.image is not null %}
+  <img 
+    src="{{ asset(tutorial.image.webPath) }}"
+    alt="{{ tutorial.name }}"
+  />
+{% endif %}    
+
+<p>{{ tutorial.description }}</p>  
+
+{% for tc in tutorial.tutorialChapter %}
+  
+  <h3>{{ tc.title }}</h3>
+
+  {% for tcp in tc.TutorialChapterPara %}
+
+    <p>{{ tcp.paragraph }}</p>
+
+	{% if tcp.image is not null %}
+	  <img 
+	    src="{{ asset(tcp.image.webPath) }}"
+	    alt="{{ tcp.image.legend }}"
+	  />   
+	{% endif %}  	 
+
+  {% endfor %}
+
+{% endfor %}
+
+
+{% endblock %}

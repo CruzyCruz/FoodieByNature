@@ -1,0 +1,88 @@
+{# src/FBN/GuideBundle/Resources/views/shop.html.twig #}
+
+{% extends "FBNGuideBundle::layout.html.twig" %}
+
+{% block title %}
+	{{ sharedData.name }}
+{% endblock %}
+
+{% block body %}
+
+{% set  entityId = shop.id %} 
+{% include 'FBNGuideBundle:Guide:entity-bookmark-manage.html.twig' %}  
+
+<h1>{{ sharedData.name }}</h1>
+
+  {% if shop.restaurant is not null %}
+    <p>[<a href="{{ path('fbn_guide_restaurants', {'slug': sharedData.slug} ) }}">LE RESTO DU CAVISTE</a>]</p>
+  {% endif %}  
+
+  <h3>HORAIRES : </h3>
+
+  <p>{{ shop.openingHours }}</p> 
+
+  {% if shop.image is not null %}
+    <img 
+      src="{{ asset(shop.image.webPath) }}"
+      alt="{{ shop.name }}"
+    />
+  {% endif %}    
+
+  {% if shop.description is not null %}
+    <p>{{ shop.description }}</p>  
+  {% endif %}  
+
+  <h3>PAR ICI : </h3>
+
+
+  <p>     
+    {% if sharedData.coordinates.coordinatesFR.miscellaneous is not null %}
+      {{ sharedData.coordinates.coordinatesFR.miscellaneous }}
+    {% endif %}  
+    <br />  
+    {% if sharedData.coordinates.coordinatesFR.laneName is not null %}
+      {% if sharedData.coordinates.coordinatesFR.laneNum is not null %}
+        {% set separateur = ', ' %}  
+      {% else %}
+        {% set separateur = '' %}  
+      {% endif %}
+      {{ 
+      sharedData.coordinates.coordinatesFR.laneNum ~ separateur ~
+      sharedData.coordinates.coordinatesFR.coordinatesFRLane.lane ~ ' ' ~
+      sharedData.coordinates.coordinatesFR.laneName
+      }}
+    {% endif %}
+    <br />
+    {% if sharedData.coordinates.coordinatesFR.locality is not null %}
+      {{ sharedData.coordinates.coordinatesFR.locality }}
+    {% endif %}  
+    <br />
+    {{ sharedData.coordinates.coordinatesFR.postcode ~ ' ' ~ sharedData.coordinates.city }}
+  </p>
+
+  {% if sharedData.tel is not null %}
+    <h3>ALLO : </h3>  
+    <p>{{ sharedData.tel }}</p>  
+  {% endif %}  
+
+  {% if sharedData.coordinates.metro is not null %}
+    <h3>METRO : </h3>  
+    <p>{{ sharedData.coordinates.metro }}</p> 
+  {% endif %}  
+
+  {% if sharedData.site is not null %}
+    <h3>SITE : </h3>
+    <a href="{{ sharedData.href }}">{{ sharedData.site }}</a> 
+  {% endif %}  
+
+  {{ google_map(map) }}
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}  
+
+  <script type="application/javascript" src="{{ asset('js/fbn-guide-bookmark-manage.js') }}"></script>
+{% endblock %}

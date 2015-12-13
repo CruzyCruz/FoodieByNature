@@ -1,18 +1,18 @@
 <ul>
   {% for article in articles %}    
   <p>{{ article.datepublication|date('Y-m-d') }}</p>
-  <h1 id="{{ article.slug }}">{{ article.nom }}</h1>
+  <h1 id="{{ article.slug }}">{{ article.name }}</h1>
 	<br />
 
   <p>{{ article.description }}</p>
     {% if article.image is not null %}
       <img 
         src="{{ asset( article.image.webPath | imagine_filter('thumb_outbound') ) }}"
-        alt="{{ article.nom }}"
+        alt="{{ article.name }}"
       />
     {% endif %}    
     <hr />    
   {% else %}
-    <p>Pas de {{ menu.entite | lower }}</p>
+    <p>Pas de {{ menu.section | lower }}</p>
   {% endfor %}
 </ul>

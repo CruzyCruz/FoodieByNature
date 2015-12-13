@@ -1,0 +1,95 @@
+{# src/FBN/GuideBundle/Resources/views/bookmarks.html.twig #}
+
+{% extends "FBNGuideBundle::layout.html.twig" %}
+
+{% block title %}
+  MES FAVORIS
+{% endblock %}
+
+{% block body %}
+
+<div id="bookmarks" data-bookmark-ids="{{bookmarkIds|json_encode()}}">
+
+<h1>MES FAVORIS</h1>
+
+{% set bookmarkMessage = 'VOUS N\'AVEZ AUCUN FAVORIS' %}
+
+
+{% if (bookmarkIds|length == 0) %}
+  <p id="bookmark-message">{{bookmarkMessage}}</p>
+{% else %}
+
+  <p id="bookmark-message" data-bookmark-message="{{bookmarkMessage}}"></p>
+
+  {% if (restaurants|length > 0) %}
+
+    <div class="restaurants">
+      <h3>MES RESTOS</h3>
+      {% for bookmarks in restaurants %}
+        <div class="bookmark" id="{{'bookmark-' ~ bookmarks.id}}">
+          <a href="{{ path('fbn_guide_restaurants', {'slug': bookmarks.restaurant.slug} ) }}">{{ bookmarks.restaurant.name }}</a>
+          <br>
+          <br>
+          <button id="{{'bookmark-button-' ~ bookmarks.id}}" data-path="{{path('fbn_guide_bookmarks_manage')}}" data-bookmark-action="remove_only" data-bookmark-id="{{bookmarks.id}}">
+          SUPPRIMER DES FAVORIS
+          </button>      
+          <br>
+          <hr>
+      </div>
+      {% endfor %}
+    </div>
+
+  {% endif %}
+
+  {% if (winemakers|length > 0) %}
+
+    <div class="winemakers">
+      <h3>MES VIGNERONS</h3>
+      {% for bookmarks in winemakers %}
+        <div class="bookmark" id="{{'bookmark-' ~ bookmarks.id}}">
+          <a href="{{ path('fbn_guide_winemakers', {'slug': bookmarks.winemaker.slug} ) }}">{{ bookmarks.winemaker.name }}</a>
+          <br>
+          <br>
+          <button id="{{'bookmark-button-' ~ bookmarks.id}}" data-path="{{path('fbn_guide_bookmarks_manage')}}" data-bookmark-action="remove_only" data-bookmark-id="{{bookmarks.id}}">
+          SUPPRIMER DES FAVORIS
+          </button>      
+          <br>
+          <hr>
+      </div>
+      {% endfor %}
+    </div>
+
+  {% endif %}
+
+  {% if (shops|length > 0) %}
+
+    <div class="shops">
+      <h3>MES CAVISTES</h3>
+      {% for bookmarks in shops %}
+        <div class="bookmark" id="{{'bookmark-' ~ bookmarks.id}}">
+          <a href="{{ path('fbn_guide_shops', {'slug': bookmarks.shop.slug} ) }}">{{ bookmarks.shop.name }}</a>
+          <br>
+          <br>
+          <button id="{{'bookmark-button-' ~ bookmarks.id}}" data-path="{{path('fbn_guide_bookmarks_manage')}}" data-bookmark-action="remove_only" data-bookmark-id="{{bookmarks.id}}">
+          SUPPRIMER DES FAVORIS
+          </button>      
+          <br>
+          <hr>
+      </div>
+      {% endfor %}
+    </div>
+
+  {% endif %}    
+
+{% endif %}  
+
+</div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}  
+
+  <script type="application/javascript" src="{{ asset('js/fbn-guide-bookmarks-remove-only.js') }}"></script>
+{% endblock %}

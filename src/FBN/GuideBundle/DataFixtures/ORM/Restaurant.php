@@ -1,5 +1,7 @@
 <?php
+
 // src/FBN/GuideBundle/DataFixtures/ORM/Restaurant.php
+
 
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
@@ -7,15 +9,14 @@ namespace FBN\GuideBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use FBN\GuideBundle\Entity\Restaurant as Resto;
+use FBN\GuideBundle\Entity\Restaurant as Restrnt;
 
 class Restaurant extends AbstractFixture implements OrderedFixtureInterface
 {
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-    
-        $noms = array('Le Temps des Vendanges', 'Naturellement', 'La Fine Mousse', 'Dix-Huit', 'Cantine California');
+        $names = array('Le Temps des Vendanges', 'Naturellement', 'La Fine Mousse', 'Dix-Huit', 'Cantine California');
 
         $descriptions = array(
             'Une apparition qui va combler les Bellevillois : un café moderne, toujours ouvert, avec terrasse sol y sombra, canapés et baby-foot. Valentin Bauer et Grégory Cossu ont dépouillé l’ancien café La Triplette, et rhabillé ce grand volume de parquet, de marbre et de miroirs. Ce qui dessine une belle tranche de boulevard pour petit-déjeuner avec œufs au bacon, bruncher le week-end, cocktailiser à la coule (pour seulement 5 € de 17 à 21 heures !) ou manger tout simplement… Ex-chef de Quedubon, Sofiane Saadi Haddad n’envoie que des petits plats bien foutus : bouillon du jour, harengs marinés, terrine de tête, poisson cru, burger à l’épaule de veau, mozza et pickles, riz au lait nappé de caramel au rhum, crumble pomme-framboise… Le tout servi sans temps morts par une équipe ardente comme un commando de marine. Mention spéciale pour le fish & chips : un beau morceau de cabillaud cuit en tempura et des frites avec la peau. Petite carte de vins estimables, au verre (3 à 5 €), en pichet et en bouteille : viognier Domaine des Salices, bourgueil Trinch des Breton, crozes-hermitage de Guigal, côtes-du-roussillon Le Petit Dernier… Formules 6-9 € (petit déjeuner), 12-16 € (midi, café offert), brunch 16 €, carte 19-28 €.',
@@ -25,22 +26,22 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface
             'L’Américano-Canadien Jordan Feilders vient de garer sa Cantine California à deux roues de la station Arts et Métiers. Dans un bel endroit tout en bois brut et marbre, avec comptoir à gauche et table d’hôte à droite, qui sent plus le neuf que la friture (bonne aération). La carte est peu ou prou identique à celle du food truck qui continue à régaler quatre fois par semaine aux marchés Raspail et Saint-Honoré. Sur assiette cette fois, et parmi d’autres : Cali Classic burger (au bœuf bio français haché sur place, orgasmique tellement il dégouline de real cheddar et d’avocat écrasé) avec frites croustillantes à tout va, tacos pas secs (épaule de porc bio mijotée sept heures au piment chipotle, pico de gallo, piment, coriandre et citron vert), salades (au hasard : kale, fromage de chèvre, pomme, noix, canneberge et fenouil), mais encore, granola maison, pancakes, carrot cake, brownie, banana nut muffin… Suivant l’heure et le jour, on se rince la bouche au jus de pamplemousse pressé (6 €), à la bière locale (Gallia et Deck & Donohue) ou à la margarita (6 € le verre, 25 € le pichet d’un litre). Burgers avec frites 15 €, tacos 7-19 €, desserts 2-3 €.',
             );
 
-        $auteurs = array('CB', 'AH', 'CB', 'AH', 'AH',); 
+        $authors = array('CB', 'AH', 'CB', 'AH', 'AH');
 
-        $restaurateurs = array('Eric Cuestas', 'Jérôme Navarre', 'Jean-François Piège', 'Christian Constant', 'Thierry Marx',);
+        $restaurateurs = array('Eric Cuestas', 'Jérôme Navarre', 'Jean-François Piège', 'Christian Constant', 'Thierry Marx');
 
         $hrefs = array('http://www.letempsdesvendanges.com', null, 'http://www.lafinemousse.fr', 'http://www.dix-huit.fr', 'http://www.cantinecalifornia.com');
 
-        $tels = array('05 61 42 94 66', '01 45 89 75 62', '01 12 47 85 96', '01 47 85 96 54', '01 47 52 14 89');            
+        $tels = array('05 61 42 94 66', '01 45 89 75 62', '01 12 47 85 96', '01 47 85 96 54', '01 47 52 14 89');
 
         $sites = array('letempsdesvendanges.com', null, 'lafinemousse.fr', 'dix-huit.fr', 'cantinecalifornia.com');
 
-        $horaires = array(
+        $openingHours = array(
                         'Tous les jours, de 8h à 1h30 ; service de midi à 15h30 et de 19h à 23h30.',
                         'De midi à 14h30 et de 19h à 23h. Fermé dimanche.',
                         'De 19h à 22h30. Fermé dimanche et lundi.',
                         'De midi à 14h30 (sauf samedi) et de 19h30 à 23h. Fermé dimanche. ',
-                        'Tous les jours, de 11h30 à 15h et de 19h30 à 22h30 (22h le dimanche).', 
+                        'Tous les jours, de 11h30 à 15h et de 19h30 à 22h30 (22h le dimanche).',
                         );
 
         $descriptionsen = array(
@@ -51,82 +52,68 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface
             'The Americano-Canadian Jordan Feilders just parked his Cantine California roughly two turns of a wheel from the Arts et Métiers metro station. In a beautiful space that’s all raw wood and marble, with the counter to the left and the communal table to the right, it smells more like newness than fried foods (good ventilation). The menu is more or less identical to that of the food truck that continues to delight folks four times a week at the Raspail and Saint-Honoré markets. On a plate this time, and amongst other treats: the Cali Classic burger (with organic French beef that’s ground on-site, orgasmic when its dripping with real cheddar and smashed avocado) with crispy fries, tender tacos (organic pork shoulder stewed for seven hours with chipotle pepper, pico de gallo, chilies, cilantro and lime), salads (a random pick: kale, goat cheese, walnut, cranberries and fennel), and the list goes on…homemade granola, pancakes, carrot cake, brownies, banana nut muffins… According to the hour and the day, we rinse it all down with freshly squeezed grapefruit juice (€6), local beer (Gallia and Deck & Donohue) or with a margarita (€6 a glass, €26 for a 1 liter pitcher). Burger with fries €15, tacos €7-19, desserts €2-3.',
             );
 
-        $horairesen = array(
+        $openingHoursen = array(
                         'Everyday, from 8am to 1:30am; meal service from noon to 3:30pm and from 7pm to 11:30pm.',
                         'From noon to 2:30pm and from 7pm to 11pm. Closed Sunday.',
                         'From 7pm to 10:30pm. Closed Sunday and Monday.',
                         'From noon to 2:30pm (except Saturday) and from 7:30pm to 11pm. Closed Sunday.',
-                        'Everyday, from 11:30am to 3pm and from 7:30pm to 10:30pm (10pm Sunday).', 
+                        'Everyday, from 11:30am to 3pm and from 7:30pm to 10:30pm (10pm Sunday).',
                         );
-
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        foreach($noms as $i => $nom)
-        {
-            $restaurant[$i] = new Resto();
-            $restaurant[$i]->setNom($nom);            
-        }   
-
-        foreach($descriptions as $i => $description)
-        {
-            $restaurant[$i]->setDescription($description);
-
-            $repository->translate($restaurant[$i], 'description', 'en', $descriptionsen[$i]); 
+        foreach ($names as $i => $name) {
+            $restaurant[$i] = new Restrnt();
+            $restaurant[$i]->setName($name);
         }
 
-        foreach($auteurs as $i => $auteur)
-        {
-            $restaurant[$i]->setAuteur($auteur);  
-                    
-        }    
+        foreach ($descriptions as $i => $description) {
+            $restaurant[$i]->setDescription($description);
 
-        foreach($restaurateurs as $i => $restaurateur)
-        {
-            $restaurant[$i]->setRestaurateur($restaurateur);          
-                          
-        }  
+            $repository->translate($restaurant[$i], 'description', 'en', $descriptionsen[$i]);
+        }
 
-        foreach($hrefs as $i => $href)
-        {
-            $restaurant[$i]->setHref($href);          
-                          
-        } 
+        foreach ($authors as $i => $author) {
+            $restaurant[$i]->setAuthor($author);
+        }
 
-        foreach($tels as $i => $tel)
-        {
-            $restaurant[$i]->setTel($tel); 
-        }            
+        foreach ($restaurateurs as $i => $restaurateur) {
+            $restaurant[$i]->setRestaurateur($restaurateur);
+        }
 
-        foreach($sites as $i => $site)
-        {
-            $restaurant[$i]->setSite($site);          
-                          
-        }          
+        foreach ($hrefs as $i => $href) {
+            $restaurant[$i]->setHref($href);
+        }
 
-        foreach($horaires as $i => $horaire)
-        {
-            $restaurant[$i]->setHoraires($horaire);
+        foreach ($tels as $i => $tel) {
+            $restaurant[$i]->setTel($tel);
+        }
 
-            $repository->translate($restaurant[$i], 'horaires', 'en', $horairesen[$i]); 
+        foreach ($sites as $i => $site) {
+            $restaurant[$i]->setSite($site);
+        }
 
-            $manager->persist($restaurant[$i]);  
-            
-            $restaurant[$i]->setRestaurantPrix($this->getReference('restaurantprix-'   . rand(0 ,3)));
-            $restaurant[$i]->addRestaurantStyle($this->getReference('restaurantstyle-' . rand(0,1)));            
-            $restaurant[$i]->addRestaurantStyle($this->getReference('restaurantstyle-' . rand(2,3)));
-            $restaurant[$i]->addRestaurantBonus($this->getReference('restaurantbonus-' . rand(0,1)));
-            $restaurant[$i]->addRestaurantBonus($this->getReference('restaurantbonus-' . rand(2,3)));
+        foreach ($openingHours as $i => $openingHour) {
+            $restaurant[$i]->setOpeningHours($openingHour);
 
-            $restaurant[$i]->setCoordonnees($this->getReference('coordonnees-' . $i));
+            $repository->translate($restaurant[$i], 'openingHours', 'en', $openingHoursen[$i]);
 
-            $restaurant[$i]->setImage($this->getReference('imagerestaurant-' . $i));
+            $manager->persist($restaurant[$i]);
 
-            $this->addReference('restaurant-' . $i, $restaurant[$i]);
+            $restaurant[$i]->setRestaurantPrice($this->getReference('restaurantprice-'.rand(0, 3)));
+            $restaurant[$i]->addRestaurantStyle($this->getReference('restaurantstyle-'.rand(0, 1)));
+            $restaurant[$i]->addRestaurantStyle($this->getReference('restaurantstyle-'.rand(2, 3)));
+            $restaurant[$i]->addRestaurantBonus($this->getReference('restaurantbonus-'.rand(0, 1)));
+            $restaurant[$i]->addRestaurantBonus($this->getReference('restaurantbonus-'.rand(2, 3)));
 
-        }        
-            
-        $restaurant[0]->setCaviste($this->getReference('caviste-0'));
+            $restaurant[$i]->setCoordinates($this->getReference('coordinates-'.$i));
+
+            $restaurant[$i]->setImage($this->getReference('imagerestaurant-'.$i));
+
+            $this->addReference('restaurant-'.$i, $restaurant[$i]);
+        }
+
+        $restaurant[0]->setShop($this->getReference('shop-0'));
 
         $manager->flush();
     }

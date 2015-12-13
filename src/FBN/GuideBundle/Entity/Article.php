@@ -12,24 +12,23 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 abstract class Article
 {
-    const NUM_ITEMS = 5;
+    const NUM_ITEMS = 8;
     const NUM_ITEMS_HOMEPAGE = 4;
 
-
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255, nullable = true)
+     * @ORM\Column(name="name", type="string", length=255, nullable = true)
      * @Gedmo\Translatable
      */
-    private $nom;
+    private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="auteur", type="string", length=255)
+     * @ORM\Column(name="author", type="string", length=255)
      */
-    private $auteur;
+    private $author;
 
     /**
      * @var string
@@ -77,51 +76,51 @@ abstract class Article
     }
 
     /**
-     * Set nom.
+     * Set name.
      *
-     * @param string $nom
+     * @param string $name
      *
      * @return Article
      */
-    public function setNom($nom)
+    public function setName($name)
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get nom.
+     * Get name.
      *
      * @return string
      */
-    public function getNom()
+    public function getName()
     {
-        return $this->nom;
+        return $this->name;
     }
 
     /**
-     * Set auteur.
+     * Set author.
      *
-     * @param string $auteur
+     * @param string $author
      *
      * @return Article
      */
-    public function setAuteur($auteur)
+    public function setAuthor($author)
     {
-        $this->auteur = $auteur;
+        $this->author = $author;
 
         return $this;
     }
 
     /**
-     * Get auteur.
+     * Get author.
      *
      * @return string
      */
-    public function getAuteur()
+    public function getAuthor()
     {
-        return $this->auteur;
+        return $this->author;
     }
 
     /**

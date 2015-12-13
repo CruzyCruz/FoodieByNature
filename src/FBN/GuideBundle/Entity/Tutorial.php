@@ -1,0 +1,213 @@
+<?php
+
+namespace FBN\GuideBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
+/**
+ * Tutorial
+ *
+ * @ORM\Table(name="tutorial")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\TutorialRepository")
+ */
+class Tutorial extends Article
+{
+
+  /**
+   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorialChapter", mappedBy="tutorial")
+   * @ORM\OrderBy({"rank" = "ASC"})
+   */
+  private $tutorialChapter;     
+
+    /**
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Image", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $image; 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\TutorialSection", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $tutorialSection;        
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="rank", type="integer")
+     */
+    private $rank;  
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     */
+    private $locale;  
+
+    /**
+     * @Gedmo\Slug(fields={"name"}, prefix="tutorial-")
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;   
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set rank
+     *
+     * @param integer $rank
+     * @return Tutorial
+     */
+    public function setRank($rank)
+    {
+        $this->rank = $rank;
+
+        return $this;
+    }
+
+    /**
+     * Get rank
+     *
+     * @return integer 
+     */
+    public function getRank()
+    {
+        return $this->rank;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Tutorial
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }    
+
+    /**
+     * Set image
+     *
+     * @param \FBN\GuideBundle\Entity\Image $image
+     * @return Tutorial
+     */
+    public function setImage(\FBN\GuideBundle\Entity\Image $image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \FBN\GuideBundle\Entity\Image 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set tutorialSection
+     *
+     * @param \FBN\GuideBundle\Entity\RestaurantPrice $tutorialSection
+     * @return Restaurant
+     */
+    public function setTutorialSection(\FBN\GuideBundle\Entity\TutorialSection $tutorialSection)
+    {
+        $this->tutorialSection = $tutorialSection;
+
+        return $this;
+    }
+
+    /**
+     * Get tutorialSection
+     *
+     * @return \FBN\GuideBundle\Entity\TutorialSection 
+     */
+    public function getTutorialSection()
+    {
+        return $this->tutorialSection;
+    }    
+
+    /**
+     * Set locale
+     *
+     * @param string $locale
+     * 
+     */
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }     
+
+    /**
+     * Add tutorialChapter
+     *
+     * @param \FBN\GuideBundle\Entity\TutorialChapter $tutorialChapter
+     * @return Winemaker
+     */
+    public function addTutorialChapter(\FBN\GuideBundle\Entity\TutorialChapter $tutorialChapter)
+    {
+        $this->tutorialChapter[] = $tutorialChapter;
+        $tutorialChapter->setWinemaker($this); 
+
+        return $this;
+    }
+
+    /**
+     * Remove tutorialChapter
+     *
+     * @param \FBN\GuideBundle\Entity\TutorialChapter $tutorialChapter
+     */
+    public function removeTutorialChapter(\FBN\GuideBundle\Entity\TutorialChapter $tutorialChapter)
+    {
+        $this->tutorialChapter->removeElement($tutorialChapter);
+    }
+
+    /**
+     * Get tutorialChapter
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTutorialChapter()
+    {
+        return $this->tutorialChapter;
+    }    
+}

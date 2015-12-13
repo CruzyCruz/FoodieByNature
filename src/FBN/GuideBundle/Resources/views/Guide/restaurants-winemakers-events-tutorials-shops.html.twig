@@ -1,0 +1,15 @@
+<ul>
+  {% for article in articles %}    
+  <a href="{{ path('fbn_guide_' ~ menu.section | lower ~ 's', {'slug': article.slug} ) }}">{{ article.name }}</a>
+	<br />
+    {% if article.image is not null %}
+      <img 
+        src="{{ asset( article.image.webPath | imagine_filter('thumb_outbound') ) }}"
+        alt="{{ article.name }}"
+      />
+    {% endif %}    
+    <hr />    
+  {% else %}
+    <p>Pas de {{ menu.section | lower ~ 's' }}</p>
+  {% endfor %}
+</ul>

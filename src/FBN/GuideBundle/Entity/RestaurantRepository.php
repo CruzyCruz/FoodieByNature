@@ -36,21 +36,21 @@ class RestaurantRepository extends EntityRepository
         $qb = $this->createQueryBuilder('r')
                    ->leftJoin('r.image', 'i')
                    ->addSelect('i')
-                   ->leftJoin('r.restaurantPrix', 'rp')
+                   ->leftJoin('r.restaurantPrice', 'rp')
                    ->addSelect('rp')
                    ->leftJoin('r.restaurantStyle', 'rs')
                    ->addSelect('rs')
                    ->leftJoin('r.restaurantBonus', 'rb')
                    ->addSelect('rb')
-                   ->leftJoin('r.coordonnees', 'c')
+                   ->leftJoin('r.coordinates', 'c')
                    ->addSelect('c')
-                   ->leftJoin('r.caviste', 'rc')
+                   ->leftJoin('r.shop', 'rc')
                    ->addSelect('rc')
                    ->where('r.slug = :slug')
                    ->setParameter('slug', $slug);
 
         $cr = $this->_em
-                    ->getRepository('FBNGuideBundle:Coordonnees');
+                    ->getRepository('FBNGuideBundle:Coordinates');
 
         $qb = $cr->joinCoord($qb);
 

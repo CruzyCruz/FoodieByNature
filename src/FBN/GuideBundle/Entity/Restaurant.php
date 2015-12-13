@@ -16,10 +16,10 @@ class Restaurant extends Article
 {
 
     /**
-     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\RestaurantPrix")
+     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\RestaurantPrice")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $restaurantPrix;    
+    private $restaurantPrice;    
 
     /**
      * @ORM\ManyToMany(targetEntity="FBN\GuideBundle\Entity\RestaurantStyle")
@@ -40,16 +40,16 @@ class Restaurant extends Article
     private $image;        
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordonnees", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $coordonnees;
+    private $coordinates;
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Caviste", inversedBy="restaurant")
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Shop", inversedBy="restaurant")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
-    private $caviste;            
+    private $shop;            
 
     /**
      * @var integer
@@ -91,20 +91,20 @@ class Restaurant extends Article
     /**
      * @var string
      *
-     * @ORM\Column(name="horaires", type="string", length=255)
+     * @ORM\Column(name="openingHours", type="string", length=255)
      * @Gedmo\Translatable
      */
-    private $horaires;
+    private $openingHours;
 
     /**
      * @Gedmo\Slug(handlers={
      *      @Gedmo\SlugHandler(class="Gedmo\Sluggable\Handler\RelativeSlugHandler", options={
-     *          @Gedmo\SlugHandlerOption(name="relationField", value="coordonnees"),
-     *          @Gedmo\SlugHandlerOption(name="relationSlugField", value="ville"),
+     *          @Gedmo\SlugHandlerOption(name="relationField", value="coordinates"),
+     *          @Gedmo\SlugHandlerOption(name="relationSlugField", value="city"),
      *          @Gedmo\SlugHandlerOption(name="separator", value="-"),
      *          @Gedmo\SlugHandlerOption(name="urilize", value=true)   
      *      })
-     * }, separator="-", updatable=true, fields={"nom"}, prefix="restaurant-")
+     * }, separator="-", updatable=true, fields={"name"}, prefix="restaurant-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;  
@@ -159,49 +159,49 @@ class Restaurant extends Article
     }
 
     /**
-     * Set horaires
+     * Set openingHours
      *
-     * @param string $horaires
+     * @param string $openingHours
      * @return Restaurant
      */
-    public function setHoraires($horaires)
+    public function setOpeningHours($openingHours)
     {
-        $this->horaires = $horaires;
+        $this->openingHours = $openingHours;
 
         return $this;
     }
 
     /**
-     * Get horaires
+     * Get openingHours
      *
      * @return string 
      */
-    public function getHoraires()
+    public function getOpeningHours()
     {
-        return $this->horaires;
+        return $this->openingHours;
     }
 
     /**
-     * Set restaurantPrix
+     * Set restaurantPrice
      *
-     * @param \FBN\GuideBundle\Entity\RestaurantPrix $restaurantPrix
+     * @param \FBN\GuideBundle\Entity\RestaurantPrice $restaurantPrice
      * @return Restaurant
      */
-    public function setRestaurantPrix(\FBN\GuideBundle\Entity\RestaurantPrix $restaurantPrix)
+    public function setRestaurantPrice(\FBN\GuideBundle\Entity\RestaurantPrice $restaurantPrice)
     {
-        $this->restaurantPrix = $restaurantPrix;
+        $this->restaurantPrice = $restaurantPrice;
 
         return $this;
     }
 
     /**
-     * Get restaurantPrix
+     * Get restaurantPrice
      *
-     * @return \FBN\GuideBundle\Entity\RestaurantPrix 
+     * @return \FBN\GuideBundle\Entity\RestaurantPrice 
      */
-    public function getRestaurantPrix()
+    public function getRestaurantPrice()
     {
-        return $this->restaurantPrix;
+        return $this->restaurantPrice;
     }
 
     /**
@@ -294,58 +294,58 @@ class Restaurant extends Article
     }
 
     /**
-     * Set caviste
+     * Set shop
      *
-     * @param \FBN\GuideBundle\Entity\Caviste $caviste
-     * @return caviste
+     * @param \FBN\GuideBundle\Entity\Shop $shop
+     * @return shop
      */
-    public function setCaviste(\FBN\GuideBundle\Entity\Caviste $caviste)
+    public function setShop(\FBN\GuideBundle\Entity\Shop $shop)
     {
-        $this->caviste = $caviste;
-        $caviste->setRestaurant($this);
-        $caviste->setNom($this->getNom()); 
+        $this->shop = $shop;
+        $shop->setRestaurant($this);
+        $shop->setName($this->getName()); 
 
         return $this;
     }
 
     /**
-     * Get caviste
+     * Get shop
      *
-     * @return \FBN\GuideBundle\Entity\Caviste 
+     * @return \FBN\GuideBundle\Entity\Shop 
      */
-    public function getCaviste()
+    public function getShop()
     {
-        return $this->caviste;
+        return $this->shop;
     }    
 
     /**
-     * Set coordonnees
+     * Set coordinates
      *
-     * @param \FBN\GuideBundle\Entity\Coordonnees $coordonnees
+     * @param \FBN\GuideBundle\Entity\Coordinates $coordinates
      * @return Restaurant
      */
-    public function setCoordonnees(\FBN\GuideBundle\Entity\Coordonnees $coordonnees)
+    public function setCoordinates(\FBN\GuideBundle\Entity\Coordinates $coordinates)
     {
-        $this->coordonnees = $coordonnees;
+        $this->coordinates = $coordinates;
 
         return $this;
     }
 
     /**
-     * Get coordonnees
+     * Get coordinates
      *
-     * @return \FBN\GuideBundle\Entity\Coordonnees 
+     * @return \FBN\GuideBundle\Entity\Coordinates 
      */
-    public function getCoordonnees()
+    public function getCoordinates()
     {
-        return $this->coordonnees;
+        return $this->coordinates;
     }
 
     /**
      * Set tel
      *
      * @param string $tel
-     * @return Coordonnees
+     * @return Coordinates
      */
     public function setTel($tel)
     {

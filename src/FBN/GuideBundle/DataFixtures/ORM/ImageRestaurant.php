@@ -15,45 +15,45 @@ class ImageRestaurant extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
     
-        $rangs = array(0, 0, 0, 0, 0);
+        $ranks = array(0, 0, 0, 0, 0);
 
-        $chemin = __DIR__.'/../../../../../web/uploads/images/restaurants';
+        $path = __DIR__.'/../../../../../web/uploads/images/restaurants';
 
-        $noms = array('restaurant-paris-triplettes-il.jpg', 'restaurant-paris-naturellement-il.jpg', 'restaurant-paris-la-fine-mousse-il.jpg', 'restaurant-paris-dix-huit-il.jpg', 'restaurant-paris-cantine-california-il.jpg');
+        $names = array('restaurant-paris-triplettes-il.jpg', 'restaurant-paris-naturellement-il.jpg', 'restaurant-paris-la-fine-mousse-il.jpg', 'restaurant-paris-dix-huit-il.jpg', 'restaurant-paris-cantine-california-il.jpg');
 
-        $tailles = array(73797, 78427, 78651, 83717, 66449);
+        $sizes = array(73797, 78427, 78651, 83717, 66449);
 
         $mimetype = 'image/jpeg';
 
-        $legendes = array('Plutôt trois fois qu\'une', 'Nature, quoi d\'autre ?', 'So bière!', '18 (dix-huit)', 'Si tu viens to San Fransisco...');        
+        $legends = array('Plutôt trois fois qu\'une', 'Nature, quoi d\'autre ?', 'So bière!', '18 (dix-huit)', 'Si tu viens to San Fransisco...');        
 
-        $legendesen = array('Three times better than one', 'Nature, what else ?', 'So beer!', '18 (eigtheen)', 'If you come to San Fransisco...');        
+        $legendsen = array('Three times better than one', 'Nature, what else ?', 'So beer!', '18 (eigtheen)', 'If you come to San Fransisco...');        
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');        
 
-        foreach($rangs as $i => $rang)
+        foreach($ranks as $i => $rank)
         {
             $imagerestaurant[$i] = new Image();
-            $imagerestaurant[$i]->setRang($rang);                        
+            $imagerestaurant[$i]->setRank($rank);                        
         }
 
-        foreach($noms as $i => $nom)
+        foreach($names as $i => $name)
         {            
-            $imagerestaurant[$i]->setChemin($chemin);
-            $imagerestaurant[$i]->setNom($nom);                        
+            $imagerestaurant[$i]->setPath($path);
+            $imagerestaurant[$i]->setName($name);                        
         }
 
-        foreach($tailles as $i => $taille)
+        foreach($sizes as $i => $size)
         {
-            $imagerestaurant[$i]->setTaille($taille);
+            $imagerestaurant[$i]->setSize($size);
             $imagerestaurant[$i]->setMimeType($mimetype);                        
         }
 
-        foreach($legendes as $i => $legende)
+        foreach($legends as $i => $legend)
         {
-            $imagerestaurant[$i]->setLegende($legende);
+            $imagerestaurant[$i]->setLegend($legend);
 
-            $repository->translate($imagerestaurant[$i], 'legende', 'en', $legendesen[$i]);             
+            $repository->translate($imagerestaurant[$i], 'legend', 'en', $legendsen[$i]);             
             
             $manager->persist($imagerestaurant[$i]);
 

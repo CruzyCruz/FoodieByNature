@@ -2,10 +2,10 @@ parameters:
 
 #   fbn_guide.map
 
-#   zoom de proximité restos / evenements
+#   zoom de proximité restos / events
     fbn_guide.map.zoom_close : 15
-#   zoom vigneron si un seul marker    
-    fbn_guide.map.zoom_vigneron : 10
+#   zoom winemaker si un seul marker    
+    fbn_guide.map.zoom_winemaker : 10
 #   affichage google maps world    
     fbn_guide.map.world_dim_height : 256
     fbn_guide.map.world_dim_width : 256
@@ -35,7 +35,7 @@ services:
 
     fbn_guide.map:
         class : FBN\GuideBundle\Map\Map
-        arguments: [%fbn_guide.map.zoom_close%, %fbn_guide.map.zoom_vigneron%, %fbn_guide.map.world_dim_height%, %fbn_guide.map.world_dim_width%, %fbn_guide.map.zoom_max%,%fbn_guide.map.map_dim_height%, %fbn_guide.map.map_dim_width%]
+        arguments: [%fbn_guide.map.zoom_close%, %fbn_guide.map.zoom_winemaker%, %fbn_guide.map.world_dim_height%, %fbn_guide.map.world_dim_width%, %fbn_guide.map.zoom_max%,%fbn_guide.map.map_dim_height%, %fbn_guide.map.map_dim_width%]
 
     fbn_guide.bookmark_manager:
         class : FBN\GuideBundle\Bookmark\BookmarkManager

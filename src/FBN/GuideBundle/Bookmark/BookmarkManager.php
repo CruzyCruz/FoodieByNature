@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Doctrine\ORM\EntityManager;
 use FOS\UserBundle\Model\UserInterface;
-use FBN\GuideBundle\Entity\Favori;
+use FBN\GuideBundle\Entity\Bookmark;
 
 class BookmarkManager
 {
@@ -40,7 +40,7 @@ class BookmarkManager
         $this->accessor = PropertyAccess::createPropertyAccessor();
     }
 
-    public function manage($bookmarkAction, $bookmarkId, $bookmarkEntite, $bookmarkEntiteId)
+    public function manage($bookmarkAction, $bookmarkId, $bookmarkEntity, $bookmarkEntityId)
     {
 
         // Only authorized actions and bookmarks
@@ -51,17 +51,17 @@ class BookmarkManager
         if ($bookmarkAction == 'add') {
 
             // Only authorized entities
-            if (!in_array($bookmarkEntite, $this->session->get('bookmarkEntite')) || !in_array($bookmarkEntiteId, $this->session->get('bookmarkEntiteId'))) {
+            if (!in_array($bookmarkEntity, $this->session->get('bookmarkEntity')) || !in_array($bookmarkEntityId, $this->session->get('bookmarkEntityId'))) {
                 return new JsonResponse('', 403);
             }
 
-            $favori = $this->add($bookmarkEntite, $bookmarkEntiteId);
+            $bookmark = $this->add($bookmarkEntity, $bookmarkEntityId);
 
-            if (null === $favori) {
+            if (null === $bookmark) {
                 return new JsonResponse('', 404);
             }
 
-            $bookmarkId = $favori->getId();
+            $bookmarkId = $bookmark->getId();
 
             $this->session->set('bookmarkAction', array('remove'));
             $this->session->set('bookmarkId', array($bookmarkId));
@@ -70,9 +70,9 @@ class BookmarkManager
                 'bookmarkId' => $bookmarkId,
             ));
         } elseif ($bookmarkAction == 'remove') {
-            $favori = $this->remove($bookmarkId);
+            $bookmark = $this->remove($bookmarkId);
 
-            if (null === $favori) {
+            if (null === $bookmark) {
                 return new JsonResponse('', 404);
             }
 
@@ -96,47 +96,47 @@ class BookmarkManager
         }
     }
 
-    private function add($entite, $entiteId)
+    private function add($entity, $entityId)
     {
         // To access add function user connection is mandatory du to login entry point
         $user = $this->getUser();
 
-        $entite = ucfirst($entite);
+        $entity = ucfirst($entity);
 
-        $repo = $this->em->getRepository('FBNGuideBundle:'.$entite);
+        $repo = $this->em->getRepository('FBNGuideBundle:'.$entity);
 
-        $instance = $repo->findOneBy(array('id' => $entiteId));
+        $instance = $repo->findOneBy(array('id' => $entityId));
 
         if (null === $instance) {
             return;
         }
 
-        $favori = new Favori();
-        $favori->setUser($user);
-        $this->accessor->setValue($favori, $entite, $instance);
+        $bookmark = new Bookmark();
+        $bookmark->setUser($user);
+        $this->accessor->setValue($bookmark, $entity, $instance);
 
-        $this->em->persist($favori);
+        $this->em->persist($bookmark);
         $this->em->flush();
 
-        return $favori;
+        return $bookmark;
     }
 
     private function remove($bookmarkId)
     {
-        $favori = $this->em->getRepository('FBNGuideBundle:Favori')
+        $bookmark = $this->em->getRepository('FBNGuideBundle:Bookmark')
             ->findOneBy(array('id' => $bookmarkId));
 
-        if (null === $favori) {
+        if (null === $bookmark) {
             return;
         }
 
-        $this->em->remove($favori);
+        $this->em->remove($bookmark);
         $this->em->flush();
 
-        return $favori;
+        return $bookmark;
     }
 
-    public function checkStatus($entite, $entiteId)
+    public function checkStatus($entity, $entityId)
     {
         // Default if user is not connected
         $bookmarkAction = 'add';
@@ -146,29 +146,29 @@ class BookmarkManager
             if (is_object($user) || $user instanceof UserInterface) {
                 $userId = $user->getId();
 
-                $favori = $this->em->getRepository('FBNGuideBundle:Favori')
-                        ->getFavoriByEntiteId($userId, $entite, $entiteId);
+                $bookmark = $this->em->getRepository('FBNGuideBundle:Bookmark')
+                        ->getBookmarkByEntityId($userId, $entity, $entityId);
 
-                if (null !== $favori) {
+                if (null !== $bookmark) {
                     $bookmarkAction = 'remove';
-                    $bookmarkId = $favori->getId();
+                    $bookmarkId = $bookmark->getId();
                 }
             }
         }
 
-        $this->setSessionVariable(array($bookmarkAction), array($bookmarkId), array($entite), array($entiteId));
+        $this->setSessionVariable(array($bookmarkAction), array($bookmarkId), array($entity), array($entityId));
 
         return array('bookmarkAction' => $bookmarkAction,
             'bookmarkId' => $bookmarkId,
         );
     }
 
-    public function setSessionVariable($bookmarkAction, $bookmarkId, $entite, $entiteId)
+    public function setSessionVariable($bookmarkAction, $bookmarkId, $entity, $entityId)
     {
         $this->session->set('bookmarkAction', $bookmarkAction);
         $this->session->set('bookmarkId', $bookmarkId);
-        $this->session->set('bookmarkEntite', $entite);
-        $this->session->set('bookmarkEntiteId', $entiteId);
+        $this->session->set('bookmarkEntity', $entity);
+        $this->session->set('bookmarkEntityId', $entityId);
     }
 
     private function getUser()

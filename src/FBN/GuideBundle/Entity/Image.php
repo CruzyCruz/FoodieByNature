@@ -34,33 +34,33 @@ class Image
     /**
      * @var integer
      *
-     * @ORM\Column(name="rang", type="integer")
+     * @ORM\Column(name="rank", type="integer")
      */
-    private $rang;    
+    private $rank;    
 
     /**
      * @var string
      *
-     * @ORM\Column(name="chemin", type="string", length=255)
+     * @ORM\Column(name="path", type="string", length=255)
      * @Gedmo\UploadableFilePath
      */
-    private $chemin;
+    private $path;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      * @Gedmo\UploadableFileName
      */
-    private $nom;
+    private $name;
 
     /**
      * @var decimal
      *
-     * @ORM\Column(name="taille", type="decimal")
+     * @ORM\Column(name="size", type="decimal")
      * @Gedmo\UploadableFileSize
      */
-    private $taille;
+    private $size;
 
     /**
      * @var string
@@ -73,10 +73,10 @@ class Image
     /**
      * @var string
      *
-     * @ORM\Column(name="legende", type="string", length=255)
+     * @ORM\Column(name="legend", type="string", length=255)
      * @Gedmo\Translatable
      */
-    private $legende;
+    private $legend;
 
     /**
      * @var string
@@ -111,95 +111,95 @@ class Image
     }
 
     /**
-     * Set rang
+     * Set rank
      *
-     * @param integer $rang
+     * @param integer $rank
      * @return Image
      */
-    public function setRang($rang)
+    public function setRank($rank)
     {
-        $this->rang = $rang;
+        $this->rank = $rank;
 
         return $this;
     }
 
     /**
-     * Get rang
+     * Get rank
      *
      * @return integer 
      */
-    public function getRang()
+    public function getRank()
     {
-        return $this->rang;
+        return $this->rank;
     }
 
     /**
-     * Set chemin
+     * Set path
      *
-     * @param string $chemin
+     * @param string $path
      * @return Image
      */
-    public function setChemin($chemin)
+    public function setPath($path)
     {
-        $this->chemin = $chemin;
+        $this->path = $path;
 
         return $this;
     }
 
     /**
-     * Get chemin
+     * Get path
      *
      * @return string 
      */
-    public function getChemin()
+    public function getPath()
     {
-        return $this->chemin;
+        return $this->path;
     }
 
     /**
-     * Set nom
+     * Set name
      *
-     * @param string $nom
+     * @param string $name
      * @return Image
      */
-    public function setNom($nom)
+    public function setName($name)
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get nom
+     * Get name
      *
      * @return string 
      */
-    public function getNom()
+    public function getName()
     {
-        return $this->nom;
+        return $this->name;
     }
 
     /**
-     * Set taille
+     * Set size
      *
-     * @param string $taille
+     * @param string $size
      * @return Image
      */
-    public function setTaille($taille)
+    public function setSize($size)
     {
-        $this->taille = $taille;
+        $this->size = $size;
 
         return $this;
     }
 
     /**
-     * Get taille
+     * Get size
      *
      * @return string 
      */
-    public function getTaille()
+    public function getSize()
     {
-        return $this->taille;
+        return $this->size;
     }
 
     /**
@@ -226,26 +226,26 @@ class Image
     }
 
     /**
-     * Set legende
+     * Set legend
      *
-     * @param string $legende
+     * @param string $legend
      * @return Image
      */
-    public function setLegende($legende)
+    public function setLegend($legend)
     {
-        $this->legende = $legende;
+        $this->legend = $legend;
 
         return $this;
     }
 
     /**
-     * Get legende
+     * Get legend
      *
      * @return string 
      */
-    public function getLegende()
+    public function getLegend()
     {
-        return $this->legende;
+        return $this->legend;
     }
 
     /**
@@ -267,9 +267,9 @@ class Image
      */
     public function getWebPath()
     {
-        $pos = strpos($this->chemin, 'uploads');
-        $dir = substr($this->chemin, $pos);
+        $pos = strpos($this->path, 'uploads');
+        $dir = substr($this->path, $pos);
 
-        return $dir . '/' . $this->nom;
+        return $dir . '/' . $this->name;
     }      
 }

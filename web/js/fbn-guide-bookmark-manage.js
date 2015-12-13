@@ -3,8 +3,8 @@ $(function() {
     $('#bookmark').click(function() {
 
         var bookmarkAction = $(this).data('bookmark-action');
-        var bookmarkEntite = $(this).data('bookmark-entite');
-        var bookmarkEntiteId = $(this).data('bookmark-entite-id');
+        var bookmarkEntity = $(this).data('bookmark-entity');
+        var bookmarkEntityId = $(this).data('bookmark-entity-id');
         var bookmarkId = $(this).data('bookmark-id');        
 
         $(this).prop('disabled', true);
@@ -12,9 +12,9 @@ $(function() {
         $.ajax({
             type: 'POST',                  
             // The commented syntax below append parameters to url even for POST requests, so it not possible to use $request->request->request() at controller level ($request->query->get() instead)
-            //url: Routing.generate('fbn_guide_manage_favori', { action : action, entite : entite, entiteId : entiteId }),
-            url: Routing.generate('fbn_guide_favoris_manage'),
-            data : { bookmarkAction : bookmarkAction, bookmarkEntite : bookmarkEntite, bookmarkEntiteId : bookmarkEntiteId, bookmarkId : bookmarkId },
+            //url: Routing.generate('fbn_guide_manage_bookmark', { action : action, entity : entity, entityId : entityId }),
+            url: Routing.generate('fbn_guide_bookmarks_manage'),
+            data : { bookmarkAction : bookmarkAction, bookmarkEntity : bookmarkEntity, bookmarkEntityId : bookmarkEntityId, bookmarkId : bookmarkId },
             success: function(data) {
                 $('#bookmark').data('bookmark-action', data.bookmarkAction);
                 $('#bookmark').data('bookmark-id', data.bookmarkId);        
