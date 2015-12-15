@@ -30,7 +30,7 @@ class CoordinatesFRDept
     /**
      * @var string
      *
-     * @ORM\Column(name="department", type="string", length=255)
+     * @ORM\Column(name="department", type="string", length=255, unique=true)
      */
     private $department;
 
