@@ -59,6 +59,14 @@ class TutorialChapter
     private $locale;
 
     /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->TutorialChapterPara = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id.
      *
      * @return int
@@ -155,12 +163,12 @@ class TutorialChapter
      *
      * @param \FBN\GuideBundle\Entity\TutorialChapterPara $TutorialChapterPara
      *
-     * @return Vigneron
+     * @return TutorialChapter
      */
     public function addTutorialChapterPara(\FBN\GuideBundle\Entity\TutorialChapterPara $TutorialChapterPara)
     {
         $this->TutorialChapterPara[] = $TutorialChapterPara;
-        $TutorialChapterPara->setVigneron($this);
+        $TutorialChapterPara->setTutorialChapter($this);
 
         return $this;
     }

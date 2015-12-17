@@ -6,34 +6,33 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Tutorial
+ * Tutorial.
  *
  * @ORM\Table(name="tutorial")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\TutorialRepository")
  */
 class Tutorial extends Article
 {
-
-  /**
+    /**
    * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorialChapter", mappedBy="tutorial")
    * @ORM\OrderBy({"rank" = "ASC"})
    */
-  private $tutorialChapter;     
+  private $tutorialChapter;
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Image", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
-    private $image; 
+    private $image;
 
     /**
      * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\TutorialSection", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $tutorialSection;        
+    private $tutorialSection;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -42,11 +41,11 @@ class Tutorial extends Article
     private $id;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="rank", type="integer")
      */
-    private $rank;  
+    private $rank;
 
     /**
      * @var string
@@ -55,19 +54,27 @@ class Tutorial extends Article
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
      */
-    private $locale;  
+    private $locale;
 
     /**
      * @Gedmo\Slug(fields={"name"}, prefix="tutorial-")
      * @ORM\Column(length=128, unique=true)
      */
-    private $slug;   
-
+    private $slug;
 
     /**
-     * Get id
+     * Constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->TutorialChapter = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -75,9 +82,10 @@ class Tutorial extends Article
     }
 
     /**
-     * Set rank
+     * Set rank.
      *
-     * @param integer $rank
+     * @param int $rank
+     *
      * @return Tutorial
      */
     public function setRank($rank)
@@ -88,9 +96,9 @@ class Tutorial extends Article
     }
 
     /**
-     * Get rank
+     * Get rank.
      *
-     * @return integer 
+     * @return int
      */
     public function getRank()
     {
@@ -98,9 +106,10 @@ class Tutorial extends Article
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
+     *
      * @return Tutorial
      */
     public function setSlug($slug)
@@ -111,19 +120,20 @@ class Tutorial extends Article
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
         return $this->slug;
-    }    
+    }
 
     /**
-     * Set image
+     * Set image.
      *
      * @param \FBN\GuideBundle\Entity\Image $image
+     *
      * @return Tutorial
      */
     public function setImage(\FBN\GuideBundle\Entity\Image $image)
@@ -134,9 +144,9 @@ class Tutorial extends Article
     }
 
     /**
-     * Get image
+     * Get image.
      *
-     * @return \FBN\GuideBundle\Entity\Image 
+     * @return \FBN\GuideBundle\Entity\Image
      */
     public function getImage()
     {
@@ -144,9 +154,10 @@ class Tutorial extends Article
     }
 
     /**
-     * Set tutorialSection
+     * Set tutorialSection.
      *
      * @param \FBN\GuideBundle\Entity\RestaurantPrice $tutorialSection
+     *
      * @return Restaurant
      */
     public function setTutorialSection(\FBN\GuideBundle\Entity\TutorialSection $tutorialSection)
@@ -157,42 +168,42 @@ class Tutorial extends Article
     }
 
     /**
-     * Get tutorialSection
+     * Get tutorialSection.
      *
-     * @return \FBN\GuideBundle\Entity\TutorialSection 
+     * @return \FBN\GuideBundle\Entity\TutorialSection
      */
     public function getTutorialSection()
     {
         return $this->tutorialSection;
-    }    
+    }
 
     /**
-     * Set locale
+     * Set locale.
      *
      * @param string $locale
-     * 
      */
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
-    }     
+    }
 
     /**
-     * Add tutorialChapter
+     * Add tutorialChapter.
      *
      * @param \FBN\GuideBundle\Entity\TutorialChapter $tutorialChapter
-     * @return Winemaker
+     *
+     * @return Tutorial
      */
     public function addTutorialChapter(\FBN\GuideBundle\Entity\TutorialChapter $tutorialChapter)
     {
         $this->tutorialChapter[] = $tutorialChapter;
-        $tutorialChapter->setWinemaker($this); 
+        $tutorialChapter->setTutorial($this);
 
         return $this;
     }
 
     /**
-     * Remove tutorialChapter
+     * Remove tutorialChapter.
      *
      * @param \FBN\GuideBundle\Entity\TutorialChapter $tutorialChapter
      */
@@ -202,12 +213,12 @@ class Tutorial extends Article
     }
 
     /**
-     * Get tutorialChapter
+     * Get tutorialChapter.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTutorialChapter()
     {
         return $this->tutorialChapter;
-    }    
+    }
 }
