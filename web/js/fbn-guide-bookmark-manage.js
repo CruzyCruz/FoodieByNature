@@ -1,4 +1,4 @@
-// Add / Remove Bookmark
+// Add / Remove bookmark
 $(function() {
     $('#bookmark').click(function() {
 
