@@ -4,6 +4,7 @@ namespace FBN\GuideBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use FBN\GuideBundle\Entity\Article;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -221,6 +222,15 @@ class GuideController extends Controller
         ));
     }
 
+    /**
+     * Manages bookmarks : add and remove actions.
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse
+     *
+     * @throws AccessDeniedException
+     */
     public function bookmarkManageAction(Request $request)
     {
         if ($request->isXmlHttpRequest()) {
@@ -233,10 +243,12 @@ class GuideController extends Controller
 
             return  $bookmarkManager->manage($bookmarkAction, $bookmarkId, $bookmarkEntity, $bookmarkEntityId);
         }
+
+        throw new AccessDeniedException();
     }
 
     /**
-     * Displays error pages when requested from JS.
+     * Displays error pages when requested from AJAX.
      *
      * @param int $statusCode The HTTP header status code.
      *
