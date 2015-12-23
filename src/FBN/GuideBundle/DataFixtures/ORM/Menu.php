@@ -1,5 +1,7 @@
 <?php
+
 // src/FBN/GuideBundle/DataFixtures/ORM/Menu.php
+
 
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
@@ -14,31 +16,38 @@ class Menu extends AbstractFixture implements OrderedFixtureInterface
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
+        $sections = array('Info', 'Restaurant', 'Winemaker', 'Event', 'Tutorial', 'Shop', 'Bookmark');
 
-        $sections = array('Info', 'Restaurant', 'Winemaker', 'Event', 'Tutorial', 'Shop');
+        $intros = array('Mais qu\'est ce qui se passe ?', 'La crème de la crème des tables au naturel', 'L\'élite', 'Ca se passe où et quand ?', 'Naturel kezako ?', 'Les rois du goulot', '');
 
-        $intros = array('Mais qu\'est ce qui se passe ?', 'La crème de la crème des tables au naturel', 'L\'élite', 'Ca se passe où et quand ?', 'Naturel kezako ?', 'Les rois du goulot');
+        $introsen = array('What the fuck?', 'La crème de la crème of natural restaurants', 'The elite', 'Where it is and when it is?', 'Natural kezako ?', 'Kings of bottleneck', '');
 
-        $introsen = array('What the fuck?', 'La crème de la crème of natural restaurants', 'The elite', 'Where it is and when it is?', 'Natural kezako ?', 'Kings of bottleneck');        
+        $titles = array('Infos', 'Restaurants', 'Vignerons', 'Evénements', 'Tutoriaux', 'Cavistes', 'Mes favoris');
+
+        $titlesen = array('Infos', 'Restaurants', 'Winemakers', 'Events', 'Tutorials', 'Shops', 'My bookmarks');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        foreach($sections as $i => $section)
-        {
-            $menu[$i] = new Mnu();            
+        foreach ($sections as $i => $section) {
+            $menu[$i] = new Mnu();
             $menu[$i]->setSection($section);
-        } 
+        }
 
-        foreach($intros as $i => $intro)
-        {
+        foreach ($titles as $i => $title) {
+            $menu[$i]->setTitle($title);
+
+            $repository->translate($menu[$i], 'title', 'en', $titlesen[$i]);
+        }
+
+        foreach ($intros as $i => $intro) {
             $menu[$i]->setIntro($intro);
 
-            $repository->translate($menu[$i], 'intro', 'en', $introsen[$i]); 
+            $repository->translate($menu[$i], 'intro', 'en', $introsen[$i]);
 
             $manager->persist($menu[$i]);
 
-            $this->addReference('menu-' . $i, $menu[$i]);
-        }   
+            $this->addReference('menu-'.$i, $menu[$i]);
+        }
 
         $manager->flush();
     }
@@ -46,5 +55,5 @@ class Menu extends AbstractFixture implements OrderedFixtureInterface
     public function getOrder()
     {
         return 1001; // l'ordre dans lequel les fichiers sont chargés
-    }  
+    }
 }

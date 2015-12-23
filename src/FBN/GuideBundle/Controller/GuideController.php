@@ -43,9 +43,9 @@ class GuideController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $repoMenu = $em->getRepository('FBNGuideBundle:Menu');
+        $menuRepo = $em->getRepository('FBNGuideBundle:Menu');
 
-        $menu = $repoMenu->findOneBy(array('section' => $entity));
+        $menu = $menuRepo->findOneBy(array('section' => $entity));
 
         $articles = $em->getRepository('FBNGuideBundle:'.$entity)->getArticlesImages();
 
@@ -194,6 +194,10 @@ class GuideController extends Controller
 
     public function bookmarksAction()
     {
+        $em = $this->getDoctrine()->getManager();
+        $menuRepo = $em->getRepository('FBNGuideBundle:Menu');
+        $menu = $menuRepo->findOneBy(array('section' => 'Bookmark'));
+
         // User connexion is checked using custom LoginEntryPoint
         $userId = $this->getUser()->getId();
         $bookmarkManager = $this->container->get('fbn_guide.bookmark_manager');
@@ -215,6 +219,7 @@ class GuideController extends Controller
         $bookmarkManager->setSessionVariable(array('remove_only'), $bookmarkIds, array(null), array(null));
 
         return $this->render('FBNGuideBundle:Guide:bookmarks.html.twig', array(
+            'menu' => $menu,
             'restaurants' => $restaurants,
             'winemakers' => $winemakers,
             'shops' => $shops,

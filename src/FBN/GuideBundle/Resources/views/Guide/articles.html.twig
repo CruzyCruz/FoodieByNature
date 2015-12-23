@@ -3,25 +3,23 @@
 {% extends "FBNGuideBundle::layout.html.twig" %}
 
 {% block title %}
-	{{ menu.section ~ 's' }}
+	{{ menu.title }}
 {% endblock %}
 
 {% block body %}
 
 <p> {{ menu.intro }}</p>
 
+{% set routeRequirement = (menu.section | lower ~ 's') %}
 
-{% if menu.section | lower ~ 's' in 'restaurants-winemakers-events-tutorials-shops' %}
+{% if routeRequirement == "infos" %}
 
-  {% include 'FBNGuideBundle:Guide:restaurants-winemakers-events-tutorials-shops.html.twig' %}
+  {% include 'FBNGuideBundle:Guide:infos.html.twig' %} 
 
-{% elseif menu.section | lower ~ 's' in 'infos' %}
+{% else %}
 
- {% include 'FBNGuideBundle:Guide:infos.html.twig' %}
-
+ {% include 'FBNGuideBundle:Guide:restaurants-winemakers-events-tutorials-shops.html.twig' %}
 
 {% endif %}
-
-
 
 {% endblock %}

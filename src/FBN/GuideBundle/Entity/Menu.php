@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Menu
+ * Menu.
  *
  * @ORM\Table(name="menu")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\MenuRepository")
@@ -14,7 +14,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class Menu
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -40,16 +40,24 @@ class Menu
     /**
      * @var string
      *
+     * @ORM\Column(name="title", type="string", length=255)
+     * @Gedmo\Translatable
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
      * @Gedmo\Locale
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
      */
-    private $locale;  
+    private $locale;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -57,9 +65,10 @@ class Menu
     }
 
     /**
-     * Set section
+     * Set section.
      *
      * @param string $section
+     *
      * @return Menu
      */
     public function setSection($section)
@@ -70,9 +79,9 @@ class Menu
     }
 
     /**
-     * Get section
+     * Get section.
      *
-     * @return string 
+     * @return string
      */
     public function getSection()
     {
@@ -80,9 +89,10 @@ class Menu
     }
 
     /**
-     * Set intro
+     * Set intro.
      *
      * @param string $intro
+     *
      * @return Menu
      */
     public function setIntro($intro)
@@ -93,9 +103,9 @@ class Menu
     }
 
     /**
-     * Get intro
+     * Get intro.
      *
-     * @return string 
+     * @return string
      */
     public function getIntro()
     {
@@ -103,13 +113,36 @@ class Menu
     }
 
     /**
-     * Set locale
+     * Set title.
+     *
+     * @param string $title
+     *
+     * @return Menu
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title.
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set locale.
      *
      * @param string $locale
-     * 
      */
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
-    }     
+    }
 }
