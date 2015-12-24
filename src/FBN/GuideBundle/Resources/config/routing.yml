@@ -40,7 +40,7 @@ fbn_guide_bookmarks_manage:
     options:
         expose: true
     requirements:
-        _method:  POST
+        _methods:  POST
 
 fbn_guide_display_error_pages:
     path:  /error/{statusCode}

@@ -27,12 +27,12 @@ hwi_oauth_connect:
         _locale: en|fr     
 
 google_login:
-    pattern: /{_locale}/login/check-google
+    path: /{_locale}/login/check-google
     requirements:
         _locale: en|fr
 
 facebook_login:
-    pattern: /{_locale}/login/check-facebook
+    path: /{_locale}/login/check-facebook
     requirements:
         _locale: en|fr         
 
