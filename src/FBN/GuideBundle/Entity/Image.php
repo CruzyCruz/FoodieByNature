@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Image
+ * Image.
  *
  * @ORM\Table(name="image")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\ImageRepository")
@@ -15,15 +15,14 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Image
 {
-
     /**
      * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\ImageType")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $imageType;   
+    private $imageType;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -32,11 +31,11 @@ class Image
     private $id;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="rank", type="integer")
      */
-    private $rank;    
+    private $rank;
 
     /**
      * @var string
@@ -85,12 +84,13 @@ class Image
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
      */
-    private $locale;  
+    private $locale;
 
     /**
-     * Set imageType
+     * Set imageType.
      *
      * @param \FBN\GuideBundle\Entity\Image $imageType
+     *
      * @return Image
      */
     public function setImageType(\FBN\GuideBundle\Entity\ImageType $imageType)
@@ -101,9 +101,9 @@ class Image
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -111,9 +111,10 @@ class Image
     }
 
     /**
-     * Set rank
+     * Set rank.
      *
-     * @param integer $rank
+     * @param int $rank
+     *
      * @return Image
      */
     public function setRank($rank)
@@ -124,9 +125,9 @@ class Image
     }
 
     /**
-     * Get rank
+     * Get rank.
      *
-     * @return integer 
+     * @return int
      */
     public function getRank()
     {
@@ -134,9 +135,10 @@ class Image
     }
 
     /**
-     * Set path
+     * Set path.
      *
      * @param string $path
+     *
      * @return Image
      */
     public function setPath($path)
@@ -147,9 +149,9 @@ class Image
     }
 
     /**
-     * Get path
+     * Get path.
      *
-     * @return string 
+     * @return string
      */
     public function getPath()
     {
@@ -157,9 +159,10 @@ class Image
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Image
      */
     public function setName($name)
@@ -170,9 +173,9 @@ class Image
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -180,9 +183,10 @@ class Image
     }
 
     /**
-     * Set size
+     * Set size.
      *
      * @param string $size
+     *
      * @return Image
      */
     public function setSize($size)
@@ -193,9 +197,9 @@ class Image
     }
 
     /**
-     * Get size
+     * Get size.
      *
-     * @return string 
+     * @return string
      */
     public function getSize()
     {
@@ -203,9 +207,10 @@ class Image
     }
 
     /**
-     * Set mimeType
+     * Set mimeType.
      *
      * @param string $mimeType
+     *
      * @return Image
      */
     public function setMimeType($mimeType)
@@ -216,9 +221,9 @@ class Image
     }
 
     /**
-     * Get mimeType
+     * Get mimeType.
      *
-     * @return string 
+     * @return string
      */
     public function getMimeType()
     {
@@ -226,9 +231,10 @@ class Image
     }
 
     /**
-     * Set legend
+     * Set legend.
      *
      * @param string $legend
+     *
      * @return Image
      */
     public function setLegend($legend)
@@ -239,9 +245,9 @@ class Image
     }
 
     /**
-     * Get legend
+     * Get legend.
      *
-     * @return string 
+     * @return string
      */
     public function getLegend()
     {
@@ -249,27 +255,41 @@ class Image
     }
 
     /**
-     * Set locale
+     * Set locale.
      *
      * @param string $locale
-     * 
      */
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
-    }     
+    }
 
     /**
-     * Renvoie le chemin relatif du répertoire de stockage des images depuis web
+     * Renvoie le chemin relatif du répertoire de stockage des images depuis web.
      *    
      * @return string
-     * 
      */
     public function getWebPath()
     {
         $pos = strpos($this->path, 'uploads');
         $dir = substr($this->path, $pos);
 
-        return $dir . '/' . $this->name;
-    }      
+        return $dir.'/'.$this->name;
+    }
+
+    /**
+     * Get imageType.
+     *
+     * @return \FBN\GuideBundle\Entity\ImageType
+     */
+    public function getImageType()
+    {
+        return $this->imageType;
+    }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

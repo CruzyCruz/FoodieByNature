@@ -245,4 +245,10 @@ class CoordinatesFR
     {
         return $this->postcode;
     }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return (string) $this->getId();
+    }
 }

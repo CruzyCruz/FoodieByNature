@@ -1,0 +1,16 @@
+easy_admin:
+    site_name: 'Foodie By Nature'
+    entities:
+        - FBN\GuideBundle\Entity\Image
+        - FBN\GuideBundle\Entity\ImageType
+        - FBN\GuideBundle\Entity\Restaurant
+        - FBN\GuideBundle\Entity\RestaurantBonus        
+        - FBN\GuideBundle\Entity\RestaurantPrice
+        - FBN\GuideBundle\Entity\RestaurantStyle
+        - FBN\GuideBundle\Entity\Shop
+        - FBN\GuideBundle\Entity\Coordinates
+        - FBN\GuideBundle\Entity\CoordinatesFR
+        - FBN\GuideBundle\Entity\CoordinatesFRArea
+        - FBN\GuideBundle\Entity\CoordinatesFRDept
+        - FBN\GuideBundle\Entity\CoordinatesFRLane
+        - FBN\GuideBundle\Entity\CoordinatesCountry

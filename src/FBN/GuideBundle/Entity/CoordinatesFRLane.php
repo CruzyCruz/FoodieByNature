@@ -61,4 +61,10 @@ class CoordinatesFRLane
     {
         return $this->lane;
     }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getLane();
+    }
 }

@@ -256,4 +256,10 @@ abstract class Article
 
         return end($namexplode);
     }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

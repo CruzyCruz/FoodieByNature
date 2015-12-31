@@ -82,4 +82,10 @@ class RestaurantPrice
     {
         $this->locale = $locale;
     }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getPrice();
+    }
 }

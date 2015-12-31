@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * CoordinatesFRDept.
  *
  * @ORM\Table(name="coordinatesfrdept")
- * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordinatesFRAreaRepository")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordinatesFRDeptRepository")
  */
 class CoordinatesFRDept
 {
@@ -121,5 +121,11 @@ class CoordinatesFRDept
     public function getCoordinatesFRArea()
     {
         return $this->coordinatesFRArea;
+    }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getDepartment().' ('.$this->getNum().')';
     }
 }

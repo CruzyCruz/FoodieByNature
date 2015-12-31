@@ -238,4 +238,21 @@ class Coordinates
     {
         return $this->winemaker;
     }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        $country = $this->getCoordinatesCountry()->getCountry();
+        $area = $this->getCoordinatesFR()->getCoordinatesFRDept()->getCoordinatesFRArea()->getArea();
+        $dept = $this->getCoordinatesFR()->getCoordinatesFRDept()->getDepartment();
+        $lane = '';
+        if (null !== $this->getCoordinatesFR()->getCoordinatesFRLane()) {
+            $lane = $this->getCoordinatesFR()->getCoordinatesFRLane()->getLane();
+        }
+        $laneName = $this->getCoordinatesFR()->getLaneName();
+        $laneNum = $this->getCoordinatesFR()->getLaneNum();
+        $postCode = $this->getCoordinatesFR()->getPostcode();
+
+        return $country.'/'.$area.'/'.$dept.'/'.$postCode.'/'.$this->getCity().'/'.$laneNum.', '.$lane.' '.$laneName;
+    }
 }

@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * RestaurantStyle
+ * RestaurantStyle.
  *
  * @ORM\Table(name="restaurantstyle")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\RestaurantStyleRepository")
@@ -14,7 +14,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class RestaurantStyle
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -37,12 +37,12 @@ class RestaurantStyle
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
      */
-    private $locale; 
+    private $locale;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -50,9 +50,10 @@ class RestaurantStyle
     }
 
     /**
-     * Set style
+     * Set style.
      *
      * @param string $style
+     *
      * @return RestaurantStyle
      */
     public function setStyle($style)
@@ -63,9 +64,9 @@ class RestaurantStyle
     }
 
     /**
-     * Get style
+     * Get style.
      *
-     * @return string 
+     * @return string
      */
     public function getStyle()
     {
@@ -73,13 +74,18 @@ class RestaurantStyle
     }
 
     /**
-     * Set locale
+     * Set locale.
      *
      * @param string $locale
-     * 
      */
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
-    }        
+    }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getStyle();
+    }
 }
