@@ -173,10 +173,5 @@ liip_imagine:
             filters:
                 thumbnail: { size: [224, 149], mode: outbound }
 
-
-# Avalanche Imagine Configuration
-#avalanche_imagine:
-#    filters:
-#        thumb:
-#            type: thumbnail
-#            options: { size: [224, 149], mode: outbound }
+vich_uploader:
+    db_driver: orm
