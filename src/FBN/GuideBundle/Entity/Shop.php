@@ -19,12 +19,6 @@ class Shop extends Article
      */
     private $coordinates;
 
-      /**
-       * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Image", cascade={"persist"})
-       * @ORM\JoinColumn(nullable=true)
-       */
-      private $image;
-
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Restaurant", mappedBy="shop")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
@@ -115,30 +109,6 @@ class Shop extends Article
     public function getCoordinates()
     {
         return $this->coordinates;
-    }
-
-    /**
-     * Set image.
-     *
-     * @param \FBN\GuideBundle\Entity\Image $image
-     *
-     * @return Restaurant
-     */
-    public function setImage(\FBN\GuideBundle\Entity\Image $image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image.
-     *
-     * @return \FBN\GuideBundle\Entity\Image
-     */
-    public function getImage()
-    {
-        return $this->image;
     }
 
     /**

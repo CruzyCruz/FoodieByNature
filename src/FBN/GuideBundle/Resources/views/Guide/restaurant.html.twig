@@ -41,7 +41,8 @@
 
   {% if restaurant.image is not null %}
     <img 
-      src="{{ asset(restaurant.image.webPath) }}"
+      {#src="{{ asset(restaurant.image.webPath) }}"#}
+      src="{{ vich_uploader_asset(restaurant.image, 'file') }}"
       alt="{{ restaurant.name }}"
     />
   {% endif %}    

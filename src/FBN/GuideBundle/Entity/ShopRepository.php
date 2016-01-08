@@ -16,8 +16,6 @@ class ShopRepository extends EntityRepository
     public function getArticlesImages($first = 0, $limit = Article::NUM_ITEMS)
     {
         $qb = $this->createQueryBuilder('wnmkr')
-                   ->leftJoin('wnmkr.image', 'i')
-                   ->addSelect('i')
                    ->orderBy('wnmkr.datePublication', 'DESC')
                     ->where('wnmkr.publication = :publication')
                     ->setParameter('publication', 1);
@@ -33,8 +31,6 @@ class ShopRepository extends EntityRepository
     public function getShop($slug)
     {
         $qb = $this->createQueryBuilder('wnmkr')
-                   ->leftJoin('wnmkr.image', 'i')
-                   ->addSelect('i')
                    ->leftJoin('wnmkr.coordinates', 'c')
                    ->addSelect('c')
                    ->leftJoin('wnmkr.restaurant', 'cr')

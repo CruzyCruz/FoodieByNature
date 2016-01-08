@@ -13,7 +13,8 @@
 
 {% if tutorial.image is not null %}
   <img 
-    src="{{ asset(tutorial.image.webPath) }}"
+    {#src="{{ asset(tutorial.image.webPath) }}"#}
+    src="{{ vich_uploader_asset(tutorial.image, 'file') }}"
     alt="{{ tutorial.name }}"
   />
 {% endif %}    
@@ -30,7 +31,8 @@
 
 	{% if tcp.image is not null %}
 	  <img 
-	    src="{{ asset(tcp.image.webPath) }}"
+	    {#src="{{ asset(tcp.image.webPath) }}"#}
+      src="{{ vich_uploader_asset(tcp.image, 'file') }}"
 	    alt="{{ tcp.image.legend }}"
 	  />   
 	{% endif %}  	 

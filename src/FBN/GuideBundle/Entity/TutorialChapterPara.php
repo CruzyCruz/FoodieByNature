@@ -21,7 +21,7 @@ class TutorialChapterPara
     private $tutorialChapter;
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Image", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageTutorialChapterPara", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $image;
@@ -144,11 +144,11 @@ class TutorialChapterPara
     /**
      * Set image.
      *
-     * @param \FBN\GuideBundle\Entity\Image $image
+     * @param \FBN\GuideBundle\Entity\ImageTutorialChapterPara $image
      *
      * @return TutorialChapterPara
      */
-    public function setImage(\FBN\GuideBundle\Entity\Image $image)
+    public function setImage(\FBN\GuideBundle\Entity\ImageTutorialChapterPara $image)
     {
         $this->image = $image;
 
@@ -158,7 +158,7 @@ class TutorialChapterPara
     /**
      * Get image.
      *
-     * @return \FBN\GuideBundle\Entity\Image
+     * @return \FBN\GuideBundle\Entity\ImageTutorialChapterPara
      */
     public function getImage()
     {

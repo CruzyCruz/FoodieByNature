@@ -20,7 +20,7 @@ class Tutorial extends Article
   private $tutorialChapter;
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Image", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageTutorial", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $image;
@@ -132,11 +132,11 @@ class Tutorial extends Article
     /**
      * Set image.
      *
-     * @param \FBN\GuideBundle\Entity\Image $image
+     * @param \FBN\GuideBundle\Entity\ImageTutorial $image
      *
      * @return Tutorial
      */
-    public function setImage(\FBN\GuideBundle\Entity\Image $image)
+    public function setImage(\FBN\GuideBundle\Entity\ImageTutorial $image)
     {
         $this->image = $image;
 
@@ -146,7 +146,7 @@ class Tutorial extends Article
     /**
      * Get image.
      *
-     * @return \FBN\GuideBundle\Entity\Image
+     * @return \FBN\GuideBundle\Entity\ImageTutorial
      */
     public function getImage()
     {

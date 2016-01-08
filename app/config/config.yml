@@ -175,3 +175,20 @@ liip_imagine:
 
 vich_uploader:
     db_driver: orm
+
+    mappings:
+        image_restaurant:
+            uri_prefix:         /uploads/images/restaurants
+            upload_destination: %kernel.root_dir%/../web/uploads/images/restaurants
+        image_winemaker:
+            uri_prefix:         /uploads/images/winemakers
+            upload_destination: %kernel.root_dir%/../web/uploads/images/winemakers
+        image_event:
+            uri_prefix:         /uploads/images/events
+            upload_destination: %kernel.root_dir%/../web/uploads/images/events
+        image_tutorial:
+            uri_prefix:         /uploads/images/tutorials
+            upload_destination: %kernel.root_dir%/../web/uploads/images/tutorials
+        image_tutorial_chapter_para:
+            uri_prefix:         /uploads/images/tutorials
+            upload_destination: %kernel.root_dir%/../web/uploads/images/tutorials         

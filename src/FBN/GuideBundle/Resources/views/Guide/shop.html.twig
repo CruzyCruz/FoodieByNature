@@ -21,13 +21,6 @@
 
   <p>{{ shop.openingHours }}</p> 
 
-  {% if shop.image is not null %}
-    <img 
-      src="{{ asset(shop.image.webPath) }}"
-      alt="{{ shop.name }}"
-    />
-  {% endif %}    
-
   {% if shop.description is not null %}
     <p>{{ shop.description }}</p>  
   {% endif %}  

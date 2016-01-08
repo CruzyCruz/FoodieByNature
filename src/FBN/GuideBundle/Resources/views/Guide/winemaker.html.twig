@@ -15,7 +15,8 @@
 
 {% if winemaker.image is not null %}
   <img 
-    src="{{ asset(winemaker.image.webPath) }}"
+    {#src="{{ asset(winemaker.image.webPath) }}"#}
+    src="{{ vich_uploader_asset(winemaker.image, 'file') }}"
     alt="{{ winemaker.name }}"
   />
 {% endif %}    

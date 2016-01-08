@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Restaurant
+ * Restaurant.
  *
  * @ORM\Table(name="restaurant")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\RestaurantRepository")
@@ -14,30 +14,29 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Restaurant extends Article
 {
-
     /**
      * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\RestaurantPrice")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $restaurantPrice;    
+    private $restaurantPrice;
 
     /**
      * @ORM\ManyToMany(targetEntity="FBN\GuideBundle\Entity\RestaurantStyle")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $restaurantStyle;    
+    private $restaurantStyle;
 
     /**
      * @ORM\ManyToMany(targetEntity="FBN\GuideBundle\Entity\RestaurantBonus")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $restaurantBonus;     
-     
+    private $restaurantBonus;
+
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Image", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageRestaurant", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $image;        
+    private $image;
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist"})
@@ -49,10 +48,10 @@ class Restaurant extends Article
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Shop", inversedBy="restaurant")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
-    private $shop;            
+    private $shop;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -87,7 +86,7 @@ class Restaurant extends Article
      * @ORM\Column(name="href", type="string", length=255, nullable=true)
      */
     private $href;
-    
+
     /**
      * @var string
      *
@@ -107,7 +106,7 @@ class Restaurant extends Article
      * }, separator="-", updatable=true, fields={"name"}, prefix="restaurant-")
      * @ORM\Column(length=128, unique=true)
      */
-    private $slug;  
+    private $slug;
 
     /**
      * @var string
@@ -116,19 +115,19 @@ class Restaurant extends Article
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
      */
-    private $locale;      
+    private $locale;
 
     public function __construct()
     {
-       parent::__construct();   
-       $this->restaurantStyle = new \Doctrine\Common\Collections\ArrayCollection();
-       $this->restaurantBonus = new \Doctrine\Common\Collections\ArrayCollection();
+        parent::__construct();
+        $this->restaurantStyle = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->restaurantBonus = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -136,9 +135,10 @@ class Restaurant extends Article
     }
 
     /**
-     * Set restaurateur
+     * Set restaurateur.
      *
      * @param string $restaurateur
+     *
      * @return Restaurant
      */
     public function setRestaurateur($restaurateur)
@@ -149,9 +149,9 @@ class Restaurant extends Article
     }
 
     /**
-     * Get restaurateur
+     * Get restaurateur.
      *
-     * @return string 
+     * @return string
      */
     public function getRestaurateur()
     {
@@ -159,9 +159,10 @@ class Restaurant extends Article
     }
 
     /**
-     * Set openingHours
+     * Set openingHours.
      *
      * @param string $openingHours
+     *
      * @return Restaurant
      */
     public function setOpeningHours($openingHours)
@@ -172,9 +173,9 @@ class Restaurant extends Article
     }
 
     /**
-     * Get openingHours
+     * Get openingHours.
      *
-     * @return string 
+     * @return string
      */
     public function getOpeningHours()
     {
@@ -182,9 +183,10 @@ class Restaurant extends Article
     }
 
     /**
-     * Set restaurantPrice
+     * Set restaurantPrice.
      *
      * @param \FBN\GuideBundle\Entity\RestaurantPrice $restaurantPrice
+     *
      * @return Restaurant
      */
     public function setRestaurantPrice(\FBN\GuideBundle\Entity\RestaurantPrice $restaurantPrice)
@@ -195,9 +197,9 @@ class Restaurant extends Article
     }
 
     /**
-     * Get restaurantPrice
+     * Get restaurantPrice.
      *
-     * @return \FBN\GuideBundle\Entity\RestaurantPrice 
+     * @return \FBN\GuideBundle\Entity\RestaurantPrice
      */
     public function getRestaurantPrice()
     {
@@ -205,9 +207,10 @@ class Restaurant extends Article
     }
 
     /**
-     * Add restaurantStyle
+     * Add restaurantStyle.
      *
      * @param \FBN\GuideBundle\Entity\RestaurantStyle $restaurantStyle
+     *
      * @return Restaurant
      */
     public function addRestaurantStyle(\FBN\GuideBundle\Entity\RestaurantStyle $restaurantStyle)
@@ -218,7 +221,7 @@ class Restaurant extends Article
     }
 
     /**
-     * Remove restaurantStyle
+     * Remove restaurantStyle.
      *
      * @param \FBN\GuideBundle\Entity\RestaurantStyle $restaurantStyle
      */
@@ -228,9 +231,9 @@ class Restaurant extends Article
     }
 
     /**
-     * Get restaurantStyle
+     * Get restaurantStyle.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRestaurantStyle()
     {
@@ -238,9 +241,10 @@ class Restaurant extends Article
     }
 
     /**
-     * Add restaurantBonus
+     * Add restaurantBonus.
      *
      * @param \FBN\GuideBundle\Entity\RestaurantBonus $restaurantBonus
+     *
      * @return Restaurant
      */
     public function addRestaurantBonus(\FBN\GuideBundle\Entity\RestaurantBonus $restaurantBonus)
@@ -251,7 +255,7 @@ class Restaurant extends Article
     }
 
     /**
-     * Remove restaurantBonus
+     * Remove restaurantBonus.
      *
      * @param \FBN\GuideBundle\Entity\RestaurantBonus $restaurantBonus
      */
@@ -261,9 +265,9 @@ class Restaurant extends Article
     }
 
     /**
-     * Get restaurantBonus
+     * Get restaurantBonus.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRestaurantBonus()
     {
@@ -271,12 +275,13 @@ class Restaurant extends Article
     }
 
     /**
-     * Set image
+     * Set image.
      *
-     * @param \FBN\GuideBundle\Entity\Image $image
+     * @param \FBN\GuideBundle\Entity\ImageRestaurant $image
+     *
      * @return Restaurant
      */
-    public function setImage(\FBN\GuideBundle\Entity\Image $image)
+    public function setImage(\FBN\GuideBundle\Entity\ImageRestaurant $image)
     {
         $this->image = $image;
 
@@ -284,9 +289,9 @@ class Restaurant extends Article
     }
 
     /**
-     * Get image
+     * Get image.
      *
-     * @return \FBN\GuideBundle\Entity\Image 
+     * @return \FBN\GuideBundle\Entity\ImageRestaurant
      */
     public function getImage()
     {
@@ -294,34 +299,36 @@ class Restaurant extends Article
     }
 
     /**
-     * Set shop
+     * Set shop.
      *
      * @param \FBN\GuideBundle\Entity\Shop $shop
+     *
      * @return shop
      */
     public function setShop(\FBN\GuideBundle\Entity\Shop $shop)
     {
         $this->shop = $shop;
         $shop->setRestaurant($this);
-        $shop->setName($this->getName()); 
+        $shop->setName($this->getName());
 
         return $this;
     }
 
     /**
-     * Get shop
+     * Get shop.
      *
-     * @return \FBN\GuideBundle\Entity\Shop 
+     * @return \FBN\GuideBundle\Entity\Shop
      */
     public function getShop()
     {
         return $this->shop;
-    }    
+    }
 
     /**
-     * Set coordinates
+     * Set coordinates.
      *
      * @param \FBN\GuideBundle\Entity\Coordinates $coordinates
+     *
      * @return Restaurant
      */
     public function setCoordinates(\FBN\GuideBundle\Entity\Coordinates $coordinates)
@@ -332,9 +339,9 @@ class Restaurant extends Article
     }
 
     /**
-     * Get coordinates
+     * Get coordinates.
      *
-     * @return \FBN\GuideBundle\Entity\Coordinates 
+     * @return \FBN\GuideBundle\Entity\Coordinates
      */
     public function getCoordinates()
     {
@@ -342,9 +349,10 @@ class Restaurant extends Article
     }
 
     /**
-     * Set tel
+     * Set tel.
      *
      * @param string $tel
+     *
      * @return Coordinates
      */
     public function setTel($tel)
@@ -355,9 +363,9 @@ class Restaurant extends Article
     }
 
     /**
-     * Get tel
+     * Get tel.
      *
-     * @return string 
+     * @return string
      */
     public function getTel()
     {
@@ -365,9 +373,10 @@ class Restaurant extends Article
     }
 
     /**
-     * Set site
+     * Set site.
      *
      * @param string $site
+     *
      * @return Restaurant
      */
     public function setSite($site)
@@ -378,9 +387,9 @@ class Restaurant extends Article
     }
 
     /**
-     * Get site
+     * Get site.
      *
-     * @return string 
+     * @return string
      */
     public function getSite()
     {
@@ -388,9 +397,10 @@ class Restaurant extends Article
     }
 
     /**
-     * Set href
+     * Set href.
      *
      * @param string $href
+     *
      * @return Restaurant
      */
     public function setHref($href)
@@ -401,19 +411,20 @@ class Restaurant extends Article
     }
 
     /**
-     * Get href
+     * Get href.
      *
-     * @return string 
+     * @return string
      */
     public function getHref()
     {
         return $this->href;
-    }    
+    }
 
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
+     *
      * @return Restaurant
      */
     public function setSlug($slug)
@@ -424,9 +435,9 @@ class Restaurant extends Article
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -434,13 +445,12 @@ class Restaurant extends Article
     }
 
     /**
-     * Set locale
+     * Set locale.
      *
      * @param string $locale
-     * 
      */
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
-    }     
+    }
 }

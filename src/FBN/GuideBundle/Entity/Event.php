@@ -21,7 +21,7 @@ class Event extends Article
   private $eventType;
 
   /**
-   * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Image", cascade={"persist"})
+   * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageEvent", cascade={"persist"})
    * @ORM\JoinColumn(nullable=true)
    */
   private $image;
@@ -271,11 +271,11 @@ class Event extends Article
     /**
      * Set image.
      *
-     * @param \FBN\GuideBundle\Entity\Image $image
+     * @param \FBN\GuideBundle\Entity\ImageEvent $image
      *
      * @return Event
      */
-    public function setImage(\FBN\GuideBundle\Entity\Image $image)
+    public function setImage(\FBN\GuideBundle\Entity\ImageEvent $image)
     {
         $this->image = $image;
 
@@ -285,7 +285,7 @@ class Event extends Article
     /**
      * Get image.
      *
-     * @return \FBN\GuideBundle\Entity\Image
+     * @return \FBN\GuideBundle\Entity\ImageEvent
      */
     public function getImage()
     {

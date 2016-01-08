@@ -5,11 +5,11 @@
 
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
-//use Doctrine\Common\DataFixtures\FixtureInterface;
+use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use FBN\GuideBundle\Entity\Image;
+use FBN\GuideBundle\Entity\ImageEvent as Image;
 
 class ImageEvent extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -18,13 +18,9 @@ class ImageEvent extends AbstractFixture implements OrderedFixtureInterface
     {
         $ranks = array(0, 0, 0, 0, 0, 0, 0, 0);
 
-        $path = __DIR__.'/../../../../../web/uploads/images/events';
+        $path = __DIR__.'/../../../../../web/uploads/images/events/';
 
         $names = array('event-yvon-metras-au-temps-des-vendanges-2013-il.jpg', 'event-repas-gastronomique-a-toulouse-2013-il.jpg', 'event-sous-les-paves-la-vigne-2014-il.jpg', 'event-la-remise-2013-il.jpg', 'event-yvon-metras-au-temps-des-vendanges-2014-il.jpg', 'event-repas-gastronomique-a-toulouse-2014-il.jpg', 'event-la-remise-2014-il.jpg', 'event-dejeuner-sur-l-herbe-chez-robert-plageoles-2014-il.jpg');
-
-        $sizes = array(65536, 69632, 155648, 24576, 32768, 98304, 221184, 196608);
-
-        $mimetype = 'image/jpeg';
 
         $legends = array('Métras aux Temps des Vendanges!', 'Repas Gastronomique à Toulouse', 'Sous les pavés la vigne', 'La remise', 'Métras aux Temps des Vendanges!', 'Repas Gastronomique à Toulouse', 'La remise', 'Déjeuner sur l\'herbe chez Plageoles');
 
@@ -38,13 +34,9 @@ class ImageEvent extends AbstractFixture implements OrderedFixtureInterface
         }
 
         foreach ($names as $i => $name) {
-            $imageevent[$i]->setPath($path);
             $imageevent[$i]->setName($name);
-        }
-
-        foreach ($sizes as $i => $size) {
-            $imageevent[$i]->setSize($size);
-            $imageevent[$i]->setMimeType($mimetype);
+            $image = new File($path.$name);
+            $imageevent[$i]->setFile($image);
         }
 
         foreach ($legends as $i => $legend) {
@@ -55,8 +47,6 @@ class ImageEvent extends AbstractFixture implements OrderedFixtureInterface
             $manager->persist($imageevent[$i]);
 
             $this->addReference('imageevent-'.$i, $imageevent[$i]);
-
-            $imageevent[$i]->setImageType($this->getReference('imagetype-0'));
         }
 
         $manager->flush();

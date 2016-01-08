@@ -5,7 +5,6 @@ namespace FBN\GuideBundle\Entity;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
-
 /**
  * RestaurantRepository.
  *

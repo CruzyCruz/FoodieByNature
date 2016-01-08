@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Info
+ * Info.
  *
  * @ORM\Table(name="info")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\InfoRepository")
@@ -14,15 +14,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Info extends Article
 {
-
-  /**
-   * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Image", cascade={"persist"})
-   * @ORM\JoinColumn(nullable=true)
-   */
-  private $image;    
-
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -35,7 +28,7 @@ class Info extends Article
      *
      * @ORM\Column(name="site", type="string", length=255, nullable=true)
      */
-    private $site;     
+    private $site;
 
     /**
      * @var string
@@ -44,18 +37,18 @@ class Info extends Article
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
      */
-    private $locale; 
+    private $locale;
 
     /**
      * @Gedmo\Slug(fields={"name"}, prefix="info-")
      * @ORM\Column(length=128, unique=true)
      */
-    private $slug;       
+    private $slug;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -63,32 +56,10 @@ class Info extends Article
     }
 
     /**
-     * Set image
-     *
-     * @param \FBN\GuideBundle\Entity\Image $image
-     * @return Info
-     */
-    public function setImage(\FBN\GuideBundle\Entity\Image $image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return \FBN\GuideBundle\Entity\Image 
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * Set site
+     * Set site.
      *
      * @param string $site
+     *
      * @return Info
      */
     public function setSite($site)
@@ -99,9 +70,9 @@ class Info extends Article
     }
 
     /**
-     * Get site
+     * Get site.
      *
-     * @return string 
+     * @return string
      */
     public function getSite()
     {
@@ -109,9 +80,10 @@ class Info extends Article
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
+     *
      * @return Info
      */
     public function setSlug($slug)
@@ -122,23 +94,22 @@ class Info extends Article
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
         return $this->slug;
-    }  
+    }
 
     /**
-     * Set locale
+     * Set locale.
      *
      * @param string $locale
-     * 
      */
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
-    }         
+    }
 }

@@ -20,7 +20,8 @@
 
 {% if event.image is not null %}
   <img 
-    src="{{ asset(event.image.webPath) }}"
+    {# src="{{ asset(event.image.webPath) }}" #}
+    src="{{ vich_uploader_asset(event.image, 'file') }}"
     alt="{{ event.name }}"
   />
 {% endif %}  
