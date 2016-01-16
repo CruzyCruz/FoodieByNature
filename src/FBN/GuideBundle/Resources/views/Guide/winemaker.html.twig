@@ -46,7 +46,7 @@
       {{ vd.coordinates.coordinatesFR.locality }}
     {% endif %}  
     <br />
-    {{ vd.coordinates.coordinatesFR.postcode ~ ' ' ~ vd.coordinates.city }}
+    {{ vd.coordinates.coordinatesFR.postcode ~ ' ' ~ vd.coordinates.coordinatesFR.city }}
   </p>
 
   {% if vd.tel is not null %}
@@ -58,9 +58,9 @@
 
   <p>{{ vd.openingHours }}</p>
 
-    {% if vd.coordinates.metro is not null %}
+    {% if vd.coordinates.coordinatesFR.metro is not null %}
       <h3>METRO : </h3>  
-      <p>{{ vd.coordinates.metro }}</p> 
+      <p>{{ vd.coordinates.coordinatesFR.metro }}</p> 
     {% endif %}  
 
   {% if vd.site is not null %}

@@ -11,6 +11,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="restaurant")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\RestaurantRepository")
  * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\RestaurantTranslation")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Restaurant extends Article
 {
@@ -39,8 +40,8 @@ class Restaurant extends Article
     private $image;
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", inversedBy="restaurant", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $coordinates;
 
@@ -96,14 +97,16 @@ class Restaurant extends Article
     private $openingHours;
 
     /**
-     * @Gedmo\Slug(handlers={
-     *      @Gedmo\SlugHandler(class="Gedmo\Sluggable\Handler\RelativeSlugHandler", options={
-     *          @Gedmo\SlugHandlerOption(name="relationField", value="coordinates"),
-     *          @Gedmo\SlugHandlerOption(name="relationSlugField", value="city"),
-     *          @Gedmo\SlugHandlerOption(name="separator", value="-"),
-     *          @Gedmo\SlugHandlerOption(name="urilize", value=true)   
-     *      })
-     * }, separator="-", updatable=true, fields={"name"}, prefix="restaurant-")
+     * @var string
+     *
+     * @ORM\Column(name="slugFromCoordinatesISO", type="string", length=128)
+     */
+    private $slugFromCoordinatesISO;
+
+    /**
+     * @var string
+     * 
+     * @Gedmo\Slug(separator="-", updatable=true, fields={"name","slugFromCoordinatesISO"}, prefix="restaurant-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
@@ -334,6 +337,7 @@ class Restaurant extends Article
     public function setCoordinates(\FBN\GuideBundle\Entity\Coordinates $coordinates)
     {
         $this->coordinates = $coordinates;
+        $coordinates->setRestaurant($this);
 
         return $this;
     }
@@ -445,6 +449,30 @@ class Restaurant extends Article
     }
 
     /**
+     * Set slugFromCoordinatesISO.
+     *
+     * @param string $slugFromCoordinatesISO
+     *
+     * @return Restaurant
+     */
+    public function setSlugFromCoordinatesISO($slugFromCoordinatesISO)
+    {
+        $this->slugFromCoordinatesISO = $slugFromCoordinatesISO;
+
+        return $this;
+    }
+
+    /**
+     * Get slugFromCoordinatesISO.
+     *
+     * @return string
+     */
+    public function getSlugFromCoordinatesISO()
+    {
+        return $this->slugFromCoordinatesISO;
+    }
+
+    /**
      * Set locale.
      *
      * @param string $locale
@@ -452,5 +480,22 @@ class Restaurant extends Article
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
+    }
+
+    /**
+     *  Initiate slugFromCoordinatesISO at entity creation.
+     *
+     * @ORM\PrePersist
+     */
+    public function initiateSlugFromCoordinatesISO()
+    {
+        $codeISO = $this->getCoordinates()->getCoordinatesCountry()->getCodeISO();
+
+        switch ($codeISO) {
+            case 'FR':
+                $slugFromCoordinatesISO = $this->getCoordinates()->getCoordinatesFR()->getSlug();
+                break;
+        }
+        $this->setSlugFromCoordinatesISO($slugFromCoordinatesISO);
     }
 }

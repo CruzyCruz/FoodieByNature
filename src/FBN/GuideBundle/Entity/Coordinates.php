@@ -19,10 +19,16 @@ class Coordinates
   private $coordinatesCountry;
 
   /**
-   * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFR", cascade={"persist"})
-   * @ORM\JoinColumn(nullable=false)
+   * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFR", inversedBy="coordinates", cascade={"persist"})
+   * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
    */
   private $coordinatesFR;
+
+    /**
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Restaurant", mappedBy="coordinates")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $restaurant;
 
     /**
      * @var int
@@ -34,34 +40,6 @@ class Coordinates
     private $id;
 
     /**
-     * @var decimal
-     *
-     * @ORM\Column(name="latitude", type="decimal", precision=10, scale=6)
-     */
-    private $latitude;
-
-    /**
-     * @var decimal
-     *
-     * @ORM\Column(name="longitude", type="decimal", precision=10, scale=6)
-     */
-    private $longitude;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="city", type="string", length=255)
-     */
-    private $city;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="metro", type="string", length=255, nullable=true)
-     */
-    private $metro;
-
-    /**
      * Get id.
      *
      * @return int
@@ -69,102 +47,6 @@ class Coordinates
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set latitude.
-     *
-     * @param string $latitude
-     *
-     * @return Coordinates
-     */
-    public function setLatitude($latitude)
-    {
-        $this->latitude = $latitude;
-
-        return $this;
-    }
-
-    /**
-     * Get latitude.
-     *
-     * @return string
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
-    }
-
-    /**
-     * Set longitude.
-     *
-     * @param string $longitude
-     *
-     * @return Coordinates
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-
-        return $this;
-    }
-
-    /**
-     * Get longitude.
-     *
-     * @return string
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
-    }
-
-    /**
-     * Set city.
-     *
-     * @param string $city
-     *
-     * @return Coordinates
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    /**
-     * Get city.
-     *
-     * @return string
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * Set metro.
-     *
-     * @param string $metro
-     *
-     * @return Coordinates
-     */
-    public function setMetro($metro)
-    {
-        $this->metro = $metro;
-
-        return $this;
-    }
-
-    /**
-     * Get metro.
-     *
-     * @return string
-     */
-    public function getMetro()
-    {
-        return $this->metro;
     }
 
     /**
@@ -201,6 +83,7 @@ class Coordinates
     public function setCoordinatesFR(\FBN\GuideBundle\Entity\CoordinatesFR $coordinatesFR)
     {
         $this->coordinatesFR = $coordinatesFR;
+        $coordinatesFR->setCoordinates($this);
 
         return $this;
     }
@@ -216,27 +99,27 @@ class Coordinates
     }
 
     /**
-     * Set winemaker.
+     * Set restaurant.
      *
-     * @param \FBN\GuideBundle\Entity\Winemaker $winemaker
+     * @param \FBN\GuideBundle\Entity\Restaurant $restaurant
      *
      * @return Coordinates
      */
-    public function setWinemaker(\FBN\GuideBundle\Entity\Winemaker $winemaker)
+    public function setRestaurant(\FBN\GuideBundle\Entity\Restaurant $restaurant)
     {
-        $this->winemaker = $winemaker;
+        $this->restaurant = $restaurant;
 
         return $this;
     }
 
     /**
-     * Get winemaker.
+     * Get restaurant.
      *
-     * @return \FBN\GuideBundle\Entity\Winemaker
+     * @return \FBN\GuideBundle\Entity\Restaurant
      */
-    public function getWinemaker()
+    public function getRestaurant()
     {
-        return $this->winemaker;
+        return $this->restaurant;
     }
 
     /** {@inheritdoc} */
@@ -245,6 +128,7 @@ class Coordinates
         $country = $this->getCoordinatesCountry()->getCountry();
         $area = $this->getCoordinatesFR()->getCoordinatesFRDept()->getCoordinatesFRArea()->getArea();
         $dept = $this->getCoordinatesFR()->getCoordinatesFRDept()->getDepartment();
+        $city = $this->getCoordinatesFR()->getCity();
         $lane = '';
         if (null !== $this->getCoordinatesFR()->getCoordinatesFRLane()) {
             $lane = $this->getCoordinatesFR()->getCoordinatesFRLane()->getLane();
@@ -253,6 +137,6 @@ class Coordinates
         $laneNum = $this->getCoordinatesFR()->getLaneNum();
         $postCode = $this->getCoordinatesFR()->getPostcode();
 
-        return $country.'/'.$area.'/'.$dept.'/'.$postCode.'/'.$this->getCity().'/'.$laneNum.', '.$lane.' '.$laneName;
+        return $country.' / '.$area.' / '.$dept.' / '.$postCode.' / '.$city.' / '.$laneNum.', '.$lane.' '.$laneName;
     }
 }

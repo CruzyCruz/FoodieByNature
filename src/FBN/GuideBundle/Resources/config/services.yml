@@ -40,3 +40,8 @@ services:
     fbn_guide.bookmark_manager:
         class : FBN\GuideBundle\Bookmark\BookmarkManager
         arguments: [@security.token_storage, @doctrine.orm.entity_manager, @session]
+
+    fbn_guide.doctrine_listener:
+        class : FBN\GuideBundle\EventListener\DoctrineListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }

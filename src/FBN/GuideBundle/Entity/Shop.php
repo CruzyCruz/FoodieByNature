@@ -15,7 +15,7 @@ class Shop extends Article
 {
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $coordinates;
 
@@ -116,7 +116,7 @@ class Shop extends Article
      *
      * @param \FBN\GuideBundle\Entity\Restaurant $restaurant
      *
-     * @return Restaurant
+     * @return Shop
      */
     public function setRestaurant(\FBN\GuideBundle\Entity\Restaurant $restaurant)
     {

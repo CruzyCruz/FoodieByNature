@@ -98,8 +98,6 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface
 
             $repository->translate($restaurant[$i], 'openingHours', 'en', $openingHoursen[$i]);
 
-            $manager->persist($restaurant[$i]);
-
             $restaurant[$i]->setRestaurantPrice($this->getReference('restaurantprice-'.rand(0, 3)));
             $restaurant[$i]->addRestaurantStyle($this->getReference('restaurantstyle-'.rand(0, 1)));
             $restaurant[$i]->addRestaurantStyle($this->getReference('restaurantstyle-'.rand(2, 3)));
@@ -109,6 +107,8 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface
             $restaurant[$i]->setCoordinates($this->getReference('coordinates-'.$i));
 
             $restaurant[$i]->setImage($this->getReference('imagerestaurant-'.$i));
+
+            $manager->persist($restaurant[$i]);
 
             $this->addReference('restaurant-'.$i, $restaurant[$i]);
         }

@@ -50,7 +50,7 @@
       {{ sharedData.coordinates.coordinatesFR.locality }}
     {% endif %}  
     <br />
-    {{ sharedData.coordinates.coordinatesFR.postcode ~ ' ' ~ sharedData.coordinates.city }}
+    {{ sharedData.coordinates.coordinatesFR.postcode ~ ' ' ~ sharedData.coordinates.coordinatesFR.city }}
   </p>
 
   {% if sharedData.tel is not null %}
@@ -58,9 +58,9 @@
     <p>{{ sharedData.tel }}</p>  
   {% endif %}  
 
-  {% if sharedData.coordinates.metro is not null %}
+  {% if sharedData.coordinates.coordinatesFR.metro is not null %}
     <h3>METRO : </h3>  
-    <p>{{ sharedData.coordinates.metro }}</p> 
+    <p>{{ sharedData.coordinates.coordinatesFR.metro }}</p> 
   {% endif %}  
 
   {% if sharedData.site is not null %}

@@ -244,7 +244,7 @@ abstract class Article
     }
 
     /**
-     * Get publication.
+     * Get class name.
      *
      * @return string
      */

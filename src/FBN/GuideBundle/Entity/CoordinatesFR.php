@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * CoordinatesFR.
  *
- * @ORM\Table(name="coordinatesfr")
+ * @ORM\Table(name="coordinates_fr")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordinatesFRRepository")
  */
-class CoordinatesFR
+class CoordinatesFR extends CoordinatesISO
 {
     /**
     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFRLane")
@@ -23,6 +23,12 @@ class CoordinatesFR
     * @ORM\JoinColumn(nullable=false)
     */
    private $coordinatesFRDept;
+
+    /**
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", mappedBy="coordinatesFR")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $coordinates;
 
     /**
      * @var int
@@ -151,6 +157,30 @@ class CoordinatesFR
     }
 
     /**
+     * Set coordinates.
+     *
+     * @param \FBN\GuideBundle\Entity\Coordinates $coordinates
+     *
+     * @return CordinatesFR
+     */
+    public function setCoordinates(\FBN\GuideBundle\Entity\Coordinates $coordinates)
+    {
+        $this->coordinates = $coordinates;
+
+        return $this;
+    }
+
+    /**
+     * Get coordinates.
+     *
+     * @return \FBN\GuideBundle\Entity\Coordinates
+     */
+    public function getCoordinates()
+    {
+        return $this->coordinates;
+    }
+
+    /**
      * Set laneName.
      *
      * @param string $laneName
@@ -249,6 +279,17 @@ class CoordinatesFR
     /** {@inheritdoc} */
     public function __toString()
     {
-        return (string) $this->getId();
+        $area = $this->getCoordinatesFRDept()->getCoordinatesFRArea()->getArea();
+        $dept = $this->getCoordinatesFRDept()->getDepartment();
+        $city = $this->getCity();
+        $lane = '';
+        if (null !== $this->getCoordinatesFRLane()) {
+            $lane = $this->getCoordinatesFRLane()->getLane();
+        }
+        $laneName = $this->getLaneName();
+        $laneNum = $this->getLaneNum();
+        $postCode = $this->getPostcode();
+
+        return $area.' / '.$dept.' / '.$postCode.' / '.$city.' / '.$laneNum.', '.$lane.' '.$laneName;
     }
 }

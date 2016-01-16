@@ -1,14 +1,41 @@
 easy_admin:
     site_name: 'Foodie By Nature'
     entities:
-        - FBN\GuideBundle\Entity\Restaurant
-        - FBN\GuideBundle\Entity\RestaurantBonus        
-        - FBN\GuideBundle\Entity\RestaurantPrice
-        - FBN\GuideBundle\Entity\RestaurantStyle
-        - FBN\GuideBundle\Entity\Shop
-        - FBN\GuideBundle\Entity\Coordinates
-        - FBN\GuideBundle\Entity\CoordinatesFR
-        - FBN\GuideBundle\Entity\CoordinatesFRArea
-        - FBN\GuideBundle\Entity\CoordinatesFRDept
-        - FBN\GuideBundle\Entity\CoordinatesFRLane
-        - FBN\GuideBundle\Entity\CoordinatesCountry
+        ImageRestaurant:
+            #label: 'Image Restaurant'
+            class: FBN\GuideBundle\Entity\ImageRestaurant
+            image_base_path: '/uploads/images/restaurants/'
+            list:
+                #title: "Most recent customers"
+                fields:
+                    - 'id'
+                    - { property: 'name', type: 'image'}
+                    #- { property: 'name', type: 'image', base_path: '%vich_uploader.mappings.image_restaurant%' }
+        Restaurant:
+            class : FBN\GuideBundle\Entity\Restaurant
+        RestaurantBonus:    
+            class : FBN\GuideBundle\Entity\RestaurantBonus        
+        RestaurantPrice:
+            class : FBN\GuideBundle\Entity\RestaurantPrice
+        RestaurantStyle:
+            class : FBN\GuideBundle\Entity\RestaurantStyle
+        Shop:
+            class : FBN\GuideBundle\Entity\Shop
+        Coordinates:            
+            class : FBN\GuideBundle\Entity\Coordinates
+            edit:
+                #title: "Most recent customers"
+                fields:
+                    - 'id'
+                    - 'coordinatesCountry'
+                    - 'coordinatesFR'
+        CoordinatesFR:            
+            class : FBN\GuideBundle\Entity\CoordinatesFR
+        CoordinatesFRArea:    
+            class : FBN\GuideBundle\Entity\CoordinatesFRArea
+        CoordinatesFRDept:    
+            class : FBN\GuideBundle\Entity\CoordinatesFRDept
+        CoordinatesFRLane:    
+            class : FBN\GuideBundle\Entity\CoordinatesFRLane
+        CoordinatesCountry:    
+            class : FBN\GuideBundle\Entity\CoordinatesCountry
