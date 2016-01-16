@@ -71,7 +71,7 @@ class Shop extends Article
     private $openingHours;
 
     /**
-     * @Gedmo\Slug(fields={"name"}, prefix="shop-")
+     * @Gedmo\Slug(updatable=true, fields={"name"}, prefix="shop-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;

@@ -124,7 +124,7 @@ class Event extends Article
     private $useExtSite;
 
     /**
-     * @Gedmo\Slug(fields={"name","year"}, prefix="event-")
+     * @Gedmo\Slug(updatable=true, fields={"name","year"}, prefix="event-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;

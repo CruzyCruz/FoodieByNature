@@ -57,7 +57,7 @@ class Tutorial extends Article
     private $locale;
 
     /**
-     * @Gedmo\Slug(fields={"name"}, prefix="tutorial-")
+     * @Gedmo\Slug(updatable=true, fields={"name"}, prefix="tutorial-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;

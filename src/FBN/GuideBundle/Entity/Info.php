@@ -40,7 +40,7 @@ class Info extends Article
     private $locale;
 
     /**
-     * @Gedmo\Slug(fields={"name"}, prefix="info-")
+     * @Gedmo\Slug(updatable=true, fields={"name"}, prefix="info-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
