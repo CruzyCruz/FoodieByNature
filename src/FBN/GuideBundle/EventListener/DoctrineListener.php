@@ -20,16 +20,28 @@ class DoctrineListener implements EventSubscriber
         $this->updateRestaurantSlugFromCoordinatesISO($args);
     }
 
+    /**
+     * Update attribute slugFromCoordinatesISO of entity Restaurant on attribute slug CoordinatesISO entity postUpdate.
+     *
+     * @param LifecycleEventArgs $args
+     */
     public function updateRestaurantSlugFromCoordinatesISO(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
 
         if ($entity instanceof CoordinatesISO) {
-            $restaurant = $entity->getCoordinates()->getRestaurant();
-            if (null !== $restaurant) {
-                $em = $args->getEntityManager();
-                $restaurant->setSlugFromCoordinatesISO($entity->getSlug());
-                $em->flush();
+            $coordinates = $entity->getCoordinates();
+
+            if (null !== $coordinates) {
+                $restaurant = $coordinates->getRestaurant();
+
+                if (null !== $restaurant) {
+                    $em = $args->getEntityManager();
+                    $restaurant->setSlugFromCoordinatesISO($entity->getSlug());
+                    $em->flush();
+                } else {
+                    return;
+                }
             } else {
                 return;
             }
