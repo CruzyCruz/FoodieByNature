@@ -2,6 +2,9 @@ easy_admin:
     site_name: 'Foodie By Nature'
     design:
         form_theme: ['VichUploaderBundle:Form:fields.html.twig', 'horizontal']
+    list:
+        # Add show action to list view
+        actions: ['show']
     entities:
         ImageRestaurant:
             #label: 'Image Restaurant'
@@ -19,7 +22,7 @@ easy_admin:
                     - 'id'
                     - 'rank'
                     - 'legend'
-                    - 'restaurant'                    
+                    - 'restaurant'
                     - { property: 'name', type: 'image'}
             form:
                 fields:
@@ -50,7 +53,7 @@ easy_admin:
                     - 'coordinates'
                     - 'shop'
         RestaurantBonus:    
-            class : FBN\GuideBundle\Entity\RestaurantBonus        
+            class : FBN\GuideBundle\Entity\RestaurantBonus
         RestaurantPrice:
             class : FBN\GuideBundle\Entity\RestaurantPrice
         RestaurantStyle:

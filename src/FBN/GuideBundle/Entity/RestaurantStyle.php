@@ -4,6 +4,7 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * RestaurantStyle.
@@ -27,6 +28,8 @@ class RestaurantStyle
      *
      * @ORM\Column(name="style", type="string", length=255, unique=true)
      * @Gedmo\Translatable
+     * @Assert\NotBlank()
+     * @Assert\Length(max = 50) 
      */
     private $style;
 
