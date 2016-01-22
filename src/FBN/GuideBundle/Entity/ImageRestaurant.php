@@ -25,6 +25,12 @@ class ImageRestaurant extends Image
     private $id;
 
     /**
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Restaurant", mappedBy="image")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    private $restaurant;
+
+    /**
      * @Vich\UploadableField(mapping="image_restaurant", fileNameProperty="name")
      *
      * @var File
@@ -39,5 +45,44 @@ class ImageRestaurant extends Image
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set restaurant.
+     *
+     * @param \FBN\GuideBundle\Entity\Restaurant $restaurant
+     *
+     * @return ImageRestaurant
+     */
+    public function setRestaurant(\FBN\GuideBundle\Entity\Restaurant $restaurant)
+    {
+        $this->restaurant = $restaurant;
+
+        return $this;
+    }
+
+    /**
+     * Get restaurant.
+     *
+     * @return \FBN\GuideBundle\Entity\Restaurant
+     */
+    public function getRestaurant()
+    {
+        return $this->restaurant;
+    }
+
+    /**
+     * Get Slug from associated Restaurant entity (VichUploaderBundle automatic file naming).
+     *
+     * @return null|string
+     */
+    public function getSlugFromRestaurant()
+    {
+        if (null !== $this->getRestaurant()) {
+            return $this->getRestaurant()->getSlug();
+        }
+
+        // In case no relation with Restaurant entity is available
+        return 'restaurant-'.uniqid();
     }
 }

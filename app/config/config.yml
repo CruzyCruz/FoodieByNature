@@ -35,6 +35,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    #form_themes:
+    #    - 'VichUploaderBundle:Form:fields.html.twig'    
 
 # Assetic Configuration
 assetic:
@@ -186,6 +188,9 @@ vich_uploader:
         image_restaurant:
             uri_prefix:         %app.path.images_restaurant%
             upload_destination: %kernel.root_dir%/../web/%app.path.images_restaurant%
+            namer:
+                service :       vich_uploader.namer_property
+                options:        { property: 'slugFromRestaurant'}
         image_winemaker:
             uri_prefix:         %app.path.images_winemaker%
             upload_destination: %kernel.root_dir%/../web/%app.path.images_winemaker%

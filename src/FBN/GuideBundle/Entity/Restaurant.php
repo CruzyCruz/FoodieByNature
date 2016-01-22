@@ -34,8 +34,8 @@ class Restaurant extends Article
     private $restaurantBonus;
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageRestaurant", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageRestaurant", inversedBy="restaurant", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $image;
 
@@ -287,6 +287,7 @@ class Restaurant extends Article
     public function setImage(\FBN\GuideBundle\Entity\ImageRestaurant $image)
     {
         $this->image = $image;
+        $image->setRestaurant($this);
 
         return $this;
     }
@@ -306,7 +307,7 @@ class Restaurant extends Article
      *
      * @param \FBN\GuideBundle\Entity\Shop $shop
      *
-     * @return shop
+     * @return Restaurant
      */
     public function setShop(\FBN\GuideBundle\Entity\Shop $shop)
     {
@@ -489,6 +490,13 @@ class Restaurant extends Article
      */
     public function initiateSlugFromCoordinatesISO()
     {
+        // In case no relation with Coordinates entity is available
+        if (null === $this->getCoordinates()) {
+            $this->setSlugFromCoordinatesISO('');
+
+            return;
+        }
+
         $codeISO = $this->getCoordinates()->getCoordinatesCountry()->getCodeISO();
 
         switch ($codeISO) {

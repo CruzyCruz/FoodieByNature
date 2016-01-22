@@ -1,26 +1,54 @@
 easy_admin:
     site_name: 'Foodie By Nature'
+    design:
+        form_theme: ['VichUploaderBundle:Form:fields.html.twig', 'horizontal']
     entities:
         ImageRestaurant:
             #label: 'Image Restaurant'
             class: FBN\GuideBundle\Entity\ImageRestaurant
             image_base_path: %app.path.images_restaurant%
             list:
-                #title: "Restos"
+                #title: ""
                 fields:
                     - 'id'
+                    - 'restaurant'
                     - { property: 'name', type: 'image'}
             show:
-                #title: "Most recent customers"
+                #title: ""
                 fields:
                     - 'id'
+                    - 'rank'
+                    - 'legend'
+                    - 'restaurant'                    
                     - { property: 'name', type: 'image'}
             form:
                 fields:
-                    - 'id'
+                    - 'legend'
+                    - 'restaurant'
                     - { property: 'file', type: 'vich_image' }
         Restaurant:
             class : FBN\GuideBundle\Entity\Restaurant
+            list:
+                #title: ""
+                fields:
+                    - 'id'
+                    - 'name'
+            form:
+                fields:
+                    - 'name'
+                    - 'author'
+                    - 'description'
+                    - 'restaurateur'
+                    - 'openingHours'
+                    - 'tel'
+                    - 'site'
+                    - 'href'
+                    - 'restaurantPrice'
+                    - 'restaurantStyle'
+                    - 'restaurantBonus'
+                    - 'image'
+                    - 'coordinates'
+                    - 'shop'
         RestaurantBonus:    
             class : FBN\GuideBundle\Entity\RestaurantBonus        
         RestaurantPrice:
