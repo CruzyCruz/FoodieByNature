@@ -52,7 +52,7 @@
       {{ placeEvt.coordinates.coordinatesFR.locality }}
     {% endif %}  
     <br />
-    {{ placeEvt.coordinates.coordinatesFR.postcode ~ ' ' ~ placeEvt.coordinates.city }}
+    {{ placeEvt.coordinates.coordinatesFR.postcode ~ ' ' ~ placeEvt.coordinates.coordinatesFR.city }}
   </p>
 
   {% if event.useexttel %}
@@ -68,9 +68,9 @@
   {% endif %} 
  
 
-  {% if placeEvt.coordinates.metro is not null %}
+  {% if placeEvt.coordinates.coordinatesFR.metro is not null %}
     <h3>METRO : </h3>  
-    <p>{{ placeEvt.coordinates.metro }}</p> 
+    <p>{{ placeEvt.coordinates.coordinatesFR.metro }}</p> 
   {% endif %}  
 
   {% if event.useextsite %}
