@@ -4,13 +4,21 @@ easy_admin:
         ImageRestaurant:
             #label: 'Image Restaurant'
             class: FBN\GuideBundle\Entity\ImageRestaurant
-            image_base_path: '/uploads/images/restaurants/'
+            image_base_path: %app.path.images_restaurant%
             list:
+                #title: "Restos"
+                fields:
+                    - 'id'
+                    - { property: 'name', type: 'image'}
+            show:
                 #title: "Most recent customers"
                 fields:
                     - 'id'
                     - { property: 'name', type: 'image'}
-                    #- { property: 'name', type: 'image', base_path: '%vich_uploader.mappings.image_restaurant%' }
+            form:
+                fields:
+                    - 'id'
+                    - { property: 'file', type: 'vich_image' }
         Restaurant:
             class : FBN\GuideBundle\Entity\Restaurant
         RestaurantBonus:    
@@ -24,7 +32,7 @@ easy_admin:
         Coordinates:            
             class : FBN\GuideBundle\Entity\Coordinates
             edit:
-                #title: "Most recent customers"
+                #title: "Coord"
                 fields:
                     - 'id'
                     - 'coordinatesCountry'

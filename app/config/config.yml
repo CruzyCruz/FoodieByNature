@@ -3,6 +3,12 @@ imports:
     - { resource: security.yml }
     - { resource: admin.yml }
 
+parameters:
+    app.path.images_restaurant: /uploads/images/restaurants
+    app.path.images_winemaker: /uploads/images/winemakers
+    app.path.images_event: /uploads/images/events
+    app.path.images_tutorial: /uploads/images/tutorials
+
 framework:
     #esi:             ~
     translator:      { fallback: "%locale%" }
@@ -178,17 +184,17 @@ vich_uploader:
 
     mappings:
         image_restaurant:
-            uri_prefix:         /uploads/images/restaurants
-            upload_destination: %kernel.root_dir%/../web/uploads/images/restaurants
+            uri_prefix:         %app.path.images_restaurant%
+            upload_destination: %kernel.root_dir%/../web/%app.path.images_restaurant%
         image_winemaker:
-            uri_prefix:         /uploads/images/winemakers
-            upload_destination: %kernel.root_dir%/../web/uploads/images/winemakers
+            uri_prefix:         %app.path.images_winemaker%
+            upload_destination: %kernel.root_dir%/../web/%app.path.images_winemaker%
         image_event:
-            uri_prefix:         /uploads/images/events
-            upload_destination: %kernel.root_dir%/../web/uploads/images/events
+            uri_prefix:         %app.path.images_event%
+            upload_destination: %kernel.root_dir%/../web/%app.path.images_event%
         image_tutorial:
-            uri_prefix:         /uploads/images/tutorials
-            upload_destination: %kernel.root_dir%/../web/uploads/images/tutorials
+            uri_prefix:         %app.path.images_tutorial%
+            upload_destination: %kernel.root_dir%/../web/%app.path.images_tutorial%
         image_tutorial_chapter_para:
-            uri_prefix:         /uploads/images/tutorials
-            upload_destination: %kernel.root_dir%/../web/uploads/images/tutorials         
+            uri_prefix:         %app.path.images_tutorial%
+            upload_destination: %kernel.root_dir%/../web/%app.path.images_tutorial%
