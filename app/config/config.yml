@@ -182,24 +182,33 @@ liip_imagine:
                 thumbnail: { size: [224, 149], mode: outbound }
 
 vich_uploader:
+
     db_driver: orm
 
     mappings:
+
         image_restaurant:
             uri_prefix:         %app.path.images_restaurant%
             upload_destination: %kernel.root_dir%/../web/%app.path.images_restaurant%
             namer:
                 service :       vich_uploader.namer_property
                 options:        { property: 'slugFromRestaurant'}
+            inject_on_load:     true
+            delete_on_update:   true
+            delete_on_remove:   true
+
         image_winemaker:
             uri_prefix:         %app.path.images_winemaker%
             upload_destination: %kernel.root_dir%/../web/%app.path.images_winemaker%
+
         image_event:
             uri_prefix:         %app.path.images_event%
             upload_destination: %kernel.root_dir%/../web/%app.path.images_event%
+
         image_tutorial:
             uri_prefix:         %app.path.images_tutorial%
             upload_destination: %kernel.root_dir%/../web/%app.path.images_tutorial%
+
         image_tutorial_chapter_para:
             uri_prefix:         %app.path.images_tutorial%
             upload_destination: %kernel.root_dir%/../web/%app.path.images_tutorial%

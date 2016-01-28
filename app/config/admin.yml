@@ -16,6 +16,7 @@ easy_admin:
                     - 'id'
                     - 'restaurant'
                     - { property: 'name', type: 'image'}
+                    - 'updatedAt'
             show:
                 #title: ""
                 fields:
