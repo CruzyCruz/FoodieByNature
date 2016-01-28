@@ -4,7 +4,6 @@ namespace FBN\GuideBundle\EventListener;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use FBN\GuideBundle\Entity\CoordinatesISO;
 use FBN\GuideBundle\Entity\Restaurant;
 
@@ -69,11 +68,16 @@ class DoctrineListener implements EventSubscriber
                 $file = $image->getFile();
                 if (null !== $file) {
                     $em = $args->getEntityManager();
-                    $image->setUpdatedAt(new \DateTime());
-                    /*$path = $file->getPath();
+
+                    $fileDirectory = $file->getPath();
                     $name = $image->getName();
-                    $uploadedFile = new UploadedFile($path, $name);
-                    $image->setFile($uploadedFile);*/
+                    $extension = $file->getExtension();
+
+                    $updatedName = $entity->getSlug().'.'.$extension;
+                    $file->move($fileDirectory, $updatedName);
+                    $image->setName($updatedName);
+                    $image->setUpdatedAt(new \DateTime());
+
                     $em->flush();
                 } else {
                     return;
