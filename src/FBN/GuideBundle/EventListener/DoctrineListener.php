@@ -6,9 +6,20 @@ use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use FBN\GuideBundle\Entity\CoordinatesISO;
 use FBN\GuideBundle\Entity\Restaurant;
+use FBN\GuideBundle\File\ImageManager;
 
 class DoctrineListener implements EventSubscriber
 {
+    /**
+     * @var ImageManager
+     */
+    private $imageManager;
+
+    public function __construct(ImageManager $imageManager)
+    {
+        $this->imageManager = $imageManager;
+    }
+
     public function getSubscribedEvents()
     {
         return array(
@@ -19,7 +30,7 @@ class DoctrineListener implements EventSubscriber
     public function postUpdate(LifecycleEventArgs $args)
     {
         $this->updateRestaurantSlugFromCoordinatesISO($args);
-        $this->updateRestaurantImageName($args);
+        $this->renameImageOnSlugUpdate($args);
     }
 
     /**
@@ -41,52 +52,27 @@ class DoctrineListener implements EventSubscriber
                     $em = $args->getEntityManager();
                     $restaurant->setSlugFromCoordinatesISO($entity->getSlug());
                     $em->flush();
-                } else {
-                    return;
                 }
-            } else {
+
                 return;
             }
+
+            return;
         }
 
         return;
     }
 
     /**
-     * Update ****.
+     * Rename Image on entity related slug update.
      *
      * @param LifecycleEventArgs $args
      */
-    public function updateRestaurantImageName(LifecycleEventArgs $args)
+    public function renameImageOnSlugUpdate(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
+        $em = $args->getEntityManager();
 
-        if ($entity instanceof Restaurant) {
-            $image = $entity->getImage();
-
-            if (null !== $image) {
-                $file = $image->getFile();
-                if (null !== $file) {
-                    $em = $args->getEntityManager();
-
-                    $fileDirectory = $file->getPath();
-                    $name = $image->getName();
-                    $extension = $file->getExtension();
-
-                    $updatedName = $entity->getSlug().'.'.$extension;
-                    $file->move($fileDirectory, $updatedName);
-                    $image->setName($updatedName);
-                    $image->setUpdatedAt(new \DateTime());
-
-                    $em->flush();
-                } else {
-                    return;
-                }
-            } else {
-                return;
-            }
-        }
-
-        return;
+        $this->imageManager->renameImageOnSlugUpdate($entity, $em);
     }
 }

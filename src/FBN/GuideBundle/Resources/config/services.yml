@@ -16,9 +16,6 @@ parameters:
     fbn_guide.map.map_dim_width : 300
 
 services:
-#    fbn_guide.example:
-#        class: %fbn_guide.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
 
     fbn_guide.menu_builder:
         class: FBN\GuideBundle\Menu\MenuBuilder
@@ -43,5 +40,9 @@ services:
 
     fbn_guide.doctrine_listener:
         class : FBN\GuideBundle\EventListener\DoctrineListener
+        arguments: [@fbn_guide.image_manager]
         tags:
             - { name: doctrine.event_subscriber, connection: default }
+
+    fbn_guide.image_manager:
+        class : FBN\GuideBundle\File\ImageManager
