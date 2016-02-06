@@ -18,7 +18,8 @@ class ImageTutorialChapterParaBoireNature extends AbstractFixture implements Ord
     {
         $ranks = array(0,0,0,0,0);
 
-        $path = __DIR__.'/../../../../../web/uploads/images/tutorials/';
+        $path = __DIR__.'/../../../../../web/uploads/images-source/tutorials/';
+        $pathto = __DIR__.'/../../../../../web/uploads/images/tutorials/';
 
         $names = array('tutorial-boire-nature-c0-p0-i0.jpg','tutorial-boire-nature-c1-p0-i0.jpg','tutorial-boire-nature-c1-p1-i0.jpg','tutorial-boire-nature-c1-p2-i0.jpg','tutorial-boire-nature-c2-p0-i0.jpg');
 
@@ -35,7 +36,8 @@ class ImageTutorialChapterParaBoireNature extends AbstractFixture implements Ord
 
         foreach ($names as $i => $name) {
             $imagetutorialcp[$i]->setName($name);
-            $image = new File($path.$name);
+            copy($path.$name, $pathto.$name);
+            $image = new File($pathto.$name);
             $imagetutorialcp[$i]->setFile($image);
         }
 

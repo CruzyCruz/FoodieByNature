@@ -18,7 +18,8 @@ class ImageTutorialChapterParaMacerationCarbonique extends AbstractFixture imple
     {
         $ranks = array(0,0,0);
 
-        $path = __DIR__.'/../../../../../web/uploads/images/tutorials/';
+        $path = __DIR__.'/../../../../../web/uploads/images-source/tutorials/';
+        $pathto = __DIR__.'/../../../../../web/uploads/images/tutorials/';
 
         $names = array('tutorial-la-maceration-carbonique-c0-p0-i0.jpg','tutorial-la-maceration-carbonique-c1-p0-i0.jpg','tutorial-la-maceration-carbonique-c2-p0-i0.jpg');
 
@@ -35,7 +36,8 @@ class ImageTutorialChapterParaMacerationCarbonique extends AbstractFixture imple
 
         foreach ($names as $i => $name) {
             $imagetutorialcp[$i]->setName($name);
-            $image = new File($path.$name);
+            copy($path.$name, $pathto.$name);
+            $image = new File($pathto.$name);
             $imagetutorialcp[$i]->setFile($image);
         }
 

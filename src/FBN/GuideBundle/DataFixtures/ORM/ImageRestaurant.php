@@ -18,7 +18,8 @@ class ImageRestaurant extends AbstractFixture implements OrderedFixtureInterface
     {
         $ranks = array(0, 0, 0, 0, 0);
 
-        $path = __DIR__.'/../../../../../web/uploads/images/restaurants/';
+        $path = __DIR__.'/../../../../../web/uploads/images-source/restaurants/';
+        $pathto = __DIR__.'/../../../../../web/uploads/images/restaurants/';
 
         $names = array('restaurant-paris-triplettes-il.jpg', 'restaurant-paris-naturellement-il.jpg', 'restaurant-paris-la-fine-mousse-il.jpg', 'restaurant-paris-dix-huit-il.jpg', 'restaurant-paris-cantine-california-il.jpg');
 
@@ -35,7 +36,8 @@ class ImageRestaurant extends AbstractFixture implements OrderedFixtureInterface
 
         foreach ($names as $i => $name) {
             $imagerestaurant[$i]->setName($name);
-            $image = new File($path.$name);
+            copy($path.$name, $pathto.$name);
+            $image = new File($pathto.$name);
             $imagerestaurant[$i]->setFile($image);
         }
 

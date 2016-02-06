@@ -18,7 +18,8 @@ class ImageTutorialChapterParaLabels extends AbstractFixture implements OrderedF
     {
         $ranks = array(0,0,0);
 
-        $path = __DIR__.'/../../../../../web/uploads/images/tutorials/';
+        $path = __DIR__.'/../../../../../web/uploads/images-source/tutorials/';
+        $pathto = __DIR__.'/../../../../../web/uploads/images/tutorials/';
 
         $names = array('tutorial-les-labels-c0-p0-i0.jpg','tutorial-les-labels-c1-p0-i0.jpg','tutorial-les-labels-c2-p0-i0.jpg');
 
@@ -35,7 +36,8 @@ class ImageTutorialChapterParaLabels extends AbstractFixture implements OrderedF
 
         foreach ($names as $i => $name) {
             $imagetutorialcp[$i]->setName($name);
-            $image = new File($path.$name);
+            copy($path.$name, $pathto.$name);
+            $image = new File($pathto.$name);
             $imagetutorialcp[$i]->setFile($image);
         }
 

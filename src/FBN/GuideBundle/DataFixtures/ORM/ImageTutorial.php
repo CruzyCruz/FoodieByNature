@@ -18,7 +18,8 @@ class ImageTutorial extends AbstractFixture implements OrderedFixtureInterface
     {
         $ranks = array(0,0,0,0,0);
 
-        $path = __DIR__.'/../../../../../web/uploads/images/tutorials/';
+        $path = __DIR__.'/../../../../../web/uploads/images-source/tutorials/';
+        $pathto = __DIR__.'/../../../../../web/uploads/images/tutorials/';
 
         $names = array('tutorial-le-vin-au-naturel.jpg','tutorial-la-biodynamie.jpg','tutorial-les-labels.jpg','tutorial-la-maceration-carbonique.jpg','tutorial-boire-nature.jpg');
 
@@ -35,7 +36,8 @@ class ImageTutorial extends AbstractFixture implements OrderedFixtureInterface
 
         foreach ($names as $i => $name) {
             $imagetutorial[$i]->setName($name);
-            $image = new File($path.$name);
+            copy($path.$name, $pathto.$name);
+            $image = new File($pathto.$name);
             $imagetutorial[$i]->setFile($image);
         }
 

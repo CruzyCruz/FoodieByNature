@@ -18,7 +18,8 @@ class ImageEvent extends AbstractFixture implements OrderedFixtureInterface
     {
         $ranks = array(0, 0, 0, 0, 0, 0, 0, 0);
 
-        $path = __DIR__.'/../../../../../web/uploads/images/events/';
+        $path = __DIR__.'/../../../../../web/uploads/images-source/events/';
+        $pathto = __DIR__.'/../../../../../web/uploads/images/events/';
 
         $names = array('event-yvon-metras-au-temps-des-vendanges-2013-il.jpg', 'event-repas-gastronomique-a-toulouse-2013-il.jpg', 'event-sous-les-paves-la-vigne-2014-il.jpg', 'event-la-remise-2013-il.jpg', 'event-yvon-metras-au-temps-des-vendanges-2014-il.jpg', 'event-repas-gastronomique-a-toulouse-2014-il.jpg', 'event-la-remise-2014-il.jpg', 'event-dejeuner-sur-l-herbe-chez-robert-plageoles-2014-il.jpg');
 
@@ -35,7 +36,8 @@ class ImageEvent extends AbstractFixture implements OrderedFixtureInterface
 
         foreach ($names as $i => $name) {
             $imageevent[$i]->setName($name);
-            $image = new File($path.$name);
+            copy($path.$name, $pathto.$name);
+            $image = new File($pathto.$name);
             $imageevent[$i]->setFile($image);
         }
 

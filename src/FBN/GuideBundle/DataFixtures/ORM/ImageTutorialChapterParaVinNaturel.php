@@ -18,7 +18,8 @@ class ImageTutorialChapterParaVinNaturel extends AbstractFixture implements Orde
     {
         $ranks = array(0,0,0,0);
 
-        $path = __DIR__.'/../../../../../web/uploads/images/tutorials/';
+        $path = __DIR__.'/../../../../../web/uploads/images-source/tutorials/';
+        $pathto = __DIR__.'/../../../../../web/uploads/images/tutorials/';
 
         $names = array('tutorial-le-vin-au-naturel-c0-p0-i0.jpg','tutorial-le-vin-au-naturel-c1-p1-i1.jpg','tutorial-le-vin-au-naturel-c2-p2-i2.jpg','tutorial-le-vin-au-naturel-c3-p3-i3.jpg');
 
@@ -35,7 +36,8 @@ class ImageTutorialChapterParaVinNaturel extends AbstractFixture implements Orde
 
         foreach ($names as $i => $name) {
             $imagetutorialcp[$i]->setName($name);
-            $image = new File($path.$name);
+            copy($path.$name, $pathto.$name);
+            $image = new File($pathto.$name);
             $imagetutorialcp[$i]->setFile($image);
         }
 

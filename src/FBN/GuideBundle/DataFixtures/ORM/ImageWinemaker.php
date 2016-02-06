@@ -18,7 +18,8 @@ class ImageWinemaker extends AbstractFixture implements OrderedFixtureInterface
     {
         $ranks = array(0, 0, 0, 0, 0);
 
-        $path = __DIR__.'/../../../../../web/uploads/images/winemakers/';
+        $path = __DIR__.'/../../../../../web/uploads/images-source/winemakers/';
+        $pathto = __DIR__.'/../../../../../web/uploads/images/winemakers/';
 
         $names = array('winemaker-didier-barral-il.jpg', 'winemaker-marcel-lapierre-il.jpg', 'winemaker-elian-da-ros-il.jpg', 'winemaker-robert-plageoles-il.jpg', 'winemaker-jacques-selosse-il.jpg');
 
@@ -35,7 +36,8 @@ class ImageWinemaker extends AbstractFixture implements OrderedFixtureInterface
 
         foreach ($names as $i => $name) {
             $imagewinemaker[$i]->setName($name);
-            $image = new File($path.$name);
+            copy($path.$name, $pathto.$name);
+            $image = new File($pathto.$name);
             $imagewinemaker[$i]->setFile($image);
         }
 
