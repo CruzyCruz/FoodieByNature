@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\File\File;
  *
  * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\ImageTranslation")
  * @ORM\MappedSuperclass
+ * @ORM\HasLifecycleCallbacks()
  */
 class Image
 {
@@ -62,6 +63,13 @@ class Image
      * @var \DateTime
      */
     private $updatedAt;
+
+    /**
+     * Store the actual file's name.
+     * 
+     * @var null|string
+     */
+    private $savedName;
 
     /**
      * Get id.
@@ -170,6 +178,30 @@ class Image
     }
 
     /**
+     * Set savedName.
+     *
+     * @param string $savedName
+     *
+     * @return Image
+     */
+    public function setSavedName($savedName)
+    {
+        $this->savedName = $savedName;
+
+        return $this;
+    }
+
+    /**
+     * Get savedName.
+     *
+     * @return string
+     */
+    public function getSavedName()
+    {
+        return $this->savedName;
+    }
+
+    /**
      * Set locale.
      *
      * @param string $locale
@@ -192,6 +224,7 @@ class Image
 
         if ($image) {
             $this->updatedAt = new \DateTime('now');
+            $this->saveName();
         }
 
         return $this;
@@ -212,4 +245,14 @@ class Image
     {
         return $this->getName();
     }
+
+   /**
+    * Store the actual file's name.
+    */
+   private function saveName()
+   {
+       if (null !== $this->getName()) {
+           $this->setSavedName($this->getName());
+       }
+   }
 }

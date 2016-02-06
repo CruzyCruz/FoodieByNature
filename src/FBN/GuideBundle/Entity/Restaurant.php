@@ -34,7 +34,7 @@ class Restaurant extends Article
     private $restaurantBonus;
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageRestaurant", inversedBy="restaurant", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageRestaurant", inversedBy="restaurant", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $image;

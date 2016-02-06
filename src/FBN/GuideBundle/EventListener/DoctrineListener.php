@@ -24,6 +24,7 @@ class DoctrineListener implements EventSubscriber
     {
         return array(
             'postUpdate',
+            'postRemove',
         );
     }
 
@@ -31,6 +32,12 @@ class DoctrineListener implements EventSubscriber
     {
         $this->updateRestaurantSlugFromCoordinatesISO($args);
         $this->renameImageOnSlugUpdate($args);
+        $this->removeEntityRelatedCachedImage($args);
+    }
+
+    public function postRemove(LifecycleEventArgs $args)
+    {
+        $this->removeEntityRelatedCachedImage($args);
     }
 
     /**
@@ -74,5 +81,17 @@ class DoctrineListener implements EventSubscriber
         $em = $args->getEntityManager();
 
         $this->imageManager->renameImageOnSlugUpdate($entity, $em);
+    }
+
+    /**
+     * Remove cached image file related to Image file on file update|removal.
+     *
+     * @param LifecycleEventArgs $args
+     */
+    public function removeEntityRelatedCachedImage(LifecycleEventArgs $args)
+    {
+        $entity = $args->getEntity();
+
+        $this->imageManager->removeEntityRelatedCachedImage($entity);
     }
 }
