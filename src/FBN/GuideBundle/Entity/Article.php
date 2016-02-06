@@ -250,11 +250,9 @@ abstract class Article
      */
     public function getClass()
     {
-        $classe = new \ReflectionClass($this);
+        $classInfo = new \ReflectionClass($this);
 
-        $namexplode = explode('\\', $classe->getName());
-
-        return end($namexplode);
+        return $classInfo->getShortName();
     }
 
     /** {@inheritdoc} */
