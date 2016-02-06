@@ -111,15 +111,6 @@ class Restaurant extends Article
      */
     private $slug;
 
-    /**
-     * @var string
-     *
-     * @Gedmo\Locale
-     * Used locale to override Translation listener`s locale
-     * this is not a mapped field of entity metadata, just a simple property
-     */
-    private $locale;
-
     public function __construct()
     {
         parent::__construct();
@@ -471,16 +462,6 @@ class Restaurant extends Article
     public function getSlugFromCoordinatesISO()
     {
         return $this->slugFromCoordinatesISO;
-    }
-
-    /**
-     * Set locale.
-     *
-     * @param string $locale
-     */
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
     }
 
     /**

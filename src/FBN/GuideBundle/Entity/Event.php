@@ -130,15 +130,6 @@ class Event extends Article
     private $slug;
 
     /**
-     * @var string
-     *
-     * @Gedmo\Locale
-     * Used locale to override Translation listener`s locale
-     * this is not a mapped field of entity metadata, just a simple property
-     */
-    private $locale;
-
-    /**
      * Get id.
      *
      * @return int
@@ -530,15 +521,5 @@ class Event extends Article
     public function getUseExtSite()
     {
         return $this->useExtSite;
-    }
-
-    /**
-     * Set locale.
-     *
-     * @param string $locale
-     */
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
     }
 }

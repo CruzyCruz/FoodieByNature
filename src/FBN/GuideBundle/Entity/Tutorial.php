@@ -48,15 +48,6 @@ class Tutorial extends Article
     private $rank;
 
     /**
-     * @var string
-     *
-     * @Gedmo\Locale
-     * Used locale to override Translation listener`s locale
-     * this is not a mapped field of entity metadata, just a simple property
-     */
-    private $locale;
-
-    /**
      * @Gedmo\Slug(updatable=true, fields={"name"}, prefix="tutorial-")
      * @ORM\Column(length=128, unique=true)
      */
@@ -175,16 +166,6 @@ class Tutorial extends Article
     public function getTutorialSection()
     {
         return $this->tutorialSection;
-    }
-
-    /**
-     * Set locale.
-     *
-     * @param string $locale
-     */
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
     }
 
     /**

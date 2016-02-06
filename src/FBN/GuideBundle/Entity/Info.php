@@ -31,15 +31,6 @@ class Info extends Article
     private $site;
 
     /**
-     * @var string
-     *
-     * @Gedmo\Locale
-     * Used locale to override Translation listener`s locale
-     * this is not a mapped field of entity metadata, just a simple property
-     */
-    private $locale;
-
-    /**
      * @Gedmo\Slug(updatable=true, fields={"name"}, prefix="info-")
      * @ORM\Column(length=128, unique=true)
      */
@@ -101,15 +92,5 @@ class Info extends Article
     public function getSlug()
     {
         return $this->slug;
-    }
-
-    /**
-     * Set locale.
-     *
-     * @param string $locale
-     */
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
     }
 }

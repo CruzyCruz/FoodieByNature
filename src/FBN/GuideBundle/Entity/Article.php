@@ -69,6 +69,15 @@ abstract class Article
      */
     private $publication;
 
+    /**
+     * @var string
+     *
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     */
+    protected $locale;
+
     public function __construct()
     {
         $this->publication = true;
@@ -241,6 +250,16 @@ abstract class Article
     public function getPublication()
     {
         return $this->publication;
+    }
+
+    /**
+     * Set locale.
+     *
+     * @param string $locale
+     */
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
     }
 
     /**

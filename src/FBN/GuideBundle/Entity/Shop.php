@@ -288,14 +288,4 @@ class Shop extends Article
     {
         return $this->slug;
     }
-
-    /**
-     * Set locale.
-     *
-     * @param string $locale
-     */
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
-    }
 }
