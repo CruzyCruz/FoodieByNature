@@ -63,21 +63,22 @@ class ImageManager
 
             if (null !== $image) {
                 $file = $image->getFile();
+
                 if (null !== $file) {
                     $fileDirectory = $file->getPath();
-                    dump($fileDirectory);
-                    die();
                     $name = $image->getName();
+                    $extension = $file->getExtension();
+                    $actualSlug = str_replace('.'.$extension, '', $name);
 
-                    if (file_exists($fileDirectory.'/'.$name)) {
-                        $extension = $file->getExtension();
+                    if ($actualSlug != $entity->getSlug()) {
+                        if (file_exists($fileDirectory.'/'.$name)) {
+                            $updatedName = $entity->getSlug().'.'.$extension;
+                            $file->move($fileDirectory, $updatedName);
+                            $image->setName($updatedName);
+                            $image->setUpdatedAt(new \DateTime());
 
-                        $updatedName = $entity->getSlug().'.'.$extension;
-                        $file->move($fileDirectory, $updatedName);
-                        $image->setName($updatedName);
-                        $image->setUpdatedAt(new \DateTime());
-
-                        $em->flush();
+                            $em->flush();
+                        }
                     }
                 }
 
