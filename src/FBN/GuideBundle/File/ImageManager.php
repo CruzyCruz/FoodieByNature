@@ -3,8 +3,6 @@
 namespace FBN\GuideBundle\File;
 
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
-//use FBN\GuideBundle\Entity\Restaurant;
-use FBN\GuideBundle\Entity\ImageRestaurant;
 
 class ImageManager
 {
@@ -33,8 +31,6 @@ class ImageManager
      */
     private $filePathEntitiesCorrespondance = array();
 
-    //private $pathTest;
-
     /**
      * @var CacheManager
      */
@@ -48,7 +44,6 @@ class ImageManager
         $this->filePathEntitiesCorrespondance['ImageEvent'] = $pathImagesEvent;
         $this->filePathEntitiesCorrespondance['ImageTutorial'] = $pathImagesTutorial;
         $this->filePathEntitiesCorrespondance['ImageTutorialChapterPara'] = $pathImagesTutorial;
-        //$this->pathTest = $pathImagesRestaurant;
     }
 
     /**
