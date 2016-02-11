@@ -2,7 +2,9 @@
 
 namespace FBN\GuideBundle\File;
 
+use Symfony\Component\HttpFoundation\File\File;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
+use Vich\UploaderBundle\Storage\FileSystemStorage;
 
 class ImageManager
 {
@@ -36,7 +38,12 @@ class ImageManager
      */
     private $cacheManager;
 
-    public function __construct(CacheManager $cacheManager, $pathImagesRestaurant, $pathImagesWinemaker, $pathImagesEvent, $pathImagesTutorial)
+    /**
+     * @var FileSystemStorage
+     */
+    private $fileSystemStorage;
+
+    public function __construct(CacheManager $cacheManager, $pathImagesRestaurant, $pathImagesWinemaker, $pathImagesEvent, $pathImagesTutorial, FileSystemStorage $fileSystemStorage)
     {
         $this->cacheManager = $cacheManager;
         $this->filePathEntitiesCorrespondance['ImageRestaurant'] = $pathImagesRestaurant;
@@ -44,6 +51,7 @@ class ImageManager
         $this->filePathEntitiesCorrespondance['ImageEvent'] = $pathImagesEvent;
         $this->filePathEntitiesCorrespondance['ImageTutorial'] = $pathImagesTutorial;
         $this->filePathEntitiesCorrespondance['ImageTutorialChapterPara'] = $pathImagesTutorial;
+        $this->fileSystemStorage = $fileSystemStorage;
     }
 
     /**
@@ -56,31 +64,46 @@ class ImageManager
         if ($this->hasImage($entity)) {
             $image = $entity->getImage();
 
-            if (null !== $image) {
-                $file = $image->getFile();
-
-                if (null !== $file) {
-                    $fileDirectory = $file->getPath();
-                    $name = $image->getName();
-                    $extension = $file->getExtension();
-                    $actualSlug = str_replace('.'.$extension, '', $name);
-
-                    if ($actualSlug != $entity->getSlug()) {
-                        if (file_exists($fileDirectory.'/'.$name)) {
-                            $updatedName = $entity->getSlug().'.'.$extension;
-                            $file->move($fileDirectory, $updatedName);
-                            $image->setName($updatedName);
-                            $image->setUpdatedAt(new \DateTime());
-
-                            $em->flush();
-                        }
-                    }
-                }
-
-                return;
+            if ((null !== $image) && (null !== $image->getName())) {
+                $this->renameImageFromSlug($image, $em);
             }
 
             return;
+        }
+
+        return;
+    }
+
+    public function renameImageOnImagePersist($entity, $em)
+    {
+        $classInfo = new \ReflectionClass($entity);
+
+        if ($classInfo->isSubclassOf('FBN\GuideBundle\Entity\Image')) {
+            $this->renameImageFromSlug($entity, $em);
+        }
+    }
+
+    private function renameImageFromSlug($image, $em)
+    {
+        $pathToFile = $this->fileSystemStorage->resolvePath($image, 'file');
+        $file = new File($pathToFile);
+
+        if (null !== $file) {
+            $fileDirectory = $file->getPath();
+            $name = $image->getName();
+            $extension = $file->getExtension();
+            $actualSlug = str_replace('.'.$extension, '', $name);
+
+            if ($actualSlug != $image->getSlugFromRelatedEntity()) {
+                if (file_exists($fileDirectory.'/'.$name)) {
+                    $updatedName = $image->getSlugFromRelatedEntity().'.'.$extension;
+                    $file->move($fileDirectory, $updatedName);
+                    $image->setName($updatedName);
+                    $image->setUpdatedAt(new \DateTime());
+
+                    $em->flush();
+                }
+            }
         }
 
         return;

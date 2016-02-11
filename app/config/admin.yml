@@ -2,34 +2,34 @@ easy_admin:
     site_name: 'Foodie By Nature'
     design:
         form_theme: ['VichUploaderBundle:Form:fields.html.twig', 'horizontal']
-    list:
+    #list:
         # Add show action to list view
-        actions: ['show']
+    #    actions: ['show']
     entities:
-        ImageRestaurant:
-            #label: 'Image Restaurant'
-            class: FBN\GuideBundle\Entity\ImageRestaurant
-            image_base_path: %app.path.images_restaurant%
-            list:
+        #ImageRestaurant:
+        #    #label: 'Image Restaurant'
+        #    class: FBN\GuideBundle\Entity\ImageRestaurant
+        #    image_base_path: %app.path.images_restaurant%
+        #    list:
                 #title: ""
-                fields:
-                    - 'id'
-                    - 'restaurant'
-                    - { property: 'name', type: 'image'}
-                    - 'updatedAt'
-            show:
+        #        fields:
+        #            - 'id'
+        #            - 'restaurant'
+        #            - { property: 'name', type: 'image'}
+        #            - 'updatedAt'
+        #    show:
                 #title: ""
-                fields:
-                    - 'id'
-                    - 'rank'
-                    - 'legend'
-                    - 'restaurant'
-                    - { property: 'name', type: 'image'}
-            form:
-                fields:
-                    - 'legend'
-                    - 'restaurant'
-                    - { property: 'file', type: 'vich_image' }
+        #        fields:
+        #            - 'id'
+        #            - 'rank'
+        #            - 'legend'
+        #            - 'restaurant'
+        #            - { property: 'name', type: 'image'}
+        #    form:
+        #        fields:
+        #            - 'legend'
+        #            - 'restaurant'
+        #            - { property: 'file', type: 'vich_image' }
         Restaurant:
             class : FBN\GuideBundle\Entity\Restaurant
             list:
@@ -50,9 +50,9 @@ easy_admin:
                     - 'restaurantPrice'
                     - 'restaurantStyle'
                     - 'restaurantBonus'
-                    - 'image'
-                    - 'coordinates'
-                    - 'shop'
+                    #- 'image'
+                    #- 'coordinates'
+                    #- 'shop'
         RestaurantBonus:    
             class : FBN\GuideBundle\Entity\RestaurantBonus
         RestaurantPrice:

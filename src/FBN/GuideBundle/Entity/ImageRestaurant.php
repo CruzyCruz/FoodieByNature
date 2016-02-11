@@ -72,17 +72,16 @@ class ImageRestaurant extends Image
     }
 
     /**
-     * Get Slug from associated Restaurant entity (VichUploaderBundle automatic file naming).
+     * Get Slug from associated entity.
      *
      * @return null|string
      */
-    public function getSlugFromRestaurant()
+    public function getSlugFromRelatedEntity()
     {
         if (null !== $this->getRestaurant()) {
             return $this->getRestaurant()->getSlug();
         }
 
-        // In case no relation with Restaurant entity is available
-        return 'restaurant-'.uniqid();
+        return;
     }
 }

@@ -23,15 +23,22 @@ class DoctrineListener implements EventSubscriber
     public function getSubscribedEvents()
     {
         return array(
+            'postPersist',
             'postUpdate',
             'postRemove',
         );
+    }
+
+    public function postPersist(LifecycleEventArgs $args)
+    {
+        $this->renameImageOnImagePersist($args);
     }
 
     public function postUpdate(LifecycleEventArgs $args)
     {
         $this->updateRestaurantSlugFromCoordinatesISO($args);
         $this->renameImageOnSlugUpdate($args);
+        $this->renameImageOnImagePersist($args);
         $this->removeEntityRelatedCachedImage($args);
     }
 
@@ -68,6 +75,14 @@ class DoctrineListener implements EventSubscriber
         }
 
         return;
+    }
+
+    public function renameImageOnImagePersist(LifecycleEventArgs $args)
+    {
+        $entity = $args->getEntity();
+        $em = $args->getEntityManager();
+
+        $this->imageManager->renameImageOnImagePersist($entity, $em);
     }
 
     /**
