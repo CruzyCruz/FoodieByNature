@@ -25,6 +25,12 @@ class ImageWinemaker extends Image
     private $id;
 
     /**
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Winemaker", mappedBy="image")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    private $winemaker;
+
+    /**
      * @Vich\UploadableField(mapping="image_winemaker", fileNameProperty="name")
      *
      * @var File
@@ -39,5 +45,43 @@ class ImageWinemaker extends Image
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set winemaker.
+     *
+     * @param \FBN\GuideBundle\Entity\Winemaker $winemaker
+     *
+     * @return ImageWinemaker
+     */
+    public function setWinemaker(\FBN\GuideBundle\Entity\Winemaker $winemaker)
+    {
+        $this->winemaker = $winemaker;
+
+        return $this;
+    }
+
+    /**
+     * Get winemaker.
+     *
+     * @return \FBN\GuideBundle\Entity\Winemaker
+     */
+    public function getWinemaker()
+    {
+        return $this->winemaker;
+    }
+
+    /**
+     * Get Slug from associated entity.
+     *
+     * @return null|string
+     */
+    public function getSlugFromRelatedEntity()
+    {
+        if (null !== $this->getWinemaker()) {
+            return $this->getWinemaker()->getSlug();
+        }
+
+        return;
     }
 }

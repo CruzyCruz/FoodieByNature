@@ -21,8 +21,8 @@ class Event extends Article
   private $eventType;
 
   /**
-   * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageEvent", cascade={"persist"})
-   * @ORM\JoinColumn(nullable=true)
+   * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageEvent",  inversedBy="event", cascade={"persist","remove"})
+   * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
    */
   private $image;
 
@@ -269,6 +269,7 @@ class Event extends Article
     public function setImage(\FBN\GuideBundle\Entity\ImageEvent $image)
     {
         $this->image = $image;
+        $image->setEvent($this);
 
         return $this;
     }

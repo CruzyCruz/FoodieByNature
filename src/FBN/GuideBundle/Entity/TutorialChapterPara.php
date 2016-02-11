@@ -21,8 +21,8 @@ class TutorialChapterPara
     private $tutorialChapter;
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageTutorialChapterPara", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageTutorialChapterPara", inversedBy="tutorialChapterPara", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $image;
 
@@ -49,6 +49,12 @@ class TutorialChapterPara
      * @ORM\Column(name="rank", type="integer")
      */
     private $rank;
+
+    /**
+     * @Gedmo\Slug(updatable=true, fields={"paragraph","rank"}, prefix="tutorial-")
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
 
     /**
      * @var string
@@ -151,6 +157,7 @@ class TutorialChapterPara
     public function setImage(\FBN\GuideBundle\Entity\ImageTutorialChapterPara $image)
     {
         $this->image = $image;
+        $image->setTutorialChapterPara($this);
 
         return $this;
     }

@@ -19,8 +19,8 @@ class Winemaker extends Article
   private $winemakerDomain;
 
   /**
-   * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageWinemaker", cascade={"persist"})
-   * @ORM\JoinColumn(nullable=false)
+   * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageWinemaker", inversedBy="winemaker", cascade={"persist","remove"})
+   * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
    */
   private $image;
 
@@ -92,6 +92,7 @@ class Winemaker extends Article
     public function setImage(\FBN\GuideBundle\Entity\ImageWinemaker $image)
     {
         $this->image = $image;
+        $image->setWinemaker($this);
 
         return $this;
     }

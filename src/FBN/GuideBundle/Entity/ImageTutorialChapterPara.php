@@ -25,6 +25,12 @@ class ImageTutorialChapterPara extends Image
     private $id;
 
     /**
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\TutorialChapterPara", mappedBy="image")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    private $tutorialChapterPara;
+
+    /**
      * @Vich\UploadableField(mapping="image_tutorial_chapter_para", fileNameProperty="name")
      *
      * @var File
@@ -39,5 +45,43 @@ class ImageTutorialChapterPara extends Image
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set tutorialChapterPara.
+     *
+     * @param \FBN\GuideBundle\Entity\TutorialChapterPara $tutorialChapterPara
+     *
+     * @return ImageTutorialChapterPara
+     */
+    public function setTutorialChapterPara(\FBN\GuideBundle\Entity\TutorialChapterPara $tutorialChapterPara)
+    {
+        $this->tutorialChapterPara = $tutorialChapterPara;
+
+        return $this;
+    }
+
+    /**
+     * Get tutorialChapterPara.
+     *
+     * @return \FBN\GuideBundle\Entity\TutorialChapterPara
+     */
+    public function getTutorialChapterPara()
+    {
+        return $this->tutorialChapterPara;
+    }
+
+    /**
+     * Get Slug from associated entity.
+     *
+     * @return null|string
+     */
+    public function getSlugFromRelatedEntity()
+    {
+        if (null !== $this->getTutorialChapterPara()) {
+            return $this->getTutorialChapterPara()->getSlug();
+        }
+
+        return;
     }
 }
