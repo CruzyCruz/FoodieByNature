@@ -31,14 +31,13 @@ class DoctrineListener implements EventSubscriber
 
     public function postPersist(LifecycleEventArgs $args)
     {
-        $this->renameImageOnImagePersist($args);
+        $this->renameImageFile($args);
     }
 
     public function postUpdate(LifecycleEventArgs $args)
     {
         $this->updateRestaurantSlugFromCoordinatesISO($args);
-        $this->renameImageOnSlugUpdate($args);
-        $this->renameImageOnImagePersist($args);
+        $this->renameImageFile($args);
         $this->removeEntityRelatedCachedImage($args);
     }
 
@@ -77,25 +76,17 @@ class DoctrineListener implements EventSubscriber
         return;
     }
 
-    public function renameImageOnImagePersist(LifecycleEventArgs $args)
-    {
-        $entity = $args->getEntity();
-        $em = $args->getEntityManager();
-
-        $this->imageManager->renameImageOnImagePersist($entity, $em);
-    }
-
     /**
-     * Rename Image on entity related slug update.
+     * Rename Image file on entity related slug persist|update or on Image persist|update.
      *
      * @param LifecycleEventArgs $args
      */
-    public function renameImageOnSlugUpdate(LifecycleEventArgs $args)
+    public function renameImageFile(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
         $em = $args->getEntityManager();
 
-        $this->imageManager->renameImageOnSlugUpdate($entity, $em);
+        $this->imageManager->renameImageFile($entity, $em);
     }
 
     /**

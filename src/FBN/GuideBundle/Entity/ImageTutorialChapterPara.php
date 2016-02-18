@@ -79,7 +79,18 @@ class ImageTutorialChapterPara extends Image
     public function getSlugFromRelatedEntity()
     {
         if (null !== $this->getTutorialChapterPara()) {
-            return $this->getTutorialChapterPara()->getSlug();
+            if (null !== $this->getTutorialChapterPara()->getTutorialChapter()) {
+                if (null !== $this->getTutorialChapterPara()->getTutorialChapter()->getTutorial()) {
+                    $slugTutorial = $this->getTutorialChapterPara()->getTutorialChapter()->getTutorial()->getSlug();
+                    $slugTutorialChapterPara = $this->getTutorialChapterPara()->getSlug();
+
+                    return $slugTutorial.$slugTutorialChapterPara;
+                }
+
+                return;
+            }
+
+            return;
         }
 
         return;

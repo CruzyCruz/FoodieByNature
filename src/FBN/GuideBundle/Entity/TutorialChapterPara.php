@@ -51,8 +51,8 @@ class TutorialChapterPara
     private $rank;
 
     /**
-     * @Gedmo\Slug(updatable=true, fields={"paragraph","rank"}, prefix="tutorial-")
-     * @ORM\Column(length=128, unique=true)
+     * @Gedmo\Slug(updatable=true, unique=false, fields={"rank"}, prefix="-para-")
+     * @ORM\Column(length=128)
      */
     private $slug;
 
@@ -145,6 +145,30 @@ class TutorialChapterPara
     public function getTutorialChapter()
     {
         return $this->tutorialChapter;
+    }
+
+    /**
+     * Set slug.
+     *
+     * @param string $slug
+     *
+     * @return TutorialChapterPara
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug.
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**

@@ -46,4 +46,8 @@ services:
 
     fbn_guide.image_manager:
         class : FBN\GuideBundle\File\ImageManager
-        arguments: [@liip_imagine.cache.manager, %app.path.images_restaurant%, %app.path.images_winemaker%, %app.path.images_event%, %app.path.images_tutorial%, @vich_uploader.storage.file_system]
+        arguments: [@liip_imagine.cache.manager, %app.path.images_restaurant%, %app.path.images_winemaker%, %app.path.images_event%, %app.path.images_tutorial%, @vich_uploader.storage.file_system, @event_dispatcher]
+
+    fbn_guide.image_file_update_listener:
+        class: FBN\GuideBundle\EventListener\ImageFileUpdateListener
+        arguments: [@doctrine.orm.entity_manager]

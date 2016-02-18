@@ -3,8 +3,11 @@
 namespace FBN\GuideBundle\File;
 
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Vich\UploaderBundle\Storage\FileSystemStorage;
+use FBN\GuideBundle\Event\ImageUpdateEvent;
+use FBN\GuideBundle\FBNGuideEvents;
 
 class ImageManager
 {
@@ -43,7 +46,12 @@ class ImageManager
      */
     private $fileSystemStorage;
 
-    public function __construct(CacheManager $cacheManager, $pathImagesRestaurant, $pathImagesWinemaker, $pathImagesEvent, $pathImagesTutorial, FileSystemStorage $fileSystemStorage)
+    /**
+     * @var EventDispatcherInterface
+     */
+    protected $dispatcher;
+
+    public function __construct(CacheManager $cacheManager, $pathImagesRestaurant, $pathImagesWinemaker, $pathImagesEvent, $pathImagesTutorial, FileSystemStorage $fileSystemStorage, EventDispatcherInterface $dispatcher)
     {
         $this->cacheManager = $cacheManager;
         $this->filePathEntitiesCorrespondance['ImageRestaurant'] = $pathImagesRestaurant;
@@ -52,58 +60,63 @@ class ImageManager
         $this->filePathEntitiesCorrespondance['ImageTutorial'] = $pathImagesTutorial;
         $this->filePathEntitiesCorrespondance['ImageTutorialChapterPara'] = $pathImagesTutorial;
         $this->fileSystemStorage = $fileSystemStorage;
+        $this->dispatcher = $dispatcher;
     }
 
     /**
-     * Rename Image on entity related slug update.
-     *
-     * @param string $entity The entity.
+     * Rename Image file on Entity related slug persist|update or on Image persist|update.
      */
-    public function renameImageOnSlugUpdate($entity, $em)
+    public function renameImageFile($entity, $em)
     {
+        $classInfo = new \ReflectionClass($entity);
+
         if ($this->hasImage($entity)) {
             $image = $entity->getImage();
 
-            if ((null !== $image) && (null !== $image->getName())) {
-                $this->renameImageFromSlug($image, $em);
+            if ((null !== $image)) {
+                $this->renameImageFileFromSlug($image, $em);
             }
 
             return;
         }
 
+        if ($classInfo->isSubclassOf('FBN\GuideBundle\Entity\Image')) {
+            $image = $entity;
+            $this->renameImageFileFromSlug($image, $em);
+        }
+
         return;
     }
 
-    public function renameImageOnImagePersist($entity, $em)
+    /**
+     * Rename Image file based on entity related slug.
+     */
+    private function renameImageFileFromSlug($image, $em)
     {
-        $classInfo = new \ReflectionClass($entity);
+        $absolutePathToFile = $this->fileSystemStorage->resolvePath($image, 'file');
 
-        if ($classInfo->isSubclassOf('FBN\GuideBundle\Entity\Image')) {
-            $this->renameImageFromSlug($entity, $em);
-        }
-    }
+        if (file_exists($absolutePathToFile)) {
+            $file = new File($absolutePathToFile);
 
-    private function renameImageFromSlug($image, $em)
-    {
-        $pathToFile = $this->fileSystemStorage->resolvePath($image, 'file');
-        $file = new File($pathToFile);
-
-        if (null !== $file) {
             $fileDirectory = $file->getPath();
             $name = $image->getName();
             $extension = $file->getExtension();
             $actualSlug = str_replace('.'.$extension, '', $name);
 
-            if ($actualSlug != $image->getSlugFromRelatedEntity()) {
-                if (file_exists($fileDirectory.'/'.$name)) {
-                    $updatedName = $image->getSlugFromRelatedEntity().'.'.$extension;
-                    $file->move($fileDirectory, $updatedName);
-                    $image->setName($updatedName);
-                    $image->setUpdatedAt(new \DateTime());
+            // If it's needed to rename Image file.
+            if (null !== $image->getSlugFromRelatedEntity() && $actualSlug != $image->getSlugFromRelatedEntity()) {
+                $updatedName = $image->getSlugFromRelatedEntity().'.'.$extension;
+                $file->move($fileDirectory, $updatedName);
 
-                    $em->flush();
-                }
+                $event = new ImageUpdateEvent($image->getId(), get_class($image), $updatedName);
+                $this->dispatcher->dispatch(FBNGuideEvents::IMAGE_UPDATE, $event);
+                //$image->setName($updatedName);
+                //$image->setUpdatedAt(new \DateTime());
+
+                //$em->flush();
             }
+
+            return;
         }
 
         return;
