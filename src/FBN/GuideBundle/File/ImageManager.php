@@ -6,8 +6,6 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Vich\UploaderBundle\Storage\FileSystemStorage;
-use FBN\GuideBundle\Event\ImageUpdateEvent;
-use FBN\GuideBundle\FBNGuideEvents;
 
 class ImageManager
 {
@@ -66,23 +64,19 @@ class ImageManager
     /**
      * Rename Image file on Entity related slug persist|update or on Image persist|update.
      */
-    public function renameImageFile($entity, $em)
+    public function renameImageFile($entity, $em, $uow)
     {
-        $classInfo = new \ReflectionClass($entity);
-
         if ($this->hasImage($entity)) {
             $image = $entity->getImage();
 
             if ((null !== $image)) {
-                $this->renameImageFileFromSlug($image, $em);
+                $this->renameImageFileFromSlug($image);
+
+                $classMetadata = $em->getClassMetadata(get_class($image));
+                $uow->recomputeSingleEntityChangeSet($classMetadata, $image);
             }
 
             return;
-        }
-
-        if ($classInfo->isSubclassOf('FBN\GuideBundle\Entity\Image')) {
-            $image = $entity;
-            $this->renameImageFileFromSlug($image, $em);
         }
 
         return;
@@ -91,29 +85,27 @@ class ImageManager
     /**
      * Rename Image file based on entity related slug.
      */
-    private function renameImageFileFromSlug($image, $em)
+    public function renameImageFileFromSlug($image)
     {
-        $absolutePathToFile = $this->fileSystemStorage->resolvePath($image, 'file');
+        $absolutePathToActualFile = $this->fileSystemStorage->resolvePath($image, 'file');
 
-        if (file_exists($absolutePathToFile)) {
-            $file = new File($absolutePathToFile);
-
+        if (file_exists($absolutePathToActualFile)) {
+            $file = new File($absolutePathToActualFile);
             $fileDirectory = $file->getPath();
-            $name = $image->getName();
+
+            $actualName = $image->getName();
             $extension = $file->getExtension();
-            $actualSlug = str_replace('.'.$extension, '', $name);
+
+            $actualRootName = str_replace('.'.$extension, '', $actualName);
 
             // If it's needed to rename Image file.
-            if (null !== $image->getSlugFromRelatedEntity() && $actualSlug != $image->getSlugFromRelatedEntity()) {
+            if (null !== $image->getSlugFromRelatedEntity() && $actualRootName != $image->getSlugFromRelatedEntity()) {
                 $updatedName = $image->getSlugFromRelatedEntity().'.'.$extension;
+
                 $file->move($fileDirectory, $updatedName);
 
-                $event = new ImageUpdateEvent($image->getId(), get_class($image), $updatedName);
-                $this->dispatcher->dispatch(FBNGuideEvents::IMAGE_UPDATE, $event);
-                //$image->setName($updatedName);
-                //$image->setUpdatedAt(new \DateTime());
-
-                //$em->flush();
+                $image->setName($updatedName);
+                $image->setUpdatedAt(new \DateTime());
             }
 
             return;

@@ -4,8 +4,10 @@ namespace FBN\GuideBundle\EventListener;
 
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Doctrine\ORM\EntityManager;
-use FBN\GuideBundle\FBNGuideEvents;
+use Vich\UploaderBundle\Event\Events;
+use FBN\GuideBundle\File\ImageManager;
+
+//use FBN\GuideBundle\FBNGuideEvents;
 
 /**
  * Listener responsible to update an Image Entity when the related file is updated (moved).
@@ -13,13 +15,13 @@ use FBN\GuideBundle\FBNGuideEvents;
 class ImageFileUpdateListener implements EventSubscriberInterface
 {
     /**
-     * @var EntityManager
+     * @var ImageManager
      */
-    private $em;
+    private $im;
 
-    public function __construct(EntityManager $em)
+    public function __construct(ImageManager $im)
     {
-        $this->em = $em;
+        $this->im = $im;
     }
 
     /**
@@ -28,16 +30,15 @@ class ImageFileUpdateListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            FBNGuideEvents::IMAGE_UPDATE => array('updateImageEntity'),
+            Events::POST_UPLOAD => array('updateImageEntity'),
         );
     }
 
     public function updateImageEntity(Event $event)
     {
-        $image = $this->em->getRepository($event->getClass())->find($event->getId());
-        $image->setName($event->getUpdatedName());
-        $image->setUpdatedAt(new \DateTime());
+        $image = $event->getObject();
 
-        $this->em->flush();
+        // No flush needed as the POST_UPLOAD event is triggered during doctrine preUpdate event.
+        $this->im->renameImageFileFromSlug($image);
     }
 }

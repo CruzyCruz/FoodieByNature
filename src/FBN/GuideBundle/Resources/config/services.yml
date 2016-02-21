@@ -42,7 +42,7 @@ services:
         class : FBN\GuideBundle\EventListener\DoctrineListener
         arguments: [@fbn_guide.image_manager]
         tags:
-            - { name: doctrine.event_subscriber, connection: default }
+            - { name: doctrine.event_subscriber, connection: default, priority: -10000 }
 
     fbn_guide.image_manager:
         class : FBN\GuideBundle\File\ImageManager
@@ -50,4 +50,6 @@ services:
 
     fbn_guide.image_file_update_listener:
         class: FBN\GuideBundle\EventListener\ImageFileUpdateListener
-        arguments: [@doctrine.orm.entity_manager]
+        arguments: [@fbn_guide.image_manager]
+        tags:
+            - { name: kernel.event_subscriber }
