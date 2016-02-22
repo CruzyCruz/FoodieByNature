@@ -64,13 +64,13 @@ class ImageManager
     /**
      * Rename Image file on Entity related slug persist|update or on Image persist|update.
      */
-    public function renameImageFile($entity, $em, $uow)
+    public function renameImageFileFromArticleOnFlush($entity, $em, $uow)
     {
         if ($this->hasImage($entity)) {
             $image = $entity->getImage();
 
             if ((null !== $image)) {
-                $this->renameImageFileFromSlug($image);
+                $this->renameImageFile($image);
 
                 $classMetadata = $em->getClassMetadata(get_class($image));
                 $uow->recomputeSingleEntityChangeSet($classMetadata, $image);
@@ -85,7 +85,7 @@ class ImageManager
     /**
      * Rename Image file based on entity related slug.
      */
-    public function renameImageFileFromSlug($image)
+    public function renameImageFile($image)
     {
         $absolutePathToActualFile = $this->fileSystemStorage->resolvePath($image, 'file');
 
@@ -97,10 +97,11 @@ class ImageManager
             $extension = $file->getExtension();
 
             $actualRootName = str_replace('.'.$extension, '', $actualName);
+            $updatedRootName = $image->buildImageRootName();
 
             // If it's needed to rename Image file.
-            if (null !== $image->getSlugFromRelatedEntity() && $actualRootName != $image->getSlugFromRelatedEntity()) {
-                $updatedName = $image->getSlugFromRelatedEntity().'.'.$extension;
+            if (null !== $updatedRootName && $actualRootName != $updatedRootName) {
+                $updatedName = $updatedRootName.'.'.strtolower($extension);
 
                 $file->move($fileDirectory, $updatedName);
 
@@ -148,7 +149,7 @@ class ImageManager
             // If image file has changed.
             if (null !== $savedName) {
                 $path = $this->filePathEntitiesCorrespondance[$classInfo->getShortName()];
-                $this->cacheManager->remove($path.'/'.$savedName);
+                $this->cacheManager->remove($path.DIRECTORY_SEPARATOR.$savedName);
             }
 
             return;

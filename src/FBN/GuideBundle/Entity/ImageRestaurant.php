@@ -72,11 +72,11 @@ class ImageRestaurant extends Image
     }
 
     /**
-     * Get Slug from associated entity.
+     * Build Image name.
      *
      * @return null|string
      */
-    public function getSlugFromRelatedEntity()
+    public function buildImageRootName()
     {
         if (null !== $this->getRestaurant()) {
             return $this->getRestaurant()->getSlug();

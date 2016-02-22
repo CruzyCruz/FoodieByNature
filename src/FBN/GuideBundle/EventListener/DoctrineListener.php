@@ -4,7 +4,7 @@ namespace FBN\GuideBundle\EventListener;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Events;
-//use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
+use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use FBN\GuideBundle\Entity\CoordinatesISO;
 use FBN\GuideBundle\Entity\Restaurant;
@@ -22,43 +22,29 @@ class DoctrineListener implements EventSubscriber
         $this->imageManager = $imageManager;
     }
 
-    /*public function getSubscribedEvents()
-    {
-        return array(
-            'postPersist',
-            'postUpdate',
-            'postRemove',
-            'onFlush',
-        );
-    }*/
-
     public function getSubscribedEvents()
     {
         return array(
             Events::onFlush,
+            Events::postUpdate,
+            Events::postRemove,
         );
     }
 
-    public function postPersist(LifecycleEventArgs $args)
+    public function onFlush(OnFlushEventArgs $eventArgs)
     {
-        //$this->renameImageFile($args);
+        $this->renameImageFileFromArticleOnFlush($eventArgs);
     }
 
     public function postUpdate(LifecycleEventArgs $args)
     {
         $this->updateRestaurantSlugFromCoordinatesISO($args);
-        //$this->renameImageFile($args);
         $this->removeEntityRelatedCachedImage($args);
     }
 
     public function postRemove(LifecycleEventArgs $args)
     {
         $this->removeEntityRelatedCachedImage($args);
-    }
-
-    public function onFlush(OnFlushEventArgs $eventArgs)
-    {
-        $this->renameImageFile($eventArgs);
     }
 
     /**
@@ -91,26 +77,22 @@ class DoctrineListener implements EventSubscriber
         return;
     }
 
-/**
- * Rename Image file on entity related slug persist|update or on Image persist|update.
- *
- * @param LifecycleEventArgs $args
- */
-    //public function renameImageFile(LifecycleEventArgs $args)
-    public function renameImageFile(OnFlushEventArgs $eventArgs)
+    /**
+     * Rename Image file on entity related slug persist|update or on Image persist|update.
+     *
+     * @param LifecycleEventArgs $args
+     */
+    public function renameImageFileFromArticleOnFlush(OnFlushEventArgs $eventArgs)
     {
-        //$entity = $args->getEntity();
-        //$em = $args->getEntityManager();
-
         $em = $eventArgs->getEntityManager();
         $uow = $em->getUnitOfWork();
 
         foreach ($uow->getScheduledEntityInsertions() as $entity) {
-            $this->imageManager->renameImageFile($entity, $em, $uow);
+            $this->imageManager->renameImageFileFromArticleOnFlush($entity, $em, $uow);
         }
 
         foreach ($uow->getScheduledEntityUpdates() as $entity) {
-            $this->imageManager->renameImageFile($entity, $em, $uow);
+            $this->imageManager->renameImageFileFromArticleOnFlush($entity, $em, $uow);
         }
     }
 

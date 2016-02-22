@@ -72,19 +72,19 @@ class ImageTutorialChapterPara extends Image
     }
 
     /**
-     * Get Slug from associated entity.
+     * Build Image name.
      *
      * @return null|string
      */
-    public function getSlugFromRelatedEntity()
+    public function buildImageRootName()
     {
-        if (null !== $this->getTutorialChapterPara()) {
-            if (null !== $this->getTutorialChapterPara()->getTutorialChapter()) {
-                if (null !== $this->getTutorialChapterPara()->getTutorialChapter()->getTutorial()) {
-                    $slugTutorial = $this->getTutorialChapterPara()->getTutorialChapter()->getTutorial()->getSlug();
-                    $slugTutorialChapterPara = $this->getTutorialChapterPara()->getSlug();
+        if (null !== $tutoChapterPara = $this->getTutorialChapterPara()) {
+            if (null !== $tutoChapter = $tutoChapterPara->getTutorialChapter()) {
+                if (null !== $tuto = $tutoChapter->getTutorial()) {
+                    $slugTuto = $tuto->getSlug();
+                    $slugTutoChapterPara = $tutoChapterPara->getSlug();
 
-                    return $slugTutorial.$slugTutorialChapterPara;
+                    return $slugTuto.$slugTutoChapterPara;
                 }
 
                 return;

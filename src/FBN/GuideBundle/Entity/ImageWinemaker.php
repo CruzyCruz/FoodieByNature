@@ -72,11 +72,11 @@ class ImageWinemaker extends Image
     }
 
     /**
-     * Get Slug from associated entity.
+     * Build Image name.
      *
      * @return null|string
      */
-    public function getSlugFromRelatedEntity()
+    public function buildImageRootName()
     {
         if (null !== $this->getWinemaker()) {
             return $this->getWinemaker()->getSlug();

@@ -39,6 +39,6 @@ class ImageFileUpdateListener implements EventSubscriberInterface
         $image = $event->getObject();
 
         // No flush needed as the POST_UPLOAD event is triggered during doctrine preUpdate event.
-        $this->im->renameImageFileFromSlug($image);
+        $this->im->renameImageFile($image);
     }
 }
