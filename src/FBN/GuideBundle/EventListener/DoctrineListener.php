@@ -78,9 +78,9 @@ class DoctrineListener implements EventSubscriber
     }
 
     /**
-     * Rename Image file on entity related slug persist|update or on Image persist|update.
+     * Rename Image file on Entity (Article) related onFlush event.
      *
-     * @param LifecycleEventArgs $args
+     * @param OnFlushEventArgs $args
      */
     public function renameImageFileFromArticleOnFlush(OnFlushEventArgs $eventArgs)
     {

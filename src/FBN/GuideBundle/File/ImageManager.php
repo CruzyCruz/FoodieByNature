@@ -5,7 +5,8 @@ namespace FBN\GuideBundle\File;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
-use Vich\UploaderBundle\Storage\FileSystemStorage;
+use Vich\UploaderBundle\Storage\StorageInterface;
+use FBN\GuideBundle\Entity\Image;
 
 class ImageManager
 {
@@ -40,7 +41,7 @@ class ImageManager
     private $cacheManager;
 
     /**
-     * @var FileSystemStorage
+     * @var StorageInterface
      */
     private $fileSystemStorage;
 
@@ -49,7 +50,7 @@ class ImageManager
      */
     protected $dispatcher;
 
-    public function __construct(CacheManager $cacheManager, $pathImagesRestaurant, $pathImagesWinemaker, $pathImagesEvent, $pathImagesTutorial, FileSystemStorage $fileSystemStorage, EventDispatcherInterface $dispatcher)
+    public function __construct(CacheManager $cacheManager, $pathImagesRestaurant, $pathImagesWinemaker, $pathImagesEvent, $pathImagesTutorial, StorageInterface $fileSystemStorage, EventDispatcherInterface $dispatcher)
     {
         $this->cacheManager = $cacheManager;
         $this->filePathEntitiesCorrespondance['ImageRestaurant'] = $pathImagesRestaurant;
@@ -62,7 +63,11 @@ class ImageManager
     }
 
     /**
-     * Rename Image file on Entity related slug persist|update or on Image persist|update.
+     * Rename Image file on Entity (Article) related onFlush event.
+     *
+     * @param object $entity The entity.
+     * @param object $em     The entity manager.
+     * @param object $uow    The unit of work.
      */
     public function renameImageFileFromArticleOnFlush($entity, $em, $uow)
     {
@@ -83,7 +88,9 @@ class ImageManager
     }
 
     /**
-     * Rename Image file based on entity related slug.
+     * Rename Image file.
+     *
+     * @param object $image The image entity.
      */
     public function renameImageFile($image)
     {
@@ -118,7 +125,7 @@ class ImageManager
     /**
      * Check if an entity is linked to an image.
      *
-     * @param string $entity The entity.
+     * @param object $entity The entity.
      *
      * @return bool
      */
@@ -136,7 +143,7 @@ class ImageManager
     /**
      * Remove cached image file related to Image file on update|removal.
      *
-     * @param string $entity The entity.
+     * @param object $entity The entity.
      */
     public function removeEntityRelatedCachedImage($entity)
     {

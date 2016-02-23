@@ -2,15 +2,13 @@
 
 namespace FBN\GuideBundle\EventListener;
 
-use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Vich\UploaderBundle\Event\Event;
 use Vich\UploaderBundle\Event\Events;
 use FBN\GuideBundle\File\ImageManager;
 
-//use FBN\GuideBundle\FBNGuideEvents;
-
 /**
- * Listener responsible to update an Image Entity when the related file is updated (moved).
+ * Listener responsible to update an Image Entity when the related file is uploaded.
  */
 class ImageFileUpdateListener implements EventSubscriberInterface
 {
@@ -34,6 +32,11 @@ class ImageFileUpdateListener implements EventSubscriberInterface
         );
     }
 
+    /**
+     * Rename image file and update Image entity.
+     *
+     * @param Event $event The event.
+     */
     public function updateImageEntity(Event $event)
     {
         $image = $event->getObject();
