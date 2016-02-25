@@ -3,38 +3,11 @@
 namespace FBN\GuideBundle\File;
 
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Vich\UploaderBundle\Storage\StorageInterface;
-use FBN\GuideBundle\Entity\Image;
 
 class ImageManager
 {
-    private $pathImagesRestaurant;
-    private $pathImagesWinemaker;
-    private $pathImagesEvent;
-    private $pathImagesTutorial;
-
-    /**
-     * List of entities linked to an image.
-     *
-     * @var array
-     */
-    private static $entitiesLinkedToImage = array(
-        'FBN\\GuideBundle\\Entity\\Restaurant',
-        'FBN\\GuideBundle\\Entity\\Winemaker',
-        'FBN\\GuideBundle\\Entity\\Event',
-        'FBN\\GuideBundle\\Entity\\Tutorial',
-        'FBN\\GuideBundle\\Entity\\TutorialChapterPara',
-    );
-
-    /**
-     * Correspondance between Image class and image file path (relative to /web directory).
-     *
-     * @var array
-     */
-    private $filePathEntitiesCorrespondance = array();
-
     /**
      * @var CacheManager
      */
@@ -45,21 +18,10 @@ class ImageManager
      */
     private $fileSystemStorage;
 
-    /**
-     * @var EventDispatcherInterface
-     */
-    protected $dispatcher;
-
-    public function __construct(CacheManager $cacheManager, $pathImagesRestaurant, $pathImagesWinemaker, $pathImagesEvent, $pathImagesTutorial, StorageInterface $fileSystemStorage, EventDispatcherInterface $dispatcher)
+    public function __construct(CacheManager $cacheManager, StorageInterface $fileSystemStorage)
     {
         $this->cacheManager = $cacheManager;
-        $this->filePathEntitiesCorrespondance['ImageRestaurant'] = $pathImagesRestaurant;
-        $this->filePathEntitiesCorrespondance['ImageWinemaker'] = $pathImagesWinemaker;
-        $this->filePathEntitiesCorrespondance['ImageEvent'] = $pathImagesEvent;
-        $this->filePathEntitiesCorrespondance['ImageTutorial'] = $pathImagesTutorial;
-        $this->filePathEntitiesCorrespondance['ImageTutorialChapterPara'] = $pathImagesTutorial;
         $this->fileSystemStorage = $fileSystemStorage;
-        $this->dispatcher = $dispatcher;
     }
 
     /**
@@ -71,7 +33,7 @@ class ImageManager
      */
     public function renameImageFileFromArticleOnFlush($entity, $em, $uow)
     {
-        if ($this->hasImage($entity)) {
+        if (property_exists($entity, 'image')) {
             $image = $entity->getImage();
 
             if ((null !== $image)) {
@@ -108,9 +70,12 @@ class ImageManager
 
             // If it's needed to rename Image file.
             if (null !== $updatedRootName && $actualRootName != $updatedRootName) {
+                $this->setRelativePathToActualFile($image);
                 $updatedName = $updatedRootName.'.'.strtolower($extension);
 
                 $file->move($fileDirectory, $updatedName);
+
+                $this->removeEntityRelatedCachedFile($image);
 
                 $image->setName($updatedName);
                 $image->setUpdatedAt(new \DateTime());
@@ -123,43 +88,31 @@ class ImageManager
     }
 
     /**
-     * Check if an entity is linked to an image.
+     * Get the relative path to actual file and set the related Image attribute.
      *
-     * @param object $entity The entity.
-     *
-     * @return bool
+     * @param object $image The image entity.
      */
-    private function hasImage($entity)
+    public function setRelativePathToActualFile($image)
     {
-        foreach (self::$entitiesLinkedToImage as $entityLinkedToImage) {
-            if ($entity instanceof $entityLinkedToImage) {
-                return true;
-            }
+        if (null !== $image->getName()) {
+            $relativePathToActualFile = $this->fileSystemStorage->resolveUri($image, 'file');
+            $image->setRelativePathToActualFile($relativePathToActualFile);
         }
 
-        return false;
+        return;
     }
 
     /**
      * Remove cached image file related to Image file on update|removal.
      *
-     * @param object $entity The entity.
+     * @param object $image The entity.
      */
-    public function removeEntityRelatedCachedImage($entity)
+    public function removeEntityRelatedCachedFile($image)
     {
-        $classInfo = new \ReflectionClass($entity);
+        $relativePathToActualFile = $image->getRelativePathToActualFile();
 
-        if ($classInfo->isSubclassOf('FBN\GuideBundle\Entity\Image')) {
-            $savedName = $entity->getSavedName();
-            $name = $entity->getName();
-
-            // If image file has changed.
-            if (null !== $savedName) {
-                $path = $this->filePathEntitiesCorrespondance[$classInfo->getShortName()];
-                $this->cacheManager->remove($path.DIRECTORY_SEPARATOR.$savedName);
-            }
-
-            return;
+        if (null !== $relativePathToActualFile) {
+            $this->cacheManager->remove($relativePathToActualFile);
         }
 
         return;

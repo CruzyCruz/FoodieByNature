@@ -191,9 +191,6 @@ vich_uploader:
             uri_prefix:         %app.path.images_restaurant%
             upload_destination: %kernel.root_dir%/../web/%app.path.images_restaurant%
             namer:              vich_uploader.namer_uniqid
-            #namer:
-            #    service: vich_uploader.namer_property
-            #    options: { property: 'slugFromRelatedEntity'}
             inject_on_load:     false
             delete_on_update:   true
             delete_on_remove:   true
@@ -201,15 +198,31 @@ vich_uploader:
         image_winemaker:
             uri_prefix:         %app.path.images_winemaker%
             upload_destination: %kernel.root_dir%/../web/%app.path.images_winemaker%
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true            
 
         image_event:
             uri_prefix:         %app.path.images_event%
             upload_destination: %kernel.root_dir%/../web/%app.path.images_event%
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true            
 
         image_tutorial:
             uri_prefix:         %app.path.images_tutorial%
             upload_destination: %kernel.root_dir%/../web/%app.path.images_tutorial%
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true            
 
         image_tutorial_chapter_para:
             uri_prefix:         %app.path.images_tutorial%
             upload_destination: %kernel.root_dir%/../web/%app.path.images_tutorial%
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true            

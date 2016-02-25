@@ -39,12 +39,12 @@ class DoctrineListener implements EventSubscriber
     public function postUpdate(LifecycleEventArgs $args)
     {
         $this->updateRestaurantSlugFromCoordinatesISO($args);
-        $this->removeEntityRelatedCachedImage($args);
+        //$this->removeEntityRelatedCachedFile($args);
     }
 
     public function postRemove(LifecycleEventArgs $args)
     {
-        $this->removeEntityRelatedCachedImage($args);
+        //$this->removeEntityRelatedCachedFile($args);
     }
 
     /**
@@ -101,10 +101,10 @@ class DoctrineListener implements EventSubscriber
      *
      * @param LifecycleEventArgs $args
      */
-    public function removeEntityRelatedCachedImage(LifecycleEventArgs $args)
+    public function removeEntityRelatedCachedFile(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
 
-        $this->imageManager->removeEntityRelatedCachedImage($entity);
+        $this->imageManager->removeEntityRelatedCachedFile($entity);
     }
 }

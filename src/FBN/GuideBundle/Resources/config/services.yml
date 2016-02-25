@@ -46,10 +46,10 @@ services:
 
     fbn_guide.image_manager:
         class : FBN\GuideBundle\File\ImageManager
-        arguments: [@liip_imagine.cache.manager, %app.path.images_restaurant%, %app.path.images_winemaker%, %app.path.images_event%, %app.path.images_tutorial%, @vich_uploader.storage.file_system, @event_dispatcher]
+        arguments: [@liip_imagine.cache.manager,  @vich_uploader.storage.file_system]
 
     fbn_guide.image_file_update_listener:
-        class: FBN\GuideBundle\EventListener\ImageFileUpdateListener
+        class: FBN\GuideBundle\EventListener\VichListener
         arguments: [@fbn_guide.image_manager]
         tags:
             - { name: kernel.event_subscriber }
