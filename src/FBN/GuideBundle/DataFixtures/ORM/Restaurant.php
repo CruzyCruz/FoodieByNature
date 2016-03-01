@@ -108,6 +108,8 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface
 
             $restaurant[$i]->setImage($this->getReference('imagerestaurant-'.$i));
 
+            $restaurant[$i]->setSlugFromCoordinatesISO($this->getReference('coordinatesfr-'.$i)->getSlug());
+
             $manager->persist($restaurant[$i]);
 
             $this->addReference('restaurant-'.$i, $restaurant[$i]);

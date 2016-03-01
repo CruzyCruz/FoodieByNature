@@ -50,7 +50,8 @@ easy_admin:
                     - 'restaurantPrice'
                     - 'restaurantStyle'
                     - 'restaurantBonus'
-                    #- 'image'
+                    - { property: 'image', type: 'FBN\GuideBundle\Form\ImageRestaurantType' }
+                    - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType' }
                     #- 'coordinates'
                     #- 'shop'
         RestaurantBonus:    

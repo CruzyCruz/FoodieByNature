@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ImageRestaurantType extends AbstractType
+class CoordinatesFRDeptType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,11 +15,11 @@ class ImageRestaurantType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('legend', 'text')
-            ->add('file', 'vich_image', array(
-                'required' => false,
-                'allow_delete' => true, // not mandatory, default is true
-                'download_link' => true, // not mandatory, default is true
+            ->add('department', 'text')
+            ->add('num', 'text')
+            ->add('coordinatesFRArea', 'entity', array(
+                'class' => 'FBNGuideBundle:CoordinatesFRArea',
+                'property' => 'area',
                 ))
         ;
     }
@@ -30,7 +30,7 @@ class ImageRestaurantType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'FBN\GuideBundle\Entity\ImageRestaurant',
+            'data_class' => 'FBN\GuideBundle\Entity\CoordinatesFRDept',
         ));
     }
 
@@ -39,6 +39,6 @@ class ImageRestaurantType extends AbstractType
      */
     public function getName()
     {
-        return 'fbn_guidebundle_imagerestaurant';
+        return 'fbn_guidebundle_coordinatesfrdept';
     }
 }

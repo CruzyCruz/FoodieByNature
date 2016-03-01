@@ -25,7 +25,7 @@ class ImageManager
     }
 
     /**
-     * Rename Image file on Entity (Article) related onFlush event.
+     * Rename Image file from related Entity (Article) onFlush event.
      *
      * @param object $entity The entity.
      * @param object $em     The entity manager.

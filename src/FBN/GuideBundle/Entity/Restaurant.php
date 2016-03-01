@@ -11,7 +11,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="restaurant")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\RestaurantRepository")
  * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\RestaurantTranslation")
- * @ORM\HasLifecycleCallbacks()
  */
 class Restaurant extends Article
 {
@@ -462,29 +461,5 @@ class Restaurant extends Article
     public function getSlugFromCoordinatesISO()
     {
         return $this->slugFromCoordinatesISO;
-    }
-
-    /**
-     *  Initiate slugFromCoordinatesISO at entity creation.
-     *
-     * @ORM\PrePersist
-     */
-    public function initiateSlugFromCoordinatesISO()
-    {
-        // In case no relation with Coordinates entity is available
-        if (null === $this->getCoordinates()) {
-            $this->setSlugFromCoordinatesISO('');
-
-            return;
-        }
-
-        $codeISO = $this->getCoordinates()->getCoordinatesCountry()->getCodeISO();
-
-        switch ($codeISO) {
-            case 'FR':
-                $slugFromCoordinatesISO = $this->getCoordinates()->getCoordinatesFR()->getSlug();
-                break;
-        }
-        $this->setSlugFromCoordinatesISO($slugFromCoordinatesISO);
     }
 }
