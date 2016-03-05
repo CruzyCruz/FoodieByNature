@@ -154,10 +154,4 @@ class CoordinatesCountry
     {
         return $this->longitude;
     }
-
-    /** {@inheritdoc} */
-    public function __toString()
-    {
-        return $this->getCountry();
-    }
 }

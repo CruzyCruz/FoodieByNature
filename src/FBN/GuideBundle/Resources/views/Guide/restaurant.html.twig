@@ -73,7 +73,7 @@
       {{ restaurant.coordinates.coordinatesFR.locality }}
     {% endif %}  
     <br />
-    {{ restaurant.coordinates.coordinatesFR.postcode ~ ' ' ~ restaurant.coordinates.coordinatesFR.city }}
+    {{ restaurant.coordinates.coordinatesFR.coordinatesFRCity.postCode ~ ' ' ~ restaurant.coordinates.coordinatesFR.coordinatesFRCity.city }}
   </p>
 
   {% if restaurant.tel is not null %}

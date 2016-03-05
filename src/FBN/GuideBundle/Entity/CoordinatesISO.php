@@ -3,7 +3,6 @@
 namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * CoordinatesISO.
@@ -29,17 +28,9 @@ class CoordinatesISO
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255)
+     * @ORM\Column(name="miscellaneous", type="string", length=255, nullable=true)
      */
-    private $city;
-
-    /**
-     * @var string
-     *
-     * @Gedmo\Slug(updatable=true, unique=false, fields={"city"})
-     * @ORM\Column(length=128)
-     */
-    private $slug;
+    private $miscellaneous;
 
     /**
      * @var string
@@ -97,27 +88,27 @@ class CoordinatesISO
     }
 
     /**
-     * Set city.
+     * Set miscellaneous.
      *
-     * @param string $city
+     * @param string $miscellaneous
      *
      * @return Coordinates
      */
-    public function setCity($city)
+    public function setMiscellaneous($miscellaneous)
     {
-        $this->city = $city;
+        $this->miscellaneous = $miscellaneous;
 
         return $this;
     }
 
     /**
-     * Get city.
+     * Get miscellaneous.
      *
      * @return string
      */
-    public function getCity()
+    public function getMiscellaneous()
     {
-        return $this->city;
+        return $this->miscellaneous;
     }
 
     /**
@@ -143,38 +134,4 @@ class CoordinatesISO
     {
         return $this->metro;
     }
-
-    /**
-     * Set slug.
-     *
-     * @param string $slug
-     *
-     * @return CoordinatesISO
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug.
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /*
-    public function updateRestaurantSlugFromCoordinatesISO()
-    {
-        if (null !== $this->getCoordinates()->getRestaurant()) {
-            $this->getCoordinates()->getRestaurant()->setSlugFromCoordinatesISO($this->getSlug());
-        } else {
-            return;
-        }
-    }*/
 }

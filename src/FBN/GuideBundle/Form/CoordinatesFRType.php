@@ -4,7 +4,10 @@ namespace FBN\GuideBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use FBN\GuideBundle\Entity\CoordinatesFRCityRepository;
 
 class CoordinatesFRType extends AbstractType
 {
@@ -15,22 +18,23 @@ class CoordinatesFRType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('laneNum', 'text')
-            ->add('coordinatesFRLane', 'entity', array(
+            ->add('laneNum', TextType::class)
+            ->add('coordinatesFRLane', EntityType::class, array(
                 'class' => 'FBNGuideBundle:CoordinatesFRLane',
                 'property' => 'lane',
                 ))
-            ->add('laneName', 'text')
-            ->add('miscellaneous', 'text')
-            ->add('locality', 'text')
-            ->add('postcode', 'text')
-            ->add('city', 'text')
-            ->add('metro', 'text')
-            ->add('latitude', 'text')
-            ->add('longitude', 'text')
-            ->add('coordinatesFRDept', 'entity', array(
-                'class' => 'FBNGuideBundle:CoordinatesFRDept',
-                'property' => 'department',
+            ->add('laneName', TextType::class)
+            ->add('miscellaneous', TextType::class)
+            ->add('locality', TextType::class)
+            ->add('metro', TextType::class)
+            ->add('latitude', TextType::class)
+            ->add('longitude', TextType::class)
+            ->add('coordinatesFRCity', EntityType::class, array(
+                'class' => 'FBNGuideBundle:CoordinatesFRCity',
+                'property' => 'display',
+                'query_builder' => function (CoordinatesFRCityRepository $repo) {
+                    return $repo->getAscendingSortedCitiesQueryBuilder();
+                    },
                 ))
         ;
     }

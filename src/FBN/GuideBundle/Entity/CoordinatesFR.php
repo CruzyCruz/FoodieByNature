@@ -19,10 +19,10 @@ class CoordinatesFR extends CoordinatesISO
    private $coordinatesFRLane;
 
    /**
-    * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFRDept")
+    * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFRCity")
     * @ORM\JoinColumn(nullable=false)
     */
-   private $coordinatesFRDept;
+   private $coordinatesFRCity;
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", mappedBy="coordinatesFR")
@@ -56,23 +56,9 @@ class CoordinatesFR extends CoordinatesISO
     /**
      * @var string
      *
-     * @ORM\Column(name="miscellaneous", type="string", length=255, nullable=true)
-     */
-    private $miscellaneous;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="locality", type="string", length=255, nullable=true)
      */
     private $locality;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="postcode", type="string", length=255)
-     */
-    private $postcode;
 
     /**
      * Get id.
@@ -133,27 +119,27 @@ class CoordinatesFR extends CoordinatesISO
     }
 
     /**
-     * Set coordinatesFRDept.
+     * Set coordinatesFRCity.
      *
-     * @param \FBN\GuideBundle\Entity\CoordinatesFRDept $coordinatesFRDept
+     * @param \FBN\GuideBundle\Entity\CoordinatesFRCity $coordinatesFRCity
      *
      * @return CoordinatesFR
      */
-    public function setCoordinatesFRDept(\FBN\GuideBundle\Entity\CoordinatesFRDept $coordinatesFRDept)
+    public function setCoordinatesFRCity(\FBN\GuideBundle\Entity\CoordinatesFRCity $coordinatesFRCity)
     {
-        $this->coordinatesFRDept = $coordinatesFRDept;
+        $this->coordinatesFRCity = $coordinatesFRCity;
 
         return $this;
     }
 
     /**
-     * Get coordinatesFRDept.
+     * Get coordinatesFRCity.
      *
-     * @return \FBN\GuideBundle\Entity\CoordinatesFRDept
+     * @return \FBN\GuideBundle\Entity\CoordinatesFRCity
      */
-    public function getCoordinatesFRDept()
+    public function getCoordinatesFRCity()
     {
-        return $this->coordinatesFRDept;
+        return $this->coordinatesFRCity;
     }
 
     /**
@@ -205,30 +191,6 @@ class CoordinatesFR extends CoordinatesISO
     }
 
     /**
-     * Set miscellaneous.
-     *
-     * @param string $miscellaneous
-     *
-     * @return Coordinates
-     */
-    public function setMiscellaneous($miscellaneous)
-    {
-        $this->miscellaneous = $miscellaneous;
-
-        return $this;
-    }
-
-    /**
-     * Get miscellaneous.
-     *
-     * @return string
-     */
-    public function getMiscellaneous()
-    {
-        return $this->miscellaneous;
-    }
-
-    /**
      * Set locality.
      *
      * @param string $locality
@@ -250,46 +212,5 @@ class CoordinatesFR extends CoordinatesISO
     public function getLocality()
     {
         return $this->locality;
-    }
-
-    /**
-     * Set postcode.
-     *
-     * @param string $postcode
-     *
-     * @return CoordinatesFR
-     */
-    public function setPostcode($postcode)
-    {
-        $this->postcode = $postcode;
-
-        return $this;
-    }
-
-    /**
-     * Get postcode.
-     *
-     * @return string
-     */
-    public function getPostcode()
-    {
-        return $this->postcode;
-    }
-
-    /** {@inheritdoc} */
-    public function __toString()
-    {
-        $area = $this->getCoordinatesFRDept()->getCoordinatesFRArea()->getArea();
-        $dept = $this->getCoordinatesFRDept()->getDepartment();
-        $city = $this->getCity();
-        $lane = '';
-        if (null !== $this->getCoordinatesFRLane()) {
-            $lane = $this->getCoordinatesFRLane()->getLane();
-        }
-        $laneName = $this->getLaneName();
-        $laneNum = $this->getLaneNum();
-        $postCode = $this->getPostcode();
-
-        return $area.' / '.$dept.' / '.$postCode.' / '.$city.' / '.$laneNum.', '.$lane.' '.$laneName;
     }
 }

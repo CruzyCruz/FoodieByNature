@@ -5,6 +5,7 @@ namespace FBN\GuideBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class CoordinatesType extends AbstractType
 {
@@ -15,7 +16,7 @@ class CoordinatesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('CoordinatesCountry', 'entity', array(
+            ->add('CoordinatesCountry', EntityType::class, array(
                 'class' => 'FBNGuideBundle:CoordinatesCountry',
                 'property' => 'country',
                 ))

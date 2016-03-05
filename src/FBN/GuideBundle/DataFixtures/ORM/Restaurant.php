@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/Restaurant.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 //use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -108,7 +107,7 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface
 
             $restaurant[$i]->setImage($this->getReference('imagerestaurant-'.$i));
 
-            $restaurant[$i]->setSlugFromCoordinatesISO($this->getReference('coordinatesfr-'.$i)->getSlug());
+            $restaurant[$i]->setSlugFromCoordinatesISO($this->getReference('coordinatesfr-'.$i)->getCoordinatesFRCity()->getCity());
 
             $manager->persist($restaurant[$i]);
 

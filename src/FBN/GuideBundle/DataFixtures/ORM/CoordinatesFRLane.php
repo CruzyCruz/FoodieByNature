@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/CoordinatesFRLane.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 //use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -49,6 +48,6 @@ class CoordinatesFRLane extends AbstractFixture implements OrderedFixtureInterfa
 
     public function getOrder()
     {
-        return 3; // l'ordre dans lequel les fichiers sont chargés
+        return 1; // l'ordre dans lequel les fichiers sont chargés
     }
 }

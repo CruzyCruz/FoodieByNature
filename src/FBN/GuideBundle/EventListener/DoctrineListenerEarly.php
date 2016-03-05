@@ -34,7 +34,7 @@ class DoctrineListenerEarly implements EventSubscriber
     /**
      * On flush do the following.
      *
-     * - Update attribute slugFromCoordinatesISO of entity Restaurant from attribute slug of entity CoordinatesISO.
+     * - Update attribute slugFromCoordinatesISO of entity Restaurant on CoordinatesISO insertion|update.
      *
      * @param OnFlushEventArgs $args
      */

@@ -52,7 +52,7 @@
       {{ placeEvt.coordinates.coordinatesFR.locality }}
     {% endif %}  
     <br />
-    {{ placeEvt.coordinates.coordinatesFR.postcode ~ ' ' ~ placeEvt.coordinates.coordinatesFR.city }}
+    {{ placeEvt.coordinates.coordinatesFR.coordinatesFRCity.postCode ~ ' ' ~ placeEvt.coordinates.coordinatesFR.coordinatesFRCity.city }}
   </p>
 
   {% if event.useexttel %}

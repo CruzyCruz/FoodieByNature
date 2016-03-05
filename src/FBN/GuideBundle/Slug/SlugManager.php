@@ -8,7 +8,7 @@ use FBN\GuideBundle\Entity\Restaurant;
 class SlugManager
 {
     /**
-     * Update attribute slugFromCoordinatesISO of entity Restaurant from attribute slug of entity CoordinatesISO onFlush event.
+     * Update attribute slugFromCoordinatesISO of entity Restaurant on CoordinatesISO insertion|update (onFlush event).
      *
      * @param object $entity The entity.
      * @param object $em     The entity manager.
@@ -23,7 +23,7 @@ class SlugManager
                 $restaurant = $coordinates->getRestaurant();
 
                 if (null !== $restaurant) {
-                    $restaurant->setSlugFromCoordinatesISO($uow->getEntityChangeSet($entity)['city'][1]);
+                    $restaurant->setSlugFromCoordinatesISO($uow->getEntityChangeSet($entity)['coordinatesFRCity'][1]->getCity());
 
                     $classMetadata = $em->getClassMetadata(get_class($restaurant));
                     $uow->recomputeSingleEntityChangeSet($classMetadata, $restaurant);
