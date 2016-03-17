@@ -12,6 +12,27 @@ use Doctrine\ORM\Mapping as ORM;
 class CoordinatesISO
 {
     /**
+     * @var string
+     *
+     * @ORM\Column(name="laneNum", type="string", length=255, nullable=true)
+     */
+    private $laneNum;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="laneName", type="string", length=255, nullable=true)
+     */
+    private $laneName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="locality", type="string", length=255, nullable=true)
+     */
+    private $locality;
+
+    /**
      * @var decimal
      *
      * @ORM\Column(name="latitude", type="decimal", precision=10, scale=6)
@@ -38,6 +59,85 @@ class CoordinatesISO
      * @ORM\Column(name="metro", type="string", length=255, nullable=true)
      */
     private $metro;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="country", type="string", length=255, nullable=true)
+     */
+    private $country;
+
+    /**
+     * Set laneNum.
+     *
+     * @param string $laneNum
+     *
+     * @return CordonneesFR
+     */
+    public function setLaneNum($laneNum)
+    {
+        $this->laneNum = $laneNum;
+
+        return $this;
+    }
+
+    /**
+     * Get laneNum.
+     *
+     * @return string
+     */
+    public function getLaneNum()
+    {
+        return $this->laneNum;
+    }
+
+    /**
+     * Set laneName.
+     *
+     * @param string $laneName
+     *
+     * @return CoordinatesFR
+     */
+    public function setLaneName($laneName)
+    {
+        $this->laneName = $laneName;
+
+        return $this;
+    }
+
+    /**
+     * Get laneName.
+     *
+     * @return string
+     */
+    public function getLaneName()
+    {
+        return $this->laneName;
+    }
+
+    /**
+     * Set locality.
+     *
+     * @param string $locality
+     *
+     * @return Coordinates
+     */
+    public function setLocality($locality)
+    {
+        $this->locality = $locality;
+
+        return $this;
+    }
+
+    /**
+     * Get locality.
+     *
+     * @return string
+     */
+    public function getLocality()
+    {
+        return $this->locality;
+    }
 
     /**
      * Set latitude.
@@ -133,5 +233,29 @@ class CoordinatesISO
     public function getMetro()
     {
         return $this->metro;
+    }
+
+    /**
+     * Set country.
+     *
+     * @param string $country
+     *
+     * @return CoordinatesCountry
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country.
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 }

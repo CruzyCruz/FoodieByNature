@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="coordinates_fr_city")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordinatesFRCityRepository")
  */
-class CoordinatesFRCity
+class CoordinatesFRCity extends CoordinatesISOCity
 {
     /**
      * @var int
@@ -55,20 +55,6 @@ class CoordinatesFRCity
      * @ORM\Column(name="district", type="integer")
      */
     private $district;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="postCode", type="integer")
-     */
-    private $postCode;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="city", type="string", length=255)
-     */
-    private $city;
 
     /**
      * Get id.
@@ -198,54 +184,6 @@ class CoordinatesFRCity
     public function getDistrict()
     {
         return $this->district;
-    }
-
-    /**
-     * Set postCode.
-     *
-     * @param string $postCode
-     *
-     * @return CoordinatesFRCity
-     */
-    public function setPostCode($postCode)
-    {
-        $this->postCode = $postCode;
-
-        return $this;
-    }
-
-    /**
-     * Get postCode.
-     *
-     * @return string
-     */
-    public function getPostCode()
-    {
-        return $this->postCode;
-    }
-
-    /**
-     * Set city.
-     *
-     * @param string $city
-     *
-     * @return CoordinatesFRCity
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    /**
-     * Get city.
-     *
-     * @return string
-     */
-    public function getCity()
-    {
-        return $this->city;
     }
 
     /**

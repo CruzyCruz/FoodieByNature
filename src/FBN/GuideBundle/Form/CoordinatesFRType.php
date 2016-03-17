@@ -27,8 +27,6 @@ class CoordinatesFRType extends AbstractType
             ->add('miscellaneous', TextType::class)
             ->add('locality', TextType::class)
             ->add('metro', TextType::class)
-            ->add('latitude', TextType::class)
-            ->add('longitude', TextType::class)
             ->add('coordinatesFRCity', EntityType::class, array(
                 'class' => 'FBNGuideBundle:CoordinatesFRCity',
                 'property' => 'display',

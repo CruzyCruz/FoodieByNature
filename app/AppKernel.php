@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Liip\ImagineBundle\LiipImagineBundle(),
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
+            new Bazinga\Bundle\GeocoderBundle\BazingaGeocoderBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

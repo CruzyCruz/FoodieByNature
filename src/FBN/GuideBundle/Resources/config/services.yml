@@ -38,17 +38,17 @@ services:
         class : FBN\GuideBundle\Bookmark\BookmarkManager
         arguments: [@security.token_storage, @doctrine.orm.entity_manager, @session]
 
+    fbn_guide.doctrine_listener_early:
+        class : FBN\GuideBundle\EventListener\DoctrineListenerEarly
+        arguments: [@fbn_guide.slug_manager, @fbn_guide.coordinates_manager]
+        tags:
+            - { name: doctrine.event_subscriber, connection: default, priority: 10000 }
+
     fbn_guide.doctrine_listener_late:
         class : FBN\GuideBundle\EventListener\DoctrineListenerLate
         arguments: [@fbn_guide.image_manager]
         tags:
-            - { name: doctrine.event_subscriber, connection: default, priority: -10000 }
-
-    fbn_guide.doctrine_listener_early:
-        class : FBN\GuideBundle\EventListener\DoctrineListenerEarly
-        arguments: [@fbn_guide.slug_manager]
-        tags:
-            - { name: doctrine.event_subscriber, connection: default, priority: 10000 }
+            - { name: doctrine.event_subscriber, connection: default, priority: -10000 }            
 
     fbn_guide.image_manager:
         class : FBN\GuideBundle\File\ImageManager
@@ -56,6 +56,10 @@ services:
 
     fbn_guide.slug_manager:
         class : FBN\GuideBundle\Slug\SlugManager
+
+    fbn_guide.coordinates_manager:
+        class : FBN\GuideBundle\Coordinates\CoordinatesManager
+        arguments: [@bazinga_geocoder.geocoder]
 
     fbn_guide.vich_listener:
         class: FBN\GuideBundle\EventListener\VichListener

@@ -40,27 +40,6 @@ class CoordinatesFR extends CoordinatesISO
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="laneNum", type="string", length=255, nullable=true)
-     */
-    private $laneNum;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="laneName", type="string", length=255, nullable=true)
-     */
-    private $laneName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="locality", type="string", length=255, nullable=true)
-     */
-    private $locality;
-
-    /**
      * Get id.
      *
      * @return int
@@ -68,30 +47,6 @@ class CoordinatesFR extends CoordinatesISO
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set laneNum.
-     *
-     * @param string $laneNum
-     *
-     * @return CordonneesFR
-     */
-    public function setLaneNum($laneNum)
-    {
-        $this->laneNum = $laneNum;
-
-        return $this;
-    }
-
-    /**
-     * Get laneNum.
-     *
-     * @return string
-     */
-    public function getLaneNum()
-    {
-        return $this->laneNum;
     }
 
     /**
@@ -164,53 +119,5 @@ class CoordinatesFR extends CoordinatesISO
     public function getCoordinates()
     {
         return $this->coordinates;
-    }
-
-    /**
-     * Set laneName.
-     *
-     * @param string $laneName
-     *
-     * @return CoordinatesFR
-     */
-    public function setLaneName($laneName)
-    {
-        $this->laneName = $laneName;
-
-        return $this;
-    }
-
-    /**
-     * Get laneName.
-     *
-     * @return string
-     */
-    public function getLaneName()
-    {
-        return $this->laneName;
-    }
-
-    /**
-     * Set locality.
-     *
-     * @param string $locality
-     *
-     * @return Coordinates
-     */
-    public function setLocality($locality)
-    {
-        $this->locality = $locality;
-
-        return $this;
-    }
-
-    /**
-     * Get locality.
-     *
-     * @return string
-     */
-    public function getLocality()
-    {
-        return $this->locality;
     }
 }
