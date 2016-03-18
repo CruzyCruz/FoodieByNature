@@ -116,12 +116,10 @@ class CoordinatesManager
             'lng' => $lngCity,
             )
         ;
-        //$addressCollection = $this->geocoder->geocode($postalAddress);
+
         try {
             $addressCollection = $this->geocoder->geocode($postalAddress);
         } catch (Exception $e) {
-            //dump($addressCollection);
-
             return $latLng;
         }
 
