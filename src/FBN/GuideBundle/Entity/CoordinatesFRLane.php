@@ -3,12 +3,15 @@
 namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * CoordinatesFRLane.
  *
  * @ORM\Table(name="coordinatesfrlane")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordinatesFRLaneRepository")
+ * @UniqueEntity(fields="lane")
  */
 class CoordinatesFRLane
 {
@@ -25,6 +28,8 @@ class CoordinatesFRLane
      * @var string
      *
      * @ORM\Column(name="lane", type="string", length=255, unique=true)
+     * @Assert\NotNull()
+     * @Assert\NotBlank()
      */
     private $lane;
 

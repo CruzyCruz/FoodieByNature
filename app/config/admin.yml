@@ -9,10 +9,10 @@ easy_admin:
         Restaurant:
             class : FBN\GuideBundle\Entity\Restaurant
             list:
-                #title: ""
                 fields:
                     - 'id'
                     - 'name'
+                    - 'publication'
             form:
                 fields:
                     - 'name'
@@ -28,16 +28,33 @@ easy_admin:
                     - 'restaurantBonus'
                     - { property: 'image', type: 'FBN\GuideBundle\Form\ImageRestaurantType' }
                     - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType' }
-                    #- 'coordinates'
-                    #- 'shop'
+                    - 'shop'
+                    - 'publication'
+        Shop:
+            class : FBN\GuideBundle\Entity\Shop
+            list:
+                fields:
+                    - 'id'
+                    - 'name'
+                    - 'publication'
+            form:
+                fields:
+                    - 'name'
+                    - 'author'
+                    - 'owner'
+                    - 'openingHours'
+                    - 'tel'
+                    - 'site'
+                    - 'href'
+                    - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType' }
+                    - publication
         RestaurantBonus:    
             class : FBN\GuideBundle\Entity\RestaurantBonus
         RestaurantPrice:
             class : FBN\GuideBundle\Entity\RestaurantPrice
         RestaurantStyle:
             class : FBN\GuideBundle\Entity\RestaurantStyle
-        Shop:
-            class : FBN\GuideBundle\Entity\Shop
+      
         CoordinatesFRLane:    
             class : FBN\GuideBundle\Entity\CoordinatesFRLane
             list:

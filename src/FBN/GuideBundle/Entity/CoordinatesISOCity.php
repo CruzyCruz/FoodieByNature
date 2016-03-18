@@ -3,6 +3,7 @@
 namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * CoordinatesISOCity.
@@ -15,6 +16,8 @@ class CoordinatesISOCity
      * @var string
      *
      * @ORM\Column(name="postCode", type="integer")
+     * @Assert\NotNull()
+     * @Assert\NotBlank()
      */
     protected $postCode;
 
@@ -22,6 +25,8 @@ class CoordinatesISOCity
      * @var string
      *
      * @ORM\Column(name="city", type="string", length=255)
+     * @Assert\NotNull()
+     * @Assert\NotBlank()
      */
     protected $city;
 
@@ -29,6 +34,8 @@ class CoordinatesISOCity
      * @var string
      *
      * @ORM\Column(name="cityComplete", type="string", length=255)
+     * @Assert\NotNull()
+     * @Assert\NotBlank()
      */
     private $cityComplete;
 
@@ -36,6 +43,9 @@ class CoordinatesISOCity
      * @var decimal
      *
      * @ORM\Column(name="latitude", type="decimal", precision=10, scale=6)
+     * @Assert\NotNull()
+     * @Assert\NotBlank()
+     * @Assert\Type(type="float")
      */
     private $latitude;
 
@@ -43,6 +53,9 @@ class CoordinatesISOCity
      * @var decimal
      *
      * @ORM\Column(name="longitude", type="decimal", precision=10, scale=6)
+     * @Assert\NotNull()
+     * @Assert\NotBlank()
+     * @Assert\Type(type="float")
      */
     private $longitude;
 

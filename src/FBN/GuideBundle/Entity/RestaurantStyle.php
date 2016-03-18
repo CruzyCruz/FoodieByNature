@@ -5,12 +5,14 @@ namespace FBN\GuideBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * RestaurantStyle.
  *
  * @ORM\Table(name="restaurantstyle")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\RestaurantStyleRepository")
+ * @UniqueEntity(fields="style")
  */
 class RestaurantStyle
 {
@@ -28,6 +30,7 @@ class RestaurantStyle
      *
      * @ORM\Column(name="style", type="string", length=255, unique=true)
      * @Gedmo\Translatable
+     * @Assert\NotNull()
      * @Assert\NotBlank()
      * @Assert\Length(max = 50) 
      */

@@ -120,6 +120,10 @@ class CoordinatesManager
         try {
             $addressCollection = $this->geocoder->geocode($postalAddress);
         } catch (Exception $e) {
+            dump('FromCity');
+            dump($latLng);
+            die();
+
             return $latLng;
         }
 
@@ -139,6 +143,10 @@ class CoordinatesManager
                 ;
             }
         }
+
+        dump('FromGoogleMaps');
+        dump($latLng);
+        die();
 
         return $latLng;
     }

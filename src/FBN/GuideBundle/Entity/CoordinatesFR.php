@@ -3,6 +3,7 @@
 namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * CoordinatesFR.
@@ -21,6 +22,7 @@ class CoordinatesFR extends CoordinatesISO
    /**
     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFRCity")
     * @ORM\JoinColumn(nullable=false)
+    * @Assert\NotNull()
     */
    private $coordinatesFRCity;
 

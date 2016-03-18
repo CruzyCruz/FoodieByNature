@@ -4,6 +4,7 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Restaurant.
@@ -35,12 +36,14 @@ class Restaurant extends Article
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageRestaurant", inversedBy="restaurant", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     * @Assert\Valid() 
      */
     private $image;
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", inversedBy="restaurant", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     * @Assert\Valid()
      */
     private $coordinates;
 
