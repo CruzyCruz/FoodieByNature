@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/Event.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 //use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -29,13 +28,13 @@ class Event extends AbstractFixture implements OrderedFixtureInterface
             'C\'est une belle invitation printanière que lance Robert Plageoles. Le principe est simple, le visiteur apporte son panier pique-nique et pour accompagner le repas, le vigneron propose ses vins gratuitement à la dégustation.',
             );
 
-        $authors = array('CB', 'CB', 'AH', 'CB', 'AH','CB','CB','CB');
+        $authors = array('CB', 'CB', 'AH', 'CB', 'AH', 'CB', 'CB', 'CB');
 
         $dates = array('13 Septembre 2013', '3 Avril 2013', '2 et 3 Novembre 2013', '30 et 31 Mars 2014', '20 Septembre 2014', '5 Avril 2013', '01 et 02 Avril 2014', '15 Juin 2014');
 
         $years = array('2013', '2013', '2013', '2013', '2014', '2014', '2014', '2014');
 
-        $tels = array(null, '05 61 15 55 55' , null, '06 82 01 77 08 (Loïc) / 04 75 52 51 02 (Jocelyne) / 06 88 10 59 47 (Alain)', null, null, null, null);
+        $tels = array(null, '05 61 15 55 55', null, '06 82 01 77 08 (Loïc) / 04 75 52 51 02 (Jocelyne) / 06 88 10 59 47 (Alain)', null, null, null, null);
 
         $hrefs = array(null, null, 'http://www.rue89lyon.fr/salondesvins', 'http://www.laremise.fr', null, null, null, null);
 
@@ -52,9 +51,9 @@ class Event extends AbstractFixture implements OrderedFixtureInterface
                         'De 11h à 16h',
                         );
 
-        $useexttels = array(1,0,0,0,1,1,1,1);
+        $useexttels = array(1, 0, 0, 0, 1, 1, 1, 1);
 
-        $useextsites = array(1,0,0,0,1,1,1,1);
+        $useextsites = array(1, 0, 0, 0, 1, 1, 1, 1);
 
         $namesen = array('Yvon Métras at Temps des Vendanges', 'Gourmet in Toulouse', 'Sous les pavés, la vigne !', 'La remise', 'Yvon Métras at Temps des Vendanges', 'Gourmet in Toulouse', 'La remise', 'Lunch on grass at Robert Plageoles');
 
@@ -87,6 +86,7 @@ class Event extends AbstractFixture implements OrderedFixtureInterface
         foreach ($names as $i => $name) {
             $event[$i] = new Evt();
             $event[$i]->setName($name);
+            $event[$i]->setPublication(true);
 
             $repository->translate($event[$i], 'name', 'en', $namesen[$i]);
         }

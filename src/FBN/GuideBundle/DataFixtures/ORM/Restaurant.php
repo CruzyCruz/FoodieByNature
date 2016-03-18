@@ -94,6 +94,7 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface
 
         foreach ($openingHours as $i => $openingHour) {
             $restaurant[$i]->setOpeningHours($openingHour);
+            $restaurant[$i]->setPublication(true);
 
             $repository->translate($restaurant[$i], 'openingHours', 'en', $openingHoursen[$i]);
 

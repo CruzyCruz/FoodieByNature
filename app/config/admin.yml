@@ -29,7 +29,7 @@ easy_admin:
                     - { property: 'image', type: 'FBN\GuideBundle\Form\ImageRestaurantType' }
                     - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType' }
                     - 'shop'
-                    - 'publication'
+                    - { property: 'publication', type_options: { required: false } }
         Shop:
             class : FBN\GuideBundle\Entity\Shop
             list:

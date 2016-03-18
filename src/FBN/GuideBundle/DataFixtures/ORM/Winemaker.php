@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/Winemaker.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 //use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -53,6 +52,7 @@ class Winemaker extends AbstractFixture implements OrderedFixtureInterface
 
         foreach ($authors as $i => $author) {
             $vnr[$i]->setAuthor($author);
+            $vnr[$i]->setPublication(true);
 
             $manager->persist($vnr[$i]);
 

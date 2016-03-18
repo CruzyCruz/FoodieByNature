@@ -80,7 +80,6 @@ abstract class Article
 
     public function __construct()
     {
-        $this->publication = true;
         $this->datePublication = new \DateTime();
     }
 

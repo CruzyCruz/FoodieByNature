@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/Shop.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 //use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -18,7 +17,7 @@ class Shop extends AbstractFixture implements OrderedFixtureInterface
     {
         $names = array(null, 'Vinea', 'Le Tire Bouchon', 'Les Caves Augé', 'Les Zinzins du Vin');
 
-        $descriptions = array(null ,null, null, null, null);
+        $descriptions = array(null, null, null, null, null);
 
         $authors = array('CB', 'AH', 'CB', 'AH', 'AH');
 
@@ -38,7 +37,7 @@ class Shop extends AbstractFixture implements OrderedFixtureInterface
                         'Tous les jours, de 11h30 à 15h et de 19h30 à 22h30 (22h le dimanche).',
                         );
 
-        $descriptionsen = array(null ,null, null, null, null);
+        $descriptionsen = array(null, null, null, null, null);
 
         $openingHoursen = array(
                         'Everyday, from 8am to 1:30am; meal service from noon to 3:30pm and from 7pm to 11:30pm.',
@@ -53,6 +52,7 @@ class Shop extends AbstractFixture implements OrderedFixtureInterface
         foreach ($names as $i => $name) {
             $shop[$i] = new Shp();
             $shop[$i]->setName($name);
+            $shop[$i]->setPublication(true);
         }
 
         foreach ($descriptions as $i => $description) {

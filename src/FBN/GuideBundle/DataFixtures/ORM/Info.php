@@ -14,8 +14,7 @@ class Info extends AbstractFixture implements OrderedFixtureInterface
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-    
-        $names = array('La force est avec lui !', 'Un coffee shop en cachait un autre', 'Papier à mâcher', 'Bon grain !', 'Dis camion !', 'Encore un !', 'Rien ne l\'arrête !', 'Jurassique Arnal','Papier à mâcher', 'Top 50 !');
+        $names = array('La force est avec lui !', 'Un coffee shop en cachait un autre', 'Papier à mâcher', 'Bon grain !', 'Dis camion !', 'Encore un !', 'Rien ne l\'arrête !', 'Jurassique Arnal', 'Papier à mâcher', 'Top 50 !');
 
         $descriptions = array(
             'Après la Crèmerie la semaine dernière, David Lanher (Racines, Vivant, Stern, Noglu…) vient de s’offrir le Bon Saint Pourcain, rue Servandoni dans le 6e…',
@@ -30,7 +29,7 @@ class Info extends AbstractFixture implements OrderedFixtureInterface
             'Classé 17ème, Candelaria est le premier bar français à entrer dans les 50 meilleurs bars du monde. Classement établi par 334 professionnels du secteur, répartis dans 46 pays, et dévoilé dans Drinks International.',
             );
 
-        $namesen = array('The force is with him!', 'A coffee shop in another hiding', 'Paper chewing', 'Good grain !', 'Dis camion !', 'Another one!', 'Nothing\'s stop!', 'Jurassic Arnal','Paper chewing', 'Top 50 !');
+        $namesen = array('The force is with him!', 'A coffee shop in another hiding', 'Paper chewing', 'Good grain !', 'Dis camion !', 'Another one!', 'Nothing\'s stop!', 'Jurassic Arnal', 'Paper chewing', 'Top 50 !');
 
         $descriptionsen = array(
             'After Creamery last week, David Lanher ( Roots , living, Stern, Noglu ... ) just to afford the Bon Saint Pourcain Servandoni street in the 6th ...',
@@ -45,36 +44,32 @@ class Info extends AbstractFixture implements OrderedFixtureInterface
             'Ranked 17th , Candelaria is the first French bar to enter the top 50 bars in the world. Ranking by 334 professionals, in 46 countries, unveiled in Drinks International.',
             );
 
-        $authors = array('CB', 'AH', 'CB', 'AH', 'AH', 'CB', 'AH', 'CB', 'AH', 'AH');         
-        
+        $authors = array('CB', 'AH', 'CB', 'AH', 'AH', 'CB', 'AH', 'CB', 'AH', 'AH');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        foreach($names as $i => $name)
-        {
+        foreach ($names as $i => $name) {
             $news[$i] = new Inf();
-            $news[$i]->setName($name);   
+            $news[$i]->setName($name);
+            $news[$i]->setPublication(true);
 
-            $repository->translate($news[$i], 'name', 'en', $namesen[$i]);          
-        }   
-
-        foreach($descriptions as $i => $description)
-        {
-            $news[$i]->setDescription($description);
-
-            $repository->translate($news[$i], 'description', 'en', $descriptionsen[$i]); 
+            $repository->translate($news[$i], 'name', 'en', $namesen[$i]);
         }
 
-        foreach($authors as $i => $author)
-        {
-            $news[$i]->setAuthor($author);  
+        foreach ($descriptions as $i => $description) {
+            $news[$i]->setDescription($description);
 
-            $manager->persist($news[$i]);  
-            
+            $repository->translate($news[$i], 'description', 'en', $descriptionsen[$i]);
+        }
+
+        foreach ($authors as $i => $author) {
+            $news[$i]->setAuthor($author);
+
+            $manager->persist($news[$i]);
+
             //$restaurant[$i]->setImage($this->getReference('imagerestaurant-' . $i));     
-                         
-        }    
-                           
+        }
+
         $manager->flush();
     }
 

@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/Tutorial.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 //use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -68,6 +67,7 @@ class Tutorial extends AbstractFixture implements OrderedFixtureInterface
 
         foreach ($ranks as $i => $rank) {
             $tutorial[$i]->setRank($rank);
+            $tutorial[$i]->setPublication(true);
 
             $manager->persist($tutorial[$i]);
 
