@@ -66,15 +66,6 @@ class CoordinatesISO
     private $metro;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="country", type="string", length=255, nullable=true)
-     * @Assert\NotNull()
-     * @Assert\NotBlank()
-     */
-    private $country;
-
-    /**
      * Set laneNum.
      *
      * @param string $laneNum
@@ -240,29 +231,5 @@ class CoordinatesISO
     public function getMetro()
     {
         return $this->metro;
-    }
-
-    /**
-     * Set country.
-     *
-     * @param string $country
-     *
-     * @return CoordinatesCountry
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Get country.
-     *
-     * @return string
-     */
-    public function getCountry()
-    {
-        return $this->country;
     }
 }

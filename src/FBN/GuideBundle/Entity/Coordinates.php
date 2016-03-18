@@ -14,18 +14,18 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Coordinates
 {
     /**
-   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesCountry")
-   * @ORM\JoinColumn(nullable=false)
-   * @Assert\NotNull()
-   */
-  private $coordinatesCountry;
+     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesCountry")
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotNull()
+     */
+    private $coordinatesCountry;
 
-  /**
-   * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFR", inversedBy="coordinates", cascade={"persist"})
-   * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
-   * @Assert\Valid()
-   */
-  private $coordinatesFR;
+    /**
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFR", inversedBy="coordinates", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     * @Assert\Valid()
+     */
+    private $coordinatesFR;
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Restaurant", mappedBy="coordinates")

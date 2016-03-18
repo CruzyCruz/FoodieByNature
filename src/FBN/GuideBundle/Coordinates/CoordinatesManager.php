@@ -72,6 +72,7 @@ class CoordinatesManager
     {
         $coordinatesISOCity = $this->getCoordinatesISOString($coordinatesISO, 'City');
         $coordinatesISOLane = $this->getCoordinatesISOString($coordinatesISO, 'Lane');
+        $coordinatesCountry = $coordinatesISO->getCoordinatesCountry();
 
         $laneNum = $coordinatesISO->getLaneNum();
         $lane = null;
@@ -80,10 +81,11 @@ class CoordinatesManager
         }
         $laneName = $coordinatesISO->getLaneName();
         $locality = $coordinatesISO->getLocality();
-        $country = $coordinatesISO->getCountry();
 
         $postCode = $coordinatesISOCity->getPostCode();
         $city = $coordinatesISOCity->getCity();
+
+        $country = $coordinatesCountry->getCountry();
 
         $delimiter = '';
 
@@ -120,10 +122,6 @@ class CoordinatesManager
         try {
             $addressCollection = $this->geocoder->geocode($postalAddress);
         } catch (Exception $e) {
-            dump('FromCity');
-            dump($latLng);
-            die();
-
             return $latLng;
         }
 
@@ -143,10 +141,6 @@ class CoordinatesManager
                 ;
             }
         }
-
-        dump('FromGoogleMaps');
-        dump($latLng);
-        die();
 
         return $latLng;
     }

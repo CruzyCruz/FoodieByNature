@@ -14,6 +14,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 class CoordinatesFR extends CoordinatesISO
 {
     /**
+     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesCountry")
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotNull()
+     */
+    private $coordinatesCountry;
+
+   /**
     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFRLane")
     * @ORM\JoinColumn(nullable=true)
     */
@@ -49,6 +56,30 @@ class CoordinatesFR extends CoordinatesISO
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set coordinatesCountry.
+     *
+     * @param \FBN\GuideBundle\Entity\CoordinatesCountry $coordinatesCountry
+     *
+     * @return Coordinates
+     */
+    public function setCoordinatesCountry(\FBN\GuideBundle\Entity\CoordinatesCountry $coordinatesCountry)
+    {
+        $this->coordinatesCountry = $coordinatesCountry;
+
+        return $this;
+    }
+
+    /**
+     * Get coordinatesCountry.
+     *
+     * @return \FBN\GuideBundle\Entity\CoordinatesCountry
+     */
+    public function getCoordinatesCountry()
+    {
+        return $this->coordinatesCountry;
     }
 
     /**
