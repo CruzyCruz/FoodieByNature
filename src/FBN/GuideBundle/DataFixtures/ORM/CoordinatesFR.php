@@ -6,6 +6,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use FBN\GuideBundle\Entity\CoordinatesFR as CoordFR;
+use FBN\GuideBundle\Entity\Coordinates as Coord;
 
 class CoordinatesFR extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -50,7 +51,7 @@ class CoordinatesFR extends AbstractFixture implements OrderedFixtureInterface
 
             $manager->persist($coordinatesfr[$i]);
 
-            $coordinatesfr[$i]->setCoordinatesCountry($this->getReference('coordinatescountry-0'));
+            //$coordinatesfr[$i]->setCoordinatesCountry($this->getReference('coordinatescountry-0'));
 
             $coordinatesfr[$i]->setCoordinatesFRCity($this->getReference('coordinatesfrcity-'.($coordinatesfrcities[$i] - 1)));
 
@@ -58,7 +59,15 @@ class CoordinatesFR extends AbstractFixture implements OrderedFixtureInterface
                 $coordinatesfr[$i]->setCoordinatesFRLane($this->getReference('coordinatesfrlane-'.($coordinatesfrlanes[$i] - 1)));
             }
 
+            $coordinates[$i] = new Coord();
+
+            $manager->persist($coordinates[$i]);
+
+            $coordinates[$i]->setCoordinatesFR($coordinatesfr[$i]);
+            $coordinates[$i]->setCoordinatesCountry($this->getReference('coordinatescountry-0'));
+
             $this->addReference('coordinatesfr-'.$i, $coordinatesfr[$i]);
+            $this->addReference('coordinates-'.$i, $coordinates[$i]);
         }
 
         $manager->flush();

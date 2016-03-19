@@ -72,7 +72,7 @@ class CoordinatesManager
     {
         $coordinatesISOCity = $this->getCoordinatesISOString($coordinatesISO, 'City');
         $coordinatesISOLane = $this->getCoordinatesISOString($coordinatesISO, 'Lane');
-        $coordinatesCountry = $coordinatesISO->getCoordinatesCountry();
+        $coordinatesCountry = $coordinatesISO->getCoordinates()->getCoordinatesCountry();
 
         $laneNum = $coordinatesISO->getLaneNum();
         $lane = null;
