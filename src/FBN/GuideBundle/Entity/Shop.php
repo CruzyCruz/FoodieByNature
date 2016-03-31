@@ -31,7 +31,7 @@ class Shop extends Article
     /**
      * @var string
      *
-     * @ORM\Column(name="owner", type="string", length=255, nullable=true)
+     * @ORM\Column(name="owner", type="string", length=255, nullable=false)
      */
     private $owner;
 
