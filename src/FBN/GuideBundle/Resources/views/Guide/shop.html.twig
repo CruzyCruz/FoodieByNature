@@ -13,10 +13,6 @@
 
 <h1>{{ shop.name }}</h1>
 
-  {#{% if shop.restaurant is not null %}
-    <p>[<a href="{{ path('fbn_guide_restaurants', {'slug': sharedData.slug} ) }}">LE RESTO DU CAVISTE</a>]</p>
-  {% endif %}  #}
-
   <h3>HORAIRES : </h3>
 
   <p>{{ shop.openingHours }}</p> 
