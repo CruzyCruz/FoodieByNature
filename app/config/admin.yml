@@ -48,6 +48,19 @@ easy_admin:
                     - 'href'
                     - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType' }
                     - { property: 'publication', type_options: { required: false } }
+        Info:
+            class : FBN\GuideBundle\Entity\Info
+            list:
+                fields:
+                    - 'id'
+                    - 'name'
+                    - 'publication'
+            form:
+                fields:
+                    - 'name'
+                    - 'author'
+                    - 'description'
+                    - { property: 'publication', type_options: { required: false } }                    
         RestaurantBonus:    
             class : FBN\GuideBundle\Entity\RestaurantBonus
         RestaurantPrice:
