@@ -16,7 +16,7 @@ class GuideController extends Controller
         $route = $this->container->get('router')->getRouteCollection()->get('fbn_guide_articles');
         $requirements = explode('|', $route->getRequirement('articles'));
 
-        $lastArticles = new \ArrayObject();
+        $lastArticles = array();
 
         $em = $this->getDoctrine()->getManager();
 
@@ -24,13 +24,11 @@ class GuideController extends Controller
             $entity = $this->requirementToEntity($requirement);
 
             $articles = $em->getRepository('FBNGuideBundle:'.$entity)->getArticlesImages(0, Article::NUM_ITEMS_HOMEPAGE);
-
-            foreach ($articles as $article) {
-                $lastArticles->append($article);
-            }
+            $lastArticles = array_merge_recursive($lastArticles, $articles);
         }
 
-        $lastArticles->uasort('FBN\GuideBundle\Controller\GuideController::compareDate');
+        $lastArticles = array_unique($lastArticles);
+        uasort($lastArticles, 'FBN\GuideBundle\Utils\Entity::compareDate');
 
         return $this->render('FBNGuideBundle:Guide:index.html.twig', array(
             'lastArticles' => $lastArticles,
@@ -165,15 +163,13 @@ class GuideController extends Controller
             ->getDoctrine()
             ->getManager()
             ->getRepository('FBNGuideBundle:Shop')
-            ->getshop($slug);
+            ->getShop($slug);
 
         if (null === $shop) {
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        ($sharedData = $shop->getRestaurant()) || ($sharedData = $shop);
-
-        $latlngs[] = array('lat' => $sharedData->getCoordinates()->getCoordinatesFR()->getLatitude(), 'lng' => $sharedData->getCoordinates()->getCoordinatesFR()->getLongitude());
+        $latlngs[] = array('lat' => $shop->getCoordinates()->getCoordinatesFR()->getLatitude(), 'lng' => $shop->getCoordinates()->getCoordinatesFR()->getLongitude());
 
         $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'shop');
 
@@ -184,7 +180,6 @@ class GuideController extends Controller
 
         return $this->render('FBNGuideBundle:Guide:shop.html.twig', array(
             'shop' => $shop,
-            'sharedData' => $sharedData,
             'map' => $map,
             'entity' => 'shop',
             'bookmarkAction' => $bookmarkAction,
@@ -273,18 +268,6 @@ class GuideController extends Controller
             default:
                 throw new NotFoundHttpException();
         }
-    }
-
-    public static function compareDate($a, $b)
-    {
-        $d1 = $a->getDatePublication();
-        $d2 = $b->getDatePublication();
-
-        if ($d1 == $d2) {
-            return 0;
-        }
-
-        return ($d1 > $d2) ? -1 : 1;
     }
 
     public function requirementToEntity($requirement)

@@ -48,12 +48,6 @@ class Restaurant extends Article
     private $coordinates;
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Shop", inversedBy="restaurant")
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
-     */
-    private $shop;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -65,9 +59,9 @@ class Restaurant extends Article
     /**
      * @var string
      *
-     * @ORM\Column(name="restaurateur", type="string", length=255)
+     * @ORM\Column(name="owner", type="string", length=255)
      */
-    private $restaurateur;
+    private $owner;
 
     /**
      * @var string
@@ -113,6 +107,13 @@ class Restaurant extends Article
      */
     private $slug;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="isShop", type="boolean")
+     */
+    private $isShop;
+
     public function __construct()
     {
         parent::__construct();
@@ -131,27 +132,27 @@ class Restaurant extends Article
     }
 
     /**
-     * Set restaurateur.
+     * Set owner.
      *
-     * @param string $restaurateur
+     * @param string $owner
      *
      * @return Restaurant
      */
-    public function setRestaurateur($restaurateur)
+    public function setOwner($owner)
     {
-        $this->restaurateur = $restaurateur;
+        $this->owner = $owner;
 
         return $this;
     }
 
     /**
-     * Get restaurateur.
+     * Get owner.
      *
      * @return string
      */
-    public function getRestaurateur()
+    public function getOwner()
     {
-        return $this->restaurateur;
+        return $this->owner;
     }
 
     /**
@@ -296,32 +297,6 @@ class Restaurant extends Article
     }
 
     /**
-     * Set shop.
-     *
-     * @param \FBN\GuideBundle\Entity\Shop $shop
-     *
-     * @return Restaurant
-     */
-    public function setShop(\FBN\GuideBundle\Entity\Shop $shop)
-    {
-        $this->shop = $shop;
-        $shop->setRestaurant($this);
-        $shop->setName($this->getName());
-
-        return $this;
-    }
-
-    /**
-     * Get shop.
-     *
-     * @return \FBN\GuideBundle\Entity\Shop
-     */
-    public function getShop()
-    {
-        return $this->shop;
-    }
-
-    /**
      * Set coordinates.
      *
      * @param \FBN\GuideBundle\Entity\Coordinates $coordinates
@@ -351,7 +326,7 @@ class Restaurant extends Article
      *
      * @param string $tel
      *
-     * @return Coordinates
+     * @return Restaurant
      */
     public function setTel($tel)
     {
@@ -464,5 +439,29 @@ class Restaurant extends Article
     public function getSlugFromCoordinatesISO()
     {
         return $this->slugFromCoordinatesISO;
+    }
+
+    /**
+     * Set isShop.
+     *
+     * @param bool $isShop
+     *
+     * @return Restaurant
+     */
+    public function setIsShop($isShop)
+    {
+        $this->isShop = $isShop;
+
+        return $this;
+    }
+
+    /**
+     * Get isShop.
+     *
+     * @return bool
+     */
+    public function getIsShop()
+    {
+        return $this->isShop;
     }
 }

@@ -1,6 +1,6 @@
 <ul>
   {% for article in articles %}    
-  <a href="{{ path('fbn_guide_' ~ menu.section | lower ~ 's', {'slug': article.slug} ) }}">{{ article.name }}</a>
+  <a href="{{ path('fbn_guide_' ~ article.class | lower ~ 's', {'slug': article.slug} ) }}">{{ article.name }}</a>
 	<br />
     {% if (article.image is defined) and (article.image is not null) %}
       <img 

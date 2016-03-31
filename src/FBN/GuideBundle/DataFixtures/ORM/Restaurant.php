@@ -27,13 +27,15 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface
 
         $authors = array('CB', 'AH', 'CB', 'AH', 'AH');
 
-        $restaurateurs = array('Eric Cuestas', 'Jérôme Navarre', 'Jean-François Piège', 'Christian Constant', 'Thierry Marx');
+        $owners = array('Eric Cuestas', 'Jérôme Navarre', 'Jean-François Piège', 'Christian Constant', 'Thierry Marx');
 
         $hrefs = array('http://www.letempsdesvendanges.com', null, 'http://www.lafinemousse.fr', 'http://www.dix-huit.fr', 'http://www.cantinecalifornia.com');
 
         $tels = array('05 61 42 94 66', '01 45 89 75 62', '01 12 47 85 96', '01 47 85 96 54', '01 47 52 14 89');
 
         $sites = array('letempsdesvendanges.com', null, 'lafinemousse.fr', 'dix-huit.fr', 'cantinecalifornia.com');
+
+        $isShops = array(true, false, false, false, true);
 
         $openingHours = array(
                         'Tous les jours, de 8h à 1h30 ; service de midi à 15h30 et de 19h à 23h30.',
@@ -76,8 +78,8 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface
             $restaurant[$i]->setAuthor($author);
         }
 
-        foreach ($restaurateurs as $i => $restaurateur) {
-            $restaurant[$i]->setRestaurateur($restaurateur);
+        foreach ($owners as $i => $owner) {
+            $restaurant[$i]->setOwner($owner);
         }
 
         foreach ($hrefs as $i => $href) {
@@ -90,6 +92,10 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface
 
         foreach ($sites as $i => $site) {
             $restaurant[$i]->setSite($site);
+        }
+
+        foreach ($isShops as $i => $isShop) {
+            $restaurant[$i]->setIsShop($isShop);
         }
 
         foreach ($openingHours as $i => $openingHour) {
@@ -115,7 +121,7 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface
             $this->addReference('restaurant-'.$i, $restaurant[$i]);
         }
 
-        $restaurant[0]->setShop($this->getReference('shop-0'));
+        //$restaurant[0]->setShop($this->getReference('shop-0'));
 
         $manager->flush();
     }

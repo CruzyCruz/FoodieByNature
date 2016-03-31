@@ -20,12 +20,6 @@ class Shop extends Article
     private $coordinates;
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Restaurant", mappedBy="shop")
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
-     */
-    private $restaurant;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")

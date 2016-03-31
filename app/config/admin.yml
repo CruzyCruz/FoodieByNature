@@ -18,7 +18,7 @@ easy_admin:
                     - 'name'
                     - 'author'
                     - 'description'
-                    - 'restaurateur'
+                    - 'owner'
                     - 'openingHours'
                     - 'tel'
                     - 'site'
@@ -27,8 +27,8 @@ easy_admin:
                     - 'restaurantStyle'
                     - 'restaurantBonus'
                     - { property: 'image', type: 'FBN\GuideBundle\Form\ImageRestaurantType' }
-                    - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType' }
-                    - 'shop'
+                    - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType' }                    
+                    - { property: 'isShop', type_options: { required: false } }
                     - { property: 'publication', type_options: { required: false } }
         Shop:
             class : FBN\GuideBundle\Entity\Shop
@@ -47,7 +47,7 @@ easy_admin:
                     - 'site'
                     - 'href'
                     - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType' }
-                    - publication
+                    - { property: 'publication', type_options: { required: false } }
         RestaurantBonus:    
             class : FBN\GuideBundle\Entity\RestaurantBonus
         RestaurantPrice:

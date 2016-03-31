@@ -14,9 +14,9 @@
 
 <h1>{{ restaurant.name }}</h1>
 
-  {% if restaurant.shop is not null %}
-    <p>[<a href="{{ path('fbn_guide_shops', {'slug': restaurant.shop.slug} ) }}">LA CAVE DU RESTO</a>]</p>
-  {% endif %}  
+  {% if restaurant.isShop == true %}
+    <p>RESTO-SHOP</p>
+  {% endif %}
 
 <h3>STYLE : </h3>
   <p>
@@ -41,7 +41,6 @@
 
   {% if restaurant.image is not null %}
     <img 
-      {#src="{{ asset(restaurant.image.webPath) }}"#}
       src="{{ vich_uploader_asset(restaurant.image, 'file') }}"
       alt="{{ restaurant.name }}"
     />

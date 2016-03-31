@@ -3,7 +3,6 @@
 namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * EventRepository.
@@ -27,7 +26,7 @@ class EventRepository extends EntityRepository
         $query->setFirstResult($first)
               ->setMaxResults($limit);
 
-        return new Paginator($query);
+        return $query->getResult();
     }
 
     public function getEvent($slug)

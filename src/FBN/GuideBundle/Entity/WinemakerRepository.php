@@ -3,7 +3,6 @@
 namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * WinemakerRepository.
@@ -27,7 +26,7 @@ class WinemakerRepository extends EntityRepository
         $query->setFirstResult($first)
               ->setMaxResults($limit);
 
-        return new Paginator($query);
+        return $query->getResult();
     }
 
     public function getWinemaker($slug)
