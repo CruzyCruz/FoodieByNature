@@ -14,7 +14,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class Winemaker extends Article
 {
     /**
-   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\WinemakerDomain", mappedBy="winemaker")
+   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\WinemakerDomain", mappedBy="winemaker", cascade={"persist","remove"}, orphanRemoval=true)
    */
   private $winemakerDomain;
 

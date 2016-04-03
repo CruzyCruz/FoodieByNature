@@ -30,6 +30,23 @@ easy_admin:
                     - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType' }                    
                     - { property: 'isShop', type_options: { required: false } }
                     - { property: 'publication', type_options: { required: false } }
+        Winemaker:
+            class : FBN\GuideBundle\Entity\Winemaker
+            list:
+                fields:
+                    - 'id'
+                    - 'name'
+                    - 'publication'
+            form:
+                fields:
+                    - 'name'
+                    - 'author'
+                    - 'description'
+                    - { property: 'image', type: 'FBN\GuideBundle\Form\ImageWinemakerType' }
+                    # by_reference : false => Needed to ensure that addWinemakerDomain() and removeWinemakerDomain() will be called during the flush.
+                    # See (last lines) : http://symfony.com/doc/master/reference/forms/types/collection.html#by-reference
+                    - { property: 'winemakerDomain', type: 'collection', type_options: { entry_type: 'FBN\GuideBundle\Form\WinemakerDomainType', by_reference: false } }
+                    - { property: 'publication', type_options: { required: false } }                    
         Shop:
             class : FBN\GuideBundle\Entity\Shop
             list:
