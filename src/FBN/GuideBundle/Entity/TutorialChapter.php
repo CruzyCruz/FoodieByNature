@@ -20,10 +20,10 @@ class TutorialChapter
   private $tutorial;
 
   /**
-   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorialChapterPara", mappedBy="tutorialChapter")
+   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorialChapterPara", mappedBy="tutorialChapter", cascade={"persist","remove"}, orphanRemoval=true)
    * @ORM\OrderBy({"rank" = "ASC"})
    */
-  private $TutorialChapterPara;
+  private $tutorialChapterParas;
 
     /**
      * @var int
@@ -50,6 +50,12 @@ class TutorialChapter
     private $rank;
 
     /**
+     * @Gedmo\Slug(updatable=true, unique=false, fields={"rank"}, prefix="-chapter-")
+     * @ORM\Column(length=128)
+     */
+    private $slug;
+
+    /**
      * @var string
      *
      * @Gedmo\Locale
@@ -63,7 +69,7 @@ class TutorialChapter
      */
     public function __construct()
     {
-        $this->TutorialChapterPara = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tutorialChapterParas = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -125,6 +131,30 @@ class TutorialChapter
     }
 
     /**
+     * Set slug.
+     *
+     * @param string $slug
+     *
+     * @return TutorialChapter
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug.
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
      * Set tutorial.
      *
      * @param \FBN\GuideBundle\Entity\Tutorial $tutorial
@@ -159,37 +189,37 @@ class TutorialChapter
     }
 
     /**
-     * Add TutorialChapterPara.
+     * Add tutorialChapterPara.
      *
-     * @param \FBN\GuideBundle\Entity\TutorialChapterPara $TutorialChapterPara
+     * @param \FBN\GuideBundle\Entity\TutorialChapterPara $tutorialChapterPara
      *
      * @return TutorialChapter
      */
-    public function addTutorialChapterPara(\FBN\GuideBundle\Entity\TutorialChapterPara $TutorialChapterPara)
+    public function addTutorialChapterPara(\FBN\GuideBundle\Entity\TutorialChapterPara $tutorialChapterPara)
     {
-        $this->TutorialChapterPara[] = $TutorialChapterPara;
-        $TutorialChapterPara->setTutorialChapter($this);
+        $this->tutorialChapterParas[] = $tutorialChapterPara;
+        $tutorialChapterPara->setTutorialChapter($this);
 
         return $this;
     }
 
     /**
-     * Remove TutorialChapterPara.
+     * Remove tutorialChapterPara.
      *
-     * @param \FBN\GuideBundle\Entity\TutorialChapterPara $TutorialChapterPara
+     * @param \FBN\GuideBundle\Entity\TutorialChapterPara $tutorialChapterPara
      */
-    public function removeTutorialChapterPara(\FBN\GuideBundle\Entity\TutorialChapterPara $TutorialChapterPara)
+    public function removeTutorialChapterPara(\FBN\GuideBundle\Entity\TutorialChapterPara $tutorialChapterPara)
     {
-        $this->TutorialChapterPara->removeElement($TutorialChapterPara);
+        $this->tutorialChapterParas->removeElement($tutorialChapterPara);
     }
 
     /**
-     * Get TutorialChapterPara.
+     * Get tutorialChapterParas.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getTutorialChapterPara()
+    public function getTutorialChapterParas()
     {
-        return $this->TutorialChapterPara;
+        return $this->tutorialChapterParas;
     }
 }

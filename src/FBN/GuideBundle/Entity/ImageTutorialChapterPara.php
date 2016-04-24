@@ -82,9 +82,10 @@ class ImageTutorialChapterPara extends Image
             if (null !== $tutoChapter = $tutoChapterPara->getTutorialChapter()) {
                 if (null !== $tuto = $tutoChapter->getTutorial()) {
                     $slugTuto = $tuto->getSlug();
+                    $slugTutoChapter = $tutoChapter->getSlug();
                     $slugTutoChapterPara = $tutoChapterPara->getSlug();
 
-                    return $slugTuto.$slugTutoChapterPara;
+                    return $slugTuto.$slugTutoChapter.$slugTutoChapterPara;
                 }
 
                 return;

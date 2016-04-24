@@ -1,7 +1,7 @@
 easy_admin:
     site_name: 'Foodie By Nature'
     #design:
-    #    form_theme: ['VichUploaderBundle:Form:fields.html.twig', 'horizontal']
+    #    form_theme: 'vertical'    
     #list:
         # Add show action to list view
     #    actions: ['show']
@@ -77,7 +77,24 @@ easy_admin:
                     - 'name'
                     - 'author'
                     - 'description'
-                    - { property: 'publication', type_options: { required: false } }                    
+                    - { property: 'publication', type_options: { required: false } }
+        Tutorial:
+            class : FBN\GuideBundle\Entity\Tutorial
+            list:
+                fields:
+                    - 'id'
+                    - 'name'
+                    - 'publication'
+            form:
+                fields:
+                    - 'name'
+                    - 'author'
+                    - 'description'
+                    - 'tutorialSection'
+                    - { property: 'image', type: 'FBN\GuideBundle\Form\ImageTutorialType' }
+                    - { property: 'tutorialChapter', type: 'collection', type_options: { entry_type: 'FBN\GuideBundle\Form\TutorialChapterType', by_reference: false } }
+                    - { property: 'publication', type_options: { required: false } }
+        #Tutorial:
         RestaurantBonus:    
             class : FBN\GuideBundle\Entity\RestaurantBonus
         RestaurantPrice:

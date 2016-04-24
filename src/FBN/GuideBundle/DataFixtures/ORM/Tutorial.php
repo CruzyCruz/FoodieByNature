@@ -27,8 +27,6 @@ class Tutorial extends AbstractFixture implements OrderedFixtureInterface
 
         $authors = array('CB', 'AH', 'CB', 'AH', 'AH');
 
-        $ranks = array(0, 1, 2, 3, 4);
-
         $namesen = array('The natural wine', 'Biodynamics', 'Labels', 'Carbonic maceration', 'Drink Nature');
 
         $descriptionsen = array(
@@ -63,10 +61,6 @@ class Tutorial extends AbstractFixture implements OrderedFixtureInterface
 
         foreach ($authors as $i => $author) {
             $tutorial[$i]->setAuthor($author);
-        }
-
-        foreach ($ranks as $i => $rank) {
-            $tutorial[$i]->setRank($rank);
             $tutorial[$i]->setPublication(true);
 
             $manager->persist($tutorial[$i]);

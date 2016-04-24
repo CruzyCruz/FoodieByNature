@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/TutorialSection.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 //use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -28,6 +27,8 @@ class TutorialSection extends AbstractFixture implements OrderedFixtureInterface
             $repository->translate($tutorialsection[$i], 'section', 'en', $sectionsen[$i]);
 
             $this->addReference('tutorialsection-'.$i, $tutorialsection[$i]);
+
+            $manager->persist($tutorialsection[$i]);
         }
 
         $manager->flush();

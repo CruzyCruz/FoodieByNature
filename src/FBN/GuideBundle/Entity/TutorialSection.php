@@ -82,4 +82,10 @@ class TutorialSection
     {
         $this->locale = $locale;
     }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getSection();
+    }
 }

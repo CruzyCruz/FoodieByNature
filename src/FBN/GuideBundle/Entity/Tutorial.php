@@ -14,7 +14,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class Tutorial extends Article
 {
     /**
-   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorialChapter", mappedBy="tutorial")
+   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorialChapter", mappedBy="tutorial", cascade={"persist","remove"}, orphanRemoval=true)
    * @ORM\OrderBy({"rank" = "ASC"})
    */
   private $tutorialChapter;
@@ -26,7 +26,7 @@ class Tutorial extends Article
     private $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\TutorialSection", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\TutorialSection")
      * @ORM\JoinColumn(nullable=false)
      */
     private $tutorialSection;
@@ -41,13 +41,6 @@ class Tutorial extends Article
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="rank", type="integer")
-     */
-    private $rank;
-
-    /**
      * @Gedmo\Slug(updatable=true, fields={"name"}, prefix="tutorial-")
      * @ORM\Column(length=128, unique=true)
      */
@@ -59,7 +52,7 @@ class Tutorial extends Article
     public function __construct()
     {
         parent::__construct();
-        $this->TutorialChapter = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tutorialChapter = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
