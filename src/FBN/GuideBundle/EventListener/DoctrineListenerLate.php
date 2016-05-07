@@ -5,6 +5,7 @@ namespace FBN\GuideBundle\EventListener;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Event\OnFlushEventArgs;
+use Doctrine\ORM\Event\PostFlushEventArgs;
 use FBN\GuideBundle\File\ImageManager;
 
 class DoctrineListenerLate implements EventSubscriber
@@ -23,12 +24,18 @@ class DoctrineListenerLate implements EventSubscriber
     {
         return array(
             Events::onFlush,
+            Events::postFlush,
         );
     }
 
     public function onFlush(OnFlushEventArgs $eventArgs)
     {
         $this->doOnFlush($eventArgs);
+    }
+
+    public function postFlush(PostFlushEventArgs $eventArgs)
+    {
+        $this->doOnPostFlush($eventArgs);
     }
 
     /**
@@ -50,5 +57,17 @@ class DoctrineListenerLate implements EventSubscriber
         foreach ($uow->getScheduledEntityUpdates() as $entity) {
             $this->imageManager->renameImageFileFromArticleOnFlush($entity, $em, $uow);
         }
+    }
+
+    /**
+     * On post flush do the following.
+     *
+     * - Rename temporary image files created during the images files renaming process.
+     *
+     * @param PostFlushEventArgss $eventArgs
+     */
+    public function doOnPostFlush(PostFlushEventArgs $eventArgs)
+    {
+        $this->imageManager->renameTemporaryFiles();
     }
 }

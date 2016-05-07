@@ -52,7 +52,7 @@ services:
 
     fbn_guide.image_manager:
         class : FBN\GuideBundle\File\ImageManager
-        arguments: [@liip_imagine.cache.manager,  @vich_uploader.storage.file_system]
+        arguments: [@liip_imagine.cache.manager,  @vich_uploader.storage.file_system, %vich_uploader.mappings%]
 
     fbn_guide.slug_manager:
         class : FBN\GuideBundle\Slug\SlugManager

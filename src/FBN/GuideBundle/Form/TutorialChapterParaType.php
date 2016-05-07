@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class TutorialChapterParaType extends AbstractType
 {
@@ -18,7 +18,7 @@ class TutorialChapterParaType extends AbstractType
     {
         $builder
             ->add('paragraph', TextareaType::class)
-            ->add('rank', IntegerType::class)
+            ->add('rank', HiddenType::class)
             ->add('image', ImageTutorialChapterParaType::class)
         ;
     }

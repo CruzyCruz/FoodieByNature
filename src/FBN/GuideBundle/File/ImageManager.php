@@ -5,9 +5,15 @@ namespace FBN\GuideBundle\File;
 use Symfony\Component\HttpFoundation\File\File;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Vich\UploaderBundle\Storage\StorageInterface;
+use FBN\GuideBundle\Entity\TutorialChapter;
 
 class ImageManager
 {
+    /**
+     * Needed for images name permutation (without file uploading - i.e Tutorial backend with JS).
+     */
+    const TEMPORARY_FILE_PREFIX = 'tmp-file-prefix-';
+
     /**
      * @var CacheManager
      */
@@ -18,10 +24,25 @@ class ImageManager
      */
     private $fileSystemStorage;
 
-    public function __construct(CacheManager $cacheManager, StorageInterface $fileSystemStorage)
+    /**
+     * Stores all path to images files upload directories (absolute path from Vich config).
+     * 
+     * @var array
+     */
+    private $mappings = array();
+
+    /**
+     * Stores all path to images files to be deleted at the end of the renaming process (absolute path).
+     * 
+     * @var array
+     */
+    private $originalFilesToBeDeleted = array();
+
+    public function __construct(CacheManager $cacheManager, StorageInterface $fileSystemStorage, $mappings)
     {
         $this->cacheManager = $cacheManager;
         $this->fileSystemStorage = $fileSystemStorage;
+        $this->mappings = $mappings;
     }
 
     /**
@@ -33,18 +54,31 @@ class ImageManager
      */
     public function renameImageFileFromArticleOnFlush($entity, $em, $uow)
     {
-        if (property_exists($entity, 'image')) {
-            $image = $entity->getImage();
+        // An array is needed to manage collections of entities have having a one to one relation with an image entity.
+        $images = array();
 
+        // Entities with a one to one relation with an image entity.
+        if (property_exists($entity, 'image')) {
+            $images[] = $image = $entity->getImage();
+        // Entities with a one to many relation with an entity having a one to one relation with an image entity.
+        } elseif ($entity instanceof TutorialChapter) {
+            if (null !== $entity->getTutorialChapterParas()) {
+                foreach ($entity->getTutorialChapterParas() as $tutorialChapterPara) {
+                    $images[] = $tutorialChapterPara->getImage();
+                }
+            }
+        }
+
+        foreach ($images as $image) {
             if ((null !== $image)) {
                 $this->renameImageFile($image);
 
                 $classMetadata = $em->getClassMetadata(get_class($image));
                 $uow->recomputeSingleEntityChangeSet($classMetadata, $image);
             }
-
-            return;
         }
+
+        unset($images);
 
         return;
     }
@@ -72,8 +106,12 @@ class ImageManager
             if (null !== $updatedRootName && $actualRootName != $updatedRootName) {
                 $this->setRelativePathToActualFile($image);
                 $updatedName = $updatedRootName.'.'.strtolower($extension);
+                $updatedTemporaryName = self::TEMPORARY_FILE_PREFIX.$updatedRootName.'.'.strtolower($extension);
+                $absolutePathToTemporaryFile = $fileDirectory.DIRECTORY_SEPARATOR.$updatedTemporaryName;
+                $absolutePathToUpdatedFile = $fileDirectory.DIRECTORY_SEPARATOR.$updatedName;
 
-                $file->move($fileDirectory, $updatedName);
+                copy($absolutePathToActualFile, $absolutePathToTemporaryFile);
+                $this->originalFilesToBeDeleted[] = $absolutePathToActualFile;
 
                 $this->removeEntityRelatedCachedFile($image);
 
@@ -116,5 +154,42 @@ class ImageManager
         }
 
         return;
+    }
+
+    /**
+     * Rename temporary image files created during the images files renaming process on post flush event.
+     */
+    public function renameTemporaryFiles()
+    {
+        $uploadDirectories = array();
+        foreach ($this->mappings as $mapping) {
+            $uploadDirectories[] = $mapping['upload_destination'];
+        }
+        array_unique($uploadDirectories);
+
+        // Renames files.
+        foreach ($uploadDirectories as $uploadDirectory) {
+            $files = scandir($uploadDirectory);
+            foreach ($files as $file) {
+                if (false !== strpos($file, self::TEMPORARY_FILE_PREFIX)) {
+                    $absolutePathToActualFile = $uploadDirectory.DIRECTORY_SEPARATOR.$file;
+                    $renamedFile = str_replace(self::TEMPORARY_FILE_PREFIX, '', $file);
+                    $absolutePathToRenamedFile = $uploadDirectory.DIRECTORY_SEPARATOR.$renamedFile;
+                    // Updates files list to be deleted.
+                    if (false !== $key = array_search($absolutePathToRenamedFile, $this->originalFilesToBeDeleted)) {
+                        unset($this->originalFilesToBeDeleted[$key]);
+                    }
+                    rename($absolutePathToActualFile, $absolutePathToRenamedFile);
+                }
+            }
+        }
+
+        // Deletes original unusued files.
+        foreach ($this->originalFilesToBeDeleted as $key => $originalFileToBeDeleted) {
+            unset($this->originalFilesToBeDeleted[$key]);
+            if (file_exists($originalFileToBeDeleted)) {
+                unlink($originalFileToBeDeleted);
+            }
+        }
     }
 }
