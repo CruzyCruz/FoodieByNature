@@ -282,4 +282,10 @@ class Shop extends Article
     {
         return $this->slug;
     }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

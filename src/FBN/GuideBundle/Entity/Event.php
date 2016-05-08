@@ -523,4 +523,10 @@ class Event extends Article
     {
         return $this->useExtSite;
     }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getName().' / '.$this->getYear().' / '.$this->getDate();
+    }
 }

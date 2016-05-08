@@ -297,4 +297,10 @@ class WinemakerDomain
     {
         return $this->coordinates;
     }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getWinemaker()->getName().' / '.$this->getDomain().' / '.$this->getWinemakerArea()->getArea();
+    }
 }

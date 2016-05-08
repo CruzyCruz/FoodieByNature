@@ -72,4 +72,10 @@ class WinemakerArea
     {
         return $this->area;
     }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getArea();
+    }
 }

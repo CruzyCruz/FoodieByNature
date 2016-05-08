@@ -82,4 +82,10 @@ class EventType
     {
         $this->locale = $locale;
     }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getType();
+    }
 }

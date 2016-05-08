@@ -51,9 +51,9 @@ class Event extends AbstractFixture implements OrderedFixtureInterface
                         'De 11h à 16h',
                         );
 
-        $useexttels = array(1, 0, 0, 0, 1, 1, 1, 1);
+        $useexttels = array(true, false, false, false, true, true, true, true);
 
-        $useextsites = array(1, 0, 0, 0, 1, 1, 1, 1);
+        $useextsites = array(true, false, false, false, true, true, true, true);
 
         $namesen = array('Yvon Métras at Temps des Vendanges', 'Gourmet in Toulouse', 'Sous les pavés, la vigne !', 'La remise', 'Yvon Métras at Temps des Vendanges', 'Gourmet in Toulouse', 'La remise', 'Lunch on grass at Robert Plageoles');
 

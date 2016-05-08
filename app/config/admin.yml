@@ -93,15 +93,48 @@ easy_admin:
                     - 'tutorialSection'
                     - { property: 'image', type: 'FBN\GuideBundle\Form\ImageTutorialType' }
                     - { property: 'tutorialChapter', type: 'collection', type_options: { entry_type: 'FBN\GuideBundle\Form\TutorialChapterType', by_reference: false } }
+                    - { property: 'publication', type_options: { required: false } }   
+        Event: 
+            class : FBN\GuideBundle\Entity\Event
+            list:
+                fields:
+                    - 'id'
+                    - 'name'
+                    - 'date'
+                    - 'publication'
+            form:
+                fields:
+                    - 'name'
+                    - 'author'
+                    - 'description'
+                    - 'eventType'
+                    - { property: 'image', type: 'FBN\GuideBundle\Form\ImageEventType' }
+                    - 'date'
+                    - 'year'
+                    - 'openingHours'
+                    - 'tel'
+                    - 'site'
+                    - 'href'                    
+                    - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType' }
+                    - restaurant
+                    - shop
+                    - winemakerDomain
+                    - 'eventPast'
+                    - { property: 'useExtTel', type_options: { required: false } } 
+                    - { property: 'useExtSite', type_options: { required: false } }                    
                     - { property: 'publication', type_options: { required: false } }
-        TutorialSection:
-            class : FBN\GuideBundle\Entity\TutorialSection      
         RestaurantBonus:    
             class : FBN\GuideBundle\Entity\RestaurantBonus
         RestaurantPrice:
             class : FBN\GuideBundle\Entity\RestaurantPrice
         RestaurantStyle:
-            class : FBN\GuideBundle\Entity\RestaurantStyle      
+            class : FBN\GuideBundle\Entity\RestaurantStyle  
+        WineakerArea:
+            class : FBN\GuideBundle\Entity\WinemakerArea
+        TutorialSection:
+            class : FBN\GuideBundle\Entity\TutorialSection
+        EventType:
+            class : FBN\GuideBundle\Entity\Event                              
         CoordinatesFRLane:    
             class : FBN\GuideBundle\Entity\CoordinatesFRLane
             list:

@@ -464,4 +464,10 @@ class Restaurant extends Article
     {
         return $this->isShop;
     }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }
