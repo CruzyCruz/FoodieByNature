@@ -94,14 +94,14 @@ easy_admin:
                     - { property: 'image', type: 'FBN\GuideBundle\Form\ImageTutorialType' }
                     - { property: 'tutorialChapter', type: 'collection', type_options: { entry_type: 'FBN\GuideBundle\Form\TutorialChapterType', by_reference: false } }
                     - { property: 'publication', type_options: { required: false } }
-        #Tutorial:
+        TutorialSection:
+            class : FBN\GuideBundle\Entity\TutorialSection      
         RestaurantBonus:    
             class : FBN\GuideBundle\Entity\RestaurantBonus
         RestaurantPrice:
             class : FBN\GuideBundle\Entity\RestaurantPrice
         RestaurantStyle:
-            class : FBN\GuideBundle\Entity\RestaurantStyle
-      
+            class : FBN\GuideBundle\Entity\RestaurantStyle      
         CoordinatesFRLane:    
             class : FBN\GuideBundle\Entity\CoordinatesFRLane
             list:
