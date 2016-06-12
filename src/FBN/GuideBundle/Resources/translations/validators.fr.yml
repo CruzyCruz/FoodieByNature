@@ -1,0 +1,5 @@
+fbn:
+    guide:
+        admin:
+            event:
+                isEventLocationValid: Aucun lieu n'a été défini ou plus d'un OU BIEN des coordonnées ont été renseignées mais les champs ext tel ou ext site ont été cochés.

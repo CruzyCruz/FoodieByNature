@@ -1,0 +1,5 @@
+fbn:
+    guide:
+        admin:
+            event:
+                isEventLocationValid: No event location or more than one OR Coordinates is defined and ext tel or ext site are checked

@@ -36,7 +36,6 @@ class Restaurant extends Article
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageRestaurant", inversedBy="restaurant", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
-     * @Assert\Valid() 
      */
     private $image;
 

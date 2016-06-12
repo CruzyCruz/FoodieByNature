@@ -115,13 +115,13 @@ easy_admin:
                     - 'tel'
                     - 'site'
                     - 'href'                    
-                    - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType' }
-                    - restaurant
-                    - shop
-                    - winemakerDomain
-                    - 'eventPast'
-                    - { property: 'useExtTel', type_options: { required: false } } 
-                    - { property: 'useExtSite', type_options: { required: false } }                    
+                    - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType', css_class: 'col-xs-12 coordinates' }                    
+                    - { property: 'restaurant', css_class: 'col-xs-12 restaurant' }
+                    - { property: 'shop', css_class: 'col-xs-12 shop' }
+                    - { property: 'winemakerDomain', css_class: 'col-xs-12 winemakerDomain' }
+                    - { property: 'eventPast', css_class: 'col-xs-12 eventPast' }                    
+                    - { property: 'useExtTel', type_options: { required: false }, css_class: 'col-xs-12 useExtTel' } 
+                    - { property: 'useExtSite', type_options: { required: false }, css_class: 'col-xs-12 useExtSite' }                    
                     - { property: 'publication', type_options: { required: false } }
         RestaurantBonus:    
             class : FBN\GuideBundle\Entity\RestaurantBonus
@@ -134,7 +134,7 @@ easy_admin:
         TutorialSection:
             class : FBN\GuideBundle\Entity\TutorialSection
         EventType:
-            class : FBN\GuideBundle\Entity\Event                              
+            class : FBN\GuideBundle\Entity\EventType                           
         CoordinatesFRLane:    
             class : FBN\GuideBundle\Entity\CoordinatesFRLane
             list:

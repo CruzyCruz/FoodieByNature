@@ -16,12 +16,11 @@ class Coordinates
     /**
      * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesCountry")
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotNull()
      */
     private $coordinatesCountry;
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFR", inversedBy="coordinates", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFR", inversedBy="coordinates", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * @Assert\Valid()
      */
@@ -83,7 +82,7 @@ class Coordinates
      *
      * @return Coordinates
      */
-    public function setCoordinatesFR(\FBN\GuideBundle\Entity\CoordinatesFR $coordinatesFR)
+    public function setCoordinatesFR(\FBN\GuideBundle\Entity\CoordinatesFR $coordinatesFR = null)
     {
         $this->coordinatesFR = $coordinatesFR;
         $coordinatesFR->setCoordinates($this);

@@ -8,6 +8,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use FBN\GuideBundle\Entity\CoordinatesFRCityRepository;
+use FBN\GuideBundle\Entity\CoordinatesFR as CoordFR;
+use Symfony\Component\Form\FormInterface;
 
 class CoordinatesFRType extends AbstractType
 {
@@ -22,6 +24,7 @@ class CoordinatesFRType extends AbstractType
             ->add('coordinatesFRLane', EntityType::class, array(
                 'class' => 'FBNGuideBundle:CoordinatesFRLane',
                 'property' => 'lane',
+                'placeholder' => 'label.form.empty_value',
                 ))
             ->add('laneName', TextType::class)
             ->add('miscellaneous', TextType::class)
@@ -33,6 +36,7 @@ class CoordinatesFRType extends AbstractType
                 'query_builder' => function (CoordinatesFRCityRepository $repo) {
                     return $repo->getAscendingSortedCitiesQueryBuilder();
                     },
+                'placeholder' => 'label.form.empty_value',
                 ))
         ;
     }
@@ -44,6 +48,11 @@ class CoordinatesFRType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'FBN\GuideBundle\Entity\CoordinatesFR',
+            // Ensures that validation error messages will be correctly displayed next to each field 
+            // of the corresponding nested form (i.e if submission and CoordinatesFR nested form with all fields empty)
+            'empty_data' => function (FormInterface $form) {
+                return new CoordFR();
+            },
         ));
     }
 

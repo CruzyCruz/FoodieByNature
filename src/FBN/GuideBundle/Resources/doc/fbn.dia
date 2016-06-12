@@ -4496,7 +4496,7 @@
         <dia:string>##</dia:string>
       </dia:attribute>
       <dia:attribute name="multipicity_a">
-        <dia:string>#*#</dia:string>
+        <dia:string>#1#</dia:string>
       </dia:attribute>
       <dia:attribute name="visibility_a">
         <dia:enum val="3"/>

@@ -4,6 +4,8 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
 /**
  * Event.
@@ -14,7 +16,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Event extends Article
 {
-    /**
+    private static $eventLocationAttributes = array('coordinates', 'restaurant', 'shop', 'winemakerDomain', 'eventPast');
+
+  /**
    * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\EventType")
    * @ORM\JoinColumn(nullable=false)
    */
@@ -45,8 +49,9 @@ class Event extends Article
   private $winemakerDomain;
 
   /**
-   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist"})
+   * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist","remove"}, orphanRemoval=true)
    * @ORM\JoinColumn(nullable=true)
+   * @Assert\Valid()
    */
   private $coordinates;
 
@@ -528,5 +533,32 @@ class Event extends Article
     public function __toString()
     {
         return $this->getName().' / '.$this->getYear().' / '.$this->getDate();
+    }
+
+    /**
+     * @Assert\IsTrue(message = "fbn.guide.admin.event.isEventLocationValid").
+     */
+    public function isEventLocationValid()
+    {
+        $accessor = PropertyAccess::createPropertyAccessor();
+
+        $nbEventLocation = 0;
+        foreach (self::$eventLocationAttributes  as $eventLocationAttribute) {
+            $nbEventLocation = $nbEventLocation + ($accessor->getValue($this, $eventLocationAttribute) === null ? 0 : 1);
+        }
+
+        // If no event location is defined or more than one.
+        if ($nbEventLocation !== 1) {
+            return false;
+        }
+
+        // If location is defined using coordinates but 'useExtTel' or 'useExtSite' are true
+        if (null !== $accessor->getValue($this, 'coordinates')) {
+            if ((true === $accessor->getValue($this, 'useExtTel')) || (true === $accessor->getValue($this, 'useExtSite'))) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

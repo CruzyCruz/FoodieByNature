@@ -16,13 +16,14 @@ class CoordinatesFR extends CoordinatesISO
     /**
     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFRLane")
     * @ORM\JoinColumn(nullable=true)
+    * @Assert\NotBlank()
     */
    private $coordinatesFRLane;
 
    /**
     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFRCity")
     * @ORM\JoinColumn(nullable=false)
-    * @Assert\NotNull()
+    * @Assert\NotBlank()
     */
    private $coordinatesFRCity;
 
@@ -65,7 +66,7 @@ class CoordinatesFR extends CoordinatesISO
      *
      * @return CoordinatesFR
      */
-    public function setCoordinatesFRLane(\FBN\GuideBundle\Entity\CoordinatesFRLane $coordinatesFRLane)
+    public function setCoordinatesFRLane(\FBN\GuideBundle\Entity\CoordinatesFRLane $coordinatesFRLane = null)
     {
         $this->coordinatesFRLane = $coordinatesFRLane;
 
@@ -89,7 +90,7 @@ class CoordinatesFR extends CoordinatesISO
      *
      * @return CoordinatesFR
      */
-    public function setCoordinatesFRCity(\FBN\GuideBundle\Entity\CoordinatesFRCity $coordinatesFRCity)
+    public function setCoordinatesFRCity(\FBN\GuideBundle\Entity\CoordinatesFRCity $coordinatesFRCity = null)
     {
         $this->coordinatesFRCity = $coordinatesFRCity;
 

@@ -3,22 +3,30 @@
 namespace FBN\GuideBundle\Controller;
 
 use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
-
-//use FBN\GuideBundle\Form\ImageRestaurantType;
-
-//use FBN\GuideBundle\Form\CoordinatesType;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class AdminController extends BaseAdminController
 {
-    /*public function createRestaurantEntityFormBuilder($entity, $view)
+    /*
+     * {@inheritdoc}
+     *
+     * Set coordinates to null in Event entity when an alternatative is proposed (restaurant, shop...)
+     */
+    public function createEventEntityFormBuilder($entity, $view)
     {
         $formBuilder = parent::createEntityFormBuilder($entity, $view);
 
-        $formBuilder
-            ->add('image', ImageRestaurantType::class)
-            //->add('coordinates', CoordinatesType::class)
-        ;
+        $formBuilder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
+            $data = $event->getData();
+
+            if ((null !== $data->getRestaurant())  || (null !== $data->getShop()) || (null !== $data->getWinemakerDomain()) || (null !== $data->getEventPast())) {
+                $data->setCoordinates(null);
+            }
+
+            $event->setData($data);
+        });
 
         return $formBuilder;
-    }*/
+    }
 }
