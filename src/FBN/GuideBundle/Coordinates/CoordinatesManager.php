@@ -47,9 +47,9 @@ class CoordinatesManager
         if ($entity instanceof CoordinatesISO) {
             $coordinatesISOCity = $this->getCoordinatesISOString($entity, 'City');
 
-            $addressFields = $this->buildPostalAddressFields($entity);
-            $postalAddress = $addressFields['lane'].', '.$addressFields['locality'].', '.$addressFields['city'].', '.$addressFields['country'];
-            $latLng = $this->getLatLong($postalAddress, $coordinatesISOCity->getLatitude(), $coordinatesISOCity->getLongitude());
+            //$addressFields = $this->buildPostalAddressFields($entity);
+            $geocodingAdress = $this->buildGeocodingAddress($entity);
+            $latLng = $this->getLatLong($geocodingAdress, $coordinatesISOCity->getLatitude(), $coordinatesISOCity->getLongitude());
 
             $entity->setLatitude($latLng['lat']);
             $entity->setLongitude($latLng['lng']);
@@ -74,6 +74,7 @@ class CoordinatesManager
         $coordinatesISOLane = $this->getCoordinatesISOString($coordinatesISO, 'Lane');
         $coordinatesCountry = $coordinatesISO->getCoordinates()->getCoordinatesCountry();
 
+        $miscellaneous = $coordinatesISO->getMiscellaneous();
         $laneNum = $coordinatesISO->getLaneNum();
         $lane = null;
         if (null !== $coordinatesISOLane) {
@@ -94,6 +95,7 @@ class CoordinatesManager
         }
 
         return array(
+            'miscellaneous' => $miscellaneous,
             'lane' => $laneNum.$delimiter.$lane.' '.$laneName,
             'locality' => $locality,
             'city' => $postCode.$delimiter.$city,
@@ -102,16 +104,36 @@ class CoordinatesManager
         ;
     }
 
+    public function buildGeocodingAddress(CoordinatesISO $coordinatesISO)
+    {
+        $addressFields = $this->buildPostalAddressFields($coordinatesISO);
+
+        return $addressFields['lane'].', '.$addressFields['locality'].', '.$addressFields['city'].', '.$addressFields['country'];
+    }
+
+    public function buildViewAddress(CoordinatesISO $coordinatesISO)
+    {
+        $addressFields = $this->buildPostalAddressFields($coordinatesISO);
+
+        $delimiter = '';
+
+        if (null !== $addressFields['miscellaneous']) {
+            $delimiter = ', ';
+        }
+
+        return $addressFields['miscellaneous'].$delimiter.$addressFields['lane'].', '.$addressFields['locality'].', '.$addressFields['city'].', '.$addressFields['country'];
+    }
+
     /**
      * Determine lat/long using geocoding.
      *
-     * @param string $postalAddress
+     * @param string $geocodingAdress
      * @param float  $latCity
      * @param float  $lngCity
      *
      * @return array Array : ['lat', 'long'].
      */
-    private function getLatLong($postalAddress, $latCity, $lngCity)
+    private function getLatLong($geocodingAdress, $latCity, $lngCity)
     {
         $latLng = array(
             'lat' => $latCity,
@@ -120,7 +142,7 @@ class CoordinatesManager
         ;
 
         try {
-            $addressCollection = $this->geocoder->geocode($postalAddress);
+            $addressCollection = $this->geocoder->geocode($geocodingAdress);
         } catch (Exception $e) {
             return $latLng;
         }

@@ -31,20 +31,20 @@ class Event extends Article
   private $image;
 
   /**
-   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Restaurant")
-   * @ORM\JoinColumn(nullable=true)
+   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Restaurant", inversedBy="event")
+   * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
    */
   private $restaurant;
 
   /**
-   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Shop")
-   * @ORM\JoinColumn(nullable=true)
+   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Shop", inversedBy="event")
+   * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
    */
   private $shop;
 
   /**
-   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\WinemakerDomain")
-   * @ORM\JoinColumn(nullable=true)
+   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\WinemakerDomain", inversedBy="event")
+   * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
    */
   private $winemakerDomain;
 
@@ -56,10 +56,15 @@ class Event extends Article
   private $coordinates;
 
   /**
-   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Event")
+   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Event", inversedBy="event")
    * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
    */
   private $eventPast;
+
+    /**
+     * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\Event", mappedBy="eventPast")
+     */
+    private $event;
 
     /**
      * @var int
@@ -133,6 +138,27 @@ class Event extends Article
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="formerLocationCoordinates", type="string", length=255, nullable=true)  
+     */
+    private $formerLocationCoordinates;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="formerLocationName", type="string", length=255, nullable=true)
+     */
+    private $formerLocationName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="formerLocation", type="string", length=255, nullable=true)  
+     */
+    private $formerLocation;
 
     /**
      * Get id.
@@ -400,13 +426,48 @@ class Event extends Article
     }
 
     /**
-     * Get event.
+     * Get eventPast.
      *
      * @return \FBN\GuideBundle\Entity\event
      */
     public function getEventPast()
     {
         return $this->eventPast;
+    }
+
+    /**
+     * Add event.
+     *
+     * @param \FBN\GuideBundle\Entity\Event $event
+     *
+     * @return Event
+     */
+    public function addEvent(\FBN\GuideBundle\Entity\Event $event)
+    {
+        $this->event[] = $event;
+        $event->setEventPast($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove event.
+     *
+     * @param \FBN\GuideBundle\Entity\Event $event
+     */
+    public function removeEvent(\FBN\GuideBundle\Entity\Event $event)
+    {
+        $this->event->removeElement($event);
+    }
+
+    /**
+     * Get event.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvent()
+    {
+        return $this->event;
     }
 
     /**
@@ -527,6 +588,78 @@ class Event extends Article
     public function getUseExtSite()
     {
         return $this->useExtSite;
+    }
+
+    /**
+     * Set formerLocationCoordinates.
+     *
+     * @param string $formerLocationCoordinates
+     *
+     * @return Event
+     */
+    public function setFormerLocationCoordinates($formerLocationCoordinates)
+    {
+        $this->formerLocationCoordinates = $formerLocationCoordinates;
+
+        return $this;
+    }
+
+    /**
+     * Get formerLocationCoordinates.
+     *
+     * @return string
+     */
+    public function getFormerLocationCoordinates()
+    {
+        return $this->formerLocationCoordinates;
+    }
+
+    /**
+     * Set formerLocationName.
+     *
+     * @param string $formerLocationName
+     *
+     * @return Event
+     */
+    public function setFormerLocationName($formerLocationName)
+    {
+        $this->formerLocationName = $formerLocationName;
+
+        return $this;
+    }
+
+    /**
+     * Get formerLocationName.
+     *
+     * @return string
+     */
+    public function getFormerLocationName()
+    {
+        return $this->formerLocationName;
+    }
+
+    /**
+     * Set formerLocation.
+     *
+     * @param string $formerLocation
+     *
+     * @return Event
+     */
+    public function setFormerLocation($formerLocation)
+    {
+        $this->formerLocation = $formerLocation;
+
+        return $this;
+    }
+
+    /**
+     * Get formerLocation.
+     *
+     * @return string
+     */
+    public function getFormerLocation()
+    {
+        return $this->formerLocation;
     }
 
     /** {@inheritdoc} */

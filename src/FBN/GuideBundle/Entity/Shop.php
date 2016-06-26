@@ -14,10 +14,15 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class Shop extends Article
 {
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $coordinates;
+
+    /**
+     * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\Event", mappedBy="shop")
+     */
+    private $event;
 
     /**
      * @var int
@@ -70,16 +75,11 @@ class Shop extends Article
      */
     private $slug;
 
-    /*public function __construct(\FBN\GuideBundle\Entity\Restaurant $restaurant)
+    public function __construct()
     {
-       parent::__construct();
-       
-       if (null != $restaurant)
-       {
-        $this->name = $restaurant->getName();
-       }
-
-    }*/
+        parent::__construct();
+        $this->event = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Set coordinates.
@@ -103,6 +103,41 @@ class Shop extends Article
     public function getCoordinates()
     {
         return $this->coordinates;
+    }
+
+    /**
+     * Add event.
+     *
+     * @param \FBN\GuideBundle\Entity\Event $event
+     *
+     * @return Shop
+     */
+    public function addEvent(\FBN\GuideBundle\Entity\Event $event)
+    {
+        $this->event[] = $event;
+        $event->setShop($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove event.
+     *
+     * @param \FBN\GuideBundle\Entity\Event $event
+     */
+    public function removeEvent(\FBN\GuideBundle\Entity\Event $event)
+    {
+        $this->event->removeElement($event);
+    }
+
+    /**
+     * Get event.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvent()
+    {
+        return $this->event;
     }
 
     /**

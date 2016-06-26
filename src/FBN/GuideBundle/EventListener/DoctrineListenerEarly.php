@@ -7,6 +7,7 @@ use Doctrine\ORM\Events;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use FBN\GuideBundle\Slug\SlugManager;
 use FBN\GuideBundle\Coordinates\CoordinatesManager;
+use FBN\GuideBundle\Event\EventManager;
 
 class DoctrineListenerEarly implements EventSubscriber
 {
@@ -20,10 +21,16 @@ class DoctrineListenerEarly implements EventSubscriber
      */
     private $coordinatesManager;
 
-    public function __construct(SlugManager $slugManager, CoordinatesManager $coordinatesManager)
+    /**
+     * @var EventManager
+     */
+    private $eventManager;
+
+    public function __construct(SlugManager $slugManager, CoordinatesManager $coordinatesManager, EventManager $eventManager)
     {
         $this->slugManager = $slugManager;
         $this->coordinatesManager = $coordinatesManager;
+        $this->eventManager = $eventManager;
     }
 
     public function getSubscribedEvents()
@@ -43,6 +50,7 @@ class DoctrineListenerEarly implements EventSubscriber
      *
      * - Update attribute slugFromCoordinatesISO of entity Restaurant on CoordinatesISO insertion|update.
      * - Set|Update attributes lat/long on CoordinatesISO insertion|update.
+     * - Manage events (modification or removal) entities on related entities removal.
      *
      * @param OnFlushEventArgs $args
      */
@@ -59,6 +67,10 @@ class DoctrineListenerEarly implements EventSubscriber
         foreach ($uow->getScheduledEntityUpdates() as $entity) {
             $this->slugManager->updateRestaurantSlugFromCoordinatesISOOnFlush($entity, $em, $uow);
             $this->coordinatesManager->setLatLongCoordinatesISOOnFlush($entity, $em, $uow);
+        }
+
+        foreach ($uow->getScheduledEntityDeletions() as $entity) {
+            $this->eventManager->manageEvents($entity, $em, $uow);
         }
     }
 }

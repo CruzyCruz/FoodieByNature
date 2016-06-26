@@ -40,7 +40,7 @@ services:
 
     fbn_guide.doctrine_listener_early:
         class : FBN\GuideBundle\EventListener\DoctrineListenerEarly
-        arguments: [@fbn_guide.slug_manager, @fbn_guide.coordinates_manager]
+        arguments: [@fbn_guide.slug_manager, @fbn_guide.coordinates_manager, @fbn_guide.event_manager]
         tags:
             - { name: doctrine.event_subscriber, connection: default, priority: 10000 }
 
@@ -66,3 +66,7 @@ services:
         arguments: [@fbn_guide.image_manager]
         tags:
             - { name: kernel.event_subscriber }
+
+    fbn_guide.event_manager:
+        class : FBN\GuideBundle\Event\EventManager
+        arguments: [@fbn_guide.coordinates_manager] 

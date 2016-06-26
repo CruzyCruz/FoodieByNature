@@ -40,11 +40,16 @@ class Restaurant extends Article
     private $image;
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", inversedBy="restaurant", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", inversedBy="restaurant", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * @Assert\Valid()
      */
     private $coordinates;
+
+    /**
+     * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\Event", mappedBy="restaurant")
+     */
+    private $event;
 
     /**
      * @var int
@@ -118,6 +123,7 @@ class Restaurant extends Article
         parent::__construct();
         $this->restaurantStyle = new \Doctrine\Common\Collections\ArrayCollection();
         $this->restaurantBonus = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->event = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -318,6 +324,41 @@ class Restaurant extends Article
     public function getCoordinates()
     {
         return $this->coordinates;
+    }
+
+    /**
+     * Add event.
+     *
+     * @param \FBN\GuideBundle\Entity\Event $event
+     *
+     * @return Restaurant
+     */
+    public function addEvent(\FBN\GuideBundle\Entity\Event $event)
+    {
+        $this->event[] = $event;
+        $event->setRestaurant($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove event.
+     *
+     * @param \FBN\GuideBundle\Entity\Event $event
+     */
+    public function removeEvent(\FBN\GuideBundle\Entity\Event $event)
+    {
+        $this->event->removeElement($event);
+    }
+
+    /**
+     * Get event.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvent()
+    {
+        return $this->event;
     }
 
     /**

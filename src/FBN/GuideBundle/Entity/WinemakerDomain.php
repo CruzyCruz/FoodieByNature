@@ -27,10 +27,15 @@ class WinemakerDomain
     private $winemakerArea;
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $coordinates;
+
+    /**
+     * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\Event", mappedBy="winemakerDomain")
+     */
+    private $event;
 
     /**
      * @var int
@@ -85,6 +90,11 @@ class WinemakerDomain
      * this is not a mapped field of entity metadata, just a simple property
      */
     private $locale;
+
+    public function __construct()
+    {
+        $this->event = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id.
@@ -296,6 +306,41 @@ class WinemakerDomain
     public function getCoordinates()
     {
         return $this->coordinates;
+    }
+
+    /**
+     * Add event.
+     *
+     * @param \FBN\GuideBundle\Entity\Event $event
+     *
+     * @return WinemakerDomain
+     */
+    public function addEvent(\FBN\GuideBundle\Entity\Event $event)
+    {
+        $this->event[] = $event;
+        $event->setWinemakerDomain($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove event.
+     *
+     * @param \FBN\GuideBundle\Entity\Event $event
+     */
+    public function removeEvent(\FBN\GuideBundle\Entity\Event $event)
+    {
+        $this->event->removeElement($event);
+    }
+
+    /**
+     * Get event.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvent()
+    {
+        return $this->event;
     }
 
     /** {@inheritdoc} */

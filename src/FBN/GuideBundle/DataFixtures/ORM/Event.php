@@ -99,8 +99,6 @@ class Event extends AbstractFixture implements OrderedFixtureInterface
 
         foreach ($authors as $i => $author) {
             $event[$i]->setAuthor($author);
-
-            $manager->persist($event[$i]);
         }
 
         foreach ($dates as $i => $date) {
@@ -158,7 +156,6 @@ class Event extends AbstractFixture implements OrderedFixtureInterface
         $event[3]->setCoordinates($this->getReference('coordinates-13'));
 
         $event[4]->setEventType($this->getReference('eventtype-0'));
-        //$event[4]->setEventPast($this->getReference('event-0'));   
         $event[4]->setRestaurant($this->getReference('restaurant-0'));
 
         $event[5]->setEventType($this->getReference('eventtype-3'));
