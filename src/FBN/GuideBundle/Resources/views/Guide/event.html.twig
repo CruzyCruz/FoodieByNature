@@ -12,8 +12,8 @@
 <h1>{{ event.name }}</h1>
 
 <h3>QUAND : </h3>
-  <p>DEBUT : {{ event.dateStart|date('Y-m-d') }}</p>
-  <p>FIN : {{ event.dateEnd|date('Y-m-d') }}</p>
+  <p>DEBUT : {{ event.dateStart|localizeddate('short', 'none', app.request.locale, null, null) }}</p>
+  <p>FIN : {{ event.dateEnd|localizeddate('short', 'none', app.request.locale, null, null) }}</p>
 
 <h3>TYPE : </h3>
   <p>{{ event.eventType.type }}</p> 

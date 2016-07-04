@@ -235,3 +235,9 @@ bazinga_geocoder:
             region:             null
             use_ssl:            false
             api_key:            null
+
+services:
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }            
