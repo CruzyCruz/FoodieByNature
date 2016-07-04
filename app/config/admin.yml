@@ -100,7 +100,8 @@ easy_admin:
                 fields:
                     - 'id'
                     - 'name'
-                    - 'date'
+                    - 'dateStart'
+                    - 'dateEnd'
                     - 'publication'
             form:
                 fields:
@@ -109,7 +110,8 @@ easy_admin:
                     - 'description'
                     - 'eventType'
                     - { property: 'image', type: 'FBN\GuideBundle\Form\ImageEventType' }
-                    - 'date'
+                    - 'dateStart'
+                    - 'dateEnd'
                     - 'year'
                     - 'openingHours'
                     - 'tel'

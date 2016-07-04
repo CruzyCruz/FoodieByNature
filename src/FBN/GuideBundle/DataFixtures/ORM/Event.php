@@ -30,9 +30,31 @@ class Event extends AbstractFixture implements OrderedFixtureInterface
 
         $authors = array('CB', 'CB', 'AH', 'CB', 'AH', 'CB', 'CB', 'CB');
 
-        $dates = array('13 Septembre 2013', '3 Avril 2013', '2 et 3 Novembre 2013', '30 et 31 Mars 2014', '20 Septembre 2014', '5 Avril 2013', '01 et 02 Avril 2014', '15 Juin 2014');
+        //$dates = array('13 Septembre 2013', '3 Avril 2013', '2 et 3 Novembre 2013', '30 et 31 Mars 2014', '20 Septembre 2014', '5 Avril 2013', '01 et 02 Avril 2014', '15 Juin 2014');
 
-        $years = array('2013', '2013', '2013', '2013', '2014', '2014', '2014', '2014');
+        $dateStarts = array(
+            new \DateTime('2013-09-13'),
+            new \DateTime('2013-04-03'),
+            new \DateTime('2013-11-02'),
+            new \DateTime('2014-03-30'),
+            new \DateTime('2014-09-20'),
+            new \DateTime('2013-04-05'),
+            new \DateTime('2014-04-01'),
+            new \DateTime('2014-06-15'),
+            );
+
+        $dateEnds = array(
+            new \DateTime('2013-09-13'),
+            new \DateTime('2013-04-03'),
+            new \DateTime('2013-11-03'),
+            new \DateTime('2014-03-31'),
+            new \DateTime('2014-09-20'),
+            new \DateTime('2013-04-05'),
+            new \DateTime('2014-04-02'),
+            new \DateTime('2014-06-15'),
+            );
+
+        //$years = array('2013', '2013', '2013', '2013', '2014', '2014', '2014', '2014');
 
         $tels = array(null, '05 61 15 55 55', null, '06 82 01 77 08 (Loïc) / 04 75 52 51 02 (Jocelyne) / 06 88 10 59 47 (Alain)', null, null, null, null);
 
@@ -68,7 +90,7 @@ class Event extends AbstractFixture implements OrderedFixtureInterface
             'It\'s a beautiful spring invitation launches Robert Plageoles. The principle is simple, the visitor is providing picnic and to accompany the meal, the winemaker offers free wines for tasting.',
             );
 
-        $datesen = array('September 13, 2013', 'April 3, 2013', '2 and 3 November, 2013', '30 and March 31, 2014', 'September 20, 2014', 'April 5 2014', '1 and April 2, 2014', 'June 15 2014');
+        //$datesen = array('September 13, 2013', 'April 3, 2013', '2 and 3 November, 2013', '30 and March 31, 2014', 'September 20, 2014', 'April 5 2014', '1 and April 2, 2014', 'June 15 2014');
 
         $openingHoursen = array(
                         'From 10am to 7pm.',
@@ -101,15 +123,21 @@ class Event extends AbstractFixture implements OrderedFixtureInterface
             $event[$i]->setAuthor($author);
         }
 
-        foreach ($dates as $i => $date) {
-            $event[$i]->setDate($date);
+        foreach ($dateStarts as $i => $dateStart) {
+            $event[$i]->setDateStart($dateStart);
 
-            $repository->translate($event[$i], 'date', 'en', $datesen[$i]);
+            //$repository->translate($event[$i], 'date', 'en', $datesen[$i]);
         }
 
-        foreach ($years as $i => $year) {
-            $event[$i]->setYear($year);
+        foreach ($dateEnds as $i => $dateEnd) {
+            $event[$i]->setDateEnd($dateEnd);
+
+            //$repository->translate($event[$i], 'date', 'en', $datesen[$i]);
         }
+
+        //foreach ($years as $i => $year) {
+        //    $event[$i]->setYear($year);
+        //}
 
         foreach ($tels as $i => $tel) {
             $event[$i]->setTel($tel);

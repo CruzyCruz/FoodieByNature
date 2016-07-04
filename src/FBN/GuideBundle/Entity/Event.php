@@ -78,17 +78,16 @@ class Event extends Article
     /**
      * @var string
      *
-     * @ORM\Column(name="date", type="string", length=255)
-     * @Gedmo\Translatable      
+     * @ORM\Column(name="dateStart", type="date")    
      */
-    private $date;
+    private $dateStart;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="year", type="string", length=255)
+     * @ORM\Column(name="dateEnd", type="date")     
      */
-    private $year;
+    private $dateEnd;
 
     /**
      * @var string
@@ -134,7 +133,7 @@ class Event extends Article
     private $useExtSite;
 
     /**
-     * @Gedmo\Slug(updatable=true, fields={"name","year"}, prefix="event-")
+     * @Gedmo\Slug(updatable=true, fields={"name","dateStart"}, prefix="event-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
@@ -171,51 +170,51 @@ class Event extends Article
     }
 
     /**
-     * Set date.
+     * Set dateStart.
      *
-     * @param string $date
+     * @param string $dateStart
      *
      * @return Event
      */
-    public function setDate($date)
+    public function setDateStart($dateStart)
     {
-        $this->date = $date;
+        $this->dateStart = $dateStart;
 
         return $this;
     }
 
     /**
-     * Get date.
+     * Get dateStart.
      *
      * @return string
      */
-    public function getDate()
+    public function getDateStart()
     {
-        return $this->date;
+        return $this->dateStart;
     }
 
     /**
-     * Set year.
+     * Set dateEnd.
      *
-     * @param string $year
+     * @param string $dateEnd
      *
      * @return Event
      */
-    public function setYear($year)
+    public function setDateEnd($dateEnd)
     {
-        $this->year = $year;
+        $this->dateEnd = $dateEnd;
 
         return $this;
     }
 
     /**
-     * Get year.
+     * Get dateEnd.
      *
      * @return string
      */
-    public function getYear()
+    public function getDateEnd()
     {
-        return $this->year;
+        return $this->dateEnd;
     }
 
     /**
@@ -665,7 +664,7 @@ class Event extends Article
     /** {@inheritdoc} */
     public function __toString()
     {
-        return $this->getName().' / '.$this->getYear().' / '.$this->getDate();
+        return $this->getName().' / '.$this->getYear().' / '.$this->getDateStart()->format('Y-m-d');
     }
 
     /**
