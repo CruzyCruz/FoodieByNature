@@ -13,6 +13,7 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
  * @ORM\Table(name="event")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\EventRepository")
  * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\EventTranslation") 
+ * @ORM\HasLifecycleCallbacks()
  */
 class Event extends Article
 {
@@ -92,6 +93,13 @@ class Event extends Article
     /**
      * @var string
      *
+     * @ORM\Column(name="year", type="string", length=255)     
+     */
+    private $year;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="tel", type="string", length=255, nullable=true)
      */
     private $tel;
@@ -133,7 +141,7 @@ class Event extends Article
     private $useExtSite;
 
     /**
-     * @Gedmo\Slug(updatable=true, fields={"name","dateStart"}, prefix="event-")
+     * @Gedmo\Slug(updatable=true, fields={"name","year"}, prefix="event-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
@@ -215,6 +223,30 @@ class Event extends Article
     public function getDateEnd()
     {
         return $this->dateEnd;
+    }
+
+    /**
+     * Set year.
+     *
+     * @param string $year
+     *
+     * @return Event
+     */
+    public function setYear($year)
+    {
+        $this->year = $year;
+
+        return $this;
+    }
+
+    /**
+     * Get year.
+     *
+     * @return string
+     */
+    public function getYear()
+    {
+        return $this->year;
     }
 
     /**
@@ -661,10 +693,19 @@ class Event extends Article
         return $this->formerLocation;
     }
 
+  /**
+   * @ORM\PrePersist
+   * @ORM\PreUpdate
+   */
+  public function defineYear()
+  {
+      $this->setYear($this->getDateStart()->format('Y'));
+  }
+
     /** {@inheritdoc} */
     public function __toString()
     {
-        return $this->getName().' / '.$this->getYear().' / '.$this->getDateStart()->format('Y-m-d');
+        return $this->getName().' / '.$this->getDateStart()->format('Y-m-d');
     }
 
     /**
