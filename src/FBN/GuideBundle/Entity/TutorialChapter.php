@@ -4,6 +4,7 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * TutorialChapter.
@@ -22,6 +23,7 @@ class TutorialChapter
   /**
    * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorialChapterPara", mappedBy="tutorialChapter", cascade={"persist","remove"}, orphanRemoval=true)
    * @ORM\OrderBy({"rank" = "ASC"})
+   * @Assert\Valid()
    */
   private $tutorialChapterParas;
 
@@ -38,7 +40,8 @@ class TutorialChapter
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
-     * @Gedmo\Translatable          
+     * @Gedmo\Translatable
+     * @Assert\NotBlank()         
      */
     private $title;
 

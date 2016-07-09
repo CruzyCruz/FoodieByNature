@@ -4,6 +4,7 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * TutorialChapterPara.
@@ -39,7 +40,8 @@ class TutorialChapterPara
      * @var string
      *
      * @ORM\Column(name="paragraph", type="text")
-     * @Gedmo\Translatable          
+     * @Gedmo\Translatable 
+     * @Assert\NotBlank()         
      */
     private $paragraph;
 
