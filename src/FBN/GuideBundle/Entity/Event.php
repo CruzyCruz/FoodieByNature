@@ -734,4 +734,16 @@ class Event extends Article
 
         return true;
     }
+
+    /**
+     * @Assert\IsTrue(message = "fbn.guide.admin.event.isEventDatesValid").
+     */
+    public function isEventDatesValid()
+    {
+        if ($this->dateStart > $this->dateEnd) {
+            return false;
+        }
+
+        return true;
+    }
 }
