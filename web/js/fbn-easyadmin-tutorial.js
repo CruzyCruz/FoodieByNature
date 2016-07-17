@@ -1,4 +1,13 @@
+/**
+ * Permute text and values of elements when a new element is inserted.
+ *
+ * @param  {object} currentLabel        
+ * @param  {object} previousOrNextLabel 
+ * @param  {object} currentRank         
+ * @param  {object} previousOrNextRank  
+ */
 function permuteTextAndValue(currentLabel, previousOrNextLabel, currentRank, previousOrNextRank) {
+
     $temp = currentLabel.text();
     currentLabel.text(previousOrNextLabel.text());
     previousOrNextLabel.text($temp);
@@ -6,8 +15,15 @@ function permuteTextAndValue(currentLabel, previousOrNextLabel, currentRank, pre
     previousOrNextRank.val(previousOrNextLabel.text());   
 }
 
+/**
+ * Set reorder controls on up and down links : new element insertion and text and value of previous elements permutation.
+ *
+ * @param {object} up   Up link.
+ * @param {object} down Down link.
+ */
 function setReorderControls(up, down) {
-    up.click(function(event){
+
+    up.click(function(event) {
       if (event.preventDefault) event.preventDefault(); else event.returnValue = false;
         
       var current = $(this).closest('[class*="field-fbn_guidebundle_tutorialchapter"]');
@@ -38,12 +54,37 @@ function setReorderControls(up, down) {
       if(next.length !== 0){
         current.insertAfter(next);
         permuteTextAndValue(currentLabel, nextLabel, currentRank, nextRank);
-
       }
     });    
 }
 
+/**
+ * Reorder rank and label (when an collection item is removed).
+ *
+ * @param  {object} collectionContainer Container for chapter or paragraphs.
+ * @param  {string} collectionItemClass Class of the reordered items.
+ */
+function reorderRankAndLabel(collectionContainer, collectionItemClass) {
+
+    var collection = collectionContainer.find(collectionItemClass);
+
+    if (collection.length > 0) {
+        collection.each(function(index) {                    
+            rank = $(this).find('[id*="rank"]').first();
+            rank.val(index);
+            label = $(this).children('label');
+            label.text(index);       
+        });              
+    }  
+}
+
+/**
+ * Set fields design (chapters and paragraphs).
+ * Insert up and down controls if needed.
+ * Set rank if needed. 
+ */
 function initialize() {
+
     // Set fields design
     $('.field-fbn_guidebundle_tutorialchapter').css('border-style', 'solid');
     $('.field-fbn_guidebundle_tutorialchapter').css('border-color', 'red');
@@ -56,7 +97,7 @@ function initialize() {
         if ($(this).prev().attr('class') !== 'text-right field-collection-item-action') {
             $('<div class="text-right field-collection-item-action"><a href="#" class="reorder-up text-primary"><i class="fa fa-long-arrow-up"></i>up </a><a href="#" class="reorder-down text-primary"><i class="fa fa-long-arrow-down">down </i></a></div>').insertBefore($(this));
             var up = $(this).prev().children('.reorder-up');
-            var down = $(this).prev().children('.reorder-down');
+            var down = $(this).prev().children('.reorder-down');            
             setReorderControls(up, down);
         }
     });
@@ -67,13 +108,31 @@ function initialize() {
         var label = $(this).parents('[class*="field-fbn_guidebundle_tutorialchapter"]').children('label').first();
         $(this).val(label.text());
     });
+
 }
 
 $(function() {
-    initialize();
 
+    // Initialize page on first loading.
+    initialize();    
+
+    // Update page when a new element is created.
     $(document).on('click', ".text-primary", function(event){
         initialize();
     });             
+
+    // Reorder ranks and labels when a collection item is removed.
+    $(document).on('click', ".text-danger", function(event){
+        if (event.preventDefault) event.preventDefault(); else event.returnValue = false;
+        
+        // Chapters
+        reorderRankAndLabel($('#tutorial_tutorialChapter'), '.field-fbn_guidebundle_tutorialchapter');
+
+        // Chapters Paras
+        var chaptersParasContainer = $('div[id*="tutorial_tutorialChapter_"]').not('[id*="tutorialChapterParas"]');
+        chaptersParasContainer.each(function(index) {
+            reorderRankAndLabel($(this), '.field-fbn_guidebundle_tutorialchapterpara');
+        });                                
+    }); 
 });
 
