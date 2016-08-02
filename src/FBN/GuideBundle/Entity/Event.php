@@ -508,7 +508,7 @@ class Event extends Article
      *
      * @return Coordinates
      */
-    public function setTel($tel)
+    public function setTel($tel = null)
     {
         $this->tel = $tel;
 
@@ -532,7 +532,7 @@ class Event extends Article
      *
      * @return Event
      */
-    public function setSite($site)
+    public function setSite($site = null)
     {
         $this->site = $site;
 
@@ -556,7 +556,7 @@ class Event extends Article
      *
      * @return Event
      */
-    public function setHref($href)
+    public function setHref($href = null)
     {
         $this->href = $href;
 

@@ -113,7 +113,7 @@ class WinemakerDomain
      *
      * @return WinemakerDomain
      */
-    public function setDomain($domain)
+    public function setDomain($domain = null)
     {
         $this->domain = $domain;
 
@@ -161,7 +161,7 @@ class WinemakerDomain
      *
      * @return Coordinates
      */
-    public function setTel($tel)
+    public function setTel($tel = null)
     {
         $this->tel = $tel;
 
@@ -185,7 +185,7 @@ class WinemakerDomain
      *
      * @return Winemaker
      */
-    public function setSite($site)
+    public function setSite($site = null)
     {
         $this->site = $site;
 
@@ -209,7 +209,7 @@ class WinemakerDomain
      *
      * @return Winemaker
      */
-    public function setHref($href)
+    public function setHref($href = null)
     {
         $this->href = $href;
 

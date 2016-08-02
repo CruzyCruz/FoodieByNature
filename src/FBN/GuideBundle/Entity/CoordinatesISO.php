@@ -72,7 +72,7 @@ class CoordinatesISO
      *
      * @return CordonneesFR
      */
-    public function setLaneNum($laneNum)
+    public function setLaneNum($laneNum = null)
     {
         $this->laneNum = $laneNum;
 
@@ -96,7 +96,7 @@ class CoordinatesISO
      *
      * @return CoordinatesFR
      */
-    public function setLaneName($laneName)
+    public function setLaneName($laneName = null)
     {
         $this->laneName = $laneName;
 
@@ -120,7 +120,7 @@ class CoordinatesISO
      *
      * @return Coordinates
      */
-    public function setLocality($locality)
+    public function setLocality($locality = null)
     {
         $this->locality = $locality;
 
@@ -192,7 +192,7 @@ class CoordinatesISO
      *
      * @return Coordinates
      */
-    public function setMiscellaneous($miscellaneous)
+    public function setMiscellaneous($miscellaneous = null)
     {
         $this->miscellaneous = $miscellaneous;
 

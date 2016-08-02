@@ -53,7 +53,7 @@ class Info extends Article
      *
      * @return Info
      */
-    public function setSite($site)
+    public function setSite($site = null)
     {
         $this->site = $site;
 

@@ -62,7 +62,7 @@ class Bookmark
      *
      * @return Restaurant
      */
-    public function setRestaurant(\FBN\GuideBundle\Entity\Restaurant $restaurant)
+    public function setRestaurant(\FBN\GuideBundle\Entity\Restaurant $restaurant = null)
     {
         $this->restaurant = $restaurant;
 
@@ -86,7 +86,7 @@ class Bookmark
      *
      * @return Winemaker
      */
-    public function setWinemaker(\FBN\GuideBundle\Entity\Winemaker $winemaker)
+    public function setWinemaker(\FBN\GuideBundle\Entity\Winemaker $winemaker = null)
     {
         $this->winemaker = $winemaker;
 
@@ -110,7 +110,7 @@ class Bookmark
      *
      * @return Shop
      */
-    public function setShop(\FBN\GuideBundle\Entity\Shop $shop)
+    public function setShop(\FBN\GuideBundle\Entity\Shop $shop = null)
     {
         $this->shop = $shop;
 
@@ -134,7 +134,7 @@ class Bookmark
      *
      * @return user
      */
-    public function setUser(\FBN\UserBundle\Entity\User $user)
+    public function setUser(\FBN\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
 

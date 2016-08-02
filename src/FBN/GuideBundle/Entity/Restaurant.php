@@ -368,7 +368,7 @@ class Restaurant extends Article
      *
      * @return Restaurant
      */
-    public function setTel($tel)
+    public function setTel($tel = null)
     {
         $this->tel = $tel;
 
@@ -392,7 +392,7 @@ class Restaurant extends Article
      *
      * @return Restaurant
      */
-    public function setSite($site)
+    public function setSite($site = null)
     {
         $this->site = $site;
 
@@ -416,7 +416,7 @@ class Restaurant extends Article
      *
      * @return Restaurant
      */
-    public function setHref($href)
+    public function setHref($href = null)
     {
         $this->href = $href;
 
