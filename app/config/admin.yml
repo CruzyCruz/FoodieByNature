@@ -5,6 +5,9 @@ easy_admin:
     #list:
         # Add show action to list view
     #    actions: ['show']
+    formats:
+        # No comma separator for thousands
+        number: '%.0f'        
     entities:
         User:
             class: FBN\UserBundle\Entity\User
