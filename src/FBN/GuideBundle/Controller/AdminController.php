@@ -29,4 +29,34 @@ class AdminController extends BaseAdminController
 
         return $formBuilder;
     }
+
+    /**
+     * {@inheritdoc}
+     * 
+     * FOS User integration : user creation.     
+     */
+    public function createNewUserEntity()
+    {
+        return $this->get('fos_user.user_manager')->createUser();
+    }
+
+    /**
+     * {@inheritdoc}
+     * 
+     * FOS User integration : let Doctrine take of persisting the user.     
+     */
+    public function prePersistUserEntity($user)
+    {
+        $this->get('fos_user.user_manager')->updateUser($user, false);
+    }
+
+    /**
+     * {@inheritdoc}
+     * 
+     * FOS User integration : let Doctrine take of updating the user.     
+     */
+    public function preUpdateUserEntity($user)
+    {
+        $this->get('fos_user.user_manager')->updateUser($user, false);
+    }
 }

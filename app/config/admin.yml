@@ -6,6 +6,29 @@ easy_admin:
         # Add show action to list view
     #    actions: ['show']
     entities:
+        User:
+            class: FBN\UserBundle\Entity\User
+            list:
+                fields: 
+                    - 'username'
+                    - 'email'
+                    - 'roles'
+                    # Disabled indicates an account has been administratively or automatically disabled for some reason. Usually some action is required to release it.
+                    - 'enabled'
+                    # Locked indicates an account has been automatically suspended due to invalid login attempts. Usually the passage of time or (less often) requesting manual unlocking is required to release it.
+                    # Stof said : there is no automatic system to lock the user either (unless you implemented your own)
+                    # https://github.com/FriendsOfSymfony/FOSUserBundle/issues/1413
+                    - 'locked'
+                    - 'lastLogin'
+            form:
+                fields:
+                    - 'username'
+                    - 'email'
+                    # Property not mapped. Used to change user password.
+                    - { property: 'plainPassword', type: 'text' }
+                    - 'roles'
+                    - 'enabled'
+                    - 'locked'          
         Restaurant:
             class : FBN\GuideBundle\Entity\Restaurant
             list:
