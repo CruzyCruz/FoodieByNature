@@ -20,6 +20,8 @@ easy_admin:
                     # https://github.com/FriendsOfSymfony/FOSUserBundle/issues/1413
                     - 'locked'
                     - 'lastLogin'
+                    - 'googleId'
+                    - 'facebookId'                    
             form:
                 fields:
                     - 'username'
@@ -28,7 +30,7 @@ easy_admin:
                     - { property: 'plainPassword', type: 'text' }
                     - 'roles'
                     - 'enabled'
-                    - 'locked'          
+                    - 'locked'      
         Restaurant:
             class : FBN\GuideBundle\Entity\Restaurant
             list:
