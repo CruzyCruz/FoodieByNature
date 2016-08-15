@@ -43,6 +43,7 @@ class Tutorial extends Article
     private $id;
 
     /**
+     * @Gedmo\Translatable
      * @Gedmo\Slug(updatable=true, fields={"name"}, prefix="tutorial-")
      * @ORM\Column(length=128, unique=true)
      */
