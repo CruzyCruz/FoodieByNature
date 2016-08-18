@@ -92,6 +92,7 @@ swiftmailer:
 stof_doctrine_extensions:
     default_locale: fr
     translation_fallback: true
+    #persist_default_translation: true
     orm:
         default:
             timestampable: true

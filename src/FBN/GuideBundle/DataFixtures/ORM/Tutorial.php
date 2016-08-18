@@ -8,10 +8,22 @@ namespace FBN\GuideBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use FBN\GuideBundle\Entity\Tutorial as Tuto;
 
-class Tutorial extends AbstractFixture implements OrderedFixtureInterface
+class Tutorial extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
@@ -37,8 +49,6 @@ class Tutorial extends AbstractFixture implements OrderedFixtureInterface
             'Not stabilized, natural wines are living wines that taste and expression change during the tasting. As such, they can sometimes "destabilize" lovers of classic wines.',
             );
 
-        $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
-
         $tutorialsection_ids = array(
             1,
             1,
@@ -50,13 +60,10 @@ class Tutorial extends AbstractFixture implements OrderedFixtureInterface
         foreach ($names as $i => $name) {
             $tutorial[$i] = new Tuto();
             $tutorial[$i]->setName($name);
-            $repository->translate($tutorial[$i], 'name', 'en', $namesen[$i]);
         }
 
         foreach ($descriptions as $i => $description) {
             $tutorial[$i]->setDescription($description);
-
-            $repository->translate($tutorial[$i], 'description', 'en', $descriptionsen[$i]);
         }
 
         foreach ($authors as $i => $author) {
@@ -71,6 +78,25 @@ class Tutorial extends AbstractFixture implements OrderedFixtureInterface
             $tutorial[$i]->setImage($this->getReference('imagetutorial-'.$i));
         }
 
+        $manager->flush();
+
+        // Translations managed after entities persistence in default locale (first flushing) for slug translation
+        // It is needed to call translatable listener and change the locale before setting translatable fields
+        // This way, slug is automatically translated
+        unset($tutorial);
+
+        $repositoryTuto = $manager->getRepository('FBNGuideBundle:Tutorial');
+        $tutorials = $repositoryTuto->findAll();
+
+        $translatableListener = $this->container->get('stof_doctrine_extensions.listener.translatable');
+
+        // Locale : en
+        $translatableListener->setTranslatableLocale('en');
+
+        foreach ($tutorials as $i => $tutorial) {
+            $tutorial->setName($namesen[$i]);
+            $tutorial->setDescription($descriptionsen[$i]);
+        }
         $manager->flush();
     }
 
