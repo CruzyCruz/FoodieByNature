@@ -140,7 +140,6 @@ easy_admin:
                     - { property: 'image', type: 'FBN\GuideBundle\Form\ImageEventType' }
                     - 'dateStart'
                     - 'dateEnd'
-                    - 'year'
                     - 'openingHours'
                     - 'tel'
                     - 'site'

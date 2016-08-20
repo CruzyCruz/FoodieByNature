@@ -142,11 +142,13 @@ class GuideController extends Controller
 
     public function tutorialAction($slug)
     {
+        $locale = $this->get('request')->getLocale();
+
         $tutorial = $this
             ->getDoctrine()
             ->getManager()
             ->getRepository('FBNGuideBundle:Tutorial')
-            ->getTutorial($slug);
+            ->getTutorial($slug, $locale);
 
         if (null === $tutorial) {
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');

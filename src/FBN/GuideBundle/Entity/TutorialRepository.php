@@ -29,7 +29,7 @@ class TutorialRepository extends EntityRepository
         return $query->getResult();
     }
 
-    public function getTutorial($slug)
+    public function getTutorial($slug, $locale)
     {
         $qb = $this->createQueryBuilder('t')
             ->leftJoin('t.image', 'i')
@@ -48,6 +48,20 @@ class TutorialRepository extends EntityRepository
         $query->setHint(
             \Doctrine\ORM\Query::HINT_CUSTOM_OUTPUT_WALKER,
             'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker'
+        );
+
+        // In case memcach or apc is activated (https://github.com/Atlantic18/DoctrineExtensions/blob/master/doc/translatable.md#using-orm-query-hint)
+
+        // Locale
+        $query->setHint(
+            \Gedmo\Translatable\TranslatableListener::HINT_TRANSLATABLE_LOCALE,
+            $locale
+        );
+
+        // Fallback
+        $query->setHint(
+            \Gedmo\Translatable\TranslatableListener::HINT_FALLBACK,
+            1 // fallback to default values in case if record is not translated
         );
 
         return $query->getOneOrNullResult();
