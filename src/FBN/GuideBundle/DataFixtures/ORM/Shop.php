@@ -17,7 +17,7 @@ class Shop extends AbstractFixture implements OrderedFixtureInterface
     {
         $names = array('Vinea', 'Le Tire Bouchon', 'Les Caves Augé', 'Les Zinzins du Vin');
 
-        $descriptions = array(null, null, null, null);
+        $descriptionsfr = array(null, null, null, null);
 
         $authors = array('AH', 'CB', 'AH', 'AH');
 
@@ -36,9 +36,9 @@ class Shop extends AbstractFixture implements OrderedFixtureInterface
                         'Tous les jours, de 11h30 à 15h et de 19h30 à 22h30 (22h le dimanche).',
                         );
 
-        $descriptionsen = array(null, null, null, null);
+        $descriptions = array(null, null, null, null);
 
-        $openingHoursen = array(
+        $openingHoursfr = array(
                         'From noon to 2:30pm and from 7pm to 11pm. Closed Sunday.',
                         'From 7pm to 10:30pm. Closed Sunday and Monday.',
                         'From noon to 2:30pm (except Saturday) and from 7:30pm to 11pm. Closed Sunday.',
@@ -56,7 +56,7 @@ class Shop extends AbstractFixture implements OrderedFixtureInterface
         foreach ($descriptions as $i => $description) {
             $shop[$i]->setDescription($description);
 
-            $repository->translate($shop[$i], 'description', 'en', $descriptionsen[$i]);
+            $repository->translate($shop[$i], 'description', 'fr', $descriptionsfr[$i]);
         }
 
         foreach ($authors as $i => $author) {
@@ -82,7 +82,7 @@ class Shop extends AbstractFixture implements OrderedFixtureInterface
         foreach ($openingHours as $i => $openingHour) {
             $shop[$i]->setOpeningHours($openingHour);
 
-            $repository->translate($shop[$i], 'openingHours', 'en', $openingHoursen[$i]);
+            $repository->translate($shop[$i], 'openingHours', 'fr', $openingHoursfr[$i]);
 
             $manager->persist($shop[$i]);
 

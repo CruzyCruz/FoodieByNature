@@ -14,9 +14,9 @@ class Info extends AbstractFixture implements OrderedFixtureInterface
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $names = array('La force est avec lui !', 'Un coffee shop en cachait un autre', 'Papier à mâcher', 'Bon grain !', 'Dis camion !', 'Encore un !', 'Rien ne l\'arrête !', 'Jurassique Arnal', 'Papier à mâcher', 'Top 50 !');
+        $namesfr = array('La force est avec lui !', 'Un coffee shop en cachait un autre', 'Papier à mâcher', 'Bon grain !', 'Dis camion !', 'Encore un !', 'Rien ne l\'arrête !', 'Jurassique Arnal', 'Papier à mâcher', 'Top 50 !');
 
-        $descriptions = array(
+        $descriptionsfr = array(
             'Après la Crèmerie la semaine dernière, David Lanher (Racines, Vivant, Stern, Noglu…) vient de s’offrir le Bon Saint Pourcain, rue Servandoni dans le 6e…',
             'Le Poutch remplacera le Tuck Shop de la rue Lucien Sampaix à partir de début novembre.',
             'La BD “les Secrets du chocolat” (Delcourt), de Franckie Alarçon, nous entraînera dès le 13 novembre dans l’atelier de Jacques Genin ! 15,95 €.',
@@ -29,9 +29,9 @@ class Info extends AbstractFixture implements OrderedFixtureInterface
             'Classé 17ème, Candelaria est le premier bar français à entrer dans les 50 meilleurs bars du monde. Classement établi par 334 professionnels du secteur, répartis dans 46 pays, et dévoilé dans Drinks International.',
             );
 
-        $namesen = array('The force is with him!', 'A coffee shop in another hiding', 'Paper chewing', 'Good grain !', 'Dis camion !', 'Another one!', 'Nothing\'s stop!', 'Jurassic Arnal', 'Paper chewing', 'Top 50 !');
+        $names = array('The force is with him!', 'A coffee shop in another hiding', 'Paper chewing', 'Good grain !', 'Dis camion !', 'Another one!', 'Nothing\'s stop!', 'Jurassic Arnal', 'Paper chewing', 'Top 50 !');
 
-        $descriptionsen = array(
+        $descriptions = array(
             'After Creamery last week, David Lanher ( Roots , living, Stern, Noglu ... ) just to afford the Bon Saint Pourcain Servandoni street in the 6th ...',
             'The Tuck Shop Poutch replace street Lucien Sampaix from early November.',
             'BD " Secrets of Chocolate " ( Delcourt ) of Frankie Alarcon , lead us from November 13 in the studio of Jacques Genin ! € 15.95.',
@@ -53,13 +53,13 @@ class Info extends AbstractFixture implements OrderedFixtureInterface
             $news[$i]->setName($name);
             $news[$i]->setPublication(true);
 
-            $repository->translate($news[$i], 'name', 'en', $namesen[$i]);
+            $repository->translate($news[$i], 'name', 'fr', $namesfr[$i]);
         }
 
         foreach ($descriptions as $i => $description) {
             $news[$i]->setDescription($description);
 
-            $repository->translate($news[$i], 'description', 'en', $descriptionsen[$i]);
+            $repository->translate($news[$i], 'description', 'fr', $descriptionsfr[$i]);
         }
 
         foreach ($authors as $i => $author) {

@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/RestaurantBonus.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 //use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -16,9 +15,9 @@ class RestaurantBonus extends AbstractFixture implements OrderedFixtureInterface
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $bonuss = array('Terrasse', 'Jardin', 'Ouvert le dimanche', 'Faim de nuit');
+        $bonussfr = array('Terrasse', 'Jardin', 'Ouvert le dimanche', 'Faim de nuit');
 
-        $bonussen = array('Terrace', 'Garden', 'Open sunday', 'Late night hunger');
+        $bonuss = array('Terrace', 'Garden', 'Open sunday', 'Late night hunger');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -26,7 +25,7 @@ class RestaurantBonus extends AbstractFixture implements OrderedFixtureInterface
             $restaurantbonus[$i] = new RestrntBonus();
             $restaurantbonus[$i]->setBonus($bonus);
 
-            $repository->translate($restaurantbonus[$i], 'bonus', 'en', $bonussen[$i]);
+            $repository->translate($restaurantbonus[$i], 'bonus', 'fr', $bonussfr[$i]);
 
             $manager->persist($restaurantbonus[$i]);
 

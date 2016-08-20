@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/ImageTutorialChapterParaVinNaturel.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 use Symfony\Component\HttpFoundation\File\File;
@@ -16,16 +15,16 @@ class ImageTutorialChapterParaVinNaturel extends AbstractFixture implements Orde
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $ranks = array(0,0,0,0);
+        $ranks = array(0, 0, 0, 0);
 
         $path = __DIR__.'/../../../../../web/uploads/images-source/tutorials/';
         $pathto = __DIR__.'/../../../../../web/uploads/images/tutorials/';
 
-        $names = array('tutorial-le-vin-au-naturel-c0-p0-i0.jpg','tutorial-le-vin-au-naturel-c1-p1-i1.jpg','tutorial-le-vin-au-naturel-c2-p2-i2.jpg','tutorial-le-vin-au-naturel-c3-p3-i3.jpg');
+        $names = array('tutorial-le-vin-au-naturel-c0-p0-i0.jpg', 'tutorial-le-vin-au-naturel-c1-p1-i1.jpg', 'tutorial-le-vin-au-naturel-c2-p2-i2.jpg', 'tutorial-le-vin-au-naturel-c3-p3-i3.jpg');
 
-        $legends = array('Le terroir','C\'est quoi un vin naturel ?','Les vins bio','La viticulture biodynamique');
+        $legendsfr = array('Le terroir', 'C\'est quoi un vin naturel ?', 'Les vins bio', 'La viticulture biodynamique');
 
-        $legendsen = array('The terroir','What is a natural wine?','Organic wines','Biodynamic viticulture');
+        $legends = array('The terroir', 'What is a natural wine?', 'Organic wines', 'Biodynamic viticulture');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -44,7 +43,7 @@ class ImageTutorialChapterParaVinNaturel extends AbstractFixture implements Orde
         foreach ($legends as $i => $legend) {
             $imagetutorialcp[$i]->setLegend($legend);
 
-            $repository->translate($imagetutorialcp[$i], 'legend', 'en', $legendsen[$i]);
+            $repository->translate($imagetutorialcp[$i], 'legend', 'fr', $legendsfr[$i]);
 
             $manager->persist($imagetutorialcp[$i]);
 

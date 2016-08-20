@@ -15,16 +15,16 @@ class TutorialSection extends AbstractFixture implements OrderedFixtureInterface
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $sections = array('Comprendre', 'Boire', 'Faire');
+        $sectionsfr = array('Comprendre', 'Boire', 'Faire');
 
-        $sectionsen = array('Understand', 'Drink', 'Make');
+        $sections = array('Understand', 'Drink', 'Make');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
         foreach ($sections as $i => $section) {
             $tutorialsection[$i] = new TutoSection();
             $tutorialsection[$i]->setSection($section);
-            $repository->translate($tutorialsection[$i], 'section', 'en', $sectionsen[$i]);
+            $repository->translate($tutorialsection[$i], 'section', 'fr', $sectionsfr[$i]);
 
             $this->addReference('tutorialsection-'.$i, $tutorialsection[$i]);
 

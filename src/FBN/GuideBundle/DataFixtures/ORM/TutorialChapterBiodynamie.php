@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/TutorialChapterBiodynamie.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 //use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -16,11 +15,11 @@ class TutorialChapterBiodynamie extends AbstractFixture implements OrderedFixtur
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $titles = array('Les buts de l’agriculture biodynamique', 'Historique de l’agriculture biodynamique en France', 'Historique de l’agriculture biodynamique dans le monde');
+        $titlesfr = array('Les buts de l’agriculture biodynamique', 'Historique de l’agriculture biodynamique en France', 'Les vins bio');
 
         $ranks = array(0, 1, 2);
 
-        $titlesen = array('The goals of biodynamic agriculture', 'History biodynamic agriculture in France', 'Organic wines', 'History biodynamic agriculture in the world');
+        $titles = array('The goals of biodynamic agriculture', 'History biodynamic agriculture in France', 'Organic wines');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -34,7 +33,7 @@ class TutorialChapterBiodynamie extends AbstractFixture implements OrderedFixtur
         foreach ($titles as $i => $title) {
             $tutorialchapter[$i] = new TutoChapter();
             $tutorialchapter[$i]->setTitle($title);
-            $repository->translate($tutorialchapter[$i], 'title', 'en', $titlesen[$i]);
+            $repository->translate($tutorialchapter[$i], 'title', 'fr', $titlesfr[$i]);
         }
 
         foreach ($ranks as $i => $rank) {

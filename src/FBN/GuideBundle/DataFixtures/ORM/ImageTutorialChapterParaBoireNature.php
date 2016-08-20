@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/ImageTutorialChapterParaBoireNature.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 use Symfony\Component\HttpFoundation\File\File;
@@ -16,16 +15,16 @@ class ImageTutorialChapterParaBoireNature extends AbstractFixture implements Ord
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $ranks = array(0,0,0,0,0);
+        $ranks = array(0, 0, 0, 0, 0);
 
         $path = __DIR__.'/../../../../../web/uploads/images-source/tutorials/';
         $pathto = __DIR__.'/../../../../../web/uploads/images/tutorials/';
 
-        $names = array('tutorial-boire-nature-c0-p0-i0.jpg','tutorial-boire-nature-c1-p0-i0.jpg','tutorial-boire-nature-c1-p1-i0.jpg','tutorial-boire-nature-c1-p2-i0.jpg','tutorial-boire-nature-c2-p0-i0.jpg');
+        $names = array('tutorial-boire-nature-c0-p0-i0.jpg', 'tutorial-boire-nature-c1-p0-i0.jpg', 'tutorial-boire-nature-c1-p1-i0.jpg', 'tutorial-boire-nature-c1-p2-i0.jpg', 'tutorial-boire-nature-c2-p0-i0.jpg');
 
-        $legends = array('Des vins vivants','Des vins détendus #0','Des vins détendus #1','Des vins détendus #2','Classsique vs Naturel');
+        $legendsfr = array('Des vins vivants', 'Des vins détendus #0', 'Des vins détendus #1', 'Des vins détendus #2', 'Classsique vs Naturel');
 
-        $legendsen = array('Alive wines','Relaxed Wines #0','Relaxed Wines #1','Relaxed Wines #2','Classic vs Natural');
+        $legends = array('Alive wines', 'Relaxed Wines #0', 'Relaxed Wines #1', 'Relaxed Wines #2', 'Classic vs Natural');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -44,7 +43,7 @@ class ImageTutorialChapterParaBoireNature extends AbstractFixture implements Ord
         foreach ($legends as $i => $legend) {
             $imagetutorialcp[$i]->setLegend($legend);
 
-            $repository->translate($imagetutorialcp[$i], 'legend', 'en', $legendsen[$i]);
+            $repository->translate($imagetutorialcp[$i], 'legend', 'fr', $legendsfr[$i]);
 
             $manager->persist($imagetutorialcp[$i]);
 

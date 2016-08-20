@@ -4,7 +4,6 @@
 
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
-//use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -15,9 +14,9 @@ class Event extends AbstractFixture implements OrderedFixtureInterface
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $names = array('Yvon Métras au Temps des Vendanges', 'Repas Gastronomique à Toulouse', 'Sous les pavés, la vigne !', 'La remise', 'Yvon Métras au Temps des Vendanges', 'Repas Gastronomique à Toulouse', 'La remise', 'Déjeuner sur l\'herbe chez Robert Plageoles');
+        $namesfr = array('Yvon Métras au Temps des Vendanges', 'Repas Gastronomique à Toulouse', 'Sous les pavés, la vigne !', 'La remise', 'Yvon Métras au Temps des Vendanges', 'Repas Gastronomique à Toulouse', 'La remise', 'Déjeuner sur l\'herbe chez Robert Plageoles');
 
-        $descriptions = array(
+        $descriptionsfr = array(
             'Au Temps des Vendanges ce Samedi 13 Septembre, dégustation des nouvelles cuvées de Fleurie et Beaujolais du Domaine Yvon Métras avec pour cette année, le retour du Fleurie "Le Printemps".',
             'Lors d\'un repas exceptionnel réalisé à l\'Amphitryon (Restaurant 2 étoiles Michelin à Colomiers), Yannick Delpech, Aziz Mokhtari (Les Petits Fayots) et Nicolas Brousse (Monsieur Marius), vous proposent un menu à 6 mains autour des produits du Sud-Ouest.',
             'Les dimanche 2 et lundi 3 novembre 2014, de 10h à 19h, retrouvez des dizaines de vignerons et leurs vins actuels et naturels, venus de France, d’Italie ou même d’Argentine (et aussi un peu de bière et du café) lors de la première édition du salon Rue89 Lyon des vins.',
@@ -29,8 +28,6 @@ class Event extends AbstractFixture implements OrderedFixtureInterface
             );
 
         $authors = array('CB', 'CB', 'AH', 'CB', 'AH', 'CB', 'CB', 'CB');
-
-        //$dates = array('13 Septembre 2013', '3 Avril 2013', '2 et 3 Novembre 2013', '30 et 31 Mars 2014', '20 Septembre 2014', '5 Avril 2013', '01 et 02 Avril 2014', '15 Juin 2014');
 
         $dateStarts = array(
             new \DateTime('2013-09-13'),
@@ -54,15 +51,13 @@ class Event extends AbstractFixture implements OrderedFixtureInterface
             new \DateTime('2014-06-15'),
             );
 
-        //$years = array('2013', '2013', '2013', '2013', '2014', '2014', '2014', '2014');
-
         $tels = array(null, '05 61 15 55 55', null, '06 82 01 77 08 (Loïc) / 04 75 52 51 02 (Jocelyne) / 06 88 10 59 47 (Alain)', null, null, null, null);
 
         $hrefs = array(null, null, 'http://www.rue89lyon.fr/salondesvins', 'http://www.laremise.fr', null, null, null, null);
 
         $sites = array(null, null, 'rue89lyon.fr/salondesvins', 'laremise.fr', null, null, null, null);
 
-        $openingHours = array(
+        $openingHoursfr = array(
                         'De 10h à 19h.',
                         'De 20h à minuit.',
                         'De 10h à 19h',
@@ -77,9 +72,9 @@ class Event extends AbstractFixture implements OrderedFixtureInterface
 
         $useextsites = array(true, false, false, false, true, true, true, true);
 
-        $namesen = array('Yvon Métras at Temps des Vendanges', 'Gourmet in Toulouse', 'Sous les pavés, la vigne !', 'La remise', 'Yvon Métras at Temps des Vendanges', 'Gourmet in Toulouse', 'La remise', 'Lunch on grass at Robert Plageoles');
+        $names = array('Yvon Métras at Temps des Vendanges', 'Gourmet in Toulouse', 'Sous les pavés, la vigne !', 'La remise', 'Yvon Métras at Temps des Vendanges', 'Gourmet in Toulouse', 'La remise', 'Lunch on grass at Robert Plageoles');
 
-        $descriptionsen = array(
+        $descriptions = array(
             'At Temps des Vendanges, this Saturday, September 13, tasting new wines and Beaujolais Fleurie Domaine Yvon Métras this year with the return of Fleurie "Spring".',
             'During a special meal made ​​Amphitryon (2 Michelin star restaurant in Colomiers), Yannick Delpech, Aziz Mokhtari (Little baked beans) and Nicolas Brousse (Mr. Marius), offer a menu of six hands around Southern products Nighthawk.',
             'Sunday 2 and Monday, November 3, 2014, from 10h to 19h, find dozens of wineries and their current and natural wines from France, Italy or even Argentina (and some beer and coffee) at the first edition of Rue89 Lyon wine.',
@@ -90,9 +85,7 @@ class Event extends AbstractFixture implements OrderedFixtureInterface
             'It\'s a beautiful spring invitation launches Robert Plageoles. The principle is simple, the visitor is providing picnic and to accompany the meal, the winemaker offers free wines for tasting.',
             );
 
-        //$datesen = array('September 13, 2013', 'April 3, 2013', '2 and 3 November, 2013', '30 and March 31, 2014', 'September 20, 2014', 'April 5 2014', '1 and April 2, 2014', 'June 15 2014');
-
-        $openingHoursen = array(
+        $openingHours = array(
                         'From 10am to 7pm.',
                         'De 8pm to noon.',
                         'From 10am to 7pm.',
@@ -110,13 +103,13 @@ class Event extends AbstractFixture implements OrderedFixtureInterface
             $event[$i]->setName($name);
             $event[$i]->setPublication(true);
 
-            $repository->translate($event[$i], 'name', 'en', $namesen[$i]);
+            $repository->translate($event[$i], 'name', 'fr', $namesfr[$i]);
         }
 
         foreach ($descriptions as $i => $description) {
             $event[$i]->setDescription($description);
 
-            $repository->translate($event[$i], 'description', 'en', $descriptionsen[$i]);
+            $repository->translate($event[$i], 'description', 'fr', $descriptionsfr[$i]);
         }
 
         foreach ($authors as $i => $author) {
@@ -125,19 +118,11 @@ class Event extends AbstractFixture implements OrderedFixtureInterface
 
         foreach ($dateStarts as $i => $dateStart) {
             $event[$i]->setDateStart($dateStart);
-
-            //$repository->translate($event[$i], 'date', 'en', $datesen[$i]);
         }
 
         foreach ($dateEnds as $i => $dateEnd) {
             $event[$i]->setDateEnd($dateEnd);
-
-            //$repository->translate($event[$i], 'date', 'en', $datesen[$i]);
         }
-
-        //foreach ($years as $i => $year) {
-        //    $event[$i]->setYear($year);
-        //}
 
         foreach ($tels as $i => $tel) {
             $event[$i]->setTel($tel);
@@ -162,7 +147,7 @@ class Event extends AbstractFixture implements OrderedFixtureInterface
         foreach ($openingHours as $i => $openingHour) {
             $event[$i]->setOpeningHours($openingHour);
 
-            $repository->translate($event[$i], 'openingHours', 'en', $openingHoursen[$i]);
+            $repository->translate($event[$i], 'openingHours', 'fr', $openingHoursfr[$i]);
 
             $manager->persist($event[$i]);
 

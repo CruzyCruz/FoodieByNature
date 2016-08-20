@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/ImageTutorial.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 use Symfony\Component\HttpFoundation\File\File;
@@ -16,16 +15,16 @@ class ImageTutorial extends AbstractFixture implements OrderedFixtureInterface
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $ranks = array(0,0,0,0,0);
+        $ranks = array(0, 0, 0, 0, 0);
 
         $path = __DIR__.'/../../../../../web/uploads/images-source/tutorials/';
         $pathto = __DIR__.'/../../../../../web/uploads/images/tutorials/';
 
-        $names = array('tutorial-le-vin-au-naturel.jpg','tutorial-la-biodynamie.jpg','tutorial-les-labels.jpg','tutorial-la-maceration-carbonique.jpg','tutorial-boire-nature.jpg');
+        $names = array('tutorial-le-vin-au-naturel.jpg', 'tutorial-la-biodynamie.jpg', 'tutorial-les-labels.jpg', 'tutorial-la-maceration-carbonique.jpg', 'tutorial-boire-nature.jpg');
 
-        $legends = array('Le vin au naturel','La biodynamie','Les labels','La macération carbonique','Boire nature');
+        $legends = array('Le vin au naturel', 'La biodynamie', 'Les labels', 'La macération carbonique', 'Boire nature');
 
-        $legendsen = array('Natural Wine','Biodynamics','Labels','Carbonic maceration','Drink nature');
+        $legendsfr = array('Natural Wine', 'Biodynamics', 'Labels', 'Carbonic maceration', 'Drink nature');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -44,7 +43,7 @@ class ImageTutorial extends AbstractFixture implements OrderedFixtureInterface
         foreach ($legends as $i => $legend) {
             $imagetutorial[$i]->setLegend($legend);
 
-            $repository->translate($imagetutorial[$i], 'legend', 'en', $legendsen[$i]);
+            $repository->translate($imagetutorial[$i], 'legend', 'fr', $legendsfr[$i]);
 
             $manager->persist($imagetutorial[$i]);
 

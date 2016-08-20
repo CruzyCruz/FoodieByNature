@@ -27,9 +27,9 @@ class Tutorial extends AbstractFixture implements OrderedFixtureInterface, Conta
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $names = array('Le vin au naturel', 'La biodynamie', 'Les labels', 'La macération carbonique', 'Boire nature');
+        $namesfr = array('Le vin au naturel', 'La biodynamie', 'Les labels', 'La macération carbonique', 'Boire nature');
 
-        $descriptions = array(
+        $descriptionsfr = array(
             'Il existe en France environ 3000 vignerons, soit moins de 3% à l’échelle nationale, qui travaillent en bio, biodynamie ou de manière naturelle se démarquant ainsi des pratiques productivistes. Pour des raisons éthiques, ces vignerons ont choisi de travailler en utilisant des pratiques respectueuses de l’environnement ayant pour objectif de retrouver l’expression naturelle des terroirs et le caractère vivant du vin.',
             'L’agriculture biodynamique est une agriculture assurant la santé du sol et des plantes pour procurer une alimentation saine aux animaux et aux Hommes. Elle se base sur une profonde compréhension des lois du « vivant » acquise par une vision qualitative/globale de la nature. Elle considère que la nature est actuellement tellement dégradée qu’elle n’est plus capable de se guérir elle-même et qu’il est nécessaire de redonner au sol sa vitalité féconde indispensable à la santé des plantes, des animaux et des Hommes grâce à des procédés thérapeutiques.',
             'AB, AOC, AOP, en cette période de rentrée, Oui Le Blog vous invite à réviser l’alphabet et à découvrir ce que garantissent labels et mentions de qualité. On vous prévient, on prévoit une interro-surprise en février.',
@@ -39,9 +39,9 @@ class Tutorial extends AbstractFixture implements OrderedFixtureInterface, Conta
 
         $authors = array('CB', 'AH', 'CB', 'AH', 'AH');
 
-        $namesen = array('The natural wine', 'Biodynamics', 'Labels', 'Carbonic maceration', 'Drink Nature');
+        $names = array('The natural wine', 'Biodynamics', 'Labels', 'Carbonic maceration', 'Drink Nature');
 
-        $descriptionsen = array(
+        $descriptions = array(
             'There are about 3,000 wineries in France, less than 3% nationally, working in organic, biodynamic or naturally consequently achieve productivist practices. For ethical reasons, these wineries have chosen to work using environmentally friendly practices with the goal of finding the natural expression of terroir and character of the wine alive.',
             'Biodynamic agriculture is a farming ensuring the health of soil and plants to provide healthy food to animals and men. It is based on a deep understanding of the laws of the "living" acquired by a qualitative / holistic view of nature. She believes that nature is now so degraded that it is no longer able to heal itself and it is necessary to restore the soil to its essential plant health fruitful vitality, animals and men through therapeutic methods.',
             'AB, AOC, AOP, in this period of re-entry, Yes Blog invites you to review the alphabet and discover that ensure labels and quality terms. Be warned, it is expected interro surprise in February.',
@@ -90,12 +90,12 @@ class Tutorial extends AbstractFixture implements OrderedFixtureInterface, Conta
 
         $translatableListener = $this->container->get('stof_doctrine_extensions.listener.translatable');
 
-        // Locale : en
-        $translatableListener->setTranslatableLocale('en');
+        // Locale : fr
+        $translatableListener->setTranslatableLocale('fr');
 
         foreach ($tutorials as $i => $tutorial) {
-            $tutorial->setName($namesen[$i]);
-            $tutorial->setDescription($descriptionsen[$i]);
+            $tutorial->setName($namesfr[$i]);
+            $tutorial->setDescription($descriptionsfr[$i]);
         }
         $manager->flush();
     }

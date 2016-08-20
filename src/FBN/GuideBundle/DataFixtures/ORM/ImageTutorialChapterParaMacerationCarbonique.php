@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/ImageTutorialChapterParaMacerationCarbonique.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 use Symfony\Component\HttpFoundation\File\File;
@@ -16,16 +15,16 @@ class ImageTutorialChapterParaMacerationCarbonique extends AbstractFixture imple
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $ranks = array(0,0,0);
+        $ranks = array(0, 0, 0);
 
         $path = __DIR__.'/../../../../../web/uploads/images-source/tutorials/';
         $pathto = __DIR__.'/../../../../../web/uploads/images/tutorials/';
 
-        $names = array('tutorial-la-maceration-carbonique-c0-p0-i0.jpg','tutorial-la-maceration-carbonique-c1-p0-i0.jpg','tutorial-la-maceration-carbonique-c2-p0-i0.jpg');
+        $names = array('tutorial-la-maceration-carbonique-c0-p0-i0.jpg', 'tutorial-la-maceration-carbonique-c1-p0-i0.jpg', 'tutorial-la-maceration-carbonique-c2-p0-i0.jpg');
 
-        $legends = array('Théorie','Mise en œuvre','Produits obtenus');
+        $legendsfr = array('Théorie', 'Mise en œuvre', 'Produits obtenus');
 
-        $legendsen = array('Theory','Implementation','Products obtained');
+        $legends = array('Theory', 'Implementation', 'Products obtained');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -44,7 +43,7 @@ class ImageTutorialChapterParaMacerationCarbonique extends AbstractFixture imple
         foreach ($legends as $i => $legend) {
             $imagetutorialcp[$i]->setLegend($legend);
 
-            $repository->translate($imagetutorialcp[$i], 'legend', 'en', $legendsen[$i]);
+            $repository->translate($imagetutorialcp[$i], 'legend', 'fr', $legendsfr[$i]);
 
             $manager->persist($imagetutorialcp[$i]);
 

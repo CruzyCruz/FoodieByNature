@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/ImageWinemaker.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 use Symfony\Component\HttpFoundation\File\File;
@@ -23,9 +22,9 @@ class ImageWinemaker extends AbstractFixture implements OrderedFixtureInterface
 
         $names = array('winemaker-didier-barral-il.jpg', 'winemaker-marcel-lapierre-il.jpg', 'winemaker-elian-da-ros-il.jpg', 'winemaker-robert-plageoles-il.jpg', 'winemaker-jacques-selosse-il.jpg');
 
-        $legends = array('Oui Didier!', 'RIP Marcel!', 'Da Da Da!', 'Roberto mio palmo!', 'The Jacky touch!');
+        $legendsfr = array('Oui Didier!', 'RIP Marcel!', 'Da Da Da!', 'Roberto mio palmo!', 'The Jacky touch!');
 
-        $legendsen = array('Yes Didier!', 'RIP Marcel!', 'Da Da Da!', 'Roberto mio palmo!', 'The Jacky touch!');
+        $legends = array('Yes Didier!', 'RIP Marcel!', 'Da Da Da!', 'Roberto mio palmo!', 'The Jacky touch!');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -44,7 +43,7 @@ class ImageWinemaker extends AbstractFixture implements OrderedFixtureInterface
         foreach ($legends as $i => $legend) {
             $imagewinemaker[$i]->setLegend($legend);
 
-            $repository->translate($imagewinemaker[$i], 'legend', 'en', $legendsen[$i]);
+            $repository->translate($imagewinemaker[$i], 'legend', 'fr', $legendsfr[$i]);
 
             $manager->persist($imagewinemaker[$i]);
 

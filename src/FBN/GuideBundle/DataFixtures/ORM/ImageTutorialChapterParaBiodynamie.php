@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/ImageTutorialChapterParaBiodyamie.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 use Symfony\Component\HttpFoundation\File\File;
@@ -16,16 +15,16 @@ class ImageTutorialChapterParaBiodynamie extends AbstractFixture implements Orde
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $ranks = array(0,0,0);
+        $ranks = array(0, 0, 0);
 
         $path = __DIR__.'/../../../../../web/uploads/images-source/tutorials/';
         $pathto = __DIR__.'/../../../../../web/uploads/images/tutorials/';
 
-        $names = array('tutorial-la-biodynamie-c0-p0-i0.jpg','tutorial-la-biodynamie-c1-p0-i0.jpg','tutorial-la-biodynamie-c2-p0-i0.jpg');
+        $names = array('tutorial-la-biodynamie-c0-p0-i0.jpg', 'tutorial-la-biodynamie-c1-p0-i0.jpg', 'tutorial-la-biodynamie-c2-p0-i0.jpg');
 
-        $legends = array('Les buts de l’agriculture biodynamique','Historique de l’agriculture biodynamique en France','Historique de l’agriculture biodynamique dans le monde');
+        $legendsfr = array('Les buts de l’agriculture biodynamique', 'Historique de l’agriculture biodynamique en France', 'Historique de l’agriculture biodynamique dans le monde');
 
-        $legendsen = array('The goals of biodynamic agriculture','History biodynamic agriculture in France','Organic wines');
+        $legends = array('The goals of biodynamic agriculture', 'History biodynamic agriculture in France', 'Organic wines');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -44,7 +43,7 @@ class ImageTutorialChapterParaBiodynamie extends AbstractFixture implements Orde
         foreach ($legends as $i => $legend) {
             $imagetutorialcp[$i]->setLegend($legend);
 
-            $repository->translate($imagetutorialcp[$i], 'legend', 'en', $legendsen[$i]);
+            $repository->translate($imagetutorialcp[$i], 'legend', 'fr', $legendsfr[$i]);
 
             $manager->persist($imagetutorialcp[$i]);
 
