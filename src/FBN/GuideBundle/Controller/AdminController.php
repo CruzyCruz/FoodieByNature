@@ -10,6 +10,34 @@ class AdminController extends BaseAdminController
 {
     /*
      * {@inheritdoc}
+     * 
+     * Restaurant : Remove non translatable fields for locale different of 'en'.
+     */
+    public function createRestaurantEntityFormBuilder($entity, $view)
+    {
+        $locale = $this->get('request')->getLocale();
+        $formBuilder = parent::createEntityFormBuilder($entity, $view);
+
+        if ($locale !== 'en') {
+            $formBuilder
+                ->remove('owner')
+                ->remove('tel')
+                ->remove('site')
+                ->remove('href')
+                ->remove('restaurantPrice')
+                ->remove('restaurantStyle')
+                ->remove('restaurantBonus')
+                ->remove('coordinates')
+                ->remove('isShop')
+                ->remove('publication')
+            ;
+        }
+
+        return $formBuilder;
+    }
+
+    /*
+     * {@inheritdoc}
      *
      * Set coordinates to null in Event entity when an alternatative is proposed (restaurant, shop...)
      */
