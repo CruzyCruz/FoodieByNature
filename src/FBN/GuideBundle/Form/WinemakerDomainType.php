@@ -7,9 +7,29 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use FBN\GuideBundle\Translation\TranslationManager;
 
 class WinemakerDomainType extends AbstractType
 {
+    private static $fieldsToBeDisabled = array(
+        'domain',
+        'tel',
+        'site',
+        'href',
+        'winemakerArea',
+        'coordinates',
+    );
+
+    /**
+     * @var TranslationManager
+     */
+    private $translationManager;
+
+    public function __construct(TranslationManager $translationManager)
+    {
+        $this->translationManager = $translationManager;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array                $options
@@ -26,7 +46,12 @@ class WinemakerDomainType extends AbstractType
                 'class' => 'FBNGuideBundle:WinemakerArea',
                 'property' => 'area',
                 ))
-            ->add('coordinates', CoordinatesType::class)
+            ->add('coordinates', CoordinatesType::class);
+
+        $this->translationManager->disableNonTranslatableFormFieldsForNonDefaultLocale(
+            $builder,
+            self::$fieldsToBeDisabled,
+            $options['locale'])
         ;
     }
 
@@ -37,6 +62,7 @@ class WinemakerDomainType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'FBN\GuideBundle\Entity\WinemakerDomain',
+            'locale' => null,
         ));
     }
 

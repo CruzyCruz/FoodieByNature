@@ -70,3 +70,13 @@ services:
     fbn_guide.event_manager:
         class : FBN\GuideBundle\Event\EventManager
         arguments: [@fbn_guide.coordinates_manager] 
+
+    fbn_guide.translation_manager:
+        class : FBN\GuideBundle\Translation\TranslationManager
+        arguments: [%locale%]                   
+
+    fbn_guide.form_type.winemaker_domain:
+        class : FBN\GuideBundle\Form\WinemakerDomainType
+        arguments: [@fbn_guide.translation_manager]
+        tags:
+            - { name: form.type }        

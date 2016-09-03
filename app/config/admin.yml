@@ -33,7 +33,7 @@ easy_admin:
                     - { property: 'plainPassword', type: 'text', type_options: { required: false} }
                     - 'roles'
                     - 'enabled'
-                    - 'locked'      
+                    - 'locked'                                  
         Restaurant:
             class : FBN\GuideBundle\Entity\Restaurant
             list:
@@ -45,19 +45,32 @@ easy_admin:
                 fields:
                     - 'name'
                     - 'author'
-                    - 'description'
-                    - 'owner'
+                    - 'description'                    
+                    - 'owner'                  
                     - 'openingHours'
-                    - 'tel'
-                    - 'site'
-                    - 'href'
+                    - 'tel'                    
+                    - 'site'                     
+                    - 'href'                    
                     - 'restaurantPrice'
                     - 'restaurantStyle'
                     - 'restaurantBonus'
                     - { property: 'image', type: 'FBN\GuideBundle\Form\ImageRestaurantType' }
-                    - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType' }                    
+                    - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType'}                    
                     - { property: 'isShop', type_options: { required: false } }
                     - { property: 'publication', type_options: { required: false } }
+                fields_to_be_disabled_for_non_default_locale:
+                    - 'name'
+                    - 'author'                  
+                    - 'owner'
+                    - 'tel'                     
+                    - 'site'                   
+                    - 'href'                   
+                    - 'restaurantPrice'
+                    - 'restaurantStyle'
+                    - 'restaurantBonus'
+                    - 'coordinates'                
+                    - 'isShop'
+                    - 'publication'                    
         Winemaker:
             class : FBN\GuideBundle\Entity\Winemaker
             list:
@@ -93,6 +106,15 @@ easy_admin:
                     - 'href'
                     - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType' }
                     - { property: 'publication', type_options: { required: false } }
+                fields_to_be_disabled_for_non_default_locale:
+                    - 'name'
+                    - 'author'                  
+                    - 'owner'
+                    - 'tel'                     
+                    - 'site'                   
+                    - 'href'                   
+                    - 'coordinates'
+                    - 'publication'                      
         Info:
             class : FBN\GuideBundle\Entity\Info
             list:
@@ -106,6 +128,9 @@ easy_admin:
                     - 'author'
                     - 'description'
                     - { property: 'publication', type_options: { required: false } }
+                fields_to_be_disabled_for_non_default_locale:
+                    - 'author'
+                    - 'publication'                                    
         Tutorial:
             class : FBN\GuideBundle\Entity\Tutorial
             list:
@@ -122,6 +147,10 @@ easy_admin:
                     - { property: 'image', type: 'FBN\GuideBundle\Form\ImageTutorialType' }
                     - { property: 'tutorialChapter', type: 'collection', type_options: { entry_type: 'FBN\GuideBundle\Form\TutorialChapterType', by_reference: false } }
                     - { property: 'publication', type_options: { required: false } }   
+                fields_to_be_disabled_for_non_default_locale:
+                    - 'author'
+                    - 'tutorialSection'                    
+                    - 'publication'                       
         Event: 
             class : FBN\GuideBundle\Entity\Event
             list:
@@ -152,6 +181,23 @@ easy_admin:
                     - { property: 'useExtTel', type_options: { required: false }, css_class: 'col-xs-12 useExtTel' } 
                     - { property: 'useExtSite', type_options: { required: false }, css_class: 'col-xs-12 useExtSite' }                    
                     - { property: 'publication', type_options: { required: false } }
+                fields_to_be_disabled_for_non_default_locale:
+                    - 'author'
+                    - 'eventType'
+                    - 'dateStart'
+                    - 'dateEnd'     
+                    - 'tel'
+                    - 'site'
+                    - 'href'                              
+                    - 'publication'
+                    - 'coordinates'                       
+                    - 'restaurant'
+                    - 'shop'
+                    - 'winemakerDomain'
+                    - 'eventPast'
+                    - 'useExtTel'
+                    - 'useExtSite'
+                    - 'publication'
         RestaurantBonus:    
             class : FBN\GuideBundle\Entity\RestaurantBonus
         RestaurantPrice:
@@ -183,3 +229,4 @@ easy_admin:
                 fields:            
                     - 'id'
                     - 'country'
+
