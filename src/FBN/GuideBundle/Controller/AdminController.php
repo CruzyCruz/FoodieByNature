@@ -6,10 +6,33 @@ use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdmin
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\HttpFoundation\Request;
 use FBN\GuideBundle\Form\WinemakerDomainType;
 
 class AdminController extends BaseAdminController
 {
+    /*
+     * {@inheritdoc}
+     * 
+     * Force all new action to be executed in default locale.
+     */
+    protected function newAction()
+    {
+        $response = parent::newAction();
+
+        $defaultLocale = $this->container->getParameter('locale');
+
+        if ($defaultLocale !== $this->get('request')->getLocale()) {
+            $locale = array('_locale' => $defaultLocale);
+            $queryParams = $this->get('request')->query->all();
+            $params = array_merge($locale, $queryParams);
+
+            return $this->redirectToRoute('easyadmin', $params);
+        }
+
+        return $response;
+    }
+
     /*
      * {@inheritdoc}
      * 
