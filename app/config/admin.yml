@@ -1,6 +1,33 @@
 easy_admin:
     site_name: 'Foodie By Nature'
-    #design:
+    design:
+        menu:
+            - { label: 'Languages' }
+            - { label: 'EN', route: 'fbn_guide_switch_admin_locale', params: { _locale: 'en' } }
+            - { label: 'FR', route: 'fbn_guide_switch_admin_locale', params: { _locale: 'fr' } }
+            - label: 'Users'
+            - { entity: 'User' }
+            - { label: 'Restaurants' }            
+            - Restaurant
+            - RestaurantBonus
+            - RestaurantStyle
+            - { label: 'Winemakers' }
+            - Winemaker
+            - WineakerArea
+            - { label: 'Shops' }
+            - Shop
+            - { label: 'Infos' }
+            - Info
+            - { label: 'Tutorials' }
+            - Tutorial
+            - TutorialSection   
+            - { label: 'Events' }
+            - Event
+            - EventType
+            - { label: 'Coordinates' }
+            - CoordinatesFRLane
+            - CoordinatesFRCity
+            - CoordinatesCountry
     #    form_theme: 'vertical'    
     #list:
         # Add show action to list view

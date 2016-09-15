@@ -7,10 +7,30 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use FBN\GuideBundle\Form\WinemakerDomainType;
 
 class AdminController extends BaseAdminController
 {
+    /**
+     * Language switcher.
+     *
+     * @param null|string $locale The locale.
+     *
+     * @return RedirectResponse The response.
+     */
+    public function switchLocaleAction($locale = null)
+    {
+        if (null === $locale) {
+            $locale = $this->get('request')->getLocale();
+        }
+
+        $params = $this->get('request')->getSession()->get('lastRouteData')['params'];
+        $params['_locale'] = $locale;
+
+        return $this->redirectToRoute('easyadmin', $params);
+    }
+
     /*
      * {@inheritdoc}
      * 

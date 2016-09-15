@@ -79,4 +79,9 @@ services:
         class : FBN\GuideBundle\Form\WinemakerDomainType
         arguments: [@fbn_guide.translation_manager]
         tags:
-            - { name: form.type }        
+            - { name: form.type }
+
+    fbn_guide.last_route_listener:
+        class: FBN\GuideBundle\EventListener\LastRouteListener        
+        tags:
+            - { name: kernel.event_subscriber }            
