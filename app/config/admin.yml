@@ -28,7 +28,7 @@ easy_admin:
             - CoordinatesFRLane
             - CoordinatesFRCity
             - CoordinatesCountry
-    #    form_theme: 'vertical'    
+        #form_theme: 'form/bootstrap_3_layout.html.twig'    
     #list:
         # Add show action to list view
     #    actions: ['show']

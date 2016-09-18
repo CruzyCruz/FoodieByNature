@@ -3,5 +3,20 @@
 {% block body_javascript %}
     {{ parent() }}
 
-    <script type="application/javascript" src="{{ asset('js/fbn-easyadmin-tutorial.js') }}"></script>
-{% endblock %}
+	{% if  app.request.attributes.get('_locale') == default_locale %}
+		{% set additional_js %}
+			<script type="application/javascript" src="{{ asset('js/fbn-easyadmin-tutorial.js') }}"></script>	
+		{% endset %}
+	{% else %}
+		{% set additional_js %}		
+			<script type="application/javascript" src="{{ asset('js/fbn-easyadmin-tutorial-non-default-locale.js') }}"></script>
+			<script type="application/javascript" src="{{ asset('js/fbn-easyadmin-collection-non-default-locale.js') }}"></script>			
+		{% endset %}
+	{% endif %}
+
+    {{ additional_js }}
+{% endblock body_javascript %}	
+
+
+
+
