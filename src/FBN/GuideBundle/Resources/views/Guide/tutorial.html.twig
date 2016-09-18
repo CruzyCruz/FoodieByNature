@@ -19,7 +19,7 @@
   />
 {% endif %}    
 
-<p>{{ tutorial.description }}</p>  
+<p>{{ tutorial.description|raw }}</p>  
 
 {% for tc in tutorial.tutorialChapter %}
   
@@ -27,7 +27,7 @@
 
   {% for tcp in tc.tutorialChapterParas %}
 
-    <p>{{ tcp.paragraph }}</p>
+    <p>{{ tcp.paragraph|raw }}</p>
 
 	{% if tcp.image is not null %}
 	  <img 

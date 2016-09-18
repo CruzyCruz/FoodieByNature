@@ -18,7 +18,7 @@
   <p>{{ shop.openingHours }}</p> 
 
   {% if shop.description is not null %}
-    <p>{{ shop.description }}</p>  
+    <p>{{ shop.description|raw }}</p>  
   {% endif %}  
 
   <h3>PAR ICI : </h3>

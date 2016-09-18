@@ -4,7 +4,7 @@
   <h1 id="{{ article.slug }}">{{ article.name }}</h1>
 	<br />
 
-  <p>{{ article.description }}</p> 
+  <p>{{ article.description|raw }}</p> 
     <hr />    
   {% else %}
     <p>Pas de {{ menu.section | lower }}</p>

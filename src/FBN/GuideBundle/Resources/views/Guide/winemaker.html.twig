@@ -20,7 +20,7 @@
   />
 {% endif %}    
 
-<p>{{ winemaker.description }}</p>  
+<p>{{ winemaker.description|raw }}</p>  
 
 
 {% for vd in winemaker.winemakerDomain %} 
