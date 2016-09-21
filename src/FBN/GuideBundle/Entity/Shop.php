@@ -321,6 +321,6 @@ class Shop extends Article
     /** {@inheritdoc} */
     public function __toString()
     {
-        return $this->getName();
+        return $this->getCoordinates()->__toString().' / '.$this->getName();
     }
 }

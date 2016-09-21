@@ -123,4 +123,21 @@ class Coordinates
     {
         return $this->restaurant;
     }
+
+    //private $test;
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        $country = $this->getCoordinatesCountry()->getCountry();
+        $codeISO = $this->getCoordinatesCountry()->getCodeISO();
+        $getCoordinatesISO = 'getCoordinates'.$codeISO;
+        $getCoordinatesISOCity = 'getCoordinates'.$codeISO.'City';
+
+        //dump($test);
+        //die();
+
+        //return $this->test();
+        return $country.' / '.$this->$getCoordinatesISO()->$getCoordinatesISOCity()->getCity();
+    }
 }
