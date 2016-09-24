@@ -115,7 +115,11 @@ easy_admin:
                     # by_reference : false => Needed to ensure that addWinemakerDomain() and removeWinemakerDomain() will be called during the flush.
                     # See (last lines) : http://symfony.com/doc/master/reference/forms/types/collection.html#by-reference
                     - { property: 'winemakerDomain', type: 'collection', type_options: { entry_type: 'FBN\GuideBundle\Form\WinemakerDomainType', by_reference: false } }
-                    - { property: 'publication', type_options: { required: false } }                    
+                    - { property: 'publication', type_options: { required: false } }
+                fields_to_be_disabled_for_non_default_locale:
+                    - 'name'
+                    - 'author'                  
+                    - 'publication'                        
         Shop:
             class : FBN\GuideBundle\Entity\Shop
             list:

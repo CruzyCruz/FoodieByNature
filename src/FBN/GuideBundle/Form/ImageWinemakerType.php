@@ -7,9 +7,31 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\HttpFoundation\RequestStack;
+use FBN\GuideBundle\Translation\TranslationManager;
 
 class ImageWinemakerType extends AbstractType
 {
+    private static $fieldsToBeDisabled = array(
+        'file',
+    );
+
+    /**
+     * @var RequestStack
+     */
+    private $requestStack;
+
+    /**
+     * @var TranslationManager
+     */
+    private $translationManager;
+
+    public function __construct(RequestStack $requestStack, TranslationManager $translationManager)
+    {
+        $this->requestStack = $requestStack;
+        $this->translationManager = $translationManager;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array                $options
@@ -23,6 +45,12 @@ class ImageWinemakerType extends AbstractType
                 'allow_delete' => true, // not mandatory, default is true
                 'download_link' => true, // not mandatory, default is true
                 ))
+        ;
+
+        $this->translationManager->disableNonTranslatableFormFieldsForNonDefaultLocale(
+            $builder,
+            self::$fieldsToBeDisabled,
+            $this->requestStack->getMasterRequest()->getLocale())
         ;
     }
 

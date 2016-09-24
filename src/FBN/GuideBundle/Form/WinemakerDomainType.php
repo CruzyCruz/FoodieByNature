@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\HttpFoundation\RequestStack;
 use FBN\GuideBundle\Translation\TranslationManager;
 
 class WinemakerDomainType extends AbstractType
@@ -21,12 +22,18 @@ class WinemakerDomainType extends AbstractType
     );
 
     /**
+     * @var RequestStack
+     */
+    private $requestStack;
+
+    /**
      * @var TranslationManager
      */
     private $translationManager;
 
-    public function __construct(TranslationManager $translationManager)
+    public function __construct(RequestStack $requestStack, TranslationManager $translationManager)
     {
+        $this->requestStack = $requestStack;
         $this->translationManager = $translationManager;
     }
 
@@ -51,7 +58,7 @@ class WinemakerDomainType extends AbstractType
         $this->translationManager->disableNonTranslatableFormFieldsForNonDefaultLocale(
             $builder,
             self::$fieldsToBeDisabled,
-            $options['locale'])
+            $this->requestStack->getMasterRequest()->getLocale())
         ;
     }
 
@@ -62,7 +69,6 @@ class WinemakerDomainType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'FBN\GuideBundle\Entity\WinemakerDomain',
-            'locale' => null,
         ));
     }
 

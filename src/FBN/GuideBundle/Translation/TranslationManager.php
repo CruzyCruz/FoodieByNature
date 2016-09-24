@@ -2,6 +2,8 @@
 
 namespace FBN\GuideBundle\Translation;
 
+use Symfony\Component\Form\FormBuilderInterface;
+
 class TranslationManager
 {
     /**
@@ -14,7 +16,14 @@ class TranslationManager
         $this->defaultLocale = $defaultLocale;
     }
 
-    public function disableNonTranslatableFormFieldsForNonDefaultLocale($formBuilder, $fieldsToBeDisabled, $currentLocale)
+    /**
+     * Disable non translatable form fields for non default locale.
+     *
+     * @param FormBuilderInterface $formBuilder
+     * @param array                $fieldsToBeDisabled
+     * @param string               $currentLocale
+     */
+    public function disableNonTranslatableFormFieldsForNonDefaultLocale(FormBuilderInterface $formBuilder, $fieldsToBeDisabled, $currentLocale)
     {
         if ($currentLocale !== $this->defaultLocale) {
             foreach ($fieldsToBeDisabled as $field) {

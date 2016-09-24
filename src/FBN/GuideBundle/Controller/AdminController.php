@@ -5,10 +5,8 @@ namespace FBN\GuideBundle\Controller;
 use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use FBN\GuideBundle\Form\WinemakerDomainType;
 
 class AdminController extends BaseAdminController
 {
@@ -74,17 +72,7 @@ class AdminController extends BaseAdminController
     {
         $formBuilder = parent::createEntityFormBuilder($entity, $view);
 
-        $formBuilder->add('winemakerDomain', CollectionType::class, array(
-                'entry_type' => WinemakerDomainType::class,
-                'by_reference' => false,
-                'entry_options' => array(
-                    'locale' => $this->get('request')->getLocale(),
-                    ),
-                )
-            )
-        ;
-
-        return $formBuilder;
+        return $this->getFormBuilderForNonDefaultLocale($formBuilder, $entity, $view);
     }
 
     /*
