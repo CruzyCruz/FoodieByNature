@@ -1,7 +1,8 @@
 easy_admin:
     site_name: 'Foodie By Nature'
     design:
-        menu:
+        menu:         
+            - { label: 'Logout', route: 'fos_user_security_logout' }
             - { label: 'Languages' }
             - { label: 'EN', route: 'fbn_guide_switch_admin_locale', params: { _locale: 'en' } }
             - { label: 'FR', route: 'fbn_guide_switch_admin_locale', params: { _locale: 'fr' } }
