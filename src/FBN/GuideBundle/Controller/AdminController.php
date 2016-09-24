@@ -7,6 +7,8 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use FBN\GuideBundle\Entity\EventRepository;
 
 class AdminController extends BaseAdminController
 {
@@ -133,6 +135,20 @@ class AdminController extends BaseAdminController
 
                 $event->setData($data);
             });
+        }
+
+        // Only in case of edition : do not self-reference event in events list.
+        if (null !== $id = $entity->getId()) {
+            $formBuilder->add('eventPast', EntityType::class, array(
+                'class' => 'FBNGuideBundle:Event',
+                'query_builder' => function (EventRepository $repo) use ($id) {
+
+                    return $repo->getEventsWithExcludedId($id);
+                    },
+                'attr' => ['data-widget' => 'select2'],
+                'placeholder' => 'label.form.empty_value',
+                'required' => false,
+                ));
         }
 
         return $this->getFormBuilderForNonDefaultLocale($formBuilder, $entity, $view);

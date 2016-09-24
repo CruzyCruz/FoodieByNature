@@ -15,7 +15,7 @@ class EventRepository extends EntityRepository
     public function getArticlesImages($first = 0, $limit = Article::NUM_ITEMS)
     {
         $qb = $this->createQueryBuilder('e')
-                   ->leftJoin('e.image', 'i')
+            ->leftJoin('e.image', 'i')
                    ->addSelect('i')
                    ->orderBy('e.datePublication', 'DESC')
                     ->where('e.publication = :publication')
@@ -27,6 +27,13 @@ class EventRepository extends EntityRepository
               ->setMaxResults($limit);
 
         return $query->getResult();
+    }
+
+    public function getEventsWithExcludedId($id = 0)
+    {
+        return $this->createQueryBuilder('e')
+            ->where('e.id != :id')
+            ->setParameter('id', $id);
     }
 
     public function getEvent($slug)
