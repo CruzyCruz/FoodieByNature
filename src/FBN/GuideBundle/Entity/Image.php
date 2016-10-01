@@ -5,6 +5,7 @@ namespace FBN\GuideBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Image.
@@ -26,7 +27,7 @@ class Image
      *
      * @var File
      */
-    private $file;
+    protected $file;
 
     /**
      * @var int
@@ -40,6 +41,7 @@ class Image
      *
      * @ORM\Column(name="legend", type="string", length=255)
      * @Gedmo\Translatable
+     * @Assert\NotBlank()
      */
     private $legend;
 

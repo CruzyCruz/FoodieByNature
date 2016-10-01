@@ -1,10 +1,11 @@
 <?php
 
-namespace FBN\GuideBundle\Translation;
+namespace FBN\GuideBundle\Form\Manager;
 
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\Request;
 
-class TranslationManager
+class FormManager
 {
     /**
      * @var string
@@ -30,5 +31,16 @@ class TranslationManager
                 $formBuilder->get($field)->setDisabled(true);
             }
         }
+    }
+
+    public function isFileFieldRequired(Request $masterRequest)
+    {
+        $action = $masterRequest->query->get('action');
+
+        if ($action === 'edit') {
+            return false;
+        }
+
+        return true;
     }
 }

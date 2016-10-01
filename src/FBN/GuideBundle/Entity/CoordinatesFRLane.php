@@ -28,7 +28,6 @@ class CoordinatesFRLane
      * @var string
      *
      * @ORM\Column(name="lane", type="string", length=255, unique=true)
-     * @Assert\NotNull()
      * @Assert\NotBlank()
      */
     private $lane;

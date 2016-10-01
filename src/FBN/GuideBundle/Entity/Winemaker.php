@@ -4,6 +4,7 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Winemaker.
@@ -15,12 +16,14 @@ class Winemaker extends Article
 {
     /**
    * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\WinemakerDomain", mappedBy="winemaker", cascade={"persist","remove"}, orphanRemoval=true)
+   * @Assert\Valid()
    */
   private $winemakerDomain;
 
   /**
    * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageWinemaker", inversedBy="winemaker", cascade={"persist","remove"})
    * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+   * @Assert\Valid()
    */
   private $image;
 

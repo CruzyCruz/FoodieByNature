@@ -4,6 +4,7 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Shop.
@@ -16,6 +17,7 @@ class Shop extends Article
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     * @Assert\Valid()
      */
     private $coordinates;
 
@@ -37,6 +39,7 @@ class Shop extends Article
      * @var string
      *
      * @ORM\Column(name="owner", type="string", length=255, nullable=false)
+     * @Assert\NotBlank()
      */
     private $owner;
 
@@ -65,7 +68,8 @@ class Shop extends Article
      * @var string
      *
      * @ORM\Column(name="openingHours", type="string", length=255)
-     * @Gedmo\Translatable     
+     * @Gedmo\Translatable
+     * @Assert\NotBlank()
      */
     private $openingHours;
 

@@ -16,7 +16,6 @@ class CoordinatesISO
      * @var string
      *
      * @ORM\Column(name="laneNum", type="string", length=255, nullable=true)
-     * @Assert\NotNull()
      * @Assert\NotBlank()
      */
     private $laneNum;
@@ -25,7 +24,6 @@ class CoordinatesISO
      * @var string
      *
      * @ORM\Column(name="laneName", type="string", length=255, nullable=true)
-     * @Assert\NotNull()
      * @Assert\NotBlank()
      */
     private $laneName;

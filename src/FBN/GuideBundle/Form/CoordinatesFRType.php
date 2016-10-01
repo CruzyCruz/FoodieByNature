@@ -27,9 +27,15 @@ class CoordinatesFRType extends AbstractType
                 'placeholder' => 'label.form.empty_value',
                 ))
             ->add('laneName', TextType::class)
-            ->add('miscellaneous', TextType::class)
-            ->add('locality', TextType::class)
-            ->add('metro', TextType::class)
+            ->add('miscellaneous', TextType::class, array(
+                'required' => false,
+                ))
+            ->add('locality', TextType::class, array(
+                'required' => false,
+                ))
+            ->add('metro', TextType::class,  array(
+                'required' => false,
+                ))
             ->add('coordinatesFRCity', EntityType::class, array(
                 'class' => 'FBNGuideBundle:CoordinatesFRCity',
                 'property' => 'display',

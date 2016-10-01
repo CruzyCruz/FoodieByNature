@@ -16,6 +16,7 @@ class Coordinates
     /**
      * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesCountry")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $coordinatesCountry;
 

@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\HttpFoundation\RequestStack;
-use FBN\GuideBundle\Translation\TranslationManager;
+use FBN\GuideBundle\Form\Manager\FormManager;
 
 class ImageRestaurantType extends AbstractType
 {
@@ -22,14 +22,14 @@ class ImageRestaurantType extends AbstractType
     private $requestStack;
 
     /**
-     * @var TranslationManager
+     * @var FormManager
      */
-    private $translationManager;
+    private $formManager;
 
-    public function __construct(RequestStack $requestStack, TranslationManager $translationManager)
+    public function __construct(RequestStack $requestStack, FormManager $formManager)
     {
         $this->requestStack = $requestStack;
-        $this->translationManager = $translationManager;
+        $this->formManager = $formManager;
     }
 
     /**
@@ -38,19 +38,25 @@ class ImageRestaurantType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $masterRequest = $this->requestStack->getMasterRequest();
+
+        $requiredFile = $this->formManager->isFileFieldRequired($masterRequest);
+
         $builder
-            ->add('legend', TextType::class)
+            ->add('legend', TextType::class, array(
+                'required' => true,
+                ))
             ->add('file', VichImageType::class, array(
-                'required' => false,
-                'allow_delete' => true, // not mandatory, default is true
+                'required' => $requiredFile,
+                'allow_delete' => false, // not mandatory, default is true
                 'download_link' => true, // not mandatory, default is true
                 ))
         ;
 
-        $this->translationManager->disableNonTranslatableFormFieldsForNonDefaultLocale(
+        $this->formManager->disableNonTranslatableFormFieldsForNonDefaultLocale(
             $builder,
             self::$fieldsToBeDisabled,
-            $this->requestStack->getMasterRequest()->getLocale())
+            $masterRequest->getLocale())
         ;
     }
 

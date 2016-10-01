@@ -35,7 +35,7 @@ class ImageTutorialChapterPara extends Image
      *
      * @var File
      */
-    private $file;
+    protected $file;
 
     /**
      * Get id.

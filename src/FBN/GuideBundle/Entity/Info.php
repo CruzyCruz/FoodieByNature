@@ -24,13 +24,6 @@ class Info extends Article
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="site", type="string", length=255, nullable=true)
-     */
-    private $site;
-
-    /**
      * @Gedmo\Slug(updatable=true, fields={"name"}, prefix="info-")
      * @ORM\Column(length=128, unique=true)
      */

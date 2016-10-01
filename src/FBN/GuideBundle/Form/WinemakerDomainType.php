@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpFoundation\RequestStack;
-use FBN\GuideBundle\Translation\TranslationManager;
+use FBN\GuideBundle\Form\Manager\FormManager;
 
 class WinemakerDomainType extends AbstractType
 {
@@ -27,14 +27,14 @@ class WinemakerDomainType extends AbstractType
     private $requestStack;
 
     /**
-     * @var TranslationManager
+     * @var FormManager
      */
-    private $translationManager;
+    private $formManager;
 
-    public function __construct(RequestStack $requestStack, TranslationManager $translationManager)
+    public function __construct(RequestStack $requestStack, FormManager $formManager)
     {
         $this->requestStack = $requestStack;
-        $this->translationManager = $translationManager;
+        $this->formManager = $formManager;
     }
 
     /**
@@ -44,10 +44,18 @@ class WinemakerDomainType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('domain', TextType::class)
-            ->add('tel', TextType::class)
-            ->add('site', TextType::class)
-            ->add('href', TextType::class)
+            ->add('domain', TextType::class, array(
+                'required' => false,
+                ))
+            ->add('tel', TextType::class, array(
+                'required' => false,
+                ))
+            ->add('site', TextType::class, array(
+                'required' => false,
+                ))
+            ->add('href', TextType::class, array(
+                'required' => false,
+                ))
             ->add('openingHours', TextType::class)
             ->add('winemakerArea', EntityType::class, array(
                 'class' => 'FBNGuideBundle:WinemakerArea',
@@ -55,7 +63,7 @@ class WinemakerDomainType extends AbstractType
                 ))
             ->add('coordinates', CoordinatesType::class);
 
-        $this->translationManager->disableNonTranslatableFormFieldsForNonDefaultLocale(
+        $this->formManager->disableNonTranslatableFormFieldsForNonDefaultLocale(
             $builder,
             self::$fieldsToBeDisabled,
             $this->requestStack->getMasterRequest()->getLocale())

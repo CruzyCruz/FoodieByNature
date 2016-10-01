@@ -189,7 +189,7 @@ class AdminController extends BaseAdminController
         $entityName = $this->getEntityFormOptions($entity, $view)['entity'];
         $fieldsToBeDisabled = $this->config['entities'][$entityName]['form']['fields_to_be_disabled_for_non_default_locale'];
 
-        $this->get('fbn_guide.translation_manager')->disableNonTranslatableFormFieldsForNonDefaultLocale(
+        $this->get('fbn_guide.form_manager')->disableNonTranslatableFormFieldsForNonDefaultLocale(
             $formBuilder,
             $fieldsToBeDisabled,
             $this->get('request')->getLocale())

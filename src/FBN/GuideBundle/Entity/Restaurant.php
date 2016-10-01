@@ -18,24 +18,28 @@ class Restaurant extends Article
     /**
      * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\RestaurantPrice")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $restaurantPrice;
 
     /**
      * @ORM\ManyToMany(targetEntity="FBN\GuideBundle\Entity\RestaurantStyle")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $restaurantStyle;
 
     /**
      * @ORM\ManyToMany(targetEntity="FBN\GuideBundle\Entity\RestaurantBonus")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $restaurantBonus;
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageRestaurant", inversedBy="restaurant", cascade={"persist","remove"})
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")     
+     * @Assert\Valid()
      */
     private $image;
 
@@ -64,6 +68,7 @@ class Restaurant extends Article
      * @var string
      *
      * @ORM\Column(name="owner", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $owner;
 
@@ -85,6 +90,7 @@ class Restaurant extends Article
      * @var string
      *
      * @ORM\Column(name="href", type="string", length=255, nullable=true)
+     * @Assert\Url(protocols = {"http", "https"})
      */
     private $href;
 

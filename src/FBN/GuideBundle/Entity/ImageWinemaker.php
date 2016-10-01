@@ -5,6 +5,7 @@ namespace FBN\GuideBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * ImageWinemaker.
@@ -32,10 +33,19 @@ class ImageWinemaker extends Image
 
     /**
      * @Vich\UploadableField(mapping="image_winemaker", fileNameProperty="name")
+     * @Assert\Image(
+     *     maxSize = "300k",
+     *     mimeTypes = {"image/jpeg"},
+     *     mimeTypesMessage = "Please upload a valid JPEG",
+     *     minWidth = 672,
+     *     maxWidth = 672,
+     *     minHeight = 469,
+     *     maxHeight = 469
+     * )
      *
      * @var File
      */
-    private $file;
+    protected $file;
 
     /**
      * Get id.

@@ -26,7 +26,6 @@ class CoordinatesFRCity extends CoordinatesISOCity
      * @var string
      *
      * @ORM\Column(name="areaPre2016", type="string", length=255)
-     * @Assert\NotNull()
      * @Assert\NotBlank()
      */
     private $areaPre2016;
@@ -35,7 +34,6 @@ class CoordinatesFRCity extends CoordinatesISOCity
      * @var string
      *
      * @ORM\Column(name="areaPost2016", type="string", length=255)
-     * @Assert\NotNull()
      * @Assert\NotBlank()
      */
     private $areaPost2016;
@@ -44,7 +42,6 @@ class CoordinatesFRCity extends CoordinatesISOCity
      * @var string
      *
      * @ORM\Column(name="deptNum", type="string", length=255)
-     * @Assert\NotNull()
      * @Assert\NotBlank()
      */
     private $deptNum;
@@ -53,7 +50,6 @@ class CoordinatesFRCity extends CoordinatesISOCity
      * @var string
      *
      * @ORM\Column(name="deptName", type="string", length=255)
-     * @Assert\NotNull()
      * @Assert\NotBlank()
      */
     private $deptName;
@@ -62,7 +58,6 @@ class CoordinatesFRCity extends CoordinatesISOCity
      * @var string
      *
      * @ORM\Column(name="district", type="integer")
-     * @Assert\NotNull()
      * @Assert\NotBlank()
      */
     private $district;

@@ -4,6 +4,7 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * WinemakerDomain.
@@ -17,18 +18,21 @@ class WinemakerDomain
     /**
      * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Winemaker", inversedBy="winemakerDomain")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
      */
     private $winemaker;
 
     /**
      * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\WinemakerArea")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $winemakerArea;
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
      */
     private $coordinates;
 

@@ -18,7 +18,9 @@ class TutorialChapterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class)
+            ->add('title', TextType::class, array(
+                'required' => true,
+                ))
             ->add('rank', HiddenType::class)
             ->add('tutorialChapterParas', CollectionType::class, array(
                 'entry_type' => TutorialChapterParaType::class,

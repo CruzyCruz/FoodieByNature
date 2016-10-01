@@ -122,7 +122,8 @@ class Event extends Article
      * @var string
      *
      * @ORM\Column(name="openingHours", type="string", length=255)
-     * @Gedmo\Translatable      
+     * @Gedmo\Translatable
+     * @Assert\NotBlank()   
      */
     private $openingHours;
 

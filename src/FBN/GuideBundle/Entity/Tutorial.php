@@ -24,6 +24,7 @@ class Tutorial extends Article
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageTutorial", inversedBy="tutorial", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     * @Assert\Valid()
      */
     private $image;
 

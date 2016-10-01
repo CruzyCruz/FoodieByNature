@@ -4,6 +4,7 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Article.
@@ -20,6 +21,7 @@ abstract class Article
      *
      * @ORM\Column(name="name", type="string", length=255, nullable = false)
      * @Gedmo\Translatable
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -35,6 +37,7 @@ abstract class Article
      *
      * @ORM\Column(name="description", type="text", nullable=true)
      * @Gedmo\Translatable
+     * @Assert\NotBlank()
      */
     private $description;
 
