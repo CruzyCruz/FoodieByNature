@@ -4,6 +4,7 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * WinemakerDomain.
@@ -17,20 +18,28 @@ class WinemakerDomain
     /**
      * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Winemaker", inversedBy="winemakerDomain")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
      */
     private $winemaker;
 
     /**
      * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\WinemakerArea")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $winemakerArea;
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
      */
     private $coordinates;
+
+    /**
+     * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\Event", mappedBy="winemakerDomain")
+     */
+    private $event;
 
     /**
      * @var int
@@ -86,6 +95,11 @@ class WinemakerDomain
      */
     private $locale;
 
+    public function __construct()
+    {
+        $this->event = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Get id.
      *
@@ -103,7 +117,7 @@ class WinemakerDomain
      *
      * @return WinemakerDomain
      */
-    public function setDomain($domain)
+    public function setDomain($domain = null)
     {
         $this->domain = $domain;
 
@@ -151,7 +165,7 @@ class WinemakerDomain
      *
      * @return Coordinates
      */
-    public function setTel($tel)
+    public function setTel($tel = null)
     {
         $this->tel = $tel;
 
@@ -175,7 +189,7 @@ class WinemakerDomain
      *
      * @return Winemaker
      */
-    public function setSite($site)
+    public function setSite($site = null)
     {
         $this->site = $site;
 
@@ -199,7 +213,7 @@ class WinemakerDomain
      *
      * @return Winemaker
      */
-    public function setHref($href)
+    public function setHref($href = null)
     {
         $this->href = $href;
 
@@ -296,5 +310,46 @@ class WinemakerDomain
     public function getCoordinates()
     {
         return $this->coordinates;
+    }
+
+    /**
+     * Add event.
+     *
+     * @param \FBN\GuideBundle\Entity\Event $event
+     *
+     * @return WinemakerDomain
+     */
+    public function addEvent(\FBN\GuideBundle\Entity\Event $event)
+    {
+        $this->event[] = $event;
+        $event->setWinemakerDomain($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove event.
+     *
+     * @param \FBN\GuideBundle\Entity\Event $event
+     */
+    public function removeEvent(\FBN\GuideBundle\Entity\Event $event)
+    {
+        $this->event->removeElement($event);
+    }
+
+    /**
+     * Get event.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getWinemaker()->getName().' / '.$this->getDomain().' / '.$this->getWinemakerArea()->getArea();
     }
 }

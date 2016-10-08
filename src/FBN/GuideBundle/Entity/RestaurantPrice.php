@@ -4,12 +4,15 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * RestaurantPrice.
  *
  * @ORM\Table(name="restaurantprice")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\RestaurantPriceRepository")
+ * @UniqueEntity(fields="price")
  */
 class RestaurantPrice
 {
@@ -27,6 +30,9 @@ class RestaurantPrice
      *
      * @ORM\Column(name="price", type="string", length=255, unique=true)
      * @Gedmo\Translatable
+     * @Assert\NotNull()
+     * @Assert\NotBlank()
+     * @Assert\Length(max = 50) 
      */
     private $price;
 
@@ -81,5 +87,11 @@ class RestaurantPrice
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
+    }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getPrice();
     }
 }

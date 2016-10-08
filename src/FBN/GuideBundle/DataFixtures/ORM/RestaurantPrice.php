@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/RestaurantPrice.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 //use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -16,9 +15,9 @@ class RestaurantPrice extends AbstractFixture implements OrderedFixtureInterface
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $prices = array('Moins de 15€', 'De 15 à 35€', 'De 35 à 50€', 'De 50 à 100€');
+        $pricesfr = array('Moins de 15€', 'De 15 à 35€', 'De 35 à 50€', 'De 50 à 100€');
 
-        $pricesen = array('Less than €15', '€15 to €35', '€35 to €50', '€50 to €100');
+        $prices = array('Less than €15', '€15 to €35', '€35 to €50', '€50 to €100');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -26,7 +25,7 @@ class RestaurantPrice extends AbstractFixture implements OrderedFixtureInterface
             $restaurantprice[$i] = new RestrntPrice();
             $restaurantprice[$i]->setPrice($price);
 
-            $repository->translate($restaurantprice[$i], 'price', 'en', $pricesen[$i]);
+            $repository->translate($restaurantprice[$i], 'price', 'fr', $pricesfr[$i]);
 
             $manager->persist($restaurantprice[$i]);
 

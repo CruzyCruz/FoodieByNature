@@ -15,12 +15,12 @@
 
 {% if winemaker.image is not null %}
   <img 
-    src="{{ asset(winemaker.image.webPath) }}"
+    src="{{ vich_uploader_asset(winemaker.image, 'file') }}"
     alt="{{ winemaker.name }}"
   />
 {% endif %}    
 
-<p>{{ winemaker.description }}</p>  
+<p>{{ winemaker.description|raw }}</p>  
 
 
 {% for vd in winemaker.winemakerDomain %} 
@@ -45,7 +45,7 @@
       {{ vd.coordinates.coordinatesFR.locality }}
     {% endif %}  
     <br />
-    {{ vd.coordinates.coordinatesFR.postcode ~ ' ' ~ vd.coordinates.city }}
+    {{ vd.coordinates.coordinatesFR.coordinatesFRCity.postCode ~ ' ' ~ vd.coordinates.coordinatesFR.coordinatesFRCity.city }}
   </p>
 
   {% if vd.tel is not null %}
@@ -57,9 +57,9 @@
 
   <p>{{ vd.openingHours }}</p>
 
-    {% if vd.coordinates.metro is not null %}
+    {% if vd.coordinates.coordinatesFR.metro is not null %}
       <h3>METRO : </h3>  
-      <p>{{ vd.coordinates.metro }}</p> 
+      <p>{{ vd.coordinates.coordinatesFR.metro }}</p> 
     {% endif %}  
 
   {% if vd.site is not null %}

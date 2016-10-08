@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/TutorialChapterVinNaturel.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 //use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -16,11 +15,11 @@ class TutorialChapterVinNaturel extends AbstractFixture implements OrderedFixtur
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $titles = array('Le terroir', 'C\'est quoi un vin naturel ?', 'Les vins bio', 'La viticulture biodynamique');
+        $titlesfr = array('Le terroir', 'C\'est quoi un vin naturel ?', 'Les vins bio', 'La viticulture biodynamique');
 
         $ranks = array(0, 1, 2, 3);
 
-        $titlesen = array('The terroir', 'What is a natural wine?', 'Organic wines', 'Biodynamic viticulture');
+        $titles = array('The terroir', 'What is a natural wine?', 'Organic wines', 'Biodynamic viticulture');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -34,7 +33,7 @@ class TutorialChapterVinNaturel extends AbstractFixture implements OrderedFixtur
         foreach ($titles as $i => $title) {
             $tutorialchapter[$i] = new TutoChapter();
             $tutorialchapter[$i]->setTitle($title);
-            $repository->translate($tutorialchapter[$i], 'title', 'en', $titlesen[$i]);
+            $repository->translate($tutorialchapter[$i], 'title', 'fr', $titlesfr[$i]);
         }
 
         foreach ($ranks as $i => $rank) {

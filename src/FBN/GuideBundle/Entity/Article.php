@@ -4,6 +4,7 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Article.
@@ -18,8 +19,9 @@ abstract class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable = true)
+     * @ORM\Column(name="name", type="string", length=255, nullable = false)
      * @Gedmo\Translatable
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -35,6 +37,7 @@ abstract class Article
      *
      * @ORM\Column(name="description", type="text", nullable=true)
      * @Gedmo\Translatable
+     * @Assert\NotBlank()
      */
     private $description;
 
@@ -69,9 +72,17 @@ abstract class Article
      */
     private $publication;
 
+    /**
+     * @var string
+     *
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     */
+    protected $locale;
+
     public function __construct()
     {
-        $this->publication = true;
         $this->datePublication = new \DateTime();
     }
 
@@ -244,16 +255,30 @@ abstract class Article
     }
 
     /**
-     * Get publication.
+     * Set locale.
+     *
+     * @param string $locale
+     */
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    /**
+     * Get class name.
      *
      * @return string
      */
     public function getClass()
     {
-        $classe = new \ReflectionClass($this);
+        $classInfo = new \ReflectionClass($this);
 
-        $namexplode = explode('\\', $classe->getName());
+        return $classInfo->getShortName();
+    }
 
-        return end($namexplode);
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

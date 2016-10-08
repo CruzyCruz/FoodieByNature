@@ -4,6 +4,7 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * EventType.
@@ -26,7 +27,8 @@ class EventType
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255)
-     * @Gedmo\Translatable 
+     * @Gedmo\Translatable
+     * @Assert\NotBlank()
      */
     private $type;
 
@@ -81,5 +83,11 @@ class EventType
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
+    }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getType();
     }
 }

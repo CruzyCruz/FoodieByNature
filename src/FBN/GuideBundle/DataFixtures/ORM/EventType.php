@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/EventType.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 //use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -16,9 +15,9 @@ class EventType extends AbstractFixture implements OrderedFixtureInterface
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $types = array('Rencontres vignerones', 'Salon', 'Exposition', 'Repas');
+        $typesfr = array('Rencontres vignerones', 'Salon', 'Exposition', 'Repas');
 
-        $typesen = array('Winegrowers meeting', 'Show', 'Exhibit', 'Meal');
+        $types = array('Winegrowers meeting', 'Show', 'Exhibit', 'Meal');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -26,7 +25,7 @@ class EventType extends AbstractFixture implements OrderedFixtureInterface
             $eventtype[$i] = new EvtType();
             $eventtype[$i]->setType($type);
 
-            $repository->translate($eventtype[$i], 'type', 'en', $typesen[$i]);
+            $repository->translate($eventtype[$i], 'type', 'fr', $typesfr[$i]);
 
             $manager->persist($eventtype[$i]);
 

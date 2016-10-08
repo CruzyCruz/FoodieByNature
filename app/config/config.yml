@@ -1,6 +1,13 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: admin.yml }
+
+parameters:
+    app.path.images_restaurant: /uploads/images/restaurants
+    app.path.images_winemaker: /uploads/images/winemakers
+    app.path.images_event: /uploads/images/events
+    app.path.images_tutorial: /uploads/images/tutorials
 
 framework:
     #esi:             ~
@@ -28,6 +35,10 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        default_locale: '%locale%'
+    #form_themes:
+    #    - 'VichUploaderBundle:Form:fields.html.twig'    
 
 # Assetic Configuration
 assetic:
@@ -81,8 +92,9 @@ swiftmailer:
 
 # Stof Doctrine Extensions Configuration
 stof_doctrine_extensions:
-    default_locale: fr
+    default_locale: "%locale%"
     translation_fallback: true
+    #persist_default_translation: true
     orm:
         default:
             timestampable: true
@@ -172,10 +184,69 @@ liip_imagine:
             filters:
                 thumbnail: { size: [224, 149], mode: outbound }
 
+vich_uploader:
 
-# Avalanche Imagine Configuration
-#avalanche_imagine:
-#    filters:
-#        thumb:
-#            type: thumbnail
-#            options: { size: [224, 149], mode: outbound }
+    db_driver: orm
+
+    mappings:
+
+        image_restaurant:
+            uri_prefix:         %app.path.images_restaurant%
+            upload_destination: %kernel.root_dir%/../web/%app.path.images_restaurant%
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+
+        image_winemaker:
+            uri_prefix:         %app.path.images_winemaker%
+            upload_destination: %kernel.root_dir%/../web/%app.path.images_winemaker%
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true            
+
+        image_event:
+            uri_prefix:         %app.path.images_event%
+            upload_destination: %kernel.root_dir%/../web/%app.path.images_event%
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true            
+
+        image_tutorial:
+            uri_prefix:         %app.path.images_tutorial%
+            upload_destination: %kernel.root_dir%/../web/%app.path.images_tutorial%
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true            
+
+        image_tutorial_chapter_para:
+            uri_prefix:         %app.path.images_tutorial%
+            upload_destination: %kernel.root_dir%/../web/%app.path.images_tutorial%
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true            
+
+bazinga_geocoder:
+    
+    providers:   
+        google_maps:
+            locale:             null
+            region:             null
+            use_ssl:            false
+            api_key:            null
+
+services:
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }            
+
+ivory_ck_editor:
+    jquery: true    
+    configs:
+        ck_editor_config:
+            toolbar: [ ['Bold', 'Italic', 'Strike', 'Link'], "-", ['BulletedList', 'NumberedList', '-', 'Outdent', 'Indent'], "-", ['Copy', 'Paste', 'PasteFromWord', '-', 'Undo', 'Redo'], "-", ['Maximize'] ]

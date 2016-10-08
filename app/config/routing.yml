@@ -1,3 +1,11 @@
+easy_admin_bundle:
+    #resource: "@EasyAdminBundle/Controller/"
+    resource: "@FBNGuideBundle/Controller/AdminController.php"
+    type:     annotation
+    prefix:   /{_locale}/admin
+    requirements:
+        _locale: en|fr    
+
 # Used for Oauth login to manage callback URI
 hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"

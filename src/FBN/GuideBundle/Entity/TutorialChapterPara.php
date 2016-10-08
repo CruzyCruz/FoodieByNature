@@ -4,6 +4,7 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * TutorialChapterPara.
@@ -21,8 +22,9 @@ class TutorialChapterPara
     private $tutorialChapter;
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Image", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageTutorialChapterPara", inversedBy="tutorialChapterPara", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     * @Assert\Valid()
      */
     private $image;
 
@@ -39,7 +41,8 @@ class TutorialChapterPara
      * @var string
      *
      * @ORM\Column(name="paragraph", type="text")
-     * @Gedmo\Translatable          
+     * @Gedmo\Translatable 
+     * @Assert\NotBlank()         
      */
     private $paragraph;
 
@@ -49,6 +52,12 @@ class TutorialChapterPara
      * @ORM\Column(name="rank", type="integer")
      */
     private $rank;
+
+    /**
+     * @Gedmo\Slug(updatable=true, unique=false, fields={"rank"}, prefix="-para-")
+     * @ORM\Column(length=128)
+     */
+    private $slug;
 
     /**
      * @var string
@@ -142,15 +151,40 @@ class TutorialChapterPara
     }
 
     /**
-     * Set image.
+     * Set slug.
      *
-     * @param \FBN\GuideBundle\Entity\Image $image
+     * @param string $slug
      *
      * @return TutorialChapterPara
      */
-    public function setImage(\FBN\GuideBundle\Entity\Image $image)
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug.
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set image.
+     *
+     * @param \FBN\GuideBundle\Entity\ImageTutorialChapterPara $image
+     *
+     * @return TutorialChapterPara
+     */
+    public function setImage(\FBN\GuideBundle\Entity\ImageTutorialChapterPara $image)
     {
         $this->image = $image;
+        $image->setTutorialChapterPara($this);
 
         return $this;
     }
@@ -158,7 +192,7 @@ class TutorialChapterPara
     /**
      * Get image.
      *
-     * @return \FBN\GuideBundle\Entity\Image
+     * @return \FBN\GuideBundle\Entity\ImageTutorialChapterPara
      */
     public function getImage()
     {

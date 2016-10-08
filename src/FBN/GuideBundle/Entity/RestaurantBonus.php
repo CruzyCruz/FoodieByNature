@@ -4,17 +4,20 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * RestaurantBonus
+ * RestaurantBonus.
  *
  * @ORM\Table(name="restaurantbonus")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\RestaurantBonusRepository")
+ * @UniqueEntity(fields="bonus")
  */
 class RestaurantBonus
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -27,6 +30,9 @@ class RestaurantBonus
      *
      * @ORM\Column(name="bonus", type="string", length=255, unique=true)
      * @Gedmo\Translatable
+     * @Assert\NotNull()
+     * @Assert\NotBlank()
+     * @Assert\Length(max = 50)
      */
     private $bonus;
 
@@ -37,12 +43,12 @@ class RestaurantBonus
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
      */
-    private $locale; 
+    private $locale;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -50,9 +56,10 @@ class RestaurantBonus
     }
 
     /**
-     * Set bonus
+     * Set bonus.
      *
      * @param string $bonus
+     *
      * @return RestaurantBonus
      */
     public function setBonus($bonus)
@@ -63,9 +70,9 @@ class RestaurantBonus
     }
 
     /**
-     * Get bonus
+     * Get bonus.
      *
-     * @return string 
+     * @return string
      */
     public function getBonus()
     {
@@ -73,13 +80,18 @@ class RestaurantBonus
     }
 
     /**
-     * Set locale
+     * Set locale.
      *
      * @param string $locale
-     * 
      */
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
-    }        
+    }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getBonus();
+    }
 }

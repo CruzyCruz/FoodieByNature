@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/TutorialChapterLabels.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 //use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -16,11 +15,11 @@ class TutorialChapterLabels extends AbstractFixture implements OrderedFixtureInt
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $titles = array('AB, le B.A BA du bio', 'Bio cohérence, plus bio que bio', 'Nature et Progrès, des fermes 100% bio');
+        $titlesfr = array('AB, le B.A BA du bio', 'Bio cohérence, plus bio que bio', 'Nature et Progrès, des fermes 100% bio');
 
         $ranks = array(0, 1, 2);
 
-        $titlesen = array('AB, BA B.A the organic', 'Bio consistency, more organic than organic', 'Nature and Progress, 100% organic farms');
+        $titles = array('AB, BA B.A the organic', 'Bio consistency, more organic than organic', 'Nature and Progress, 100% organic farms');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -34,7 +33,7 @@ class TutorialChapterLabels extends AbstractFixture implements OrderedFixtureInt
         foreach ($titles as $i => $title) {
             $tutorialchapter[$i] = new TutoChapter();
             $tutorialchapter[$i]->setTitle($title);
-            $repository->translate($tutorialchapter[$i], 'title', 'en', $titlesen[$i]);
+            $repository->translate($tutorialchapter[$i], 'title', 'fr', $titlesfr[$i]);
         }
 
         foreach ($ranks as $i => $rank) {

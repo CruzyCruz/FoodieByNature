@@ -3,12 +3,16 @@
 namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * CoordinatesCountry.
  *
  * @ORM\Table(name="coordinatescountry")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordinatesCountryRepository")
+ * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\RestaurantPriceRepository")
+ * @UniqueEntity(fields={"country","codeISO","latitude","longitude"})
  */
 class CoordinatesCountry
 {
@@ -25,6 +29,8 @@ class CoordinatesCountry
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255, unique=true)
+     * @Assert\NotNull()
+     * @Assert\NotBlank()
      */
     private $country;
 
@@ -32,6 +38,8 @@ class CoordinatesCountry
      * @var string
      *
      * @ORM\Column(name="codeISO", type="string", length=255, unique=true)
+     * @Assert\NotNull()
+     * @Assert\NotBlank()
      */
     private $codeISO;
 
@@ -39,6 +47,9 @@ class CoordinatesCountry
      * @var decimal
      *
      * @ORM\Column(name="latitude", type="decimal", precision=10, scale=6, unique=true)
+     * @Assert\NotNull()
+     * @Assert\NotBlank()
+     * @Assert\Type(type="float")
      */
     private $latitude;
 
@@ -46,6 +57,9 @@ class CoordinatesCountry
      * @var decimal
      *
      * @ORM\Column(name="longitude", type="decimal", precision=10, scale=6, unique=true)
+     * @Assert\NotNull()
+     * @Assert\NotBlank()
+     * @Assert\Type(type="float")
      */
     private $longitude;
 

@@ -14,9 +14,9 @@
 
 <h1>{{ restaurant.name }}</h1>
 
-  {% if restaurant.shop is not null %}
-    <p>[<a href="{{ path('fbn_guide_shops', {'slug': restaurant.shop.slug} ) }}">LA CAVE DU RESTO</a>]</p>
-  {% endif %}  
+  {% if restaurant.isShop == true %}
+    <p>RESTO-SHOP</p>
+  {% endif %}
 
 <h3>STYLE : </h3>
   <p>
@@ -41,12 +41,12 @@
 
   {% if restaurant.image is not null %}
     <img 
-      src="{{ asset(restaurant.image.webPath) }}"
+      src="{{ vich_uploader_asset(restaurant.image, 'file') }}"
       alt="{{ restaurant.name }}"
     />
   {% endif %}    
 
-  <p>{{ restaurant.description }}</p>  
+  <div>{{ restaurant.description|raw }}</div>  
 
   <h3>PAR ICI : </h3>
 
@@ -72,7 +72,7 @@
       {{ restaurant.coordinates.coordinatesFR.locality }}
     {% endif %}  
     <br />
-    {{ restaurant.coordinates.coordinatesFR.postcode ~ ' ' ~ restaurant.coordinates.city }}
+    {{ restaurant.coordinates.coordinatesFR.coordinatesFRCity.postCode ~ ' ' ~ restaurant.coordinates.coordinatesFR.coordinatesFRCity.city }}
   </p>
 
   {% if restaurant.tel is not null %}
@@ -80,9 +80,9 @@
     <p>{{ restaurant.tel }}</p>  
   {% endif %}  
 
-  {% if restaurant.coordinates.metro is not null %}
+  {% if restaurant.coordinates.coordinatesFR.metro is not null %}
     <h3>METRO : </h3>  
-    <p>{{ restaurant.coordinates.metro }}</p> 
+    <p>{{ restaurant.coordinates.coordinatesFR.metro }}</p> 
   {% endif %}  
 
   {% if restaurant.site is not null %}

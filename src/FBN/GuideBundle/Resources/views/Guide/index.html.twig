@@ -5,15 +5,15 @@
 {% block body %}
 <ul>
   {% for article in lastArticles %}
-  	{% if article.class | lower ~ 's' =='infos' %}
-  		<a href="{{ path('fbn_guide_articles', {'articles': article.class | lower ~ 's'} ) }}#{{ article.slug }}">{{ article.name }}</a>  		
-  	{% else %}
-  		<a href="{{ path('fbn_guide_' ~ article.class | lower ~ 's', {'slug': article.slug} ) }}">{{ article.name }}</a>
-  	{% endif %} 
-	<br />
-    {% if article.image is not null %}
+    {% if article.class | lower ~ 's' =='infos' %}
+      <a href="{{ path('fbn_guide_articles', {'articles': article.class | lower ~ 's'} ) }}#{{ article.slug }}">{{ article.name }}</a>      
+    {% else %}
+      <a href="{{ path('fbn_guide_' ~ article.class | lower ~ 's', {'slug': article.slug} ) }}">{{ article.name }}</a>
+    {% endif %} 
+  <br />
+    {% if (article.image is defined) and (article.image is not null) %}
       <img 
-        src="{{ asset( article.image.webPath | imagine_filter('thumb_outbound') ) }}"
+        src="{{ vich_uploader_asset(article.image, 'file') | imagine_filter('thumb_outbound') }}"
         alt="{{ article.name }}"
       />
     {% endif %}    
@@ -21,5 +21,5 @@
   {% else %}
     <p>PAS D'ARTICLES</p>
   {% endfor %}
-</ul>	
+</ul> 
 {% endblock %}

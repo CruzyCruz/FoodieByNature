@@ -3,7 +3,6 @@
 namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * TutorialRepository.
@@ -16,35 +15,55 @@ class TutorialRepository extends EntityRepository
     public function getArticlesImages($first = 0, $limit = Article::NUM_ITEMS)
     {
         $qb = $this->createQueryBuilder('t')
-                   ->leftJoin('t.image', 'i')
-                   ->addSelect('i')
-                   ->orderBy('t.datePublication', 'DESC')
-                    ->where('t.publication = :publication')
-                    ->setParameter('publication', 1);
+            ->leftJoin('t.image', 'i')
+            ->addSelect('i')
+            ->orderBy('t.datePublication', 'DESC')
+            ->where('t.publication = :publication')
+            ->setParameter('publication', 1);
 
         $query = $qb->getQuery();
 
         $query->setFirstResult($first)
-              ->setMaxResults($limit);
+            ->setMaxResults($limit);
 
-        return new Paginator($query);
+        return $query->getResult();
     }
 
-    public function getTutorial($slug)
+    public function getTutorial($slug, $locale)
     {
         $qb = $this->createQueryBuilder('t')
-                   ->leftJoin('t.image', 'i')
-                   ->addSelect('i')
-                   ->leftJoin('t.tutorialSection', 'tr')
-                   ->addSelect('tr')
-                   ->leftJoin('t.tutorialChapter', 'tc')
-                   ->addSelect('tc')
-                   ->leftJoin('tc.TutorialChapterPara', 'tcp')
-                   ->addSelect('tcp')
-                    ->where('t.slug = :slug')
-                    ->setParameter('slug', $slug);
+            ->leftJoin('t.image', 'i')
+            ->addSelect('i')
+            ->leftJoin('t.tutorialSection', 'tr')
+            ->addSelect('tr')
+            ->leftJoin('t.tutorialChapter', 'tc')
+            ->addSelect('tc')
+            ->leftJoin('tc.tutorialChapterParas', 'tcp')
+            ->addSelect('tcp')
+            ->where('t.slug = :slug')
+            ->setParameter('slug', $slug);
 
-        return $qb->getQuery()
-                  ->getOneOrNullResult();
+        $query = $qb->getQuery();
+
+        $query->setHint(
+            \Doctrine\ORM\Query::HINT_CUSTOM_OUTPUT_WALKER,
+            'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker'
+        );
+
+        // In case memcach or apc is activated (https://github.com/Atlantic18/DoctrineExtensions/blob/master/doc/translatable.md#using-orm-query-hint)
+
+        // Locale
+        $query->setHint(
+            \Gedmo\Translatable\TranslatableListener::HINT_TRANSLATABLE_LOCALE,
+            $locale
+        );
+
+        // Fallback
+        $query->setHint(
+            \Gedmo\Translatable\TranslatableListener::HINT_FALLBACK,
+            1 // fallback to default values in case if record is not translated
+        );
+
+        return $query->getOneOrNullResult();
     }
 }

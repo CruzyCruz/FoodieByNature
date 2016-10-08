@@ -4,6 +4,8 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
 /**
  * Event.
@@ -11,50 +13,59 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="event")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\EventRepository")
  * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\EventTranslation") 
+ * @ORM\HasLifecycleCallbacks()
  */
 class Event extends Article
 {
-    /**
+    private static $eventLocationAttributes = array('coordinates', 'restaurant', 'shop', 'winemakerDomain', 'eventPast');
+
+  /**
    * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\EventType")
    * @ORM\JoinColumn(nullable=false)
    */
   private $eventType;
 
   /**
-   * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Image", cascade={"persist"})
-   * @ORM\JoinColumn(nullable=true)
+   * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageEvent",  inversedBy="event", cascade={"persist","remove"})
+   * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
    */
   private $image;
 
   /**
-   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Restaurant")
-   * @ORM\JoinColumn(nullable=true)
+   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Restaurant", inversedBy="event")
+   * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
    */
   private $restaurant;
 
   /**
-   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Shop")
-   * @ORM\JoinColumn(nullable=true)
+   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Shop", inversedBy="event")
+   * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
    */
   private $shop;
 
   /**
-   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\WinemakerDomain")
-   * @ORM\JoinColumn(nullable=true)
+   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\WinemakerDomain", inversedBy="event")
+   * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
    */
   private $winemakerDomain;
 
   /**
-   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist"})
+   * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist","remove"}, orphanRemoval=true)
    * @ORM\JoinColumn(nullable=true)
+   * @Assert\Valid()
    */
   private $coordinates;
 
   /**
-   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Event")
+   * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Event", inversedBy="event")
    * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
    */
   private $eventPast;
+
+    /**
+     * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\Event", mappedBy="eventPast")
+     */
+    private $event;
 
     /**
      * @var int
@@ -68,15 +79,21 @@ class Event extends Article
     /**
      * @var string
      *
-     * @ORM\Column(name="date", type="string", length=255)
-     * @Gedmo\Translatable      
+     * @ORM\Column(name="dateStart", type="date")    
      */
-    private $date;
+    private $dateStart;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="year", type="string", length=255)
+     * @ORM\Column(name="dateEnd", type="date")     
+     */
+    private $dateEnd;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="year", type="string", length=255)     
      */
     private $year;
 
@@ -105,7 +122,8 @@ class Event extends Article
      * @var string
      *
      * @ORM\Column(name="openingHours", type="string", length=255)
-     * @Gedmo\Translatable      
+     * @Gedmo\Translatable
+     * @Assert\NotBlank()   
      */
     private $openingHours;
 
@@ -124,7 +142,7 @@ class Event extends Article
     private $useExtSite;
 
     /**
-     * @Gedmo\Slug(fields={"name","year"}, prefix="event-")
+     * @Gedmo\Slug(updatable=true, fields={"name","year"}, prefix="event-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
@@ -132,11 +150,23 @@ class Event extends Article
     /**
      * @var string
      *
-     * @Gedmo\Locale
-     * Used locale to override Translation listener`s locale
-     * this is not a mapped field of entity metadata, just a simple property
+     * @ORM\Column(name="formerLocationCoordinates", type="string", length=255, nullable=true)  
      */
-    private $locale;
+    private $formerLocationCoordinates;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="formerLocationName", type="string", length=255, nullable=true)
+     */
+    private $formerLocationName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="formerLocation", type="string", length=255, nullable=true)  
+     */
+    private $formerLocation;
 
     /**
      * Get id.
@@ -149,27 +179,51 @@ class Event extends Article
     }
 
     /**
-     * Set date.
+     * Set dateStart.
      *
-     * @param string $date
+     * @param string $dateStart
      *
      * @return Event
      */
-    public function setDate($date)
+    public function setDateStart($dateStart)
     {
-        $this->date = $date;
+        $this->dateStart = $dateStart;
 
         return $this;
     }
 
     /**
-     * Get date.
+     * Get dateStart.
      *
      * @return string
      */
-    public function getDate()
+    public function getDateStart()
     {
-        return $this->date;
+        return $this->dateStart;
+    }
+
+    /**
+     * Set dateEnd.
+     *
+     * @param string $dateEnd
+     *
+     * @return Event
+     */
+    public function setDateEnd($dateEnd)
+    {
+        $this->dateEnd = $dateEnd;
+
+        return $this;
+    }
+
+    /**
+     * Get dateEnd.
+     *
+     * @return string
+     */
+    public function getDateEnd()
+    {
+        return $this->dateEnd;
     }
 
     /**
@@ -271,13 +325,14 @@ class Event extends Article
     /**
      * Set image.
      *
-     * @param \FBN\GuideBundle\Entity\Image $image
+     * @param \FBN\GuideBundle\Entity\ImageEvent $image
      *
      * @return Event
      */
-    public function setImage(\FBN\GuideBundle\Entity\Image $image)
+    public function setImage(\FBN\GuideBundle\Entity\ImageEvent $image)
     {
         $this->image = $image;
+        $image->setEvent($this);
 
         return $this;
     }
@@ -285,7 +340,7 @@ class Event extends Article
     /**
      * Get image.
      *
-     * @return \FBN\GuideBundle\Entity\Image
+     * @return \FBN\GuideBundle\Entity\ImageEvent
      */
     public function getImage()
     {
@@ -403,7 +458,7 @@ class Event extends Article
     }
 
     /**
-     * Get event.
+     * Get eventPast.
      *
      * @return \FBN\GuideBundle\Entity\event
      */
@@ -413,13 +468,48 @@ class Event extends Article
     }
 
     /**
+     * Add event.
+     *
+     * @param \FBN\GuideBundle\Entity\Event $event
+     *
+     * @return Event
+     */
+    public function addEvent(\FBN\GuideBundle\Entity\Event $event)
+    {
+        $this->event[] = $event;
+        $event->setEventPast($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove event.
+     *
+     * @param \FBN\GuideBundle\Entity\Event $event
+     */
+    public function removeEvent(\FBN\GuideBundle\Entity\Event $event)
+    {
+        $this->event->removeElement($event);
+    }
+
+    /**
+     * Get event.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
      * Set tel.
      *
      * @param string $tel
      *
      * @return Coordinates
      */
-    public function setTel($tel)
+    public function setTel($tel = null)
     {
         $this->tel = $tel;
 
@@ -443,7 +533,7 @@ class Event extends Article
      *
      * @return Event
      */
-    public function setSite($site)
+    public function setSite($site = null)
     {
         $this->site = $site;
 
@@ -467,7 +557,7 @@ class Event extends Article
      *
      * @return Event
      */
-    public function setHref($href)
+    public function setHref($href = null)
     {
         $this->href = $href;
 
@@ -533,12 +623,128 @@ class Event extends Article
     }
 
     /**
-     * Set locale.
+     * Set formerLocationCoordinates.
      *
-     * @param string $locale
+     * @param string $formerLocationCoordinates
+     *
+     * @return Event
      */
-    public function setTranslatableLocale($locale)
+    public function setFormerLocationCoordinates($formerLocationCoordinates)
     {
-        $this->locale = $locale;
+        $this->formerLocationCoordinates = $formerLocationCoordinates;
+
+        return $this;
+    }
+
+    /**
+     * Get formerLocationCoordinates.
+     *
+     * @return string
+     */
+    public function getFormerLocationCoordinates()
+    {
+        return $this->formerLocationCoordinates;
+    }
+
+    /**
+     * Set formerLocationName.
+     *
+     * @param string $formerLocationName
+     *
+     * @return Event
+     */
+    public function setFormerLocationName($formerLocationName)
+    {
+        $this->formerLocationName = $formerLocationName;
+
+        return $this;
+    }
+
+    /**
+     * Get formerLocationName.
+     *
+     * @return string
+     */
+    public function getFormerLocationName()
+    {
+        return $this->formerLocationName;
+    }
+
+    /**
+     * Set formerLocation.
+     *
+     * @param string $formerLocation
+     *
+     * @return Event
+     */
+    public function setFormerLocation($formerLocation)
+    {
+        $this->formerLocation = $formerLocation;
+
+        return $this;
+    }
+
+    /**
+     * Get formerLocation.
+     *
+     * @return string
+     */
+    public function getFormerLocation()
+    {
+        return $this->formerLocation;
+    }
+
+  /**
+   * @ORM\PrePersist
+   * @ORM\PreUpdate
+   */
+  public function defineYear()
+  {
+      $this->setYear($this->getDateStart()->format('Y'));
+  }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getName().' / '.$this->getDateStart()->format('Y-m-d');
+    }
+
+    /**
+     * @Assert\IsTrue(message = "fbn.guide.admin.event.isEventLocationValid").
+     */
+    public function isEventLocationValid()
+    {
+        $accessor = PropertyAccess::createPropertyAccessor();
+
+        $nbEventLocation = 0;
+        foreach (self::$eventLocationAttributes  as $eventLocationAttribute) {
+            $nbEventLocation = $nbEventLocation + ($accessor->getValue($this, $eventLocationAttribute) === null ? 0 : 1);
+        }
+
+        // If no event location is defined or more than one.
+        if ($nbEventLocation !== 1) {
+            return false;
+        }
+
+        // If location is defined using coordinates but 'useExtTel' or 'useExtSite' are true
+        if (null !== $accessor->getValue($this, 'coordinates')) {
+            if ((true === $accessor->getValue($this, 'useExtTel')) || (true === $accessor->getValue($this, 'useExtSite'))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * @Assert\IsTrue(message = "fbn.guide.admin.event.isEventDatesValid").
+     */
+    public function isEventDatesValid()
+    {
+        if ($this->dateStart > $this->dateEnd) {
+            return false;
+        }
+
+        return true;
     }
 }

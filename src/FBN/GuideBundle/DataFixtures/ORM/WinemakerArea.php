@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/WinemakerArea.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 //use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -16,40 +15,40 @@ class WinemakerArea extends AbstractFixture implements OrderedFixtureInterface
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $areas = array(
-            'Alsace',
-            'Auvergne',
-            'Beaujolais',
-            'Bordelais',
-            'Bourgogne',
-            'Centre',
-            'Champagne',
-            'Corse',
-            'Jura',
-            'Languedoc',
-            'Loire',
-            'Provence',
-            'Roussillon',
-            'Savoie',
-            'Sud-Ouest',
+        $areasfr = array(
+            '(FRA) Alsace',
+            '(FRA) Auvergne',
+            '(FRA) Beaujolais',
+            '(FRA) Bordelais',
+            '(FRA) Bourgogne',
+            '(FRA) Centre',
+            '(FRA) Champagne',
+            '(FRA) Corse',
+            '(FRA) Jura',
+            '(FRA) Languedoc',
+            '(FRA) Loire',
+            '(FRA) Provence',
+            '(FRA) Roussillon',
+            '(FRA) Savoie',
+            '(FRA) Sud-Ouest',
         );
 
-        $areasen = array(
-            'Alsace',
-            'Auvergne',
-            'Beaujolais',
-            'Bordeaux area',
-            'Burgundy',
-            'Centre',
-            'Champagne',
-            'Corsica',
-            'Jura',
-            'Languedoc',
-            'Loire',
-            'Provence',
-            'Roussillon',
-            'Savoy',
-            'Southwest',
+        $areas = array(
+            '(FRA) Alsace',
+            '(FRA) Auvergne',
+            '(FRA) Beaujolais',
+            '(FRA) Bordeaux area',
+            '(FRA) Burgundy',
+            '(FRA) Centre',
+            '(FRA) Champagne',
+            '(FRA) Corsica',
+            '(FRA) Jura',
+            '(FRA) Languedoc',
+            '(FRA) Loire',
+            '(FRA) Provence',
+            '(FRA) Roussillon',
+            '(FRA) Savoy',
+            '(FRA) Southwest',
         );
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
@@ -58,7 +57,7 @@ class WinemakerArea extends AbstractFixture implements OrderedFixtureInterface
             $winemakerarea[$i] = new WmkrArea();
             $winemakerarea[$i]->setArea($area);
 
-            $repository->translate($winemakerarea[$i], 'area', 'en', $areasen[$i]);
+            $repository->translate($winemakerarea[$i], 'area', 'fr', $areasfr[$i]);
 
             $manager->persist($winemakerarea[$i]);
 

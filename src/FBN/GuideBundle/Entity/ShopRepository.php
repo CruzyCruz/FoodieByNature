@@ -3,7 +3,6 @@
 namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * ShopRepository.
@@ -15,31 +14,38 @@ class ShopRepository extends EntityRepository
 {
     public function getArticlesImages($first = 0, $limit = Article::NUM_ITEMS)
     {
-        $qb = $this->createQueryBuilder('wnmkr')
-                   ->leftJoin('wnmkr.image', 'i')
-                   ->addSelect('i')
-                   ->orderBy('wnmkr.datePublication', 'DESC')
-                    ->where('wnmkr.publication = :publication')
-                    ->setParameter('publication', 1);
+        $qb = $this->createQueryBuilder('s')
+                   ->orderBy('s.datePublication', 'DESC')
+                    ->andWhere('s.publication = :publication')
+                    ->setParameter('publication', true);
 
         $query = $qb->getQuery();
 
         $query->setFirstResult($first)
               ->setMaxResults($limit);
 
-        return new Paginator($query);
+        $shops = $query->getResult();
+
+        $restaurantShops = $this->_em
+            ->getRepository('FBNGuideBundle:Restaurant')
+            ->getRestaurantShops();
+
+        $allShops = array();
+        $allShops = array_merge_recursive($shops, $restaurantShops);
+        uasort($allShops, 'FBN\GuideBundle\Utils\Entity::compareDate');
+        $allShops = array_slice($allShops, $first, $limit);
+
+        return $allShops;
     }
 
     public function getShop($slug)
     {
-        $qb = $this->createQueryBuilder('wnmkr')
-                   ->leftJoin('wnmkr.image', 'i')
-                   ->addSelect('i')
-                   ->leftJoin('wnmkr.coordinates', 'c')
+        $qb = $this->createQueryBuilder('s')
+                   ->leftJoin('s.coordinates', 'c')
                    ->addSelect('c')
-                   ->leftJoin('wnmkr.restaurant', 'cr')
-                   ->addSelect('cr')
-                    ->where('wnmkr.slug = :slug')
+                    ->andWhere('s.publication = :publication')
+                    ->setParameter('publication', true)
+                    ->andWhere('s.slug = :slug')
                     ->setParameter('slug', $slug);
 
         $cr = $this->_em

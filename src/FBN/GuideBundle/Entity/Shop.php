@@ -4,6 +4,7 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Shop.
@@ -14,22 +15,16 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class Shop extends Article
 {
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     * @Assert\Valid()
      */
     private $coordinates;
 
-      /**
-       * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Image", cascade={"persist"})
-       * @ORM\JoinColumn(nullable=true)
-       */
-      private $image;
-
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Restaurant", mappedBy="shop")
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\Event", mappedBy="shop")
      */
-    private $restaurant;
+    private $event;
 
     /**
      * @var int
@@ -43,7 +38,8 @@ class Shop extends Article
     /**
      * @var string
      *
-     * @ORM\Column(name="owner", type="string", length=255, nullable=true)
+     * @ORM\Column(name="owner", type="string", length=255, nullable=false)
+     * @Assert\NotBlank()
      */
     private $owner;
 
@@ -72,26 +68,22 @@ class Shop extends Article
      * @var string
      *
      * @ORM\Column(name="openingHours", type="string", length=255)
-     * @Gedmo\Translatable     
+     * @Gedmo\Translatable
+     * @Assert\NotBlank()
      */
     private $openingHours;
 
     /**
-     * @Gedmo\Slug(fields={"name"}, prefix="shop-")
+     * @Gedmo\Slug(updatable=true, fields={"name"}, prefix="shop-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
 
-    /*public function __construct(\FBN\GuideBundle\Entity\Restaurant $restaurant)
+    public function __construct()
     {
-       parent::__construct();
-       
-       if (null != $restaurant)
-       {
-        $this->name = $restaurant->getName();
-       }
-
-    }*/
+        parent::__construct();
+        $this->event = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Set coordinates.
@@ -118,27 +110,38 @@ class Shop extends Article
     }
 
     /**
-     * Set image.
+     * Add event.
      *
-     * @param \FBN\GuideBundle\Entity\Image $image
+     * @param \FBN\GuideBundle\Entity\Event $event
      *
-     * @return Restaurant
+     * @return Shop
      */
-    public function setImage(\FBN\GuideBundle\Entity\Image $image)
+    public function addEvent(\FBN\GuideBundle\Entity\Event $event)
     {
-        $this->image = $image;
+        $this->event[] = $event;
+        $event->setShop($this);
 
         return $this;
     }
 
     /**
-     * Get image.
+     * Remove event.
      *
-     * @return \FBN\GuideBundle\Entity\Image
+     * @param \FBN\GuideBundle\Entity\Event $event
      */
-    public function getImage()
+    public function removeEvent(\FBN\GuideBundle\Entity\Event $event)
     {
-        return $this->image;
+        $this->event->removeElement($event);
+    }
+
+    /**
+     * Get event.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvent()
+    {
+        return $this->event;
     }
 
     /**
@@ -146,7 +149,7 @@ class Shop extends Article
      *
      * @param \FBN\GuideBundle\Entity\Restaurant $restaurant
      *
-     * @return Restaurant
+     * @return Shop
      */
     public function setRestaurant(\FBN\GuideBundle\Entity\Restaurant $restaurant)
     {
@@ -206,7 +209,7 @@ class Shop extends Article
      *
      * @return Shop
      */
-    public function setTel($tel)
+    public function setTel($tel = null)
     {
         $this->tel = $tel;
 
@@ -230,7 +233,7 @@ class Shop extends Article
      *
      * @return Shop
      */
-    public function setSite($site)
+    public function setSite($site = null)
     {
         $this->site = $site;
 
@@ -254,7 +257,7 @@ class Shop extends Article
      *
      * @return Shop
      */
-    public function setHref($href)
+    public function setHref($href = null)
     {
         $this->href = $href;
 
@@ -319,13 +322,9 @@ class Shop extends Article
         return $this->slug;
     }
 
-    /**
-     * Set locale.
-     *
-     * @param string $locale
-     */
-    public function setTranslatableLocale($locale)
+    /** {@inheritdoc} */
+    public function __toString()
     {
-        $this->locale = $locale;
+        return $this->getCoordinates()->__toString().' / '.$this->getName();
     }
 }

@@ -4,6 +4,7 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Winemaker.
@@ -14,13 +15,15 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class Winemaker extends Article
 {
     /**
-   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\WinemakerDomain", mappedBy="winemaker")
+   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\WinemakerDomain", mappedBy="winemaker", cascade={"persist","remove"}, orphanRemoval=true)
+   * @Assert\Valid()
    */
   private $winemakerDomain;
 
   /**
-   * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Image", cascade={"persist"})
-   * @ORM\JoinColumn(nullable=false)
+   * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageWinemaker", inversedBy="winemaker", cascade={"persist","remove"})
+   * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+   * @Assert\Valid()
    */
   private $image;
 
@@ -34,7 +37,7 @@ class Winemaker extends Article
     private $id;
 
     /**
-     * @Gedmo\Slug(fields={"name"}, prefix="winemaker-")
+     * @Gedmo\Slug(updatable=true, fields={"name"}, prefix="winemaker-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
@@ -85,13 +88,14 @@ class Winemaker extends Article
     /**
      * Set image.
      *
-     * @param \FBN\GuideBundle\Entity\Image $image
+     * @param \FBN\GuideBundle\Entity\ImageWinemaker $image
      *
      * @return Winemaker
      */
-    public function setImage(\FBN\GuideBundle\Entity\Image $image)
+    public function setImage(\FBN\GuideBundle\Entity\ImageWinemaker $image)
     {
         $this->image = $image;
+        $image->setWinemaker($this);
 
         return $this;
     }
@@ -99,7 +103,7 @@ class Winemaker extends Article
     /**
      * Get image.
      *
-     * @return \FBN\GuideBundle\Entity\Image
+     * @return \FBN\GuideBundle\Entity\ImageWinemaker
      */
     public function getImage()
     {

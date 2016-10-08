@@ -4,6 +4,7 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * TutorialSection.
@@ -26,7 +27,8 @@ class TutorialSection
      * @var string
      *
      * @ORM\Column(name="section", type="string", length=255)
-     * @Gedmo\Translatable          
+     * @Gedmo\Translatable
+     * @Assert\NotBlank()       
      */
     private $section;
 
@@ -81,5 +83,11 @@ class TutorialSection
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
+    }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getSection();
     }
 }

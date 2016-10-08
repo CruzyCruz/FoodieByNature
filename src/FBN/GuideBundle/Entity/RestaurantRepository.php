@@ -3,8 +3,6 @@
 namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Tools\Pagination\Paginator;
-
 
 /**
  * RestaurantRepository.
@@ -17,18 +15,37 @@ class RestaurantRepository extends EntityRepository
     public function getArticlesImages($first = 0, $limit = Article::NUM_ITEMS)
     {
         $qb = $this->createQueryBuilder('r')
-                   ->leftJoin('r.image', 'i')
-                   ->addSelect('i')
-                   ->orderBy('r.datePublication', 'DESC')
-                    ->where('r.publication = :publication')
-                    ->setParameter('publication', 1);
+                    ->leftJoin('r.image', 'i')
+                    ->addSelect('i')
+                    ->orderBy('r.datePublication', 'DESC')
+                    ->andWhere('r.publication = :publication')
+                    ->setParameter('publication', true);
 
         $query = $qb->getQuery();
 
         $query->setFirstResult($first)
               ->setMaxResults($limit);
 
-        return new Paginator($query);
+        return $query->getResult();
+    }
+
+    public function getRestaurantShops($first = 0, $limit = Article::NUM_ITEMS)
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->leftJoin('r.image', 'i')
+            ->addSelect('i')
+            ->orderBy('r.datePublication', 'DESC')
+            ->andWhere('r.isShop = :isShop')
+            ->setParameter('isShop', true)
+            ->andWhere('r.publication = :publication')
+            ->setParameter('publication', true);
+
+        $query = $qb->getQuery();
+
+        $query->setFirstResult($first)
+              ->setMaxResults($limit);
+
+        return $query->getResult();
     }
 
     public function getRestaurant($slug)
@@ -44,9 +61,32 @@ class RestaurantRepository extends EntityRepository
                    ->addSelect('rb')
                    ->leftJoin('r.coordinates', 'c')
                    ->addSelect('c')
-                   ->leftJoin('r.shop', 'rc')
-                   ->addSelect('rc')
-                   ->where('r.slug = :slug')
+                   ->andWhere('r.publication = :publication')
+                   ->setParameter('publication', true)
+                   ->andWhere('r.slug = :slug')
+                   ->setParameter('slug', $slug);
+
+        $cr = $this->_em
+                    ->getRepository('FBNGuideBundle:Coordinates');
+
+        $qb = $cr->joinCoord($qb);
+
+        return $qb->getQuery()
+                  ->getOneOrNullResult();
+    }
+
+    public function getRestaurantShop($slug)
+    {
+        $qb = $this->createQueryBuilder('r')
+                   ->leftJoin('r.image', 'i')
+                   ->addSelect('i')
+                   ->leftJoin('r.coordinates', 'c')
+                   ->addSelect('c')
+                   ->andWhere('r.publication = :publication')
+                   ->setParameter('publication', true)
+                   ->andWhere('r.isShop = :isShop')
+                   ->setParameter('isShop', true)
+                   ->andWhere('r.slug = :slug')
                    ->setParameter('slug', $slug);
 
         $cr = $this->_em

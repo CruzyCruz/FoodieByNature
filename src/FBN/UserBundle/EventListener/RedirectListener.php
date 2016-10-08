@@ -2,7 +2,6 @@
 
 // src/FBN/UserBundle/EventListener/FOSUserEventListener.php
 
-
 namespace FBN\UserBundle\EventListener;
 
 use FOS\UserBundle\FOSUserEvents;
@@ -29,11 +28,11 @@ class RedirectListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            FOSUserEvents::REGISTRATION_SUCCESS => array('onSuccess',-10),
-            FOSUserEvents::CHANGE_PASSWORD_SUCCESS => array('onSuccess',-10),
-            FOSUserEvents::PROFILE_EDIT_SUCCESS => array('onSuccess',-10),
-            FOSUserEvents::RESETTING_RESET_SUCCESS => array('onSuccess',-10),
-            FOSUserEvents::REGISTRATION_CONFIRM => array('onSuccess',-10),
+            FOSUserEvents::REGISTRATION_SUCCESS => array('onSuccess', -10),
+            FOSUserEvents::CHANGE_PASSWORD_SUCCESS => array('onSuccess', -10),
+            FOSUserEvents::PROFILE_EDIT_SUCCESS => array('onSuccess', -10),
+            FOSUserEvents::RESETTING_RESET_SUCCESS => array('onSuccess', -10),
+            FOSUserEvents::REGISTRATION_CONFIRM => array('onSuccess', -10),
         );
     }
 

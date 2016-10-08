@@ -12,7 +12,8 @@
 <h1>{{ event.name }}</h1>
 
 <h3>QUAND : </h3>
-  <p>{{ event.date }}</p>
+  <p>DEBUT : {{ event.dateStart|localizeddate('short', 'none', app.request.locale, null, null) }}</p>
+  <p>FIN : {{ event.dateEnd|localizeddate('short', 'none', app.request.locale, null, null) }}</p>
 
 <h3>TYPE : </h3>
   <p>{{ event.eventType.type }}</p> 
@@ -20,12 +21,13 @@
 
 {% if event.image is not null %}
   <img 
-    src="{{ asset(event.image.webPath) }}"
+    {# src="{{ asset(event.image.webPath) }}" #}
+    src="{{ vich_uploader_asset(event.image, 'file') }}"
     alt="{{ event.name }}"
   />
 {% endif %}  
 
-<p>{{ event.description }}</p> 
+<p>{{ event.description|raw }}</p> 
 
   <h3>PAR ICI : </h3>
 
@@ -51,7 +53,7 @@
       {{ placeEvt.coordinates.coordinatesFR.locality }}
     {% endif %}  
     <br />
-    {{ placeEvt.coordinates.coordinatesFR.postcode ~ ' ' ~ placeEvt.coordinates.city }}
+    {{ placeEvt.coordinates.coordinatesFR.coordinatesFRCity.postCode ~ ' ' ~ placeEvt.coordinates.coordinatesFR.coordinatesFRCity.city }}
   </p>
 
   {% if event.useexttel %}
@@ -67,9 +69,9 @@
   {% endif %} 
  
 
-  {% if placeEvt.coordinates.metro is not null %}
+  {% if placeEvt.coordinates.coordinatesFR.metro is not null %}
     <h3>METRO : </h3>  
-    <p>{{ placeEvt.coordinates.metro }}</p> 
+    <p>{{ placeEvt.coordinates.coordinatesFR.metro }}</p> 
   {% endif %}  
 
   {% if event.useextsite %}

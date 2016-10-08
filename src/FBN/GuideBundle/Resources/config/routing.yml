@@ -46,5 +46,9 @@ fbn_guide_display_error_pages:
     path:  /error/{statusCode}
     defaults: { _controller: FBNGuideBundle:Guide:displayErrorPages }
     options:
-        expose: true   
+        expose: true
+
+fbn_guide_switch_admin_locale:
+    path:  /switchLocale
+    defaults: { _controller: FBNGuideBundle:Admin:switchLocale }         
 

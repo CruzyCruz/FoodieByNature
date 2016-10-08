@@ -4,6 +4,7 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * WinemakerArea.
@@ -26,7 +27,8 @@ class WinemakerArea
      * @var string
      *
      * @ORM\Column(name="area", type="string", length=255, unique=true)
-     * @Gedmo\Translatable     
+     * @Gedmo\Translatable
+     * @Assert\NotBlank() 
      */
     private $area;
 
@@ -71,5 +73,11 @@ class WinemakerArea
     public function getArea()
     {
         return $this->area;
+    }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getArea();
     }
 }

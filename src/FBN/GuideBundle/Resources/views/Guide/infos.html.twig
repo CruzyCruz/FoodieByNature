@@ -4,13 +4,7 @@
   <h1 id="{{ article.slug }}">{{ article.name }}</h1>
 	<br />
 
-  <p>{{ article.description }}</p>
-    {% if article.image is not null %}
-      <img 
-        src="{{ asset( article.image.webPath | imagine_filter('thumb_outbound') ) }}"
-        alt="{{ article.name }}"
-      />
-    {% endif %}    
+  <p>{{ article.description|raw }}</p> 
     <hr />    
   {% else %}
     <p>Pas de {{ menu.section | lower }}</p>

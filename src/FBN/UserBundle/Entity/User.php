@@ -43,7 +43,7 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function setGoogleId($googleId)
+    public function setGoogleId($googleId = null)
     {
         $this->googleId = $googleId;
 
@@ -67,7 +67,7 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function setFacebookId($facebookId)
+    public function setFacebookId($facebookId = null)
     {
         $this->facebookId = $facebookId;
 

@@ -2,7 +2,6 @@
 
 // src/FBN/GuideBundle/DataFixtures/ORM/TutorialChapterMacerationCarbonique.php
 
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 //use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -16,11 +15,11 @@ class TutorialChapterMacerationCarbonique extends AbstractFixture implements Ord
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $titles = array('Théorie', 'Mise en œuvre', 'Produits obtenus');
+        $titlesfr = array('Théorie', 'Mise en œuvre', 'Produits obtenus');
 
         $ranks = array(0, 1, 2);
 
-        $titlesen = array('Theory', 'Implementation', 'Products obtained');
+        $titles = array('Theory', 'Implementation', 'Products obtained');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
@@ -34,7 +33,7 @@ class TutorialChapterMacerationCarbonique extends AbstractFixture implements Ord
         foreach ($titles as $i => $title) {
             $tutorialchapter[$i] = new TutoChapter();
             $tutorialchapter[$i]->setTitle($title);
-            $repository->translate($tutorialchapter[$i], 'title', 'en', $titlesen[$i]);
+            $repository->translate($tutorialchapter[$i], 'title', 'fr', $titlesfr[$i]);
         }
 
         foreach ($ranks as $i => $rank) {

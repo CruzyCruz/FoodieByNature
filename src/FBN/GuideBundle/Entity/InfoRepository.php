@@ -3,7 +3,6 @@
 namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * InfoRepository.
@@ -16,8 +15,6 @@ class InfoRepository extends EntityRepository
     public function getArticlesImages($first = 0, $limit = Article::NUM_ITEMS)
     {
         $qb = $this->createQueryBuilder('i')
-                   ->leftJoin('i.image', 'img')
-                   ->addSelect('img')
                    ->orderBy('i.datePublication', 'DESC')
                     ->where('i.publication = :publication')
                     ->setParameter('publication', 1);
@@ -27,6 +24,6 @@ class InfoRepository extends EntityRepository
         $query->setFirstResult($first)
               ->setMaxResults($limit);
 
-        return new Paginator($query);
+        return $query->getResult();
     }
 }

@@ -4,6 +4,7 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Tutorial.
@@ -14,19 +15,21 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class Tutorial extends Article
 {
     /**
-   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorialChapter", mappedBy="tutorial")
+   * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorialChapter", mappedBy="tutorial", cascade={"persist","remove"}, orphanRemoval=true)
    * @ORM\OrderBy({"rank" = "ASC"})
+   * @Assert\Valid()
    */
   private $tutorialChapter;
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Image", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageTutorial", inversedBy="tutorial", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     * @Assert\Valid()
      */
     private $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\TutorialSection", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\TutorialSection")
      * @ORM\JoinColumn(nullable=false)
      */
     private $tutorialSection;
@@ -41,23 +44,8 @@ class Tutorial extends Article
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="rank", type="integer")
-     */
-    private $rank;
-
-    /**
-     * @var string
-     *
-     * @Gedmo\Locale
-     * Used locale to override Translation listener`s locale
-     * this is not a mapped field of entity metadata, just a simple property
-     */
-    private $locale;
-
-    /**
-     * @Gedmo\Slug(fields={"name"}, prefix="tutorial-")
+     * @Gedmo\Translatable
+     * @Gedmo\Slug(updatable=true, fields={"name"}, prefix="tutorial-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
@@ -68,7 +56,7 @@ class Tutorial extends Article
     public function __construct()
     {
         parent::__construct();
-        $this->TutorialChapter = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tutorialChapter = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -132,13 +120,14 @@ class Tutorial extends Article
     /**
      * Set image.
      *
-     * @param \FBN\GuideBundle\Entity\Image $image
+     * @param \FBN\GuideBundle\Entity\ImageTutorial $image
      *
      * @return Tutorial
      */
-    public function setImage(\FBN\GuideBundle\Entity\Image $image)
+    public function setImage(\FBN\GuideBundle\Entity\ImageTutorial $image)
     {
         $this->image = $image;
+        $image->setTutorial($this);
 
         return $this;
     }
@@ -146,7 +135,7 @@ class Tutorial extends Article
     /**
      * Get image.
      *
-     * @return \FBN\GuideBundle\Entity\Image
+     * @return \FBN\GuideBundle\Entity\ImageTutorial
      */
     public function getImage()
     {
@@ -175,16 +164,6 @@ class Tutorial extends Article
     public function getTutorialSection()
     {
         return $this->tutorialSection;
-    }
-
-    /**
-     * Set locale.
-     *
-     * @param string $locale
-     */
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
     }
 
     /**
