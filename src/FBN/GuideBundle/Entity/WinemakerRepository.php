@@ -15,16 +15,16 @@ class WinemakerRepository extends EntityRepository
     public function getArticlesImages($first = 0, $limit = Article::NUM_ITEMS)
     {
         $qb = $this->createQueryBuilder('v')
-                   ->leftJoin('v.image', 'i')
-                   ->addSelect('i')
-                   ->orderBy('v.datePublication', 'DESC')
-                    ->where('v.publication = :publication')
-                    ->setParameter('publication', 1);
+            ->leftJoin('v.image', 'i')
+            ->addSelect('i')
+            ->orderBy('v.datePublication', 'DESC')
+            ->andWhere('v.publication = :publication')
+            ->setParameter('publication', true);
 
         $query = $qb->getQuery();
 
         $query->setFirstResult($first)
-              ->setMaxResults($limit);
+            ->setMaxResults($limit);
 
         return $query->getResult();
     }
@@ -32,23 +32,25 @@ class WinemakerRepository extends EntityRepository
     public function getWinemaker($slug)
     {
         $qb = $this->createQueryBuilder('v')
-                   ->leftJoin('v.image', 'i')
-                   ->addSelect('i')
-                   ->leftJoin('v.winemakerDomain', 'vd')
-                   ->addSelect('vd')
-                   ->leftJoin('vd.winemakerArea', 'vr')
-                   ->addSelect('vr')
-                   ->leftJoin('vd.coordinates', 'c')
-                   ->addSelect('c')
-                    ->where('v.slug = :slug')
-                    ->setParameter('slug', $slug);
+            ->leftJoin('v.image', 'i')
+            ->addSelect('i')
+            ->leftJoin('v.winemakerDomain', 'vd')
+            ->addSelect('vd')
+            ->leftJoin('vd.winemakerArea', 'vr')
+            ->addSelect('vr')
+            ->leftJoin('vd.coordinates', 'c')
+            ->addSelect('c')
+            ->andWhere('v.publication = :publication')
+            ->setParameter('publication', true)
+            ->andWhere('v.slug = :slug')
+            ->setParameter('slug', $slug);
 
         $cr = $this->_em
-                    ->getRepository('FBNGuideBundle:Coordinates');
+            ->getRepository('FBNGuideBundle:Coordinates');
 
         $qb = $cr->joinCoord($qb);
 
         return $qb->getQuery()
-                  ->getOneOrNullResult();
+            ->getOneOrNullResult();
     }
 }

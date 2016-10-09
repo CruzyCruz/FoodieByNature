@@ -15,16 +15,16 @@ class RestaurantRepository extends EntityRepository
     public function getArticlesImages($first = 0, $limit = Article::NUM_ITEMS)
     {
         $qb = $this->createQueryBuilder('r')
-                    ->leftJoin('r.image', 'i')
-                    ->addSelect('i')
-                    ->orderBy('r.datePublication', 'DESC')
-                    ->andWhere('r.publication = :publication')
-                    ->setParameter('publication', true);
+            ->leftJoin('r.image', 'i')
+            ->addSelect('i')
+            ->orderBy('r.datePublication', 'DESC')
+            ->andWhere('r.publication = :publication')
+            ->setParameter('publication', true);
 
         $query = $qb->getQuery();
 
         $query->setFirstResult($first)
-              ->setMaxResults($limit);
+            ->setMaxResults($limit);
 
         return $query->getResult();
     }
@@ -51,50 +51,50 @@ class RestaurantRepository extends EntityRepository
     public function getRestaurant($slug)
     {
         $qb = $this->createQueryBuilder('r')
-                   ->leftJoin('r.image', 'i')
-                   ->addSelect('i')
-                   ->leftJoin('r.restaurantPrice', 'rp')
-                   ->addSelect('rp')
-                   ->leftJoin('r.restaurantStyle', 'rs')
-                   ->addSelect('rs')
-                   ->leftJoin('r.restaurantBonus', 'rb')
-                   ->addSelect('rb')
-                   ->leftJoin('r.coordinates', 'c')
-                   ->addSelect('c')
-                   ->andWhere('r.publication = :publication')
-                   ->setParameter('publication', true)
-                   ->andWhere('r.slug = :slug')
-                   ->setParameter('slug', $slug);
+                ->leftJoin('r.image', 'i')
+                ->addSelect('i')
+                ->leftJoin('r.restaurantPrice', 'rp')
+                ->addSelect('rp')
+                ->leftJoin('r.restaurantStyle', 'rs')
+                ->addSelect('rs')
+                ->leftJoin('r.restaurantBonus', 'rb')
+                ->addSelect('rb')
+                ->leftJoin('r.coordinates', 'c')
+                ->addSelect('c')
+                ->andWhere('r.publication = :publication')
+                ->setParameter('publication', true)
+                ->andWhere('r.slug = :slug')
+                ->setParameter('slug', $slug);
 
         $cr = $this->_em
-                    ->getRepository('FBNGuideBundle:Coordinates');
+                ->getRepository('FBNGuideBundle:Coordinates');
 
         $qb = $cr->joinCoord($qb);
 
         return $qb->getQuery()
-                  ->getOneOrNullResult();
+                ->getOneOrNullResult();
     }
 
     public function getRestaurantShop($slug)
     {
         $qb = $this->createQueryBuilder('r')
-                   ->leftJoin('r.image', 'i')
-                   ->addSelect('i')
-                   ->leftJoin('r.coordinates', 'c')
-                   ->addSelect('c')
-                   ->andWhere('r.publication = :publication')
-                   ->setParameter('publication', true)
-                   ->andWhere('r.isShop = :isShop')
-                   ->setParameter('isShop', true)
-                   ->andWhere('r.slug = :slug')
-                   ->setParameter('slug', $slug);
+                ->leftJoin('r.image', 'i')
+                ->addSelect('i')
+                ->leftJoin('r.coordinates', 'c')
+                ->addSelect('c')
+                ->andWhere('r.publication = :publication')
+                ->setParameter('publication', true)
+                ->andWhere('r.isShop = :isShop')
+                ->setParameter('isShop', true)
+                ->andWhere('r.slug = :slug')
+                ->setParameter('slug', $slug);
 
         $cr = $this->_em
-                    ->getRepository('FBNGuideBundle:Coordinates');
+                ->getRepository('FBNGuideBundle:Coordinates');
 
         $qb = $cr->joinCoord($qb);
 
         return $qb->getQuery()
-                  ->getOneOrNullResult();
+                ->getOneOrNullResult();
     }
 }

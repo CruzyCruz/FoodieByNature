@@ -15,14 +15,14 @@ class InfoRepository extends EntityRepository
     public function getArticlesImages($first = 0, $limit = Article::NUM_ITEMS)
     {
         $qb = $this->createQueryBuilder('i')
-                   ->orderBy('i.datePublication', 'DESC')
-                    ->where('i.publication = :publication')
-                    ->setParameter('publication', 1);
+            ->orderBy('i.datePublication', 'DESC')
+            ->andWhere('i.publication = :publication')
+            ->setParameter('publication', true);
 
         $query = $qb->getQuery();
 
         $query->setFirstResult($first)
-              ->setMaxResults($limit);
+            ->setMaxResults($limit);
 
         return $query->getResult();
     }

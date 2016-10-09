@@ -15,14 +15,14 @@ class ShopRepository extends EntityRepository
     public function getArticlesImages($first = 0, $limit = Article::NUM_ITEMS)
     {
         $qb = $this->createQueryBuilder('s')
-                   ->orderBy('s.datePublication', 'DESC')
-                    ->andWhere('s.publication = :publication')
-                    ->setParameter('publication', true);
+            ->orderBy('s.datePublication', 'DESC')
+            ->andWhere('s.publication = :publication')
+            ->setParameter('publication', true);
 
         $query = $qb->getQuery();
 
         $query->setFirstResult($first)
-              ->setMaxResults($limit);
+            ->setMaxResults($limit);
 
         $shops = $query->getResult();
 
@@ -41,19 +41,19 @@ class ShopRepository extends EntityRepository
     public function getShop($slug)
     {
         $qb = $this->createQueryBuilder('s')
-                   ->leftJoin('s.coordinates', 'c')
-                   ->addSelect('c')
-                    ->andWhere('s.publication = :publication')
-                    ->setParameter('publication', true)
-                    ->andWhere('s.slug = :slug')
-                    ->setParameter('slug', $slug);
+            ->leftJoin('s.coordinates', 'c')
+            ->addSelect('c')
+            ->andWhere('s.publication = :publication')
+            ->setParameter('publication', true)
+            ->andWhere('s.slug = :slug')
+            ->setParameter('slug', $slug);
 
         $cr = $this->_em
-                    ->getRepository('FBNGuideBundle:Coordinates');
+            ->getRepository('FBNGuideBundle:Coordinates');
 
         $qb = $cr->joinCoord($qb);
 
         return $qb->getQuery()
-                ->getOneOrNullResult();
+            ->getOneOrNullResult();
     }
 }

@@ -18,8 +18,8 @@ class TutorialRepository extends EntityRepository
             ->leftJoin('t.image', 'i')
             ->addSelect('i')
             ->orderBy('t.datePublication', 'DESC')
-            ->where('t.publication = :publication')
-            ->setParameter('publication', 1);
+            ->andWhere('t.publication = :publication')
+            ->setParameter('publication', true);
 
         $query = $qb->getQuery();
 
@@ -40,7 +40,9 @@ class TutorialRepository extends EntityRepository
             ->addSelect('tc')
             ->leftJoin('tc.tutorialChapterParas', 'tcp')
             ->addSelect('tcp')
-            ->where('t.slug = :slug')
+            ->andWhere('t.publication = :publication')
+            ->setParameter('publication', true)
+            ->andWhere('t.slug = :slug')
             ->setParameter('slug', $slug);
 
         $query = $qb->getQuery();

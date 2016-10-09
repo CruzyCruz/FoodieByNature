@@ -16,15 +16,15 @@ class EventRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('e')
             ->leftJoin('e.image', 'i')
-                   ->addSelect('i')
-                   ->orderBy('e.datePublication', 'DESC')
-                    ->where('e.publication = :publication')
-                    ->setParameter('publication', 1);
+            ->addSelect('i')
+            ->orderBy('e.datePublication', 'DESC')
+            ->andWhere('e.publication = :publication')
+            ->setParameter('publication', true);
 
         $query = $qb->getQuery();
 
         $query->setFirstResult($first)
-              ->setMaxResults($limit);
+            ->setMaxResults($limit);
 
         return $query->getResult();
     }
@@ -39,31 +39,33 @@ class EventRepository extends EntityRepository
     public function getEvent($slug)
     {
         $qb = $this->createQueryBuilder('e')
-                   ->leftJoin('e.image', 'i')
-                   ->addSelect('i')
-                   ->leftJoin('e.eventType', 'et')
-                   ->addSelect('et')
-                   ->leftJoin('e.eventPast', 'ep')
-                   ->addSelect('ep')
-                   ->leftJoin('e.restaurant', 'er')
-                   ->addSelect('er')
-                   ->leftJoin('e.shop', 'ec')
-                   ->addSelect('ec')
-                   ->leftJoin('e.winemakerDomain', 'ev')
-                   ->addSelect('ev')
-                   ->leftJoin('ev.winemaker', 'evv')
-                   ->addSelect('evv')
-                   ->leftJoin('e.coordinates', 'c')
-                   ->addSelect('c')
-                    ->where('e.slug = :slug')
-                    ->setParameter('slug', $slug);
+            ->leftJoin('e.image', 'i')
+            ->addSelect('i')
+            ->leftJoin('e.eventType', 'et')
+            ->addSelect('et')
+            ->leftJoin('e.eventPast', 'ep')
+            ->addSelect('ep')
+            ->leftJoin('e.restaurant', 'er')
+            ->addSelect('er')
+            ->leftJoin('e.shop', 'ec')
+            ->addSelect('ec')
+            ->leftJoin('e.winemakerDomain', 'ev')
+            ->addSelect('ev')
+            ->leftJoin('ev.winemaker', 'evv')
+            ->addSelect('evv')
+            ->leftJoin('e.coordinates', 'c')
+            ->addSelect('c')
+            ->andWhere('e.publication = :publication')
+            ->setParameter('publication', true)
+            ->andWhere('e.slug = :slug')
+            ->setParameter('slug', $slug);
 
         $cr = $this->_em
-                    ->getRepository('FBNGuideBundle:Coordinates');
+            ->getRepository('FBNGuideBundle:Coordinates');
 
         $qb = $cr->joinCoord($qb);
 
         return $qb->getQuery()
-                  ->getOneOrNullResult();
+            ->getOneOrNullResult();
     }
 }
