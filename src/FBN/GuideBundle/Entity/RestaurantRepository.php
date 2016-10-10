@@ -43,7 +43,7 @@ class RestaurantRepository extends EntityRepository
         $query = $qb->getQuery();
 
         $query->setFirstResult($first)
-              ->setMaxResults($limit);
+            ->setMaxResults($limit);
 
         return $query->getResult();
     }
