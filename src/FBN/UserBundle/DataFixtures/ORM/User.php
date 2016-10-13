@@ -10,15 +10,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class User implements FixtureInterface, ContainerAwareInterface
 {
-
     /**
      * @var ContainerInterface
      */
     private $container;
-    
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setContainer(ContainerInterface $container = null)
     {
@@ -27,33 +25,28 @@ class User implements FixtureInterface, ContainerAwareInterface
 
     public function load(ObjectManager $manager)
     {
+        $userManager = $this->container->get('fos_user.user_manager');
 
-    $userManager = $this->container->get('fos_user.user_manager');
+        $listNames = array('Cedric');
 
+        foreach ($listNames as $name) {
+            $user = $userManager->createUser();
 
-    $listNames = array('Cedric');
+            $user->setUsername($name);
 
-    foreach ($listNames as $name) 
-    {
+            $user->setPlainPassword($name);
 
-      $user = $userManager->createUser();
-      
-      $user->setUsername($name);
+            $user->setEmail('bonnin.cedric@gmail.com');
 
-      $user->setPlainPassword($name);
+            $user->setRoles(array('ROLE_USER', 'ROLE_ADMIN'));
 
-      $user->setEmail('bonnin.cedric@gmail.com');
+            $user->setEnabled(true);
 
-
-      $user->setRoles(array('ROLE_USER'));
-      
-      $user->setEnabled(true);    
-
-      $userManager->updateUser($user, true);  
+            $userManager->updateUser($user, true);
 
       // On le persiste
       //$manager->persist($user);
-    }
+        }
 
     // On déclenche l'enregistrement
     //$manager->flush();

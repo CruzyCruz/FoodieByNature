@@ -3,30 +3,33 @@
 namespace FBN\GuideBundle\Slug;
 
 use FBN\GuideBundle\Entity\CoordinatesISO;
-use FBN\GuideBundle\Entity\Restaurant;
 
 class SlugManager
 {
     /**
-     * Update attribute slugFromCoordinatesISO of entity Restaurant on CoordinatesISO insertion|update (onFlush event).
+     * Update attribute slugFromCoordinatesISO of entity Restaurant and Shop on CoordinatesISO insertion|update (onFlush event).
      *
      * @param object $entity The entity.
      * @param object $em     The entity manager.
      * @param object $uow    The unit of work.
      */
-    public function updateRestaurantSlugFromCoordinatesISOOnFlush($entity, $em, $uow)
+    public function updateRestaurantShopSlugFromCoordinatesISOOnFlush($entity, $em, $uow)
     {
         if ($entity instanceof CoordinatesISO) {
             $coordinates = $entity->getCoordinates();
 
             if (null !== $coordinates) {
-                $restaurant = $coordinates->getRestaurant();
+                $codeISO = $coordinates->getCoordinatesCountry()->getCodeISO();
+                $articles[] = $coordinates->getRestaurant();
+                $articles[] = $coordinates->getShop();
 
-                if (null !== $restaurant) {
-                    $restaurant->setSlugFromCoordinatesISO($uow->getEntityChangeSet($entity)['coordinatesFRCity'][1]->getCity());
+                foreach ($articles as $article) {
+                    if (null !== $article) {
+                        $article->setSlugFromCoordinatesISO($uow->getEntityChangeSet($entity)['coordinates'.$codeISO.'City'][1]->getCity());
 
-                    $classMetadata = $em->getClassMetadata(get_class($restaurant));
-                    $uow->recomputeSingleEntityChangeSet($classMetadata, $restaurant);
+                        $classMetadata = $em->getClassMetadata(get_class($article));
+                        $uow->recomputeSingleEntityChangeSet($classMetadata, $article);
+                    }
                 }
 
                 return;

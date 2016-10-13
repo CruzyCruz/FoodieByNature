@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Shop extends Article
 {
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist","remove"})
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", inversedBy="shop", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * @Assert\Valid()
      */
@@ -74,7 +74,14 @@ class Shop extends Article
     private $openingHours;
 
     /**
-     * @Gedmo\Slug(updatable=true, fields={"name"}, prefix="shop-")
+     * @var string
+     *
+     * @ORM\Column(name="slugFromCoordinatesISO", type="string", length=128)
+     */
+    private $slugFromCoordinatesISO;
+
+    /**
+     * @Gedmo\Slug(updatable=true, fields={"name","slugFromCoordinatesISO"}, prefix="shop-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
@@ -95,6 +102,7 @@ class Shop extends Article
     public function setCoordinates(\FBN\GuideBundle\Entity\Coordinates $coordinates)
     {
         $this->coordinates = $coordinates;
+        $coordinates->setShop($this);
 
         return $this;
     }
@@ -320,6 +328,30 @@ class Shop extends Article
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Set slugFromCoordinatesISO.
+     *
+     * @param string $slugFromCoordinatesISO
+     *
+     * @return Shop
+     */
+    public function setSlugFromCoordinatesISO($slugFromCoordinatesISO)
+    {
+        $this->slugFromCoordinatesISO = $slugFromCoordinatesISO;
+
+        return $this;
+    }
+
+    /**
+     * Get slugFromCoordinatesISO.
+     *
+     * @return string
+     */
+    public function getSlugFromCoordinatesISO()
+    {
+        return $this->slugFromCoordinatesISO;
     }
 
     /** {@inheritdoc} */

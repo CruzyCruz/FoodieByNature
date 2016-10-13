@@ -48,7 +48,7 @@ class DoctrineListenerEarly implements EventSubscriber
     /**
      * On flush do the following.
      *
-     * - Update attribute slugFromCoordinatesISO of entity Restaurant on CoordinatesISO insertion|update.
+     * - Update attribute slugFromCoordinatesISO of entity Restaurant and Shop on CoordinatesISO insertion|update.
      * - Set|Update attributes lat/long on CoordinatesISO insertion|update.
      * - Manage events (modification or removal) entities on related entities removal.
      *
@@ -60,12 +60,12 @@ class DoctrineListenerEarly implements EventSubscriber
         $uow = $em->getUnitOfWork();
 
         foreach ($uow->getScheduledEntityInsertions() as $entity) {
-            $this->slugManager->updateRestaurantSlugFromCoordinatesISOOnFlush($entity, $em, $uow);
+            $this->slugManager->updateRestaurantShopSlugFromCoordinatesISOOnFlush($entity, $em, $uow);
             $this->coordinatesManager->setLatLongCoordinatesISOOnFlush($entity, $em, $uow);
         }
 
         foreach ($uow->getScheduledEntityUpdates() as $entity) {
-            $this->slugManager->updateRestaurantSlugFromCoordinatesISOOnFlush($entity, $em, $uow);
+            $this->slugManager->updateRestaurantShopSlugFromCoordinatesISOOnFlush($entity, $em, $uow);
             $this->coordinatesManager->setLatLongCoordinatesISOOnFlush($entity, $em, $uow);
         }
 

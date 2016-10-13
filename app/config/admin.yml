@@ -152,6 +152,7 @@ easy_admin:
                     - 'name'
                     - 'author'
                     - 'owner'
+                    - { property: 'description', type: 'ckeditor', type_options: {config_name: ck_editor_config, required: true } }
                     - 'openingHours'
                     - 'tel'
                     - 'site'

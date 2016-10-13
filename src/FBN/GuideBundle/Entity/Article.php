@@ -35,7 +35,7 @@ abstract class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @ORM\Column(name="description", type="text", nullable=false)
      * @Gedmo\Translatable
      * @Assert\NotBlank()
      */

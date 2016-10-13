@@ -36,7 +36,7 @@ class Shop extends AbstractFixture implements OrderedFixtureInterface
                         'Tous les jours, de 11h30 à 15h et de 19h30 à 22h30 (22h le dimanche).',
                         );
 
-        $descriptions = array(null, null, null, null);
+        $descriptions = array('shop', 'shop', 'shop', 'shop');
 
         $openingHoursfr = array(
                         'From noon to 2:30pm and from 7pm to 11pm. Closed Sunday.',
@@ -87,6 +87,8 @@ class Shop extends AbstractFixture implements OrderedFixtureInterface
             $manager->persist($shop[$i]);
 
             $shop[$i]->setCoordinates($this->getReference('coordinates-'.($i + 13)));
+
+            $shop[$i]->setSlugFromCoordinatesISO($this->getReference('coordinatesfr-'.($i + 13))->getCoordinatesFRCity()->getCity());
 
             $this->addReference('shop-'.$i, $shop[$i]);
         }

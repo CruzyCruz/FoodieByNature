@@ -34,6 +34,12 @@ class Coordinates
     private $restaurant;
 
     /**
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Shop", mappedBy="coordinates")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    private $shop;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -125,7 +131,29 @@ class Coordinates
         return $this->restaurant;
     }
 
-    //private $test;
+    /**
+     * Set shop.
+     *
+     * @param \FBN\GuideBundle\Entity\Shop $shop
+     *
+     * @return Coordinates
+     */
+    public function setShop(\FBN\GuideBundle\Entity\Shop $shop)
+    {
+        $this->shop = $shop;
+
+        return $this;
+    }
+
+    /**
+     * Get shop.
+     *
+     * @return \FBN\GuideBundle\Entity\Shop
+     */
+    public function getShop()
+    {
+        return $this->shop;
+    }
 
     /** {@inheritdoc} */
     public function __toString()
@@ -135,10 +163,6 @@ class Coordinates
         $getCoordinatesISO = 'getCoordinates'.$codeISO;
         $getCoordinatesISOCity = 'getCoordinates'.$codeISO.'City';
 
-        //dump($test);
-        //die();
-
-        //return $this->test();
         return $country.' / '.$this->$getCoordinatesISO()->$getCoordinatesISOCity()->getCity();
     }
 }
