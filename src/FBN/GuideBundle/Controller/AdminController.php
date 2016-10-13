@@ -143,7 +143,7 @@ class AdminController extends BaseAdminController
                 'class' => 'FBNGuideBundle:Event',
                 'query_builder' => function (EventRepository $repo) use ($id) {
 
-                    return $repo->getEventsWithExcludedId($id);
+                    return $repo->getEventsWithCoordinatesAndExcludedId($id);
                     },
                 'attr' => ['data-widget' => 'select2'],
                 'placeholder' => 'label.form.empty_value',

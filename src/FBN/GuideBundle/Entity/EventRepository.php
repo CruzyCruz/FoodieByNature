@@ -29,10 +29,11 @@ class EventRepository extends EntityRepository
         return $query->getResult();
     }
 
-    public function getEventsWithExcludedId($id = 0)
+    public function getEventsWithCoordinatesAndExcludedId($id = 0)
     {
         return $this->createQueryBuilder('e')
-            ->where('e.id != :id')
+            ->andWhere('e.coordinates IS NOT NULL')
+            ->andWhere('e.id != :id')
             ->setParameter('id', $id);
     }
 
