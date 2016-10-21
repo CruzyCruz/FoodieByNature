@@ -30,7 +30,7 @@ class WinemakerDomain
     private $winemakerArea;
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist","remove"})
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", inversedBy="winemakerDomain", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=false)
      * @Assert\Valid()
      */
@@ -85,6 +85,13 @@ class WinemakerDomain
      * @Gedmo\Translatable        
      */
     private $openingHours;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slugFromCoordinatesISO", type="string", length=128)
+     */
+    private $slugFromCoordinatesISO;
 
     /**
      * @var string
@@ -231,6 +238,30 @@ class WinemakerDomain
     }
 
     /**
+     * Set slugFromCoordinatesISO.
+     *
+     * @param string $slugFromCoordinatesISO
+     *
+     * @return WinemakerDomain
+     */
+    public function setSlugFromCoordinatesISO($slugFromCoordinatesISO)
+    {
+        $this->slugFromCoordinatesISO = $slugFromCoordinatesISO;
+
+        return $this;
+    }
+
+    /**
+     * Get slugFromCoordinatesISO.
+     *
+     * @return string
+     */
+    public function getSlugFromCoordinatesISO()
+    {
+        return $this->slugFromCoordinatesISO;
+    }
+
+    /**
      * Set locale.
      *
      * @param string $locale
@@ -298,6 +329,7 @@ class WinemakerDomain
     public function setCoordinates(\FBN\GuideBundle\Entity\Coordinates $coordinates)
     {
         $this->coordinates = $coordinates;
+        $coordinates->setWinemakerDomain($this);
 
         return $this;
     }
@@ -310,31 +342,6 @@ class WinemakerDomain
     public function getCoordinates()
     {
         return $this->coordinates;
-    }
-
-    /**
-     * Add event.
-     *
-     * @param \FBN\GuideBundle\Entity\Event $event
-     *
-     * @return WinemakerDomain
-     */
-    public function addEvent(\FBN\GuideBundle\Entity\Event $event)
-    {
-        $this->event[] = $event;
-        $event->setWinemakerDomain($this);
-
-        return $this;
-    }
-
-    /**
-     * Remove event.
-     *
-     * @param \FBN\GuideBundle\Entity\Event $event
-     */
-    public function removeEvent(\FBN\GuideBundle\Entity\Event $event)
-    {
-        $this->event->removeElement($event);
     }
 
     /**

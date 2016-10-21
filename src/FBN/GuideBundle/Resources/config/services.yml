@@ -56,6 +56,7 @@ services:
 
     fbn_guide.slug_manager:
         class : FBN\GuideBundle\Slug\SlugManager
+        arguments: [@fbn_guide.event_manager, @fbn_guide.coordinates_manager]
 
     fbn_guide.coordinates_manager:
         class : FBN\GuideBundle\Coordinates\CoordinatesManager

@@ -6,6 +6,7 @@ use Exception;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Geocoder\Geocoder;
 use FBN\GuideBundle\Entity\CoordinatesISO;
+use FBN\GuideBundle\Entity\Coordinates;
 
 class CoordinatesManager
 {
@@ -217,5 +218,22 @@ class CoordinatesManager
         $className = $classInfo->getShortName();
 
         return $this->accessor->getValue($coordinatesISO, $className.$string);
+    }
+
+    /**
+     * Find the entity linked to one coordinates (Restaurant, Shop, WinemakerDomain, EventPast).
+     *
+     * @param Coordinates $coordinates
+     *
+     * @return object $entity The related entity.
+     */
+    public function findEntityLinkedToCoordinates(Coordinates $coordinates)
+    {
+        ($entity = $coordinates->getRestaurant())
+        || ($entity = $coordinates->getShop())
+        || ($entity = $coordinates->getWinemakerDomain())
+        || ($entity = $coordinates->getEvent());
+
+        return $entity;
     }
 }

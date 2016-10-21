@@ -8,10 +8,22 @@ namespace FBN\GuideBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use FBN\GuideBundle\Entity\Restaurant as Restrnt;
 
-class Restaurant extends AbstractFixture implements OrderedFixtureInterface
+class Restaurant extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
@@ -114,14 +126,14 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface
 
             $restaurant[$i]->setImage($this->getReference('imagerestaurant-'.$i));
 
-            $restaurant[$i]->setSlugFromCoordinatesISO($this->getReference('coordinatesfr-'.$i)->getCoordinatesFRCity()->getCity());
+            $slugManager = $this->container->get('fbn_guide.slug_manager');
+            $slugFromCoordinatesISO = $slugManager->getSlugFromCoordinatesISO(null, $this->getReference('coordinates-'.$i));
+            $restaurant[$i]->setSlugFromCoordinatesISO($slugFromCoordinatesISO);
 
             $manager->persist($restaurant[$i]);
 
             $this->addReference('restaurant-'.$i, $restaurant[$i]);
         }
-
-        //$restaurant[0]->setShop($this->getReference('shop-0'));
 
         $manager->flush();
     }

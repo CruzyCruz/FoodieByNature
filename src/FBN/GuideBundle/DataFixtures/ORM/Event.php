@@ -7,10 +7,22 @@ namespace FBN\GuideBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use FBN\GuideBundle\Entity\Event as Evt;
 
-class Event extends AbstractFixture implements OrderedFixtureInterface
+class Event extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
@@ -156,29 +168,55 @@ class Event extends AbstractFixture implements OrderedFixtureInterface
             $event[$i]->setImage($this->getReference('imageevent-'.$i));
         }
 
+        $slugManager = $this->container->get('fbn_guide.slug_manager');
+
         $event[0]->setEventType($this->getReference('eventtype-0'));
         $event[0]->setRestaurant($this->getReference('restaurant-0'));
+        $coordinates = $this->getReference('restaurant-0')->getCoordinates();
+        $slugFromCoordinatesISO = $slugManager->getSlugFromCoordinatesISO(null, $coordinates);
+        $event[0]->setSlugFromCoordinatesISO($slugFromCoordinatesISO);
 
         $event[1]->setEventType($this->getReference('eventtype-3'));
         $event[1]->setCoordinates($this->getReference('coordinates-11'));
+        $coordinates = $this->getReference('coordinates-11');
+        $slugFromCoordinatesISO = $slugManager->getSlugFromCoordinatesISO(null, $coordinates);
+        $event[1]->setSlugFromCoordinatesISO($slugFromCoordinatesISO);
 
         $event[2]->setEventType($this->getReference('eventtype-1'));
         $event[2]->setCoordinates($this->getReference('coordinates-12'));
+        $coordinates = $this->getReference('coordinates-12');
+        $slugFromCoordinatesISO = $slugManager->getSlugFromCoordinatesISO(null, $coordinates);
+        $event[2]->setSlugFromCoordinatesISO($slugFromCoordinatesISO);
 
         $event[3]->setEventType($this->getReference('eventtype-1'));
         $event[3]->setCoordinates($this->getReference('coordinates-13'));
+        $coordinates = $this->getReference('coordinates-13');
+        $slugFromCoordinatesISO = $slugManager->getSlugFromCoordinatesISO(null, $coordinates);
+        $event[3]->setSlugFromCoordinatesISO($slugFromCoordinatesISO);
 
         $event[4]->setEventType($this->getReference('eventtype-0'));
         $event[4]->setRestaurant($this->getReference('restaurant-0'));
+        $coordinates = $this->getReference('restaurant-0')->getCoordinates();
+        $slugFromCoordinatesISO = $slugManager->getSlugFromCoordinatesISO(null, $coordinates);
+        $event[4]->setSlugFromCoordinatesISO($slugFromCoordinatesISO);
 
         $event[5]->setEventType($this->getReference('eventtype-3'));
         $event[5]->setEventPast($this->getReference('event-1'));
+        $coordinates = $this->getReference('event-1')->getCoordinates();
+        $slugFromCoordinatesISO = $slugManager->getSlugFromCoordinatesISO(null, $coordinates);
+        $event[5]->setSlugFromCoordinatesISO($slugFromCoordinatesISO);
 
         $event[6]->setEventType($this->getReference('eventtype-1'));
         $event[6]->setEventPast($this->getReference('event-3'));
+        $coordinates = $this->getReference('event-3')->getCoordinates();
+        $slugFromCoordinatesISO = $slugManager->getSlugFromCoordinatesISO(null, $coordinates);
+        $event[6]->setSlugFromCoordinatesISO($slugFromCoordinatesISO);
 
         $event[7]->setEventType($this->getReference('eventtype-3'));
         $event[7]->setWinemakerDomain($this->getReference('winemakerdomain-4'));
+        $coordinates = $this->getReference('winemakerdomain-4')->getCoordinates();
+        $slugFromCoordinatesISO = $slugManager->getSlugFromCoordinatesISO(null, $coordinates);
+        $event[7]->setSlugFromCoordinatesISO($slugFromCoordinatesISO);
 
         $manager->flush();
     }

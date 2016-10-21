@@ -8,10 +8,22 @@ namespace FBN\GuideBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use FBN\GuideBundle\Entity\WinemakerDomain as WmkrDmn;
 
-class WinemakerDomain extends AbstractFixture implements OrderedFixtureInterface
+class WinemakerDomain extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
@@ -88,6 +100,10 @@ class WinemakerDomain extends AbstractFixture implements OrderedFixtureInterface
             $wmkrDmn[$i]->setWinemaker($this->getReference('winemaker-'.($winemaker_ids[$i] - 1)));
             $wmkrDmn[$i]->setWinemakerArea($this->getReference('winemakerarea-'.($winemakerarea_ids[$i] - 1)));
             $wmkrDmn[$i]->setCoordinates($this->getReference('coordinates-'.($i + 5)));
+
+            $slugManager = $this->container->get('fbn_guide.slug_manager');
+            $slugFromCoordinatesISO = $slugManager->getSlugFromCoordinatesISO(null, $this->getReference('coordinates-'.($i + 5)));
+            $wmkrDmn[$i]->setSlugFromCoordinatesISO($slugFromCoordinatesISO);
 
             $this->addReference('winemakerdomain-'.$i, $wmkrDmn[$i]);
         }

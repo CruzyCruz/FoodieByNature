@@ -50,7 +50,7 @@ class Event extends Article
   private $winemakerDomain;
 
   /**
-   * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", cascade={"persist","remove"}, orphanRemoval=true)
+   * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", inversedBy="event", cascade={"persist","remove"}, orphanRemoval=true)
    * @ORM\JoinColumn(nullable=true)
    * @Assert\Valid()
    */
@@ -142,7 +142,14 @@ class Event extends Article
     private $useExtSite;
 
     /**
-     * @Gedmo\Slug(updatable=true, fields={"name","year"}, prefix="event-")
+     * @var string
+     *
+     * @ORM\Column(name="slugFromCoordinatesISO", type="string", length=128)
+     */
+    private $slugFromCoordinatesISO;
+
+    /**
+     * @Gedmo\Slug(updatable=true, fields={"name", "slugFromCoordinatesISO", "year"}, prefix="event-")
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
@@ -167,6 +174,15 @@ class Event extends Article
      * @ORM\Column(name="formerLocation", type="string", length=255, nullable=true)  
      */
     private $formerLocation;
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->event = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id.
@@ -272,6 +288,30 @@ class Event extends Article
     public function getOpeningHours()
     {
         return $this->openingHours;
+    }
+
+    /**
+     * Set slugFromCoordinatesISO.
+     *
+     * @param string $slugFromCoordinatesISO
+     *
+     * @return Event
+     */
+    public function setSlugFromCoordinatesISO($slugFromCoordinatesISO)
+    {
+        $this->slugFromCoordinatesISO = $slugFromCoordinatesISO;
+
+        return $this;
+    }
+
+    /**
+     * Get slugFromCoordinatesISO.
+     *
+     * @return string
+     */
+    public function getSlugFromCoordinatesISO()
+    {
+        return $this->slugFromCoordinatesISO;
     }
 
     /**
@@ -429,6 +469,10 @@ class Event extends Article
     public function setCoordinates(\FBN\GuideBundle\Entity\Coordinates $coordinates = null)
     {
         $this->coordinates = $coordinates;
+        // if coordinates is null, the corresponding coordinates entity will be removed by orphanRemoval mechanism
+        if (null !== $coordinates) {
+            $coordinates->setEvent($this);
+        }
 
         return $this;
     }
@@ -450,9 +494,9 @@ class Event extends Article
      *
      * @return Event
      */
-    public function setEventPast(\FBN\GuideBundle\Entity\Event $event = null)
+    public function setEventPast(\FBN\GuideBundle\Entity\Event $eventPast = null)
     {
-        $this->eventPast = $event;
+        $this->eventPast = $eventPast;
 
         return $this;
     }
@@ -465,31 +509,6 @@ class Event extends Article
     public function getEventPast()
     {
         return $this->eventPast;
-    }
-
-    /**
-     * Add event.
-     *
-     * @param \FBN\GuideBundle\Entity\Event $event
-     *
-     * @return Event
-     */
-    public function addEvent(\FBN\GuideBundle\Entity\Event $event)
-    {
-        $this->event[] = $event;
-        $event->setEventPast($this);
-
-        return $this;
-    }
-
-    /**
-     * Remove event.
-     *
-     * @param \FBN\GuideBundle\Entity\Event $event
-     */
-    public function removeEvent(\FBN\GuideBundle\Entity\Event $event)
-    {
-        $this->event->removeElement($event);
     }
 
     /**

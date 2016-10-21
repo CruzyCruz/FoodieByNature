@@ -97,4 +97,21 @@ class EventManager
 
         return;
     }
+
+    /**
+     * Return event related entity (alternative location when coordinates are null).
+     *
+     * @param Event $event The event object.
+     *
+     * @return object $eventExternalLocation The related entity.
+     */
+    public function findEventExternalLocation(Event $event)
+    {
+        ($eventExternalLocation = $event->getRestaurant())
+        || ($eventExternalLocation = $event->getShop())
+        || ($eventExternalLocation = $event->getWinemakerDomain())
+        || ($eventExternalLocation = $event->getEventPast());
+
+        return $eventExternalLocation;
+    }
 }

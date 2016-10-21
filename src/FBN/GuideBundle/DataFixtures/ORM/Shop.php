@@ -8,10 +8,22 @@ namespace FBN\GuideBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use FBN\GuideBundle\Entity\Shop as Shp;
 
-class Shop extends AbstractFixture implements OrderedFixtureInterface
+class Shop extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
@@ -86,9 +98,11 @@ class Shop extends AbstractFixture implements OrderedFixtureInterface
 
             $manager->persist($shop[$i]);
 
-            $shop[$i]->setCoordinates($this->getReference('coordinates-'.($i + 13)));
+            $shop[$i]->setCoordinates($this->getReference('coordinates-'.($i + 14)));
 
-            $shop[$i]->setSlugFromCoordinatesISO($this->getReference('coordinatesfr-'.($i + 13))->getCoordinatesFRCity()->getCity());
+            $slugManager = $this->container->get('fbn_guide.slug_manager');
+            $slugFromCoordinatesISO = $slugManager->getSlugFromCoordinatesISO(null, $this->getReference('coordinates-'.($i + 14)));
+            $shop[$i]->setSlugFromCoordinatesISO($slugFromCoordinatesISO);
 
             $this->addReference('shop-'.$i, $shop[$i]);
         }

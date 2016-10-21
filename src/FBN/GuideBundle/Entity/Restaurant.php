@@ -333,31 +333,6 @@ class Restaurant extends Article
     }
 
     /**
-     * Add event.
-     *
-     * @param \FBN\GuideBundle\Entity\Event $event
-     *
-     * @return Restaurant
-     */
-    public function addEvent(\FBN\GuideBundle\Entity\Event $event)
-    {
-        $this->event[] = $event;
-        $event->setRestaurant($this);
-
-        return $this;
-    }
-
-    /**
-     * Remove event.
-     *
-     * @param \FBN\GuideBundle\Entity\Event $event
-     */
-    public function removeEvent(\FBN\GuideBundle\Entity\Event $event)
-    {
-        $this->event->removeElement($event);
-    }
-
-    /**
      * Get event.
      *
      * @return \Doctrine\Common\Collections\Collection

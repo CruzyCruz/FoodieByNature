@@ -34,10 +34,22 @@ class Coordinates
     private $restaurant;
 
     /**
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\WinemakerDomain", mappedBy="coordinates")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    private $winemakerDomain;
+
+    /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Shop", mappedBy="coordinates")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $shop;
+
+    /**
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Event", mappedBy="coordinates")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    private $event;
 
     /**
      * @var int
@@ -132,6 +144,30 @@ class Coordinates
     }
 
     /**
+     * Set winemakerDomain.
+     *
+     * @param \FBN\GuideBundle\Entity\Restaurant $winemakerDomain
+     *
+     * @return Coordinates
+     */
+    public function setWinemakerDomain(\FBN\GuideBundle\Entity\WinemakerDomain $winemakerDomain)
+    {
+        $this->winemakerDomain = $winemakerDomain;
+
+        return $this;
+    }
+
+    /**
+     * Get winemakerDomain.
+     *
+     * @return \FBN\GuideBundle\Entity\WinemakerDomain
+     */
+    public function getWinemakerDomain()
+    {
+        return $this->winemakerDomain;
+    }
+
+    /**
      * Set shop.
      *
      * @param \FBN\GuideBundle\Entity\Shop $shop
@@ -153,6 +189,30 @@ class Coordinates
     public function getShop()
     {
         return $this->shop;
+    }
+
+    /**
+     * Set event.
+     *
+     * @param \FBN\GuideBundle\Entity\Event $event
+     *
+     * @return Coordinates
+     */
+    public function setEvent(\FBN\GuideBundle\Entity\Event $event)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event.
+     *
+     * @return \FBN\GuideBundle\Entity\Event
+     */
+    public function getEvent()
+    {
+        return $this->event;
     }
 
     /** {@inheritdoc} */

@@ -118,31 +118,6 @@ class Shop extends Article
     }
 
     /**
-     * Add event.
-     *
-     * @param \FBN\GuideBundle\Entity\Event $event
-     *
-     * @return Shop
-     */
-    public function addEvent(\FBN\GuideBundle\Entity\Event $event)
-    {
-        $this->event[] = $event;
-        $event->setShop($this);
-
-        return $this;
-    }
-
-    /**
-     * Remove event.
-     *
-     * @param \FBN\GuideBundle\Entity\Event $event
-     */
-    public function removeEvent(\FBN\GuideBundle\Entity\Event $event)
-    {
-        $this->event->removeElement($event);
-    }
-
-    /**
      * Get event.
      *
      * @return \Doctrine\Common\Collections\Collection
