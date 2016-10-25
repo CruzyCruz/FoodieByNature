@@ -3,7 +3,6 @@
 namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * CoordinatesISO.
@@ -16,7 +15,6 @@ class CoordinatesISO
      * @var string
      *
      * @ORM\Column(name="laneNum", type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
      */
     private $laneNum;
 
@@ -24,7 +22,6 @@ class CoordinatesISO
      * @var string
      *
      * @ORM\Column(name="laneName", type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
      */
     private $laneName;
 

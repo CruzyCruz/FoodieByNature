@@ -20,13 +20,18 @@ class CoordinatesFRType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('laneNum', TextType::class)
+            ->add('laneNum', TextType::class, array(
+                'required' => false,
+                ))
             ->add('coordinatesFRLane', EntityType::class, array(
                 'class' => 'FBNGuideBundle:CoordinatesFRLane',
                 'property' => 'lane',
                 'placeholder' => 'label.form.empty_value',
+                'required' => false,
                 ))
-            ->add('laneName', TextType::class)
+            ->add('laneName', TextType::class, array(
+                'required' => false,
+                ))
             ->add('miscellaneous', TextType::class, array(
                 'required' => false,
                 ))

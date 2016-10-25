@@ -16,7 +16,6 @@ class CoordinatesFR extends CoordinatesISO
     /**
     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFRLane")
     * @ORM\JoinColumn(nullable=true)
-    * @Assert\NotBlank()
     */
    private $coordinatesFRLane;
 
