@@ -30,9 +30,7 @@ class RestaurantStyle
      *
      * @ORM\Column(name="style", type="string", length=255, unique=true)
      * @Gedmo\Translatable
-     * @Assert\NotNull()
      * @Assert\NotBlank()
-     * @Assert\Length(max = 50) 
      */
     private $style;
 

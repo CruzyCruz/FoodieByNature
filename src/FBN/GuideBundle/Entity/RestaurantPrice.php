@@ -30,9 +30,7 @@ class RestaurantPrice
      *
      * @ORM\Column(name="price", type="string", length=255, unique=true)
      * @Gedmo\Translatable
-     * @Assert\NotNull()
      * @Assert\NotBlank()
-     * @Assert\Length(max = 50) 
      */
     private $price;
 

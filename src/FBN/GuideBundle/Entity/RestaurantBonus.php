@@ -30,9 +30,7 @@ class RestaurantBonus
      *
      * @ORM\Column(name="bonus", type="string", length=255, unique=true)
      * @Gedmo\Translatable
-     * @Assert\NotNull()
      * @Assert\NotBlank()
-     * @Assert\Length(max = 50)
      */
     private $bonus;
 
