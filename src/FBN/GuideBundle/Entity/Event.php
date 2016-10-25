@@ -51,7 +51,7 @@ class Event extends Article
 
   /**
    * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", inversedBy="event", cascade={"persist","remove"}, orphanRemoval=true)
-   * @ORM\JoinColumn(nullable=true)
+   * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
    * @Assert\Valid()
    */
   private $coordinates;
@@ -63,7 +63,7 @@ class Event extends Article
   private $eventPast;
 
     /**
-     * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\Event", mappedBy="eventPast")
+     * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\Event", mappedBy="eventPast", orphanRemoval=true)
      */
     private $event;
 

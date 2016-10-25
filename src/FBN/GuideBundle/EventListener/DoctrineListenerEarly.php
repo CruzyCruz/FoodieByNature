@@ -51,7 +51,7 @@ class DoctrineListenerEarly implements EventSubscriber
      * - Update attribute slugFromCoordinatesISO of entity Restaurant, Shop, WinemakerDomain, Event on CoordinatesISO insertion|update.
      * - Update attribute slugFromCoordinatesISO of Event entity with null coordinates (alternative location) on insertion|update (on Flush event).
      * - Set|Update attributes lat/long on CoordinatesISO insertion|update.
-     * - Manage events (modification or removal) entities on related entities removal.
+     * - Copy location informations (name and coordinates) in Event entity on Entity related removal (Restaurant, Shop, Winemaker).
      *
      * @param OnFlushEventArgs $args
      */
@@ -73,7 +73,7 @@ class DoctrineListenerEarly implements EventSubscriber
         }
 
         foreach ($uow->getScheduledEntityDeletions() as $entity) {
-            $this->eventManager->manageEvents($entity, $em, $uow);
+            $this->eventManager->setEventFormerLocationCoordinatesOnRelatedEntityRemoval($entity, $em, $uow);
         }
     }
 }
