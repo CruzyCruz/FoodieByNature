@@ -10,6 +10,7 @@ easy_admin:
             - { entity: 'User' }
             - { label: 'Restaurants' }            
             - Restaurant
+            - RestaurantPrice
             - RestaurantBonus
             - RestaurantStyle
             - { label: 'Winemakers' }
