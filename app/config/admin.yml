@@ -227,7 +227,7 @@ easy_admin:
                     - 'tel'
                     - 'site'
                     - 'href'                    
-                    - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType', css_class: 'col-xs-12 coordinates' }                    
+                    - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType', type_options: { required: true }, css_class: 'col-xs-12 coordinates' }                    
                     - { property: 'restaurant', css_class: 'col-xs-12 restaurant' }
                     - { property: 'shop', css_class: 'col-xs-12 shop' }
                     - { property: 'winemakerDomain', css_class: 'col-xs-12 winemakerDomain' }

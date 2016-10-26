@@ -29,7 +29,7 @@ class EventRepository extends EntityRepository
         return $query->getResult();
     }
 
-    public function getEventsWithCoordinatesAndExcludedId($id = 0)
+    public function getEventsWithCoordinatesAndExcludedId($id)
     {
         return $this->createQueryBuilder('e')
             ->andWhere('e.coordinates IS NOT NULL')

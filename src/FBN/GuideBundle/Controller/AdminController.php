@@ -137,19 +137,18 @@ class AdminController extends BaseAdminController
             });
         }
 
-        // Only in case of edition : do not self-reference event in events list.
-        if (null !== $id = $entity->getId()) {
-            $formBuilder->add('eventPast', EntityType::class, array(
-                'class' => 'FBNGuideBundle:Event',
-                'query_builder' => function (EventRepository $repo) use ($id) {
-
-                    return $repo->getEventsWithCoordinatesAndExcludedId($id);
-                    },
-                'attr' => ['data-widget' => 'select2'],
-                'placeholder' => 'label.form.empty_value',
-                'required' => false,
-                ));
-        }
+        // If it's a new entity, id is null.
+        $id = (null !== $entity->getId()) ? $entity->getId() : 0;
+        $formBuilder->add('eventPast', EntityType::class, array(
+            'class' => 'FBNGuideBundle:Event',
+            'query_builder' => function (EventRepository $repo) use ($id) {
+                return $repo->getEventsWithCoordinatesAndExcludedId($id);
+                },
+            'attr' => ['data-widget' => 'select2'],
+            'placeholder' => 'label.form.empty_value',
+            'required' => false,
+            )
+        );
 
         return $this->getFormBuilderForNonDefaultLocale($formBuilder, $entity, $view);
     }

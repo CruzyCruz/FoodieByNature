@@ -745,6 +745,13 @@ class Event extends Article
             return false;
         }
 
+        // If this event is referenced by one or several events, its coordinates should not be null.
+        if (!(empty($this->getEvent()))) {
+            if (null === $this->getCoordinates()) {
+                return false;
+            }
+        }
+
         // If location is defined using coordinates but 'useExtTel' or 'useExtSite' are true
         if (null !== $accessor->getValue($this, 'coordinates')) {
             if ((true === $accessor->getValue($this, 'useExtTel')) || (true === $accessor->getValue($this, 'useExtSite'))) {

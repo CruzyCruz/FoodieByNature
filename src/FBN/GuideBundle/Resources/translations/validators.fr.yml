@@ -2,5 +2,9 @@ fbn:
     guide:
         admin:
             event:
-                isEventLocationValid: Aucun lieu n'a été défini ou plus d'un OU BIEN des coordonnées ont été renseignées mais les champs ext tel ou ext site ont été cochés.
-                isEventDatesValid: La date de fin de l'événement est antérieur à la date de début.
+                isEventLocationValid: |
+                    [ aucun lieu n'a été défini ] OU
+                    [ plus de deux lieux ont été définis ] OU
+                    [ cet événement est référencé par un ou plusieurs autres événements, ses coordonnées ne peuvent être nulles ] OU
+                    [ des coordonnées ont été renseignées mais les champs ext tel ou ext site ont été cochés ]
+                isEventDatesValid: La date de fin de l'événement est antérieur à la date de début

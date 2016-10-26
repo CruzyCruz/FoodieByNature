@@ -2,5 +2,9 @@ fbn:
     guide:
         admin:
             event:
-                isEventLocationValid: No event location or more than one OR Coordinates is defined and ext tel or ext site are checked.
+                isEventLocationValid: >
+                    [ no event location is defined ] OR
+                    [ more than two location are defined ] OR
+                    [ this event is referenced by one or several others events, its coordinates can not be null ] OR
+                    [ coordinates are defined and ext tel or ext site are checked ]
                 isEventDatesValid: Event ending date is prior to beginning date.
