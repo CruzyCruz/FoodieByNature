@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class TutorialChapterPara
 {
     /**
-     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\TutorialChapter", inversedBy="TutorialChapterPara")
+     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\TutorialChapter", inversedBy="tutorialChapterParas")
      * @ORM\JoinColumn(nullable=false)
      */
     private $tutorialChapter;
