@@ -119,6 +119,7 @@ class AdminController extends BaseAdminController
      * Event:
      * - Set coordinates to null in Event entity when an alternatative is proposed (restaurant, shop... - only for default locale)
      * - Disable non translatable fields for locale different of default locale.
+     * - Do not self reference the event in drop down (edition only) and show only event with non null coordinates.
      */
     public function createEventEntityFormBuilder($entity, $view)
     {
