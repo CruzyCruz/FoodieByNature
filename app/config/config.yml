@@ -246,7 +246,14 @@ services:
             - { name: twig.extension }            
 
 ivory_ck_editor:
-    jquery: true    
+    jquery: true
+    default_config: ck_editor_config
     configs:
         ck_editor_config:
             toolbar: [ ['Bold', 'Italic', 'Strike', 'Link'], "-", ['BulletedList', 'NumberedList', '-', 'Outdent', 'Indent'], "-", ['Copy', 'Paste', 'PasteFromWord', '-', 'Undo', 'Redo'], "-", ['Maximize'] ]
+            # divarea : replace iframe by div, needed to avoid ckeditor widget freezing when reordering (i.e detach() from DOM)
+            extraPlugins: "divarea"
+    plugins:
+        divarea:
+            path: "/js/ckeditor/divarea/"
+            filename: "plugin.js"        
