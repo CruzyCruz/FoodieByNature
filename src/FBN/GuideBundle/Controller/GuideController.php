@@ -13,16 +13,13 @@ class GuideController extends Controller
 {
     public function homeAction()
     {
-        $route = $this->container->get('router')->getRouteCollection()->get('fbn_guide_articles');
-        $requirements = explode('|', $route->getRequirement('articles'));
+        $entities = array('Info', 'Restaurant', 'Winemaker', 'Event', 'Tutorial', 'Shop');
 
         $lastArticles = array();
 
         $em = $this->getDoctrine()->getManager();
 
-        foreach ($requirements as $requirement) {
-            $entity = $this->requirementToEntity($requirement);
-
+        foreach ($entities as $entity) {
             $articles = $em->getRepository('FBNGuideBundle:'.$entity)->getArticlesImages(0, Article::NUM_ITEMS_HOMEPAGE);
             $lastArticles = array_merge_recursive($lastArticles, $articles);
         }
@@ -117,15 +114,18 @@ class GuideController extends Controller
 
     public function eventAction($slug)
     {
-        $event = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('FBNGuideBundle:Event')
-            ->getEvent($slug);
+        $em = $this->getDoctrine()->getManager();
+
+        $locale = $this->get('request')->getLocale();
+
+        $event = $em->getRepository('FBNGuideBundle:Event')->getEvent($slug, $locale);
 
         if (null === $event) {
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
+
+        // Needed for correct generation of language switcher in view.
+        $slugsTranslations = $this->getSlugTranslationsByEntity($em, $event);
 
         ($placeEvt = $event->getRestaurant()) || ($placeEvt = $event->getShop()) || ($placeEvt = $event->getWinemakerDomain()) || ($placeEvt = $event->getEventPast()) || ($placeEvt = $event);
 
@@ -137,25 +137,28 @@ class GuideController extends Controller
             'event' => $event,
             'placeEvt' => $placeEvt,
             'map' => $map,
+            'slugsTranslations' => $slugsTranslations,
         ));
     }
 
     public function tutorialAction($slug)
     {
+        $em = $this->getDoctrine()->getManager();
+
         $locale = $this->get('request')->getLocale();
 
-        $tutorial = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('FBNGuideBundle:Tutorial')
-            ->getTutorial($slug, $locale);
+        $tutorial = $em->getRepository('FBNGuideBundle:Tutorial')->getTutorial($slug, $locale);
 
         if (null === $tutorial) {
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
+        // Needed for correct generation of language switcher in view.
+        $slugsTranslations = $this->getSlugTranslationsByEntity($em, $tutorial);
+
         return $this->render('FBNGuideBundle:Guide:tutorial.html.twig', array(
             'tutorial' => $tutorial,
+            'slugsTranslations' => $slugsTranslations,
         ));
     }
 
@@ -275,5 +278,42 @@ class GuideController extends Controller
     public function requirementToEntity($requirement)
     {
         return ucfirst(substr($requirement, 0, strlen($requirement) - 1));
+    }
+
+    /**
+     * Get all slugs translations for a given entity.
+     *
+     * @param object $em     Entity manager.
+     * @param object $entity The entity.
+     *
+     * @return array An array of localized slugs : ['en' => 'slugEN', ...]
+     */
+    public function getSlugTranslationsByEntity($em, $entity)
+    {
+        $translationRepository = $em->getRepository('Gedmo\Translatable\Entity\Translation');
+
+        $defaultLocale = $this->container->getParameter('locale');
+        $locale = $this->get('request')->getLocale();
+
+        // Initiate slugsTranslations array with default locale value.
+        if ($locale  !== $defaultLocale) {
+            $entity->setTranslatableLocale($defaultLocale);
+            $em->refresh($entity);
+        }
+
+        $slugsTranslations = array($defaultLocale => $entity->getSlug());
+
+        // Reset entity locale for further operations.
+        $entity->setTranslatableLocale($locale);
+        $em->refresh($entity);
+
+        // Get all entity translations (different from default locale)
+        $translations = $translationRepository->findTranslations($entity);
+
+        foreach ($translations as $locale => $translation) {
+            $slugsTranslations[$locale] = $translation['slug'];
+        }
+
+        return $slugsTranslations;
     }
 }

@@ -17,7 +17,6 @@ class Event extends AbstractFixture implements OrderedFixtureInterface, Containe
      * @var ContainerInterface
      */
     private $container;
-
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
@@ -108,20 +107,14 @@ class Event extends AbstractFixture implements OrderedFixtureInterface, Containe
                         'From 11am to 16pm',
                         );
 
-        $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
-
         foreach ($names as $i => $name) {
             $event[$i] = new Evt();
             $event[$i]->setName($name);
             $event[$i]->setPublication(true);
-
-            $repository->translate($event[$i], 'name', 'fr', $namesfr[$i]);
         }
 
         foreach ($descriptions as $i => $description) {
             $event[$i]->setDescription($description);
-
-            $repository->translate($event[$i], 'description', 'fr', $descriptionsfr[$i]);
         }
 
         foreach ($authors as $i => $author) {
@@ -158,8 +151,6 @@ class Event extends AbstractFixture implements OrderedFixtureInterface, Containe
 
         foreach ($openingHours as $i => $openingHour) {
             $event[$i]->setOpeningHours($openingHour);
-
-            $repository->translate($event[$i], 'openingHours', 'fr', $openingHoursfr[$i]);
 
             $manager->persist($event[$i]);
 
@@ -219,6 +210,34 @@ class Event extends AbstractFixture implements OrderedFixtureInterface, Containe
         $event[7]->setSlugFromCoordinatesISO($slugFromCoordinatesISO);
 
         $manager->flush();
+
+        // Translations managed after entities persistence in default locale (first flushing) for slug translation
+        // It is needed to call translatable listener and change the locale before setting translatable fields
+        // This way, slug is automatically translated
+        unset($event);
+
+        $repositoryEvent = $manager->getRepository('FBNGuideBundle:Event');
+        $events = $repositoryEvent->findAll();
+
+        $translatableListener = $this->container->get('stof_doctrine_extensions.listener.translatable');
+
+        // Locale : fr
+        $translatableListener->setTranslatableLocale('fr');
+
+        // No need to access translations repository and use translae() method 
+        // as locale was directly changed in tanslatable listener i.e:
+        // $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
+        // $repository->translate($event, 'name', 'fr', $namesfr[$i]);
+        foreach ($events as $i => $event) {
+            $event->setName($namesfr[$i]);
+            $event->setDescription($descriptionsfr[$i]);
+            $event->setOpeningHours($openingHoursfr[$i]);
+        }
+
+        $manager->flush();
+
+        // Change translatable locale to default locale.
+        $translatableListener->setTranslatableLocale($this->container->getParameter('locale'));
     }
 
     public function getOrder()

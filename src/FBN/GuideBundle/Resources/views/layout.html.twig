@@ -3,9 +3,9 @@
 {# Coming to homepage from another template using render(controller()) (flash messages) #}
 {% set route = app.request.get('_route') ? app.request.get('_route') : 'fbn_guide_home' %}
 {% set route_params = app.request.get('_route_params') ? app.request.get('_route_params') : { '_locale' : ''} %}
+{% set query_params = app.request.query.all ? app.request.query.all : [] %}
 
 {% extends "::layout.html.twig" %}
-
 
 {% block header %}
 
@@ -44,11 +44,20 @@
 
 		{{ knp_menu_render('main') }}
 
-    <ul>
-      {% for locale in ['fr','en'] %}
-        <li><a href="{{ path( route, route_params|merge({ '_locale': locale }) ) }}">{{ locale|upper }}</a></li>  
-      {% endfor %}
-    </ul>
+{% if slugsTranslations is defined %}
+  <ul>
+    {% for locale in ['fr','en'] %}
+      <li><a href="{{ path(route, route_params|merge(query_params)|merge({ '_locale': locale, 'slug' : slugsTranslations[locale] })) }}">{{ locale|upper }}</a></li>  
+    {% endfor %}
+  </ul>
+{% else %}
+  <ul>
+    {% for locale in ['fr','en'] %}
+      <li><a href="{{ path(route, route_params|merge(query_params)|merge({ '_locale': locale })) }}">{{ locale|upper }}</a></li>  
+    {% endfor %}
+  </ul>
+{% endif %}
+
 
 	</nav>   
    

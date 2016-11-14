@@ -37,7 +37,7 @@ class EventRepository extends EntityRepository
             ->setParameter('id', $id);
     }
 
-    public function getEvent($slug)
+    public function getEvent($slug, $locale)
     {
         $qb = $this->createQueryBuilder('e')
             ->leftJoin('e.image', 'i')
@@ -66,7 +66,27 @@ class EventRepository extends EntityRepository
 
         $qb = $cr->joinCoord($qb);
 
-        return $qb->getQuery()
-            ->getOneOrNullResult();
+        $query = $qb->getQuery();
+
+        $query->setHint(
+            \Doctrine\ORM\Query::HINT_CUSTOM_OUTPUT_WALKER,
+            'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker'
+        );
+
+        // In case memcach or apc is activated (https://github.com/Atlantic18/DoctrineExtensions/blob/master/doc/translatable.md#using-orm-query-hint)
+
+        // Locale
+        $query->setHint(
+            \Gedmo\Translatable\TranslatableListener::HINT_TRANSLATABLE_LOCALE,
+            $locale
+        );
+
+        // Fallback
+        $query->setHint(
+            \Gedmo\Translatable\TranslatableListener::HINT_FALLBACK,
+            1 // fallback to default values in case if record is not translated
+        );
+
+        return $query->getOneOrNullResult();
     }
 }
