@@ -11,15 +11,27 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class GuideController extends Controller
 {
+    /**
+     * Correspondence between routing fbn_guide_articles {articles} requirements and entity.
+     *
+     * @var array
+     */
+    private static $articlesEntities = array(
+        'infos' => 'Info',
+        'restaurants' => 'Restaurant',
+        'winemakers' => 'Winemaker',
+        'events' => 'Event',
+        'tutorials' => 'Tutorial',
+        'shops' => 'Shop',
+    );
+
     public function homeAction()
     {
-        $entities = array('Info', 'Restaurant', 'Winemaker', 'Event', 'Tutorial', 'Shop');
-
         $lastArticles = array();
 
         $em = $this->getDoctrine()->getManager();
 
-        foreach ($entities as $entity) {
+        foreach (self::$articlesEntities as $entity) {
             $articles = $em->getRepository('FBNGuideBundle:'.$entity)->getArticlesImages(0, Article::NUM_ITEMS_HOMEPAGE);
             $lastArticles = array_merge_recursive($lastArticles, $articles);
         }
@@ -34,7 +46,7 @@ class GuideController extends Controller
 
     public function articlesAction($articles)
     {
-        $entity = $this->requirementToEntity($articles);
+        $entity = self::$articlesEntities[$articles];
 
         $em = $this->getDoctrine()->getManager();
 
@@ -273,11 +285,6 @@ class GuideController extends Controller
             default:
                 throw new NotFoundHttpException();
         }
-    }
-
-    public function requirementToEntity($requirement)
-    {
-        return ucfirst(substr($requirement, 0, strlen($requirement) - 1));
     }
 
     /**
