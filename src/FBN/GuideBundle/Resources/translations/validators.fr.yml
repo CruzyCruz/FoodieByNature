@@ -2,7 +2,7 @@ fbn:
     guide:
         admin:
             event:
-                isEventLocationValid: |
+                isEventLocationValid: >
                     [ aucun lieu n'a été défini ] OU
                     [ plus de deux lieux ont été définis ] OU
                     [ cet événement est référencé par un ou plusieurs autres événements, ses coordonnées ne peuvent être nulles ] OU
