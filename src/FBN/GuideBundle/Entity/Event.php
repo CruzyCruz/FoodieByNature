@@ -150,7 +150,7 @@ class Event extends Article
 
     /**
      * @Gedmo\Translatable
-     * @Gedmo\Slug(updatable=true, fields={"name", "slugFromCoordinatesISO", "year"}, prefix="event-")
+     * @Gedmo\Slug(updatable=true, fields={"name", "slugFromCoordinatesISO", "year"})
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;

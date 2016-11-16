@@ -37,7 +37,7 @@ class Winemaker extends Article
     private $id;
 
     /**
-     * @Gedmo\Slug(updatable=true, fields={"name"}, prefix="winemaker-")
+     * @Gedmo\Slug(updatable=true, fields={"name"})
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;

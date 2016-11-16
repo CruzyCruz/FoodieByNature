@@ -81,7 +81,7 @@ class Shop extends Article
     private $slugFromCoordinatesISO;
 
     /**
-     * @Gedmo\Slug(updatable=true, fields={"name","slugFromCoordinatesISO"}, prefix="shop-")
+     * @Gedmo\Slug(updatable=true, fields={"name","slugFromCoordinatesISO"})
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
