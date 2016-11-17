@@ -2966,7 +2966,7 @@
         <dia:point val="21.9175,-1.2"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="21.8675,-2.05;32.6313,8.23754"/>
+        <dia:rectangle val="21.8675,-2.05;32.6314,8.23754"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
@@ -4051,7 +4051,7 @@
         <dia:color val="#41d500"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O59" connection="3"/>
+        <dia:connection handle="0" to="O58" connection="3"/>
         <dia:connection handle="1" to="O1" connection="5"/>
       </dia:connections>
     </dia:object>
@@ -4122,7 +4122,7 @@
         <dia:color val="#41d500"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O61" connection="0"/>
+        <dia:connection handle="0" to="O60" connection="0"/>
         <dia:connection handle="1" to="O14" connection="5"/>
       </dia:connections>
     </dia:object>
@@ -4193,7 +4193,7 @@
         <dia:color val="#41d500"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O63" connection="12"/>
+        <dia:connection handle="0" to="O62" connection="12"/>
         <dia:connection handle="1" to="O19" connection="5"/>
       </dia:connections>
     </dia:object>
@@ -4264,8 +4264,8 @@
         <dia:color val="#41d500"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O67" connection="2"/>
-        <dia:connection handle="1" to="O46" connection="6"/>
+        <dia:connection handle="0" to="O66" connection="2"/>
+        <dia:connection handle="1" to="O45" connection="6"/>
       </dia:connections>
     </dia:object>
     <dia:object type="UML - Association" version="2" id="O32">
@@ -4335,7 +4335,7 @@
         <dia:color val="#41d500"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O65" connection="12"/>
+        <dia:connection handle="0" to="O64" connection="12"/>
         <dia:connection handle="1" to="O24" connection="5"/>
       </dia:connections>
     </dia:object>
@@ -4475,7 +4475,7 @@
         <dia:color val="#00fff7"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O48" connection="3"/>
+        <dia:connection handle="0" to="O47" connection="3"/>
         <dia:connection handle="1" to="O7" connection="3"/>
       </dia:connections>
     </dia:object>
@@ -4622,7 +4622,7 @@
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O19" connection="12"/>
-        <dia:connection handle="1" to="O48" connection="9"/>
+        <dia:connection handle="1" to="O47" connection="9"/>
       </dia:connections>
     </dia:object>
     <dia:object type="UML - Association" version="2" id="O37">
@@ -4703,186 +4703,6 @@
       </dia:connections>
     </dia:object>
     <dia:object type="UML - Class" version="0" id="O38">
-      <dia:attribute name="obj_pos">
-        <dia:point val="30.7696,-54.9429"/>
-      </dia:attribute>
-      <dia:attribute name="obj_bb">
-        <dia:rectangle val="30.6946,-55.0179;35.4996,-50.4679"/>
-      </dia:attribute>
-      <dia:attribute name="elem_corner">
-        <dia:point val="30.7696,-54.9429"/>
-      </dia:attribute>
-      <dia:attribute name="elem_width">
-        <dia:real val="4.6549999999999994"/>
-      </dia:attribute>
-      <dia:attribute name="elem_height">
-        <dia:real val="4.4000000000000004"/>
-      </dia:attribute>
-      <dia:attribute name="name">
-        <dia:string>#Menu#</dia:string>
-      </dia:attribute>
-      <dia:attribute name="stereotype">
-        <dia:string>##</dia:string>
-      </dia:attribute>
-      <dia:attribute name="comment">
-        <dia:string>##</dia:string>
-      </dia:attribute>
-      <dia:attribute name="abstract">
-        <dia:boolean val="false"/>
-      </dia:attribute>
-      <dia:attribute name="suppress_attributes">
-        <dia:boolean val="false"/>
-      </dia:attribute>
-      <dia:attribute name="suppress_operations">
-        <dia:boolean val="false"/>
-      </dia:attribute>
-      <dia:attribute name="visible_attributes">
-        <dia:boolean val="true"/>
-      </dia:attribute>
-      <dia:attribute name="visible_operations">
-        <dia:boolean val="true"/>
-      </dia:attribute>
-      <dia:attribute name="visible_comments">
-        <dia:boolean val="false"/>
-      </dia:attribute>
-      <dia:attribute name="wrap_operations">
-        <dia:boolean val="true"/>
-      </dia:attribute>
-      <dia:attribute name="wrap_after_char">
-        <dia:int val="40"/>
-      </dia:attribute>
-      <dia:attribute name="comment_line_length">
-        <dia:int val="17"/>
-      </dia:attribute>
-      <dia:attribute name="comment_tagging">
-        <dia:boolean val="false"/>
-      </dia:attribute>
-      <dia:attribute name="line_width">
-        <dia:real val="0.15000000000000002"/>
-      </dia:attribute>
-      <dia:attribute name="line_color">
-        <dia:color val="#000000"/>
-      </dia:attribute>
-      <dia:attribute name="fill_color">
-        <dia:color val="#ede300"/>
-      </dia:attribute>
-      <dia:attribute name="text_color">
-        <dia:color val="#000000"/>
-      </dia:attribute>
-      <dia:attribute name="normal_font">
-        <dia:font family="Calibri" style="0" name="Courier"/>
-      </dia:attribute>
-      <dia:attribute name="abstract_font">
-        <dia:font family="Calibri" style="0" name="Courier"/>
-      </dia:attribute>
-      <dia:attribute name="polymorphic_font">
-        <dia:font family="Calibri" style="0" name="Courier"/>
-      </dia:attribute>
-      <dia:attribute name="classname_font">
-        <dia:font family="Calibri" style="0" name="Courier"/>
-      </dia:attribute>
-      <dia:attribute name="abstract_classname_font">
-        <dia:font family="Calibri" style="0" name="Courier"/>
-      </dia:attribute>
-      <dia:attribute name="comment_font">
-        <dia:font family="Calibri" style="0" name="Courier"/>
-      </dia:attribute>
-      <dia:attribute name="normal_font_height">
-        <dia:real val="0.80000000000000004"/>
-      </dia:attribute>
-      <dia:attribute name="polymorphic_font_height">
-        <dia:real val="0.80000000000000004"/>
-      </dia:attribute>
-      <dia:attribute name="abstract_font_height">
-        <dia:real val="0.80000000000000004"/>
-      </dia:attribute>
-      <dia:attribute name="classname_font_height">
-        <dia:real val="1"/>
-      </dia:attribute>
-      <dia:attribute name="abstract_classname_font_height">
-        <dia:real val="1"/>
-      </dia:attribute>
-      <dia:attribute name="comment_font_height">
-        <dia:real val="0.69999999999999996"/>
-      </dia:attribute>
-      <dia:attribute name="attributes">
-        <dia:composite type="umlattribute">
-          <dia:attribute name="name">
-            <dia:string>#section#</dia:string>
-          </dia:attribute>
-          <dia:attribute name="type">
-            <dia:string>#string#</dia:string>
-          </dia:attribute>
-          <dia:attribute name="value">
-            <dia:string>##</dia:string>
-          </dia:attribute>
-          <dia:attribute name="comment">
-            <dia:string>##</dia:string>
-          </dia:attribute>
-          <dia:attribute name="visibility">
-            <dia:enum val="1"/>
-          </dia:attribute>
-          <dia:attribute name="abstract">
-            <dia:boolean val="false"/>
-          </dia:attribute>
-          <dia:attribute name="class_scope">
-            <dia:boolean val="false"/>
-          </dia:attribute>
-        </dia:composite>
-        <dia:composite type="umlattribute">
-          <dia:attribute name="name">
-            <dia:string>#intro#</dia:string>
-          </dia:attribute>
-          <dia:attribute name="type">
-            <dia:string>#string#</dia:string>
-          </dia:attribute>
-          <dia:attribute name="value">
-            <dia:string>##</dia:string>
-          </dia:attribute>
-          <dia:attribute name="comment">
-            <dia:string>#News, Restaurant...#</dia:string>
-          </dia:attribute>
-          <dia:attribute name="visibility">
-            <dia:enum val="1"/>
-          </dia:attribute>
-          <dia:attribute name="abstract">
-            <dia:boolean val="false"/>
-          </dia:attribute>
-          <dia:attribute name="class_scope">
-            <dia:boolean val="false"/>
-          </dia:attribute>
-        </dia:composite>
-        <dia:composite type="umlattribute">
-          <dia:attribute name="name">
-            <dia:string>#title#</dia:string>
-          </dia:attribute>
-          <dia:attribute name="type">
-            <dia:string>#string#</dia:string>
-          </dia:attribute>
-          <dia:attribute name="value">
-            <dia:string>##</dia:string>
-          </dia:attribute>
-          <dia:attribute name="comment">
-            <dia:string>##</dia:string>
-          </dia:attribute>
-          <dia:attribute name="visibility">
-            <dia:enum val="1"/>
-          </dia:attribute>
-          <dia:attribute name="abstract">
-            <dia:boolean val="false"/>
-          </dia:attribute>
-          <dia:attribute name="class_scope">
-            <dia:boolean val="false"/>
-          </dia:attribute>
-        </dia:composite>
-      </dia:attribute>
-      <dia:attribute name="operations"/>
-      <dia:attribute name="template">
-        <dia:boolean val="false"/>
-      </dia:attribute>
-      <dia:attribute name="templates"/>
-    </dia:object>
-    <dia:object type="UML - Class" version="0" id="O39">
       <dia:attribute name="obj_pos">
         <dia:point val="33.47,-10.8375"/>
       </dia:attribute>
@@ -5131,7 +4951,7 @@
       </dia:attribute>
       <dia:attribute name="templates"/>
     </dia:object>
-    <dia:object type="UML - Association" version="2" id="O40">
+    <dia:object type="UML - Association" version="2" id="O39">
       <dia:attribute name="name">
         <dia:string>#eventPast#</dia:string>
       </dia:attribute>
@@ -5206,7 +5026,7 @@
         <dia:connection handle="1" to="O19" connection="21"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Association" version="2" id="O41">
+    <dia:object type="UML - Association" version="2" id="O40">
       <dia:attribute name="name">
         <dia:string>##</dia:string>
       </dia:attribute>
@@ -5275,7 +5095,7 @@
         <dia:connection handle="1" to="O26" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Class" version="0" id="O42">
+    <dia:object type="UML - Class" version="0" id="O41">
       <dia:attribute name="obj_pos">
         <dia:point val="53.2278,16.9222"/>
       </dia:attribute>
@@ -5432,7 +5252,7 @@
       </dia:attribute>
       <dia:attribute name="templates"/>
     </dia:object>
-    <dia:object type="UML - Association" version="2" id="O43">
+    <dia:object type="UML - Association" version="2" id="O42">
       <dia:attribute name="name">
         <dia:string>##</dia:string>
       </dia:attribute>
@@ -5498,10 +5318,10 @@
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O24" connection="7"/>
-        <dia:connection handle="1" to="O42" connection="8"/>
+        <dia:connection handle="1" to="O41" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Class" version="0" id="O44">
+    <dia:object type="UML - Class" version="0" id="O43">
       <dia:attribute name="obj_pos">
         <dia:point val="33.3098,21.2398"/>
       </dia:attribute>
@@ -5658,7 +5478,7 @@
       </dia:attribute>
       <dia:attribute name="templates"/>
     </dia:object>
-    <dia:object type="UML - Association" version="2" id="O45">
+    <dia:object type="UML - Association" version="2" id="O44">
       <dia:attribute name="name">
         <dia:string>##</dia:string>
       </dia:attribute>
@@ -5699,7 +5519,7 @@
         <dia:point val="32.5814,18.1875"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="32.5313,18.1375;33.3598,24.0398"/>
+        <dia:rectangle val="32.5314,18.1375;33.3598,24.0398"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
@@ -5724,10 +5544,10 @@
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O19" connection="6"/>
-        <dia:connection handle="1" to="O44" connection="8"/>
+        <dia:connection handle="1" to="O43" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Class" version="0" id="O46">
+    <dia:object type="UML - Class" version="0" id="O45">
       <dia:attribute name="obj_pos">
         <dia:point val="51.3275,29.49"/>
       </dia:attribute>
@@ -5907,7 +5727,7 @@
       </dia:attribute>
       <dia:attribute name="templates"/>
     </dia:object>
-    <dia:object type="UML - Association" version="2" id="O47">
+    <dia:object type="UML - Association" version="2" id="O46">
       <dia:attribute name="name">
         <dia:string>##</dia:string>
       </dia:attribute>
@@ -5973,10 +5793,10 @@
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O26" connection="6"/>
-        <dia:connection handle="1" to="O46" connection="1"/>
+        <dia:connection handle="1" to="O45" connection="1"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Class" version="0" id="O48">
+    <dia:object type="UML - Class" version="0" id="O47">
       <dia:attribute name="obj_pos">
         <dia:point val="19.2327,13.7047"/>
       </dia:attribute>
@@ -6225,7 +6045,7 @@
       </dia:attribute>
       <dia:attribute name="templates"/>
     </dia:object>
-    <dia:object type="UML - Association" version="2" id="O49">
+    <dia:object type="UML - Association" version="2" id="O48">
       <dia:attribute name="name">
         <dia:string>##</dia:string>
       </dia:attribute>
@@ -6291,10 +6111,10 @@
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O14" connection="6"/>
-        <dia:connection handle="1" to="O48" connection="8"/>
+        <dia:connection handle="1" to="O47" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Association" version="2" id="O50">
+    <dia:object type="UML - Association" version="2" id="O49">
       <dia:attribute name="name">
         <dia:string>##</dia:string>
       </dia:attribute>
@@ -6363,11 +6183,11 @@
         <dia:color val="#000000"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O48" connection="6"/>
+        <dia:connection handle="0" to="O47" connection="6"/>
         <dia:connection handle="1" to="O15" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Class" version="0" id="O51">
+    <dia:object type="UML - Class" version="0" id="O50">
       <dia:attribute name="obj_pos">
         <dia:point val="58.4926,8.1"/>
       </dia:attribute>
@@ -6662,7 +6482,7 @@
       </dia:attribute>
       <dia:attribute name="templates"/>
     </dia:object>
-    <dia:object type="UML - Association" version="2" id="O52">
+    <dia:object type="UML - Association" version="2" id="O51">
       <dia:attribute name="name">
         <dia:string>##</dia:string>
       </dia:attribute>
@@ -6729,11 +6549,11 @@
         <dia:color val="#00fff7"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O51" connection="1"/>
+        <dia:connection handle="0" to="O50" connection="1"/>
         <dia:connection handle="1" to="O7" connection="10"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Generalization" version="1" id="O53">
+    <dia:object type="UML - Generalization" version="1" id="O52">
       <dia:attribute name="obj_pos">
         <dia:point val="21.9175,-1.2"/>
       </dia:attribute>
@@ -6771,10 +6591,10 @@
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O0" connection="4"/>
-        <dia:connection handle="1" to="O51" connection="3"/>
+        <dia:connection handle="1" to="O50" connection="3"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Association" version="2" id="O54">
+    <dia:object type="UML - Association" version="2" id="O53">
       <dia:attribute name="name">
         <dia:string>##</dia:string>
       </dia:attribute>
@@ -6841,11 +6661,11 @@
         <dia:color val="#d0ed00"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O51" connection="0"/>
+        <dia:connection handle="0" to="O50" connection="0"/>
         <dia:connection handle="1" to="O1" connection="1"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Association" version="2" id="O55">
+    <dia:object type="UML - Association" version="2" id="O54">
       <dia:attribute name="name">
         <dia:string>##</dia:string>
       </dia:attribute>
@@ -6917,10 +6737,10 @@
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O19" connection="4"/>
-        <dia:connection handle="1" to="O51" connection="8"/>
+        <dia:connection handle="1" to="O50" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Class" version="0" id="O56">
+    <dia:object type="UML - Class" version="0" id="O55">
       <dia:attribute name="obj_pos">
         <dia:point val="22.5749,-48.0867"/>
       </dia:attribute>
@@ -7054,7 +6874,7 @@
       </dia:attribute>
       <dia:attribute name="templates"/>
     </dia:object>
-    <dia:object type="UML - Association" version="2" id="O57">
+    <dia:object type="UML - Association" version="2" id="O56">
       <dia:attribute name="name">
         <dia:string>##</dia:string>
       </dia:attribute>
@@ -7122,10 +6942,10 @@
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O1" connection="8"/>
-        <dia:connection handle="1" to="O56" connection="3"/>
+        <dia:connection handle="1" to="O55" connection="3"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Association" version="2" id="O58">
+    <dia:object type="UML - Association" version="2" id="O57">
       <dia:attribute name="name">
         <dia:string>##</dia:string>
       </dia:attribute>
@@ -7191,10 +7011,10 @@
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O25" connection="14"/>
-        <dia:connection handle="1" to="O56" connection="1"/>
+        <dia:connection handle="1" to="O55" connection="1"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Class" version="0" id="O59">
+    <dia:object type="UML - Class" version="0" id="O58">
       <dia:attribute name="obj_pos">
         <dia:point val="7.65282,42.0475"/>
       </dia:attribute>
@@ -7351,7 +7171,7 @@
       </dia:attribute>
       <dia:attribute name="templates"/>
     </dia:object>
-    <dia:object type="UML - Generalization" version="1" id="O60">
+    <dia:object type="UML - Generalization" version="1" id="O59">
       <dia:attribute name="obj_pos">
         <dia:point val="19.2875,35.225"/>
       </dia:attribute>
@@ -7389,10 +7209,10 @@
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O23" connection="3"/>
-        <dia:connection handle="1" to="O59" connection="1"/>
+        <dia:connection handle="1" to="O58" connection="1"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Class" version="0" id="O61">
+    <dia:object type="UML - Class" version="0" id="O60">
       <dia:attribute name="obj_pos">
         <dia:point val="17.9528,41.9975"/>
       </dia:attribute>
@@ -7549,7 +7369,7 @@
       </dia:attribute>
       <dia:attribute name="templates"/>
     </dia:object>
-    <dia:object type="UML - Generalization" version="1" id="O62">
+    <dia:object type="UML - Generalization" version="1" id="O61">
       <dia:attribute name="obj_pos">
         <dia:point val="19.2875,35.225"/>
       </dia:attribute>
@@ -7587,10 +7407,10 @@
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O23" connection="3"/>
-        <dia:connection handle="1" to="O61" connection="8"/>
+        <dia:connection handle="1" to="O60" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Class" version="0" id="O63">
+    <dia:object type="UML - Class" version="0" id="O62">
       <dia:attribute name="obj_pos">
         <dia:point val="30.7528,42.1975"/>
       </dia:attribute>
@@ -7747,7 +7567,7 @@
       </dia:attribute>
       <dia:attribute name="templates"/>
     </dia:object>
-    <dia:object type="UML - Generalization" version="1" id="O64">
+    <dia:object type="UML - Generalization" version="1" id="O63">
       <dia:attribute name="obj_pos">
         <dia:point val="23.835,35.225"/>
       </dia:attribute>
@@ -7785,10 +7605,10 @@
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O23" connection="4"/>
-        <dia:connection handle="1" to="O63" connection="8"/>
+        <dia:connection handle="1" to="O62" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Class" version="0" id="O65">
+    <dia:object type="UML - Class" version="0" id="O64">
       <dia:attribute name="obj_pos">
         <dia:point val="43.1102,42.0975"/>
       </dia:attribute>
@@ -7945,7 +7765,7 @@
       </dia:attribute>
       <dia:attribute name="templates"/>
     </dia:object>
-    <dia:object type="UML - Generalization" version="1" id="O66">
+    <dia:object type="UML - Generalization" version="1" id="O65">
       <dia:attribute name="obj_pos">
         <dia:point val="23.835,35.225"/>
       </dia:attribute>
@@ -7983,10 +7803,10 @@
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O23" connection="4"/>
-        <dia:connection handle="1" to="O65" connection="3"/>
+        <dia:connection handle="1" to="O64" connection="3"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Class" version="0" id="O67">
+    <dia:object type="UML - Class" version="0" id="O66">
       <dia:attribute name="obj_pos">
         <dia:point val="43.1102,47.0475"/>
       </dia:attribute>
@@ -8143,7 +7963,7 @@
       </dia:attribute>
       <dia:attribute name="templates"/>
     </dia:object>
-    <dia:object type="UML - Generalization" version="1" id="O68">
+    <dia:object type="UML - Generalization" version="1" id="O67">
       <dia:attribute name="obj_pos">
         <dia:point val="23.835,35.225"/>
       </dia:attribute>
@@ -8181,10 +8001,10 @@
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O23" connection="4"/>
-        <dia:connection handle="1" to="O67" connection="3"/>
+        <dia:connection handle="1" to="O66" connection="3"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Class" version="0" id="O69">
+    <dia:object type="UML - Class" version="0" id="O68">
       <dia:attribute name="obj_pos">
         <dia:point val="21.3517,-32.7608"/>
       </dia:attribute>
@@ -8456,7 +8276,7 @@
       </dia:attribute>
       <dia:attribute name="templates"/>
     </dia:object>
-    <dia:object type="UML - Generalization" version="1" id="O70">
+    <dia:object type="UML - Generalization" version="1" id="O69">
       <dia:attribute name="obj_pos">
         <dia:point val="24.6917,-25.1608"/>
       </dia:attribute>
@@ -8491,11 +8311,11 @@
         <dia:string>##</dia:string>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O69" connection="6"/>
+        <dia:connection handle="0" to="O68" connection="6"/>
         <dia:connection handle="1" to="O9" connection="1"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Association" version="2" id="O71">
+    <dia:object type="UML - Association" version="2" id="O70">
       <dia:attribute name="name">
         <dia:string>##</dia:string>
       </dia:attribute>
@@ -8560,11 +8380,11 @@
         <dia:color val="#000000"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O39" connection="12"/>
+        <dia:connection handle="0" to="O38" connection="12"/>
         <dia:connection handle="1" to="O9" connection="6"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="UML - Class" version="0" id="O72">
+    <dia:object type="UML - Class" version="0" id="O71">
       <dia:attribute name="obj_pos">
         <dia:point val="33.335,-18.1"/>
       </dia:attribute>
@@ -8790,7 +8610,7 @@
       </dia:attribute>
       <dia:attribute name="templates"/>
     </dia:object>
-    <dia:object type="UML - Generalization" version="1" id="O73">
+    <dia:object type="UML - Generalization" version="1" id="O72">
       <dia:attribute name="obj_pos">
         <dia:point val="37.12,-12.1"/>
       </dia:attribute>
@@ -8825,8 +8645,8 @@
         <dia:string>##</dia:string>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O72" connection="6"/>
-        <dia:connection handle="1" to="O39" connection="1"/>
+        <dia:connection handle="0" to="O71" connection="6"/>
+        <dia:connection handle="1" to="O38" connection="1"/>
       </dia:connections>
     </dia:object>
   </dia:layer>

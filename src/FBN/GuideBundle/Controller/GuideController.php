@@ -50,15 +50,18 @@ class GuideController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $menuRepo = $em->getRepository('FBNGuideBundle:Menu');
+        $articlesList = $em->getRepository('FBNGuideBundle:'.$entity)->getArticlesImages();
 
-        $menu = $menuRepo->findOneBy(array('section' => $entity));
+        if ($entity === 'Info') {
+            return $this->render('FBNGuideBundle:Guide:infos.html.twig', array(
+                'articles' => $articles,
+                'articlesList' => $articlesList,
+            ));
+        }
 
-        $articles = $em->getRepository('FBNGuideBundle:'.$entity)->getArticlesImages();
-
-        return $this->render('FBNGuideBundle:Guide:articles.html.twig', array(
-            'menu' => $menu,
+        return $this->render('FBNGuideBundle:Guide:restaurants-winemakers-events-tutorials-shops.html.twig', array(
             'articles' => $articles,
+            'articlesList' => $articlesList,
         ));
     }
 
@@ -207,8 +210,6 @@ class GuideController extends Controller
     public function bookmarksAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $menuRepo = $em->getRepository('FBNGuideBundle:Menu');
-        $menu = $menuRepo->findOneBy(array('section' => 'Bookmark'));
 
         // User connexion is checked using custom LoginEntryPoint
         $userId = $this->getUser()->getId();
@@ -231,7 +232,6 @@ class GuideController extends Controller
         $bookmarkManager->setSessionVariable(array('remove_only'), $bookmarkIds, array(null), array(null));
 
         return $this->render('FBNGuideBundle:Guide:bookmarks.html.twig', array(
-            'menu' => $menu,
             'restaurants' => $restaurants,
             'winemakers' => $winemakers,
             'shops' => $shops,
