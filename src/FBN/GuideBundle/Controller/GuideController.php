@@ -41,6 +41,7 @@ class GuideController extends Controller
 
         return $this->render('FBNGuideBundle:Guide:index.html.twig', array(
             'lastArticles' => $lastArticles,
+            'entitiesArticles' => array_flip(self::$articlesEntities),
         ));
     }
 
@@ -62,6 +63,7 @@ class GuideController extends Controller
         return $this->render('FBNGuideBundle:Guide:restaurants-winemakers-events-tutorials-shops.html.twig', array(
             'articles' => $articles,
             'articlesList' => $articlesList,
+            'entitiesArticles' => array_flip(self::$articlesEntities),
         ));
     }
 
