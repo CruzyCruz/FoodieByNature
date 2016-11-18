@@ -14,10 +14,10 @@ class BookmarkRepository extends EntityRepository
 {
     public function getBookmarkByEntityId($userId, $entity, $entityId)
     {
-        $qb = $this->createQueryBuilder('f')
-            ->where('f.user = :user_id')
+        $qb = $this->createQueryBuilder('b')
+            ->where('b.user = :user_id')
             ->setParameter('user_id', $userId)
-            ->andwhere('f.'.$entity.' = :entity_id')
+            ->andWhere('b.'.$entity.' = :entity_id')
             ->setParameter('entity_id', $entityId);
 
         return $qb->getQuery()
@@ -27,11 +27,13 @@ class BookmarkRepository extends EntityRepository
     public function getBookmarksByEntity($userId, $entity)
     {
         // Using join to only take data with correspondances
-        $qb = $this->createQueryBuilder('f')
-            ->where('f.user = :user_id')
+        $qb = $this->createQueryBuilder('b')
+            ->where('b.user = :user_id')
             ->setParameter('user_id', $userId)
-            ->join('f.'.$entity, 'fr')
-            ->addSelect('fr');
+            ->join('b.'.$entity, 'ba')
+            ->addSelect('ba')
+            ->andWhere('ba.publication = :publication')
+            ->setParameter('publication', true);
 
         return $qb->getQuery()
             ->getArrayResult();
