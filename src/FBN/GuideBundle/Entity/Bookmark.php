@@ -13,26 +13,26 @@ use Doctrine\ORM\Mapping as ORM;
 class Bookmark
 {
     /**
-     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Restaurant")
+     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Restaurant", inversedBy="bookmark")
      * @ORM\JoinColumn(nullable=true)
      */
     private $restaurant;
 
     /**
-     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Winemaker")
+     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Winemaker", inversedBy="bookmark")
      * @ORM\JoinColumn(nullable=true)
      */
     private $winemaker;
 
     /**
-     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Shop")
+     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Shop", inversedBy="bookmark")
      * @ORM\JoinColumn(nullable=true)
      */
     private $shop;
 
     /**
-     * @ORM\ManyToOne(targetEntity="FBN\UserBundle\Entity\User")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\ManyToOne(targetEntity="FBN\UserBundle\Entity\User", inversedBy="bookmark")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
@@ -134,7 +134,7 @@ class Bookmark
      *
      * @return user
      */
-    public function setUser(\FBN\UserBundle\Entity\User $user = null)
+    public function setUser(\FBN\UserBundle\Entity\User $user)
     {
         $this->user = $user;
 

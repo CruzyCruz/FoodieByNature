@@ -14,6 +14,11 @@ use FOS\UserBundle\Model\User as BaseUser;
 class User extends BaseUser
 {
     /**
+     * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\Bookmark", mappedBy="user", cascade={"remove"})
+     */
+    private $bookmark;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")

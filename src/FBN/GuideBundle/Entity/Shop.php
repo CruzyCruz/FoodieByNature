@@ -27,6 +27,11 @@ class Shop extends Article
     private $event;
 
     /**
+     * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\Bookmark", mappedBy="shop", cascade={"remove"})
+     */
+    private $bookmark;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")

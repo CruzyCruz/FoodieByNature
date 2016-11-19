@@ -28,6 +28,11 @@ class Winemaker extends Article
   private $image;
 
     /**
+     * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\Bookmark", mappedBy="winemaker", cascade={"remove"})
+     */
+    private $bookmark;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
