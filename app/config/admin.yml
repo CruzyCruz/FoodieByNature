@@ -54,16 +54,7 @@ easy_admin:
                     - 'lastLogin'
                     - 'googleId'
                     - 'facebookId'                    
-            #form:
-            #    fields:
-            #        - 'username'
-            #        - 'email'
-                    # Property not mapped. Used to change user password.
-            #        - { property: 'plainPassword', type: 'text', type_options: { required: false} }
-            #        - { property: 'roles', type: choice, type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_ADMIN': 'ROLE_ADMIN' } } }
-            #        - 'enabled'
-            #        - 'locked'
-            edit:
+            form:
                 fields:
                     - 'username'
                     - 'email'
@@ -72,17 +63,11 @@ easy_admin:
                     - { property: 'roles', type: choice, type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_ADMIN': 'ROLE_ADMIN' } } }
                     - 'enabled'
                     - 'locked'
-                form_options: { validation_groups: ['Profile'] }                      
+                form_options: { validation_groups: ['Profile'] }
             new:
                 fields:
-                    - 'username'
-                    - 'email'
-                    # Property not mapped. Used to change user password.
                     - { property: 'plainPassword', type: 'text', type_options: { required: true} }
-                    - { property: 'roles', type: choice, type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_ADMIN': 'ROLE_ADMIN' } } }
-                    - 'enabled'
-                    - 'locked'
-                form_options: { validation_groups: ['Registration'] }                                 
+                form_options: { validation_groups: ['Registration'] }                              
         Restaurant:
             class : FBN\GuideBundle\Entity\Restaurant
             list:
