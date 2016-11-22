@@ -37,13 +37,15 @@ class Restaurant extends Article
     private $restaurantBonus;
 
     /**
-     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageRestaurant", inversedBy="restaurant", cascade={"persist","remove"})  
+     * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageRestaurant", inversedBy="restaurant", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=false)
      * @Assert\Valid()
      */
     private $image;
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", inversedBy="restaurant", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=false)
      * @Assert\Valid()
      */
     private $coordinates;

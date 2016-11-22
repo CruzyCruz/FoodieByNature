@@ -27,6 +27,7 @@ class Event extends Article
 
   /**
    * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageEvent",  inversedBy="event", cascade={"persist","remove"})
+   * @ORM\JoinColumn(nullable=false)
    */
   private $image;
 
