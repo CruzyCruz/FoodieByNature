@@ -19,7 +19,7 @@ abstract class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, nullable = false)
+     * @ORM\Column(name="name", type="string", length=255)
      * @Gedmo\Translatable
      * @Assert\NotBlank()
      */
@@ -35,7 +35,7 @@ abstract class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", nullable=false)
+     * @ORM\Column(name="description", type="text")
      * @Gedmo\Translatable
      * @Assert\NotBlank()
      */

@@ -43,7 +43,7 @@ class Shop extends Article
     /**
      * @var string
      *
-     * @ORM\Column(name="owner", type="string", length=255, nullable=false)
+     * @ORM\Column(name="owner", type="string", length=255)
      * @Assert\NotBlank()
      */
     private $owner;
