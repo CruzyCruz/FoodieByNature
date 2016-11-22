@@ -14,19 +14,16 @@ class Bookmark
 {
     /**
      * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Restaurant", inversedBy="bookmark")
-     * @ORM\JoinColumn(nullable=true)
      */
     private $restaurant;
 
     /**
      * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Winemaker", inversedBy="bookmark")
-     * @ORM\JoinColumn(nullable=true)
      */
     private $winemaker;
 
     /**
      * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\Shop", inversedBy="bookmark")
-     * @ORM\JoinColumn(nullable=true)
      */
     private $shop;
 
