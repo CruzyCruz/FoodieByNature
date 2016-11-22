@@ -27,7 +27,6 @@ class Event extends Article
 
   /**
    * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageEvent",  inversedBy="event", cascade={"persist","remove"})
-   * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
    */
   private $image;
 
@@ -51,7 +50,6 @@ class Event extends Article
 
   /**
    * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", inversedBy="event", cascade={"persist","remove"}, orphanRemoval=true)
-   * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
    * @Assert\Valid()
    */
   private $coordinates;

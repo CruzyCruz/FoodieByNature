@@ -16,7 +16,6 @@ class Shop extends Article
 {
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", inversedBy="shop", cascade={"persist","remove"})
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * @Assert\Valid()
      */
     private $coordinates;

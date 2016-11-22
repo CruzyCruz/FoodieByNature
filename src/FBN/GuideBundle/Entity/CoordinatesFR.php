@@ -28,7 +28,6 @@ class CoordinatesFR extends CoordinatesISO
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Coordinates", mappedBy="coordinatesFR")
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $coordinates;
 

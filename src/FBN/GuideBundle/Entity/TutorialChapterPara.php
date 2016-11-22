@@ -23,7 +23,6 @@ class TutorialChapterPara
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageTutorialChapterPara", inversedBy="tutorialChapterPara", cascade={"persist","remove"})
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * @Assert\Valid()
      */
     private $image;

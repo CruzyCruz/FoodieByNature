@@ -22,32 +22,27 @@ class Coordinates
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\CoordinatesFR", inversedBy="coordinates", cascade={"persist","remove"})
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      * @Assert\Valid()
      */
     private $coordinatesFR;
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Restaurant", mappedBy="coordinates")
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $restaurant;
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\WinemakerDomain", mappedBy="coordinates")
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $winemakerDomain;
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Shop", mappedBy="coordinates")
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $shop;
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Event", mappedBy="coordinates")
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $event;
 
