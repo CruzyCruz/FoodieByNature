@@ -10,7 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * RestaurantStyle.
  *
- * @ORM\Table(name="restaurantstyle")
+ * @ORM\Table(name="restaurant_style")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\RestaurantStyleRepository")
  * @UniqueEntity(fields="style")
  */

@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Translatable\Entity\MappedSuperclass\AbstractTranslation;
 
 /**
- * @ORM\Table(name="winemakerdomaintranslation", indexes={
+ * @ORM\Table(name="winemaker_domain_translation", indexes={
  *      @ORM\Index(name="winemakerdomaintranslation_idx", columns={"locale", "object_class", "field", "foreign_key"})
  * })
  * @ORM\Entity(repositoryClass="Gedmo\Translatable\Entity\Repository\TranslationRepository")

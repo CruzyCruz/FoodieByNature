@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * WinemakerDomain.
  *
- * @ORM\Table(name="winemakerdomain")
+ * @ORM\Table(name="winemaker_domain")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\WinemakerDomainRepository")
  * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\WinemakerDomainTranslation")  
  */

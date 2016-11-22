@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * TutorialChapter.
  *
- * @ORM\Table(name="tutorialchapter")
+ * @ORM\Table(name="tutorial_chapter")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\TutorialChapterRepository")
  */
 class TutorialChapter
