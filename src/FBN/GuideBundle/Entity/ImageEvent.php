@@ -26,7 +26,6 @@ class ImageEvent extends Image
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Event", mappedBy="image")
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $event;
 

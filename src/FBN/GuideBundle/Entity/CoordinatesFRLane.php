@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * CoordinatesFRLane.
  *
- * @ORM\Table(name="coordinatesfrlane")
+ * @ORM\Table(name="coordinates_fr_lane")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordinatesFRLaneRepository")
  * @UniqueEntity(fields="lane")
  */

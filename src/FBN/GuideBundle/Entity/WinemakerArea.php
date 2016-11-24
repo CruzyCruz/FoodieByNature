@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * WinemakerArea.
  *
- * @ORM\Table(name="winemakerarea")
+ * @ORM\Table(name="winemaker_area")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\WinemakerAreaRepository")
  */
 class WinemakerArea

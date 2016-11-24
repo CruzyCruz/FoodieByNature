@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * EventType.
  *
- * @ORM\Table(name="eventtype")
+ * @ORM\Table(name="event_type")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\EventTypeRepository")
  */
 class EventType

@@ -22,7 +22,7 @@ class Winemaker extends Article
 
   /**
    * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageWinemaker", inversedBy="winemaker", cascade={"persist","remove"})
-   * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+   * @ORM\JoinColumn(nullable=false)
    * @Assert\Valid()
    */
   private $image;

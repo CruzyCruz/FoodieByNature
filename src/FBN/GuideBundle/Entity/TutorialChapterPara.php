@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * TutorialChapterPara.
  *
- * @ORM\Table(name="tutorialchapterpara")
+ * @ORM\Table(name="tutorial_chapter_para")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\TutorialChapterParaRepository")
  * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\TutorialChapterParaTranslation") 
  */
@@ -23,7 +23,7 @@ class TutorialChapterPara
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageTutorialChapterPara", inversedBy="tutorialChapterPara", cascade={"persist","remove"})
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     * @ORM\JoinColumn(nullable=false)
      * @Assert\Valid()
      */
     private $image;

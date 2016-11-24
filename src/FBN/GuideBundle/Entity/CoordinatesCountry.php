@@ -9,7 +9,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * CoordinatesCountry.
  *
- * @ORM\Table(name="coordinatescountry")
+ * @ORM\Table(name="coordinates_country")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\CoordinatesCountryRepository")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\RestaurantPriceRepository")
  * @UniqueEntity(fields={"country","codeISO","latitude","longitude"})

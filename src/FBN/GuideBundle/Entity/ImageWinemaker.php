@@ -27,7 +27,6 @@ class ImageWinemaker extends Image
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Winemaker", mappedBy="image")
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $winemaker;
 

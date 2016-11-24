@@ -27,7 +27,6 @@ class ImageRestaurant extends Image
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Restaurant", mappedBy="image")
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $restaurant;
 

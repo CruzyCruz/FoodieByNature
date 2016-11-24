@@ -17,13 +17,14 @@ class Tutorial extends Article
     /**
    * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorialChapter", mappedBy="tutorial", cascade={"persist","remove"}, orphanRemoval=true)
    * @ORM\OrderBy({"rank" = "ASC"})
+   * 
    * @Assert\Valid()
    */
   private $tutorialChapter;
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\ImageTutorial", inversedBy="tutorial", cascade={"persist","remove"})
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     * @ORM\JoinColumn(nullable=false)
      * @Assert\Valid()
      */
     private $image;

@@ -10,7 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * RestaurantPrice.
  *
- * @ORM\Table(name="restaurantprice")
+ * @ORM\Table(name="restaurant_price")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\RestaurantPriceRepository")
  * @UniqueEntity(fields="price")
  */

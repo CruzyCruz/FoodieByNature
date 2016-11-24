@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Translatable\Entity\MappedSuperclass\AbstractTranslation;
 
 /**
- * @ORM\Table(name="eventtranslation", indexes={
+ * @ORM\Table(name="event_translation", indexes={
  *      @ORM\Index(name="eventtranslation_idx", columns={"locale", "object_class", "field", "foreign_key"})
  * })
  * @ORM\Entity(repositoryClass="Gedmo\Translatable\Entity\Repository\TranslationRepository")

@@ -26,7 +26,6 @@ class ImageTutorialChapterPara extends Image
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\TutorialChapterPara", mappedBy="image")
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $tutorialChapterPara;
 

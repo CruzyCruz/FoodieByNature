@@ -26,7 +26,6 @@ class ImageTutorial extends Image
 
     /**
      * @ORM\OneToOne(targetEntity="FBN\GuideBundle\Entity\Tutorial", mappedBy="image")
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $tutorial;
 
