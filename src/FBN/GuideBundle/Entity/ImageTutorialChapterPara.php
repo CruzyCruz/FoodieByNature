@@ -5,6 +5,7 @@ namespace FBN\GuideBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * ImageTutorialChapterPara.
@@ -31,6 +32,16 @@ class ImageTutorialChapterPara extends Image
 
     /**
      * @Vich\UploadableField(mapping="image_tutorial_chapter_para", fileNameProperty="name")
+     * @Assert\Expression("this.getFile() or this.getName()", message="fbn.guide.admin.image.upload")
+     * @Assert\Image(
+     *     maxSize = "300k",
+     *     mimeTypes = {"image/jpeg"},
+     *     mimeTypesMessage = "fbn.guide.admin.image.mimeType",
+     *     minWidth = 672,
+     *     maxWidth = 672,
+     *     minHeight = 469,
+     *     maxHeight = 469
+     * )
      *
      * @var File
      */

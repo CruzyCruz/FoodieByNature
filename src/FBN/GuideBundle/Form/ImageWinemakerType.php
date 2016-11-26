@@ -43,7 +43,9 @@ class ImageWinemakerType extends AbstractType
         $requiredFile = $this->formManager->isFileFieldRequired($masterRequest);
 
         $builder
-            ->add('legend', TextType::class)
+            ->add('legend', TextType::class, array(
+                'required' => true,
+                ))
             ->add('file', VichImageType::class, array(
                 'required' => $requiredFile,
                 'allow_delete' => false, // not mandatory, default is true

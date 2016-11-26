@@ -32,10 +32,11 @@ class ImageRestaurant extends Image
 
     /**
      * @Vich\UploadableField(mapping="image_restaurant", fileNameProperty="name")
+     * @Assert\Expression("this.getFile() or this.getName()", message="fbn.guide.admin.image.upload")
      * @Assert\Image(
      *     maxSize = "300k",
      *     mimeTypes = {"image/jpeg"},
-     *     mimeTypesMessage = "Please upload a valid JPEG",
+     *     mimeTypesMessage = "fbn.guide.admin.image.mimeType",
      *     minWidth = 672,
      *     maxWidth = 672,
      *     minHeight = 469,
