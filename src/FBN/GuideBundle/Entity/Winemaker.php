@@ -149,4 +149,16 @@ class Winemaker extends Article
     {
         return $this->winemakerDomain;
     }
+
+    /**
+     * @Assert\IsTrue(message = "fbn.guide.admin.winemaker.isWinemakerDomainCollectionNotEmpty").
+     */
+    public function isWinemakerDomainCollectionNotEmpty()
+    {
+        if ($this->winemakerDomain->isEmpty()) {
+            return false;
+        }
+
+        return true;
+    }
 }
