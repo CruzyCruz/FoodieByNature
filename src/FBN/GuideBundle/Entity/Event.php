@@ -747,10 +747,8 @@ class Event extends Article
         }
 
         // If this event is referenced by one or several events, its coordinates should not be null.
-        if (!(empty($this->getEvent()))) {
-            if (null === $this->getCoordinates()) {
-                return false;
-            }
+        if (!($this->event->isEmpty()) && null === $this->getCoordinates()) {
+            return false;
         }
 
         // If location is defined using coordinates but 'useExtTel' or 'useExtSite' are true
