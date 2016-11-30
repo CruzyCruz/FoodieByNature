@@ -43,6 +43,8 @@ class WinemakerDomainType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $masterRequest = $this->requestStack->getMasterRequest();
+
         $builder
             ->add('domain', TextType::class, array(
                 'required' => false,
@@ -66,7 +68,7 @@ class WinemakerDomainType extends AbstractType
         $this->formManager->disableNonTranslatableFormFieldsForNonDefaultLocale(
             $builder,
             self::$fieldsToBeDisabled,
-            $this->requestStack->getMasterRequest()->getLocale())
+            $masterRequest->getLocale())
         ;
     }
 

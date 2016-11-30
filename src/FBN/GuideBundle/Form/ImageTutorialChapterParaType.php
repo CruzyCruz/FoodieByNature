@@ -56,7 +56,7 @@ class ImageTutorialChapterParaType extends AbstractType
         $this->formManager->disableNonTranslatableFormFieldsForNonDefaultLocale(
             $builder,
             self::$fieldsToBeDisabled,
-            $this->requestStack->getMasterRequest()->getLocale())
+            $masterRequest->getLocale())
         ;
     }
 
