@@ -225,4 +225,16 @@ class TutorialChapter
     {
         return $this->tutorialChapterParas;
     }
+
+    /**
+     * @Assert\IsTrue(message = "fbn.guide.admin.tutorial.isTutorialChapterParasCollectionNotEmpty").
+     */
+    public function isTutorialChapterParasCollectionNotEmpty()
+    {
+        if ($this->tutorialChapterParas->isEmpty()) {
+            return false;
+        }
+
+        return true;
+    }
 }

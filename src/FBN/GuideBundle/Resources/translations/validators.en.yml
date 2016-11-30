@@ -9,7 +9,10 @@ fbn:
                     [ coordinates are defined and ext tel or ext site are checked ]
                 isEventDatesValid: Event ending date is prior to beginning date.
             winemaker:
-                isWinemakerDomainCollectionNotEmpty: "At least one domain should be defined."            
+                isWinemakerDomainCollectionNotEmpty: "At least one domain should be defined."
+            tutorial:
+                isTutorialChapterCollectionNotEmpty: "At least one chapter should be defined."
+                isTutorialChapterParasCollectionNotEmpty: "At least one paragraph should be defined for one chapter."                                       
             image:
                 upload: You have to upload an image.
                 mimeType: This file is not a valid JPEG.

@@ -9,7 +9,10 @@ fbn:
                     [ des coordonnées ont été renseignées mais les champs ext tel ou ext site ont été cochés ]
                 isEventDatesValid: La date de fin de l'événement est antérieur à la date de début
             winemaker:
-                isWinemakerDomainCollectionNotEmpty: "Au moins un domaine doit être défini."                    
+                isWinemakerDomainCollectionNotEmpty: "Au moins un domaine doit être défini."
+            tutorial:
+                isTutorialChapterCollectionNotEmpty: "Au moins un chapitre doit être défini."    
+                isTutorialChapterParasCollectionNotEmpty: "Au moins un paragraphe doît être défini par chapitre." 
             image:
                 upload: Vous devez uploadez une image.
                 mimeType: Ce fichier n'est pas un JPEG valide.                

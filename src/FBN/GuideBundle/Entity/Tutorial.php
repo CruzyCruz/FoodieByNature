@@ -201,4 +201,16 @@ class Tutorial extends Article
     {
         return $this->tutorialChapter;
     }
+
+    /**
+     * @Assert\IsTrue(message = "fbn.guide.admin.tutorial.isTutorialChapterCollectionNotEmpty").
+     */
+    public function isTutorialChapterCollectionNotEmpty()
+    {
+        if ($this->tutorialChapter->isEmpty()) {
+            return false;
+        }
+
+        return true;
+    }
 }
