@@ -146,9 +146,11 @@ class GuideController extends Controller
 
         ($placeEvt = $event->getRestaurant()) || ($placeEvt = $event->getShop()) || ($placeEvt = $event->getWinemakerDomain()) || ($placeEvt = $event->getEventPast()) || ($placeEvt = $event);
 
-        $latlngs[] = array('lat' => $placeEvt->getCoordinates()->getCoordinatesFR()->getLatitude(), 'lng' => $placeEvt->getCoordinates()->getCoordinatesFR()->getLongitude());
-
-        $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'event');
+        $map = null;
+        if (null === $event->getFormerLocation()) {
+            $latlngs[] = array('lat' => $placeEvt->getCoordinates()->getCoordinatesFR()->getLatitude(), 'lng' => $placeEvt->getCoordinates()->getCoordinatesFR()->getLongitude());
+            $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'event');
+        }
 
         return $this->render('FBNGuideBundle:Guide:event.html.twig', array(
             'event' => $event,

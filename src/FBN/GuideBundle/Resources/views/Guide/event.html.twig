@@ -32,28 +32,38 @@
   <h3>PAR ICI : </h3>
 
   <p>   
-    {% if placeEvt.coordinates.coordinatesFR.miscellaneous is not null %}
-      {{ placeEvt.coordinates.coordinatesFR.miscellaneous }}
-    {% endif %}  
-    <br />
-    {% if placeEvt.coordinates.coordinatesFR.laneName is not null %}
-      {% if placeEvt.coordinates.coordinatesFR.laneNum is not null %}
-        {% set separateur = ', ' %}  
-      {% else %}
-        {% set separateur = '' %}  
-      {% endif %}         
-      {{ 
-      placeEvt.coordinates.coordinatesFR.laneNum ~ separateur ~
-      placeEvt.coordinates.coordinatesFR.coordinatesFRLane.lane ~ ' ' ~
-      placeEvt.coordinates.coordinatesFR.laneName
-      }}
+    {% if event.formerLocation is not null %}
+      CET EVENEMENT S'EST PRODUIT DANS UN LIEU QUI A FERME SES PORTES DEPUIS
+      {{ event.formerLocationName}}
+      {{ event.formerLocationCoordinates }}
+    {% else %}  
+      {% if placeEvt.coordinates.coordinatesFR.miscellaneous is not null %}
+        {{ placeEvt.coordinates.coordinatesFR.miscellaneous }}
+      {% endif %}  
+      <br />
+      {% if placeEvt.coordinates.coordinatesFR.laneName is not null %}
+        {% if placeEvt.coordinates.coordinatesFR.laneNum is not null %}
+          {% set separateur = ', ' %}  
+        {% else %}
+          {% set separateur = '' %}  
+        {% endif %}         
+        {{ 
+        placeEvt.coordinates.coordinatesFR.laneNum ~ separateur ~
+        placeEvt.coordinates.coordinatesFR.coordinatesFRLane.lane ~ ' ' ~
+        placeEvt.coordinates.coordinatesFR.laneName
+        }}
+      {% endif %}
+      <br />
+      {% if placeEvt.coordinates.coordinatesFR.locality is not null %}
+        {{ placeEvt.coordinates.coordinatesFR.locality }}
+      {% endif %}  
+      <br />
+      {{ placeEvt.coordinates.coordinatesFR.coordinatesFRCity.postCode ~ ' ' ~ placeEvt.coordinates.coordinatesFR.coordinatesFRCity.city }}
+      {% if placeEvt.coordinates.coordinatesFR.metro is not null %}
+        <h3>METRO : </h3>  
+        <p>{{ placeEvt.coordinates.coordinatesFR.metro }}</p> 
+      {% endif %} 
     {% endif %}
-    <br />
-    {% if placeEvt.coordinates.coordinatesFR.locality is not null %}
-      {{ placeEvt.coordinates.coordinatesFR.locality }}
-    {% endif %}  
-    <br />
-    {{ placeEvt.coordinates.coordinatesFR.coordinatesFRCity.postCode ~ ' ' ~ placeEvt.coordinates.coordinatesFR.coordinatesFRCity.city }}
   </p>
 
   {% if event.useexttel %}
@@ -66,12 +76,6 @@
       <h3>ALLO : </h3>  
       <p>{{ event.tel }}</p>  
     {% endif %} 
-  {% endif %} 
- 
-
-  {% if placeEvt.coordinates.coordinatesFR.metro is not null %}
-    <h3>METRO : </h3>  
-    <p>{{ placeEvt.coordinates.coordinatesFR.metro }}</p> 
   {% endif %}  
 
   {% if event.useextsite %}
@@ -86,8 +90,8 @@
     {% endif %} 
   {% endif %} 
 
-{{ google_map(map) }}
-
-
+{% if map is not null %}
+  {{ google_map(map) }}
+{% endif %}
 
 {% endblock %}

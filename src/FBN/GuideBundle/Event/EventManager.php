@@ -40,6 +40,7 @@ class EventManager
             $events = $entity->getEvent();
 
             if (!(empty($events))) {
+                $formerLocationName = ($entity instanceof WinemakerDomain) ? $entity->getWinemaker()->getName() : $entity->getName();
                 $entityClassName = (new \ReflectionClass($entity))->getShortName();
 
                 $coordinates = $entity->getCoordinates();
@@ -48,7 +49,7 @@ class EventManager
 
                 foreach ($events as $event) {
                     $this->accessor->setValue($event, 'formerLocationCoordinates', $this->coordinatesManager->buildViewAddress($coordinatesISO));
-                    $this->accessor->setValue($event, 'formerLocationName', $entity->__toString());
+                    $this->accessor->setValue($event, 'formerLocationName', $formerLocationName);
                     $this->accessor->setValue($event, 'formerLocation', $entityClassName);
                     $this->accessor->setValue($event, 'useExtTel', false);
                     $this->accessor->setValue($event, 'useExtSite', false);
@@ -56,14 +57,8 @@ class EventManager
                     $classMetadata = $em->getClassMetadata(get_class($event));
                     $uow->recomputeSingleEntityChangeSet($classMetadata, $event);
                 }
-            } else {
-                $em->remove($entity->getCoordinates());
             }
-
-            return;
         }
-
-        return;
     }
 
     /**
