@@ -7,7 +7,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use FBN\GuideBundle\Entity\CoordinatesFRCityRepository;
+use JavierEguiluz\Bundle\EasyAdminBundle\Form\Type\EasyAdminAutocompleteType;
+use FBN\GuideBundle\Entity\CoordinatesFRCity;
 
 class CoordinatesFRType extends AbstractType
 {
@@ -39,13 +40,8 @@ class CoordinatesFRType extends AbstractType
             ->add('metro', TextType::class,  array(
                 'required' => false,
                 ))
-            ->add('coordinatesFRCity', EntityType::class, array(
-                'class' => 'FBNGuideBundle:CoordinatesFRCity',
-                'property' => 'display',
-                'query_builder' => function (CoordinatesFRCityRepository $repo) {
-                    return $repo->getAscendingSortedCitiesQueryBuilder();
-                    },
-                'placeholder' => 'label.form.empty_value',
+            ->add('coordinatesFRCity', EasyAdminAutocompleteType::class, array(
+                'class' => CoordinatesFRCity::class,
                 ))
         ;
     }

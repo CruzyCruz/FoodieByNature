@@ -257,6 +257,10 @@ easy_admin:
                     - 'lane'            
         CoordinatesFRCity:    
             class : FBN\GuideBundle\Entity\CoordinatesFRCity
+            search:
+                fields:
+                    - 'city'
+                    - 'deptNum'            
             list:
                 fields:
                     - 'id'

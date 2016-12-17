@@ -192,12 +192,8 @@ class CoordinatesFRCity extends CoordinatesISOCity
         return $this->district;
     }
 
-    /**
-     * Get display (form).
-     *
-     * @return string
-     */
-    public function getDisplay()
+    /** {@inheritdoc} */
+    public function __toString()
     {
         return $this->city.' ('.$this->postCode.')';
     }
