@@ -31,8 +31,6 @@ class Shop extends AbstractFixture implements OrderedFixtureInterface, Container
 
         $descriptionsfr = array(null, null, null, null);
 
-        $authors = array('AH', 'CB', 'AH', 'AH');
-
         $owners = array('Jérôme Rey', 'Philippe Lagarde', 'Christian Constant', 'Thierry Marx');
 
         $hrefs = array('http://www.cave-vinea.com/', 'http://le-tire-bouchon.org/', 'http://www.cavesauge.com/', 'http://www.leszinzinsduvin.com/');
@@ -71,10 +69,6 @@ class Shop extends AbstractFixture implements OrderedFixtureInterface, Container
             $repository->translate($shop[$i], 'description', 'fr', $descriptionsfr[$i]);
         }
 
-        foreach ($authors as $i => $author) {
-            $shop[$i]->setAuthor($author);
-        }
-
         foreach ($owners as $i => $owner) {
             $shop[$i]->setOwner($owner);
         }
@@ -99,6 +93,9 @@ class Shop extends AbstractFixture implements OrderedFixtureInterface, Container
             $manager->persist($shop[$i]);
 
             $shop[$i]->setCoordinates($this->getReference('coordinates-'.($i + 14)));
+
+            $shop[$i]->setArticleOwner($this->getReference('user-0'));
+            $shop[$i]->setArticleAuthor($this->getReference('user-0')->getAuthorName());
 
             $slugManager = $this->container->get('fbn_guide.slug_manager');
             $slugFromCoordinatesISO = $slugManager->getSlugFromCoordinatesISO(null, $this->getReference('coordinates-'.($i + 14)));

@@ -3,7 +3,8 @@ security:
         FBN\UserBundle\Entity\User: sha512
 
     role_hierarchy:
-        ROLE_ADMIN:       [ROLE_AUTEUR, ROLE_MODERATEUR]
+        ROLE_AUTHOR:      ROLE_USER
+        ROLE_ADMIN:       ROLE_AUTHOR
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
@@ -82,4 +83,4 @@ security:
         - { path: ^/(fr|en)/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/(fr|en)/bookmarks$, role: ROLE_USER }
         - { path: ^/(fr|en)/bookmarks/manage$, role: ROLE_USER }
-        - { path: ^/(fr|en)/admin, role: ROLE_ADMIN }        
+        - { path: ^/(fr|en)/admin, role: ROLE_AUTHOR }        

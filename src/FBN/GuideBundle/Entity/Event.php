@@ -19,6 +19,15 @@ class Event extends Article
 {
     private static $eventLocationAttributes = array('coordinates', 'restaurant', 'shop', 'winemakerDomain', 'eventPast');
 
+    /**
+     * @var FBN\UserBundle\Entity\User
+     *
+     * @Gedmo\Blameable(on="create")
+     * @ORM\ManyToOne(targetEntity="FBN\UserBundle\Entity\User", inversedBy="events")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    protected $articleOwner;
+
   /**
    * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\EventType")
    * @ORM\JoinColumn(nullable=false)
@@ -723,12 +732,6 @@ class Event extends Article
       $this->setYear($this->getDateStart()->format('Y'));
   }
 
-    /** {@inheritdoc} */
-    public function __toString()
-    {
-        return $this->getName().' / '.$this->getDateStart()->format('Y-m-d');
-    }
-
     /**
      * @Assert\IsTrue(message = "fbn.guide.admin.event.isEventLocationValid").
      */
@@ -771,5 +774,11 @@ class Event extends Article
         }
 
         return true;
+    }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getName().' / '.$this->getDateStart()->format('Y-m-d').' / ['.$this->findArticleOwner().']';
     }
 }

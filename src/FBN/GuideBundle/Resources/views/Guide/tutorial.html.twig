@@ -19,7 +19,10 @@
   />
 {% endif %}    
 
-<p>{{ tutorial.description|raw }}</p>  
+<p>{{ tutorial.description|raw }}</p>
+
+<h4>DE : </h4>
+  {{ tutorial.articleAuthor }}
 
 {% for tc in tutorial.tutorialChapter %}
   

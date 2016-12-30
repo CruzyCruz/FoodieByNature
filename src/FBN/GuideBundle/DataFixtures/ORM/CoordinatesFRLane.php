@@ -48,6 +48,6 @@ class CoordinatesFRLane extends AbstractFixture implements OrderedFixtureInterfa
 
     public function getOrder()
     {
-        return 2; // l'ordre dans lequel les fichiers sont chargés
+        return 12; // l'ordre dans lequel les fichiers sont chargés
     }
 }

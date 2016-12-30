@@ -15,6 +15,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Tutorial extends Article
 {
     /**
+     * @var FBN\UserBundle\Entity\User
+     *
+     * @Gedmo\Blameable(on="create")
+     * @ORM\ManyToOne(targetEntity="FBN\UserBundle\Entity\User", inversedBy="tutorials")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    protected $articleOwner;
+
+  /**
    * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorialChapter", mappedBy="tutorial", cascade={"persist","remove"}, orphanRemoval=true)
    * @ORM\OrderBy({"rank" = "ASC"})
    * 

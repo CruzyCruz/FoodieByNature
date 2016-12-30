@@ -16,6 +16,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Restaurant extends Article
 {
     /**
+     * @var FBN\UserBundle\Entity\User
+     *
+     * @Gedmo\Blameable(on="create")
+     * @ORM\ManyToOne(targetEntity="FBN\UserBundle\Entity\User", inversedBy="restaurants")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    protected $articleOwner;
+
+    /**
      * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\RestaurantPrice")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotBlank()
@@ -494,6 +503,6 @@ class Restaurant extends Article
     /** {@inheritdoc} */
     public function __toString()
     {
-        return $this->getCoordinates()->__toString().' / '.$this->getName();
+        return $this->getCoordinates()->__toString().' / '.$this->getName().' / ['.$this->findArticleOwner().']';
     }
 }

@@ -15,6 +15,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Winemaker extends Article
 {
     /**
+     * @var FBN\UserBundle\Entity\User
+     *
+     * @Gedmo\Blameable(on="create")
+     * @ORM\ManyToOne(targetEntity="FBN\UserBundle\Entity\User", inversedBy="winemakers")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    protected $articleOwner;
+
+  /**
    * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\WinemakerDomain", mappedBy="winemaker", cascade={"persist","remove"}, orphanRemoval=true)
    * @Assert\Valid()
    */

@@ -5,16 +5,41 @@ namespace FBN\GuideBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use FBN\UserBundle\Entity\User;
 
 /**
  * Article.
  *
  * @ORM\MappedSuperclass
+ * @ORM\HasLifecycleCallbacks()
  */
 abstract class Article
 {
     const NUM_ITEMS = 8;
     const NUM_ITEMS_HOMEPAGE = 4;
+
+    /**
+     * Property overridden in child class.
+     * 
+     * @var FBN\UserBundle\Entity\User
+     */
+    protected $articleOwner;
+
+    /**
+     * @var FBN\UserBundle\Entity\User
+     *
+     * @Gedmo\Blameable(on="update")
+     * @ORM\ManyToOne(targetEntity="FBN\UserBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    protected $articleUpdater;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="articleAuthor", type="string", length=255)
+     */
+    private $articleAuthor;
 
     /**
      * @var string
@@ -24,13 +49,6 @@ abstract class Article
      * @Assert\NotBlank()
      */
     private $name;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="author", type="string", length=255)
-     */
-    private $author;
 
     /**
      * @var string
@@ -111,27 +129,37 @@ abstract class Article
     }
 
     /**
-     * Set author.
+     * Set articleOwner.
      *
-     * @param string $author
+     * @param FBN\UserBundle\Entity\User $articleOwner
      *
      * @return Article
      */
-    public function setAuthor($author)
+    public function setArticleOwner($articleOwner)
     {
-        $this->author = $author;
+        $this->articleOwner = $articleOwner;
 
         return $this;
     }
 
     /**
-     * Get author.
+     * Get articleOwner.
      *
-     * @return string
+     * @return FBN\UserBundle\Entity\User
      */
-    public function getAuthor()
+    public function getArticleOwner()
     {
-        return $this->author;
+        return $this->articleOwner;
+    }
+
+    /**
+     * Get articleUpdater.
+     *
+     * @return FBN\UserBundle\Entity\User
+     */
+    public function getArticleUpdater()
+    {
+        return $this->articleUpdater;
     }
 
     /**
@@ -265,6 +293,49 @@ abstract class Article
     }
 
     /**
+     * Set articleAuthor.
+     *
+     * @param string $articleAuthor
+     *
+     * @return Article
+     */
+    public function setArticleAuthor($articleAuthor)
+    {
+        $this->articleAuthor = $articleAuthor;
+
+        return $this;
+    }
+
+    /**
+     * Get articleAuthor.
+     *
+     * @return string
+     */
+    public function getArticleAuthor()
+    {
+        return $this->articleAuthor;
+    }
+
+    /**
+     * Set articleAuthor on PreFlush.
+     * 
+     * Article vs User : an article has an owner (the one who created the article). Then, only the owner (ROLE_AUTHOR at least) 
+     * or an user with ROLE_ADMIN can modify this article.
+     * This lifecycle event ensures that the field articleAuthor is never null and related to the owner.
+     * Nota : if the owner is deleted (by an admin), then only a user with ROLE_ADMIN can update this article. Later, an admin can
+     * set a new owner in charge of this article. Between initial owner deletion and new owner setting, the article author (author name)
+     * remains the one of the initial owner.
+     *
+     * @ORM\PreFlush
+     */
+    public function setArticleAuthorOnPreFlush()
+    {
+        if (null !== $this->articleOwner) {
+            $this->articleAuthor = $this->articleOwner->getAuthorName();
+        }
+    }
+
+    /**
      * Get class name.
      *
      * @return string
@@ -276,9 +347,14 @@ abstract class Article
         return $classInfo->getShortName();
     }
 
+    public function findArticleOwner()
+    {
+        return null === $this->getArticleOwner() ? User::NO_OWNER : $this->getArticleOwner();
+    }
+
     /** {@inheritdoc} */
     public function __toString()
     {
-        return $this->getName();
+        return $this->getName().' / ['.$this->findArticleOwner().']';
     }
 }

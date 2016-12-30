@@ -15,6 +15,15 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class Info extends Article
 {
     /**
+     * @var FBN\UserBundle\Entity\User
+     *
+     * @Gedmo\Blameable(on="create")
+     * @ORM\ManyToOne(targetEntity="FBN\UserBundle\Entity\User", inversedBy="infos")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    protected $articleOwner;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")

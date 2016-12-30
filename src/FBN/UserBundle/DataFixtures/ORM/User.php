@@ -3,12 +3,14 @@
 
 namespace FBN\UserBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+//use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class User implements FixtureInterface, ContainerAwareInterface
+class User  extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     /**
      * @var ContainerInterface
@@ -29,20 +31,24 @@ class User implements FixtureInterface, ContainerAwareInterface
 
         $listNames = array('Cedric');
 
-        foreach ($listNames as $name) {
-            $user = $userManager->createUser();
+        foreach ($listNames as $i => $name) {
+            $user[$i] = $userManager->createUser();
 
-            $user->setUsername($name);
+            $user[$i]->setUsername($name);
 
-            $user->setPlainPassword($name);
+            $user[$i]->setPlainPassword($name);
 
-            $user->setEmail('bonnin.cedric@gmail.com');
+            $user[$i]->setEmail('bonnin.cedric@gmail.com');
 
-            $user->setRoles(array('ROLE_USER', 'ROLE_ADMIN'));
+            $user[$i]->setRoles(array('ROLE_ADMIN'));
 
-            $user->setEnabled(true);
+            $user[$i]->setEnabled(true);
 
-            $userManager->updateUser($user, true);
+            $user[$i]->setAuthorName('C.B.');
+
+            $userManager->updateUser($user[$i], true);
+
+            $this->addReference('user-'.$i, $user[$i]);
 
       // On le persiste
       //$manager->persist($user);
@@ -50,5 +56,10 @@ class User implements FixtureInterface, ContainerAwareInterface
 
     // On déclenche l'enregistrement
     //$manager->flush();
+    }
+
+    public function getOrder()
+    {
+        return 1; // l'ordre dans lequel les fichiers sont chargés
     }
 }

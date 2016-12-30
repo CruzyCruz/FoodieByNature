@@ -49,6 +49,6 @@ class CoordinatesCountry extends AbstractFixture implements OrderedFixtureInterf
 
     public function getOrder()
     {
-        return 3; // l'ordre dans lequel les fichiers sont chargés
+        return 13; // l'ordre dans lequel les fichiers sont chargés
     }
 }

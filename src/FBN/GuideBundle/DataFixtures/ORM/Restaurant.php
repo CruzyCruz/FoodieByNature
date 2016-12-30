@@ -37,8 +37,6 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface, Con
             'L’Américano-Canadien Jordan Feilders vient de garer sa Cantine California à deux roues de la station Arts et Métiers. Dans un bel endroit tout en bois brut et marbre, avec comptoir à gauche et table d’hôte à droite, qui sent plus le neuf que la friture (bonne aération). La carte est peu ou prou identique à celle du food truck qui continue à régaler quatre fois par semaine aux marchés Raspail et Saint-Honoré. Sur assiette cette fois, et parmi d’autres : Cali Classic burger (au bœuf bio français haché sur place, orgasmique tellement il dégouline de real cheddar et d’avocat écrasé) avec frites croustillantes à tout va, tacos pas secs (épaule de porc bio mijotée sept heures au piment chipotle, pico de gallo, piment, coriandre et citron vert), salades (au hasard : kale, fromage de chèvre, pomme, noix, canneberge et fenouil), mais encore, granola maison, pancakes, carrot cake, brownie, banana nut muffin… Suivant l’heure et le jour, on se rince la bouche au jus de pamplemousse pressé (6 €), à la bière locale (Gallia et Deck & Donohue) ou à la margarita (6 € le verre, 25 € le pichet d’un litre). Burgers avec frites 15 €, tacos 7-19 €, desserts 2-3 €.',
             );
 
-        $authors = array('CB', 'AH', 'CB', 'AH', 'AH');
-
         $owners = array('Eric Cuestas', 'Jérôme Navarre', 'Jean-François Piège', 'Christian Constant', 'Thierry Marx');
 
         $hrefs = array('http://www.letempsdesvendanges.com', null, 'http://www.lafinemousse.fr', 'http://www.dix-huit.fr', 'http://www.cantinecalifornia.com');
@@ -86,10 +84,6 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface, Con
             $repository->translate($restaurant[$i], 'description', 'fr', $descriptionsfr[$i]);
         }
 
-        foreach ($authors as $i => $author) {
-            $restaurant[$i]->setAuthor($author);
-        }
-
         foreach ($owners as $i => $owner) {
             $restaurant[$i]->setOwner($owner);
         }
@@ -125,6 +119,9 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface, Con
             $restaurant[$i]->setCoordinates($this->getReference('coordinates-'.$i));
 
             $restaurant[$i]->setImage($this->getReference('imagerestaurant-'.$i));
+
+            $restaurant[$i]->setArticleOwner($this->getReference('user-0'));
+            $restaurant[$i]->setArticleAuthor($this->getReference('user-0')->getAuthorName());
 
             $slugManager = $this->container->get('fbn_guide.slug_manager');
             $slugFromCoordinatesISO = $slugManager->getSlugFromCoordinatesISO(null, $this->getReference('coordinates-'.$i));

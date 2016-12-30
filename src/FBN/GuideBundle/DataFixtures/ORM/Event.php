@@ -38,8 +38,6 @@ class Event extends AbstractFixture implements OrderedFixtureInterface, Containe
             'C\'est une belle invitation printanière que lance Robert Plageoles. Le principe est simple, le visiteur apporte son panier pique-nique et pour accompagner le repas, le vigneron propose ses vins gratuitement à la dégustation.',
             );
 
-        $authors = array('CB', 'CB', 'AH', 'CB', 'AH', 'CB', 'CB', 'CB');
-
         $dateStarts = array(
             new \DateTime('2013-09-13'),
             new \DateTime('2013-04-03'),
@@ -117,10 +115,6 @@ class Event extends AbstractFixture implements OrderedFixtureInterface, Containe
             $event[$i]->setDescription($description);
         }
 
-        foreach ($authors as $i => $author) {
-            $event[$i]->setAuthor($author);
-        }
-
         foreach ($dateStarts as $i => $dateStart) {
             $event[$i]->setDateStart($dateStart);
         }
@@ -157,6 +151,9 @@ class Event extends AbstractFixture implements OrderedFixtureInterface, Containe
             $this->addReference('event-'.$i, $event[$i]);
 
             $event[$i]->setImage($this->getReference('imageevent-'.$i));
+
+            $event[$i]->setArticleOwner($this->getReference('user-0'));
+            $event[$i]->setArticleAuthor($this->getReference('user-0')->getAuthorName());
         }
 
         $slugManager = $this->container->get('fbn_guide.slug_manager');

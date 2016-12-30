@@ -9,16 +9,20 @@
 	<p> {{ 'fbn.guide.page_intro.infos'|trans }}</p>
 
 	<ul>
-	  {% for article in articlesList %}    
-	  <p>{{ article.datepublication|date('Y-m-d') }}</p>
-	  <h1 id="{{ article.slug }}">{{ article.name }}</h1>
-		<br />
+	  	{% for article in articlesList %}    
+		  	<p>{{ article.datepublication|date('Y-m-d') }}</p>
+		  	<h1 id="{{ article.slug }}">{{ article.name }}</h1>
+			<br />
 
-	  <p>{{ article.description|raw }}</p> 
-	    <hr />    
-	  {% else %}
-	    <p>PAS D'ARTICLES</p>
-	  {% endfor %}
+		  	<p>{{ article.description|raw }}</p>
+
+		  	<h4>DE : </h4>
+				{{ article.articleAuthor }}
+
+		    <hr />    
+		{% else %}
+		    <p>PAS D'ARTICLES</p>
+	  	{% endfor %}
 	</ul>
 
 {% endblock %}
