@@ -53,6 +53,8 @@ class User extends BaseUser
     private $tutorials;
 
     /**
+     * Inversed relationship only used for user bookmarks deletion on user deletion.
+     * 
      * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\Bookmark", mappedBy="user", cascade={"remove"})
      */
     private $bookmark;
