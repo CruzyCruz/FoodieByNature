@@ -6,6 +6,7 @@ use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdmin
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use FBN\GuideBundle\Entity\EventRepository;
@@ -40,14 +41,20 @@ class AdminController extends BaseAdminController
     {
         $response = parent::newAction();
 
-        $defaultLocale = $this->container->getParameter('locale');
+        return $this->redirectToRouteForDefaultLocaleIfNeeded($response);
+    }
 
-        if ($defaultLocale !== $this->get('request')->getLocale()) {
-            $locale = array('_locale' => $defaultLocale);
-            $queryParams = $this->get('request')->query->all();
-            $params = array_merge($locale, $queryParams);
+    /*
+     * {@inheritdoc}
+     * 
+     * If current entity is User force edition to be executed in default locale.
+     */
+    protected function editAction()
+    {
+        $response = parent::editAction();
 
-            return $this->redirectToRoute('easyadmin', $params);
+        if ('User' === $this->get('request')->query->get('entity')) {
+            return $this->redirectToRouteForDefaultLocaleIfNeeded($response);
         }
 
         return $response;
@@ -196,5 +203,27 @@ class AdminController extends BaseAdminController
         ;
 
         return $formBuilder;
+    }
+
+    /**
+     * Redirect to route for default locale if needed (in case the locale is not the default one).
+     *
+     * @param Response $response The response from the default action (AdminController).
+     *
+     * @return RedirectResponse The response with default locale as locale.
+     */
+    public function redirectToRouteForDefaultLocaleIfNeeded($response)
+    {
+        $defaultLocale = $this->container->getParameter('locale');
+
+        if ($defaultLocale !== $this->get('request')->getLocale()) {
+            $locale = array('_locale' => $defaultLocale);
+            $queryParams = $this->get('request')->query->all();
+            $params = array_merge($locale, $queryParams);
+
+            return $this->redirectToRoute('easyadmin', $params);
+        }
+
+        return $response;
     }
 }
