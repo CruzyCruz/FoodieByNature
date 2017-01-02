@@ -37,10 +37,10 @@ class ImageTutorial extends Image
      *     maxSize = "300k",
      *     mimeTypes = {"image/jpeg"},
      *     mimeTypesMessage = "fbn.guide.admin.image.mimeType",
-     *     minWidth = 672,
-     *     maxWidth = 672,
-     *     minHeight = 469,
-     *     maxHeight = 469
+     *     minWidth = 100,
+     *     maxWidth = 1000,
+     *     minHeight = 100,
+     *     maxHeight = 1000
      * )
      *
      * @var File
