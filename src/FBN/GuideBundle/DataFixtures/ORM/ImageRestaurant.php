@@ -5,13 +5,25 @@
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use FBN\GuideBundle\Entity\ImageRestaurant as Image;
 
-class ImageRestaurant extends AbstractFixture implements OrderedFixtureInterface
+class ImageRestaurant extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
@@ -27,6 +39,10 @@ class ImageRestaurant extends AbstractFixture implements OrderedFixtureInterface
                 unlink($file);
             }
         }
+
+        // Clean cache (whole cache as this file is the first loaded for images fixtures)
+        $cacheManager = $this->container->get('liip_imagine.cache.manager');
+        $cacheManager->remove();
 
         $names = array('restaurant-paris-triplettes-il.jpg', 'restaurant-paris-naturellement-il.jpg', 'restaurant-paris-la-fine-mousse-il.jpg', 'restaurant-paris-dix-huit-il.jpg', 'restaurant-paris-cantine-california-il.jpg');
 
