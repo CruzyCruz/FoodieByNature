@@ -58,8 +58,6 @@ class CoordinatesManager
             $classMetadata = $em->getClassMetadata(get_class($entity));
             $uow->recomputeSingleEntityChangeSet($classMetadata, $entity);
         }
-
-        return;
     }
 
     /**
