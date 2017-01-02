@@ -1,4 +1,5 @@
 <?php
+
 // src/FBN/UserBundle/DataFixtures/ORM/User.php
 
 namespace FBN\UserBundle\DataFixtures\ORM;
@@ -10,7 +11,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class User  extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class User extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     /**
      * @var ContainerInterface

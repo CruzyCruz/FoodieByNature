@@ -38,10 +38,10 @@ class CoordinatesManager
 
     /**
      * Set|Update attributes lat/long on CoordinatesISO insertion|update (onFlush event).
-     * 
-     * @param object $entity The entity.
-     * @param object $em     The entity manager.
-     * @param object $uow    The unit of work.
+     *
+     * @param object $entity the entity
+     * @param object $em     the entity manager
+     * @param object $uow    the unit of work
      */
     public function setLatLongCoordinatesISOOnFlush($entity, $em, $uow)
     {
@@ -67,7 +67,7 @@ class CoordinatesManager
      *
      * @param CoordinatesISO $coordinatesISO
      *
-     * @return array Array : ['lane', 'locality', 'city', 'country'].
+     * @return array array : ['lane', 'locality', 'city', 'country']
      */
     public function buildPostalAddressFields(CoordinatesISO $coordinatesISO)
     {
@@ -132,7 +132,7 @@ class CoordinatesManager
      * @param float  $latCity
      * @param float  $lngCity
      *
-     * @return array Array : ['lat', 'long'].
+     * @return array array : ['lat', 'long']
      */
     private function getLatLong($geocodingAdress, $latCity, $lngCity)
     {
@@ -176,7 +176,7 @@ class CoordinatesManager
      * @param float $lat2
      * @param float $lng2
      *
-     * @return float The distance between two points on earth (km).
+     * @return float the distance between two points on earth (km)
      */
     private function computeDistanceBetweenTwoPoints($lat1, $lng1, $lat2, $lng2)
     {
@@ -210,7 +210,7 @@ class CoordinatesManager
      * @param CoordinatesISO $coordinatesISO
      * @param string         $string
      *
-     * @return mixed The property value.
+     * @return mixed the property value
      */
     private function getCoordinatesISOString(CoordinatesISO $coordinatesISO, $string)
     {
@@ -225,7 +225,7 @@ class CoordinatesManager
      *
      * @param Coordinates $coordinates
      *
-     * @return object $entity The related entity.
+     * @return object $entity the related entity
      */
     public function findEntityLinkedToCoordinates(Coordinates $coordinates)
     {

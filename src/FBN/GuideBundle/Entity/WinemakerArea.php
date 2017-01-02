@@ -28,7 +28,7 @@ class WinemakerArea
      *
      * @ORM\Column(name="area", type="string", length=255, unique=true)
      * @Gedmo\Translatable
-     * @Assert\NotBlank() 
+     * @Assert\NotBlank()
      */
     private $area;
 

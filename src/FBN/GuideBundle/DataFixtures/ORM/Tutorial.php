@@ -90,10 +90,10 @@ class Tutorial extends AbstractFixture implements OrderedFixtureInterface, Conta
         // Locale : fr
         $translatableListener->setTranslatableLocale('fr');
 
-        // No need to access translations repository and use translae() method 
+        // No need to access translations repository and use translae() method
         // as locale was directly changed in tanslatable listener i.e:
         // $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
-        // $repository->translate($tutorial, 'name', 'fr', $namesfr[$i]);        
+        // $repository->translate($tutorial, 'name', 'fr', $namesfr[$i]);
         foreach ($tutorials as $i => $tutorial) {
             $tutorial->setName($namesfr[$i]);
             $tutorial->setDescription($descriptionsfr[$i]);

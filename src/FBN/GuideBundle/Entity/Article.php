@@ -20,7 +20,7 @@ abstract class Article
 
     /**
      * Property overridden in child class.
-     * 
+     *
      * @var FBN\UserBundle\Entity\User
      */
     protected $articleOwner;
@@ -318,8 +318,8 @@ abstract class Article
 
     /**
      * Set articleAuthor on PreFlush.
-     * 
-     * Article vs User : an article has an owner (the one who created the article). Then, only the owner (ROLE_AUTHOR at least) 
+     *
+     * Article vs User : an article has an owner (the one who created the article). Then, only the owner (ROLE_AUTHOR at least)
      * or an user with ROLE_ADMIN can modify this article.
      * This lifecycle event ensures that the field articleAuthor is never null and related to the owner.
      * Nota : if the owner is deleted (by an admin), then only a user with ROLE_ADMIN can update this article. Later, an admin can

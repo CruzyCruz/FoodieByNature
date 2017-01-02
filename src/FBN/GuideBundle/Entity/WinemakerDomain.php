@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="winemaker_domain")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\WinemakerDomainRepository")
- * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\WinemakerDomainTranslation")  
+ * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\WinemakerDomainTranslation")
  */
 class WinemakerDomain
 {
@@ -82,7 +82,7 @@ class WinemakerDomain
      * @var string
      *
      * @ORM\Column(name="openingHours", type="string", length=255)
-     * @Gedmo\Translatable        
+     * @Gedmo\Translatable
      */
     private $openingHours;
 

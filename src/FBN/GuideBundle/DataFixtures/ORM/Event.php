@@ -17,6 +17,7 @@ class Event extends AbstractFixture implements OrderedFixtureInterface, Containe
      * @var ContainerInterface
      */
     private $container;
+
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
@@ -221,7 +222,7 @@ class Event extends AbstractFixture implements OrderedFixtureInterface, Containe
         // Locale : fr
         $translatableListener->setTranslatableLocale('fr');
 
-        // No need to access translations repository and use translae() method 
+        // No need to access translations repository and use translae() method
         // as locale was directly changed in tanslatable listener i.e:
         // $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
         // $repository->translate($event, 'name', 'fr', $namesfr[$i]);

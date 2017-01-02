@@ -37,7 +37,7 @@ class VichListener implements EventSubscriberInterface
     /**
      * Get the relative path to actual file and set the related Image attribute from Image Manager.
      *
-     * @param Event $event The event.
+     * @param Event $event the event
      */
     public function setRelativePathToActualFile(Event $event)
     {
@@ -48,7 +48,7 @@ class VichListener implements EventSubscriberInterface
     /**
      * Remove cached image file related to Image file on update|removal from Image Manager.
      *
-     * @param Event $event The event.
+     * @param Event $event the event
      */
     public function removeEntityRelatedCachedFile(Event $event)
     {
@@ -59,7 +59,7 @@ class VichListener implements EventSubscriberInterface
     /**
      * Rename image file and update Image entity from Image Manager.
      *
-     * @param Event $event The event.
+     * @param Event $event the event
      */
     public function renameImageFile(Event $event)
     {

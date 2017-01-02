@@ -10,7 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table(name="info")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\InfoRepository")
- * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\InfoTranslation") 
+ * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\InfoTranslation")
  */
 class Info extends Article
 {

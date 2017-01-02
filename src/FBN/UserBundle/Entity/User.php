@@ -17,8 +17,8 @@ class User extends BaseUser
 {
     /**
      * @var string
-     * 
-     * String used to identify an article wich has no owner.
+     *
+     * String used to identify an article wich has no owner
      */
     const NO_OWNER = 'NO OWNER';
 
@@ -54,7 +54,7 @@ class User extends BaseUser
 
     /**
      * Inversed relationship only used for user bookmarks deletion on user deletion.
-     * 
+     *
      * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\Bookmark", mappedBy="user", cascade={"remove"})
      */
     private $bookmark;
@@ -395,7 +395,7 @@ class User extends BaseUser
 
     /**
      * Ensure that an user can not choose as user name the same string as the one defined by NO_OWNER constant.
-     * 
+     *
      * @Assert\IsTrue(message = "fbn.user.admin.user.isUserNameValid", groups={"Registration", "Profile"}).
      */
     public function isUserNameValid()
@@ -405,7 +405,7 @@ class User extends BaseUser
 
     /**
      * Ensure that an user with ROLE_AUTHOR or ROLE_ADMIN has an author name.
-     * 
+     *
      * @Assert\IsTrue(message = "fbn.user.admin.user.isAuthorNameNeeded", groups={"Registration", "Profile"}).
      */
     public function isAuthorNameNeeded()

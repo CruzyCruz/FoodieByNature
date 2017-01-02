@@ -28,7 +28,7 @@ class TutorialSection
      *
      * @ORM\Column(name="section", type="string", length=255)
      * @Gedmo\Translatable
-     * @Assert\NotBlank()       
+     * @Assert\NotBlank()
      */
     private $section;
 

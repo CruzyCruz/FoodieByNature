@@ -42,14 +42,12 @@ class BookmarkManager
 
     public function manage($bookmarkAction, $bookmarkId, $bookmarkEntity, $bookmarkEntityId)
     {
-
         // Only authorized actions and bookmarks
         if (!in_array($bookmarkAction, $this->session->get('bookmarkAction')) || !in_array($bookmarkId, $this->session->get('bookmarkId'))) {
             return new JsonResponse('', 403);
         }
 
         if ($bookmarkAction == 'add') {
-
             // Only authorized entities
             if (!in_array($bookmarkEntity, $this->session->get('bookmarkEntity')) || !in_array($bookmarkEntityId, $this->session->get('bookmarkEntityId'))) {
                 return new JsonResponse('', 403);

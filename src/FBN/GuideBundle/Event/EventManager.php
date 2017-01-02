@@ -30,9 +30,9 @@ class EventManager
     /**
      * Manage events (modification or removal) entities on related entities removal.
      *
-     * @param object $entity The entity.
-     * @param object $em     The entity manager.
-     * @param object $uow    The unit of work.
+     * @param object $entity the entity
+     * @param object $em     the entity manager
+     * @param object $uow    the unit of work
      */
     public function setEventFormerLocationCoordinatesOnRelatedEntityRemoval($entity, $em, $uow)
     {
@@ -64,9 +64,9 @@ class EventManager
     /**
      * Return event related entity (alternative location when coordinates are null).
      *
-     * @param Event $event The event object.
+     * @param Event $event the event object
      *
-     * @return object $eventExternalLocation The related entity.
+     * @return object $eventExternalLocation the related entity
      */
     public function findEventExternalLocation(Event $event)
     {

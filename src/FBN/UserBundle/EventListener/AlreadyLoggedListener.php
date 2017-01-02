@@ -14,14 +14,13 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use FOS\UserBundle\Model\UserInterface;
 
-
 class AlreadyLoggedListener implements EventSubscriberInterface
 {
     private $blockedRoutes = array(
         'fos_user_security_login',
         'fos_user_registration_register',
-        'fos_user_resetting_request'
-    );    
+        'fos_user_resetting_request',
+    );
 
     /**
      * @var TokenStorageInterface
@@ -36,12 +35,12 @@ class AlreadyLoggedListener implements EventSubscriberInterface
     /**
      * @var EventDispatcherInterface
      */
-    private $dispatcher;   
+    private $dispatcher;
 
     /**
      * @var UrlGeneratorInterface
      */
-    private $router; 
+    private $router;
 
     public function __construct(TokenStorageInterface $tokenStorage, AuthorizationCheckerInterface $authorizationChecker, EventDispatcherInterface $dispatcher, UrlGeneratorInterface $router)
     {
@@ -54,7 +53,7 @@ class AlreadyLoggedListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            KernelEvents::REQUEST => array('checkIfAlreadyLogged',-1000),
+            KernelEvents::REQUEST => array('checkIfAlreadyLogged', -1000),
         );
     }
 
@@ -64,8 +63,7 @@ class AlreadyLoggedListener implements EventSubscriberInterface
 
         $requestType = $event->getRequestType();
 
-        if(null == $securityToken || HttpKernelInterface::MASTER_REQUEST !== $requestType)
-        {
+        if (null == $securityToken || HttpKernelInterface::MASTER_REQUEST !== $requestType) {
             return;
         }
 
@@ -73,21 +71,16 @@ class AlreadyLoggedListener implements EventSubscriberInterface
 
         $user = $securityToken->getUser();
 
-        if (is_object($user) || $user instanceof UserInterface) 
-        {
-            if ($this->authorizationChecker->isGranted('IS_AUTHENTICATED_REMEMBERED')) 
-            {
-                if (in_array($route,$this->blockedRoutes))
-                {
+        if (is_object($user) || $user instanceof UserInterface) {
+            if ($this->authorizationChecker->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+                if (in_array($route, $this->blockedRoutes)) {
                     $url = $this->router->generate('fbn_guide_home');
-                    $event->setResponse(new RedirectResponse($url));                        
+                    $event->setResponse(new RedirectResponse($url));
 
-                    $event = new Event();                        
-                    $this->dispatcher->dispatch(FBNUserEvents::SECURITY_ALREADY_LOGGED, $event);                        
+                    $event = new Event();
+                    $this->dispatcher->dispatch(FBNUserEvents::SECURITY_ALREADY_LOGGED, $event);
                 }
             }
         }
-
-    }      
-
+    }
 }

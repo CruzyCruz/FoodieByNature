@@ -5,7 +5,7 @@ namespace FBN\UserBundle\Event;
 use Symfony\Component\EventDispatcher\Event;
 
 class HWIOauthEvent extends Event
-{    
+{
     private $userName;
     private $resourceOwnerName;
 
@@ -33,5 +33,5 @@ class HWIOauthEvent extends Event
     public function getResourceOwnerName()
     {
         return $this->resourceOwnerName;
-    }    
+    }
 }

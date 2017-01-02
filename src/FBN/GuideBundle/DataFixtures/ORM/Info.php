@@ -1,4 +1,5 @@
 <?php
+
 // src/FBN/GuideBundle/DataFixtures/ORM/Restaurant.php
 
 namespace FBN\GuideBundle\DataFixtures\ORM;
@@ -64,7 +65,7 @@ class Info extends AbstractFixture implements OrderedFixtureInterface
 
             $manager->persist($news[$i]);
 
-            //$restaurant[$i]->setImage($this->getReference('imagerestaurant-' . $i));     
+            //$restaurant[$i]->setImage($this->getReference('imagerestaurant-' . $i));
         }
 
         $manager->flush();

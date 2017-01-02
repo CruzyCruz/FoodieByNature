@@ -37,7 +37,7 @@ class CoordinatesFRType extends AbstractType
             ->add('locality', TextType::class, array(
                 'required' => false,
                 ))
-            ->add('metro', TextType::class,  array(
+            ->add('metro', TextType::class, array(
                 'required' => false,
                 ))
             ->add('coordinatesFRCity', EasyAdminAutocompleteType::class, array(

@@ -149,7 +149,7 @@ class Map
             $this->zoom = $this->zoomWinemaker;
         } else {
             $latZoom = $this->zoom($mapDimH, $this->worldDimHeight, $latFraction);
-            $lngZoom = $this->zoom($mapDimW, $this->mapDimWidth,  $lngFraction);
+            $lngZoom = $this->zoom($mapDimW, $this->mapDimWidth, $lngFraction);
 
             $this->zoom = min($this->zoomWinemaker, floor(min($latZoom, $lngZoom)), $this->zoomMax);
         }
