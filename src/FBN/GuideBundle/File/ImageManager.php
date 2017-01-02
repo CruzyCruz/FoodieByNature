@@ -79,8 +79,6 @@ class ImageManager
         }
 
         unset($images);
-
-        return;
     }
 
     /**
@@ -118,11 +116,7 @@ class ImageManager
                 $image->setName($updatedName);
                 $image->setUpdatedAt(new \DateTime());
             }
-
-            return;
         }
-
-        return;
     }
 
     /**
@@ -136,8 +130,6 @@ class ImageManager
             $relativePathToActualFile = $this->fileSystemStorage->resolveUri($image, 'file');
             $image->setRelativePathToActualFile($relativePathToActualFile);
         }
-
-        return;
     }
 
     /**
@@ -152,8 +144,6 @@ class ImageManager
         if (null !== $relativePathToActualFile) {
             $this->cacheManager->remove($relativePathToActualFile);
         }
-
-        return;
     }
 
     /**
