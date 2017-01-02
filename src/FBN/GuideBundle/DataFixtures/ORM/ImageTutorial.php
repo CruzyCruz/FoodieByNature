@@ -17,7 +17,7 @@ class ImageTutorial extends AbstractFixture implements OrderedFixtureInterface
     {
         $ranks = array(0, 0, 0, 0, 0);
 
-        $path = __DIR__.'/../../../../../web/uploads/images-source/tutorials/';
+        $path = __DIR__.'/Resources/Images/tutorials/';
         $pathto = __DIR__.'/../../../../../web/uploads/images/tutorials/';
 
         // First delete all files in target directory

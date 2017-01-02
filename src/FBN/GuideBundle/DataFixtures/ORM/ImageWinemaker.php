@@ -17,7 +17,7 @@ class ImageWinemaker extends AbstractFixture implements OrderedFixtureInterface
     {
         $ranks = array(0, 0, 0, 0, 0);
 
-        $path = __DIR__.'/../../../../../web/uploads/images-source/winemakers/';
+        $path = __DIR__.'/Resources/Images/winemakers/';
         $pathto = __DIR__.'/../../../../../web/uploads/images/winemakers/';
 
         // First delete all files in target directory

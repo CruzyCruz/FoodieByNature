@@ -17,7 +17,7 @@ class ImageEvent extends AbstractFixture implements OrderedFixtureInterface
     {
         $ranks = array(0, 0, 0, 0, 0, 0, 0, 0);
 
-        $path = __DIR__.'/../../../../../web/uploads/images-source/events/';
+        $path = __DIR__.'/Resources/Images/events/';
         $pathto = __DIR__.'/../../../../../web/uploads/images/events/';
 
         // First delete all files in target directory

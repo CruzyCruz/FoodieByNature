@@ -17,7 +17,7 @@ class ImageRestaurant extends AbstractFixture implements OrderedFixtureInterface
     {
         $ranks = array(0, 0, 0, 0, 0);
 
-        $path = __DIR__.'/../../../../../web/uploads/images-source/restaurants/';
+        $path = __DIR__.'/Resources/Images/restaurants/';
         $pathto = __DIR__.'/../../../../../web/uploads/images/restaurants/';
 
         // First delete all files in target directory

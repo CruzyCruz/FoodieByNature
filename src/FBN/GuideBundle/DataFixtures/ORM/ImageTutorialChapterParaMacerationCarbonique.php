@@ -17,7 +17,7 @@ class ImageTutorialChapterParaMacerationCarbonique extends AbstractFixture imple
     {
         $ranks = array(0, 0, 0);
 
-        $path = __DIR__.'/../../../../../web/uploads/images-source/tutorials/';
+        $path = __DIR__.'/Resources/Images/tutorials/';
         $pathto = __DIR__.'/../../../../../web/uploads/images/tutorials/';
 
         $names = array('tutorial-la-maceration-carbonique-c0-p0-i0.jpg', 'tutorial-la-maceration-carbonique-c1-p0-i0.jpg', 'tutorial-la-maceration-carbonique-c2-p0-i0.jpg');
