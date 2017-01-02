@@ -20,6 +20,14 @@ class ImageTutorial extends AbstractFixture implements OrderedFixtureInterface
         $path = __DIR__.'/../../../../../web/uploads/images-source/tutorials/';
         $pathto = __DIR__.'/../../../../../web/uploads/images/tutorials/';
 
+        // First delete all files in target directory
+        $files = glob($pathto.'/*');
+        foreach ($files as $file) {
+            if (is_file($file)) {
+                unlink($file);
+            }
+        }
+
         $names = array('tutorial-le-vin-au-naturel.jpg', 'tutorial-la-biodynamie.jpg', 'tutorial-les-labels.jpg', 'tutorial-la-maceration-carbonique.jpg', 'tutorial-boire-nature.jpg');
 
         $legends = array('Le vin au naturel', 'La biodynamie', 'Les labels', 'La macération carbonique', 'Boire nature');

@@ -20,6 +20,14 @@ class ImageWinemaker extends AbstractFixture implements OrderedFixtureInterface
         $path = __DIR__.'/../../../../../web/uploads/images-source/winemakers/';
         $pathto = __DIR__.'/../../../../../web/uploads/images/winemakers/';
 
+        // First delete all files in target directory
+        $files = glob($pathto.'/*');
+        foreach ($files as $file) {
+            if (is_file($file)) {
+                unlink($file);
+            }
+        }
+
         $names = array('winemaker-didier-barral-il.jpg', 'winemaker-marcel-lapierre-il.jpg', 'winemaker-elian-da-ros-il.jpg', 'winemaker-robert-plageoles-il.jpg', 'winemaker-jacques-selosse-il.jpg');
 
         $legendsfr = array('Oui Didier!', 'RIP Marcel!', 'Da Da Da!', 'Roberto mio palmo!', 'The Jacky touch!');

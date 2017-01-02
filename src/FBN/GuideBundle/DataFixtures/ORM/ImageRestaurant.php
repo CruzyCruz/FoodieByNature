@@ -20,6 +20,14 @@ class ImageRestaurant extends AbstractFixture implements OrderedFixtureInterface
         $path = __DIR__.'/../../../../../web/uploads/images-source/restaurants/';
         $pathto = __DIR__.'/../../../../../web/uploads/images/restaurants/';
 
+        // First delete all files in target directory
+        $files = glob($pathto.'/*');
+        foreach ($files as $file) {
+            if (is_file($file)) {
+                unlink($file);
+            }
+        }
+
         $names = array('restaurant-paris-triplettes-il.jpg', 'restaurant-paris-naturellement-il.jpg', 'restaurant-paris-la-fine-mousse-il.jpg', 'restaurant-paris-dix-huit-il.jpg', 'restaurant-paris-cantine-california-il.jpg');
 
         $legendsfr = array('Plutôt trois fois qu\'une', 'Nature, quoi d\'autre ?', 'So bière!', '18 (dix-huit)', 'Si tu viens to San Fransisco...');
