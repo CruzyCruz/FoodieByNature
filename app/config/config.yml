@@ -180,6 +180,11 @@ hwi_oauth:
 # Liip Configuration
 liip_imagine:
 
+    resolvers:
+        default:
+            web_path:
+                cache_prefix:  /uploads/cache/
+
     filter_sets:
         thumb_outbound:
             filters:
