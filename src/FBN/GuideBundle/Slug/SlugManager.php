@@ -65,14 +65,8 @@ class SlugManager
                         }
                     }
                 }
-
-                return;
             }
-
-            return;
         }
-
-        return;
     }
 
     /**
