@@ -39,10 +39,6 @@ class AuthenticityCSRFTokenListener implements EventSubscriberInterface
                 // 403 : Forbidden
                 $event->setResponse(new JsonResponse('', 403));
             }
-
-            return;
         }
-
-        return;
     }
 }
