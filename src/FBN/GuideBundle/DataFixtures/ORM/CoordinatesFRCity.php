@@ -12,7 +12,6 @@ class CoordinatesFRCity extends AbstractFixture implements OrderedFixtureInterfa
     public function load(ObjectManager $manager)
     {
         $csv = fopen(dirname(__FILE__).'/Resources/Coordinates/CoordinatesFRCity-2-extract.csv', 'r');
-        //$csv = fopen(dirname(__FILE__).'/Resources/Coordinates/CoordinatesFRCity-2.csv', 'r');
 
         $batchSize = 20;
         $i = 0;

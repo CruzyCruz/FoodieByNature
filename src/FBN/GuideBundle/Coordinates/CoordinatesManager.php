@@ -48,7 +48,6 @@ class CoordinatesManager
         if ($entity instanceof CoordinatesISO) {
             $coordinatesISOCity = $this->getCoordinatesISOString($entity, 'City');
 
-            //$addressFields = $this->buildPostalAddressFields($entity);
             $geocodingAdress = $this->buildGeocodingAddress($entity);
             $latLng = $this->getLatLong($geocodingAdress, $coordinatesISOCity->getLatitude(), $coordinatesISOCity->getLongitude());
 
