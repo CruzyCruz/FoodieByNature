@@ -1,5 +1,3 @@
-{# src/FBN/GuideBundle/Resources/views/winemaker.html.twig #}
-
 {% extends "FBNGuideBundle::layout.html.twig" %}
 
 {% block title %}
@@ -13,7 +11,6 @@
 
 {% if tutorial.image is not null %}
   <img 
-    {#src="{{ asset(tutorial.image.webPath) }}"#}
     src="{{ vich_uploader_asset(tutorial.image, 'file') }}"
     alt="{{ tutorial.name }}"
   />
@@ -34,7 +31,6 @@
 
 	{% if tcp.image is not null %}
 	  <img 
-	    {#src="{{ asset(tcp.image.webPath) }}"#}
       src="{{ vich_uploader_asset(tcp.image, 'file') }}"
 	    alt="{{ tcp.image.legend }}"
 	  />   
