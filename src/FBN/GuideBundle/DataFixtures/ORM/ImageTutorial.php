@@ -1,7 +1,5 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/ImageTutorial.php
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 use Symfony\Component\HttpFoundation\File\File;
@@ -12,7 +10,6 @@ use FBN\GuideBundle\Entity\ImageTutorial as Image;
 
 class ImageTutorial extends AbstractFixture implements OrderedFixtureInterface
 {
-    // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
         $ranks = array(0, 0, 0, 0, 0);
@@ -63,6 +60,6 @@ class ImageTutorial extends AbstractFixture implements OrderedFixtureInterface
 
     public function getOrder()
     {
-        return 105; // l'ordre dans lequel les fichiers sont chargés
+        return 105;
     }
 }

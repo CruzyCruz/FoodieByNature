@@ -1,10 +1,7 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/Tutorial.php
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
-//use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -107,6 +104,6 @@ class Tutorial extends AbstractFixture implements OrderedFixtureInterface, Conta
 
     public function getOrder()
     {
-        return 702; // l'ordre dans lequel les fichiers sont chargés
+        return 702;
     }
 }

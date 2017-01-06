@@ -1,10 +1,7 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/TutorialChapterBoireNature.php
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
-//use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -12,7 +9,6 @@ use FBN\GuideBundle\Entity\TutorialChapter as TutoChapter;
 
 class TutorialChapterBoireNature extends AbstractFixture implements OrderedFixtureInterface
 {
-    // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
         $titlesfr = array('Des vins vivants', 'Des vins détendus', 'Classsique vs Naturel');
@@ -51,6 +47,6 @@ class TutorialChapterBoireNature extends AbstractFixture implements OrderedFixtu
 
     public function getOrder()
     {
-        return 742; // l'ordre dans lequel les fichiers sont chargés
+        return 742;
     }
 }

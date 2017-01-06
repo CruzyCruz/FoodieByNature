@@ -1,10 +1,7 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/TutorialChapterVinNaturel.php
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
-//use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -12,7 +9,6 @@ use FBN\GuideBundle\Entity\TutorialChapter as TutoChapter;
 
 class TutorialChapterVinNaturel extends AbstractFixture implements OrderedFixtureInterface
 {
-    // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
         $titlesfr = array('Le terroir', 'C\'est quoi un vin naturel ?', 'Les vins bio', 'La viticulture biodynamique');
@@ -51,6 +47,6 @@ class TutorialChapterVinNaturel extends AbstractFixture implements OrderedFixtur
 
     public function getOrder()
     {
-        return 703; // l'ordre dans lequel les fichiers sont chargés
+        return 703;
     }
 }

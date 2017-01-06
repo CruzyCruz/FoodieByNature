@@ -1,10 +1,7 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/WinemakerDomain.php
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
-//use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -24,7 +21,6 @@ class WinemakerDomain extends AbstractFixture implements OrderedFixtureInterface
         $this->container = $container;
     }
 
-    // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
         $domains = array('Domaine Léon Barral', 'Domaine des Chênes', '', 'Domaine Très Cantous', 'Domaine Roucou-Cantemerle', '');
@@ -113,6 +109,6 @@ class WinemakerDomain extends AbstractFixture implements OrderedFixtureInterface
 
     public function getOrder()
     {
-        return 403; // l'ordre dans lequel les fichiers sont chargés
+        return 403;
     }
 }

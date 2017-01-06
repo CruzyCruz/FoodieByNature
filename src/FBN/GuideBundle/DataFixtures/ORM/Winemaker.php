@@ -1,10 +1,7 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/Winemaker.php
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
-//use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -12,7 +9,6 @@ use FBN\GuideBundle\Entity\Winemaker as Wmkr;
 
 class Winemaker extends AbstractFixture implements OrderedFixtureInterface
 {
-    // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
         $names = array('Didier Barral', 'Marcel Lapierre', 'Elian Da Ros', 'Robert Plageoles', 'Jacques Selosse');
@@ -52,10 +48,6 @@ class Winemaker extends AbstractFixture implements OrderedFixtureInterface
 
             $manager->persist($vnr[$i]);
 
-            // Remarque : ici on a pas besoin de renseigner l'attribut $winemakerDdomain de l'entite Winemaker
-            // car ce n'est pas un attribut mappé. Il permet uniquement de rendre la relation bi-directionnelle.
-            // L'attribut $winemaker de l'entite WinemakerDomain est renseigné par la datafixture WinemakerDomain.php
-
             $this->addReference('winemaker-'.$i, $vnr[$i]);
 
             $vnr[$i]->setImage($this->getReference('imagewinemaker-'.$i));
@@ -66,6 +58,6 @@ class Winemaker extends AbstractFixture implements OrderedFixtureInterface
 
     public function getOrder()
     {
-        return 402; // l'ordre dans lequel les fichiers sont chargés
+        return 402;
     }
 }

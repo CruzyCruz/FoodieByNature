@@ -1,7 +1,5 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/Event.php
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
@@ -23,7 +21,6 @@ class Event extends AbstractFixture implements OrderedFixtureInterface, Containe
         $this->container = $container;
     }
 
-    // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
         $namesfr = array('Yvon Métras au Temps des Vendanges', 'Repas Gastronomique à Toulouse', 'Sous les pavés, la vigne !', 'La remise', 'Yvon Métras au Temps des Vendanges', 'Repas Gastronomique à Toulouse', 'La remise', 'Déjeuner sur l\'herbe chez Robert Plageoles');
@@ -240,6 +237,6 @@ class Event extends AbstractFixture implements OrderedFixtureInterface, Containe
 
     public function getOrder()
     {
-        return 502; // l'ordre dans lequel les fichiers sont chargés
+        return 502;
     }
 }

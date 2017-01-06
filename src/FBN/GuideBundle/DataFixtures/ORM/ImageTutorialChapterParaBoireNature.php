@@ -1,7 +1,5 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/ImageTutorialChapterParaBoireNature.php
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 use Symfony\Component\HttpFoundation\File\File;
@@ -12,7 +10,6 @@ use FBN\GuideBundle\Entity\ImageTutorialChapterPara as Image;
 
 class ImageTutorialChapterParaBoireNature extends AbstractFixture implements OrderedFixtureInterface
 {
-    // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
         $ranks = array(0, 0, 0, 0, 0);
@@ -55,6 +52,6 @@ class ImageTutorialChapterParaBoireNature extends AbstractFixture implements Ord
 
     public function getOrder()
     {
-        return 110; // l'ordre dans lequel les fichiers sont chargés
+        return 110;
     }
 }

@@ -1,10 +1,7 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/Restaurant.php
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
-//use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -12,7 +9,6 @@ use FBN\GuideBundle\Entity\Info as Inf;
 
 class Info extends AbstractFixture implements OrderedFixtureInterface
 {
-    // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
         $namesfr = array('La force est avec lui !', 'Un coffee shop en cachait un autre', 'Papier à mâcher', 'Bon grain !', 'Dis camion !', 'Encore un !', 'Rien ne l\'arrête !', 'Jurassique Arnal', 'Papier à mâcher', 'Top 50 !');
@@ -64,8 +60,6 @@ class Info extends AbstractFixture implements OrderedFixtureInterface
             $news[$i]->setArticleAuthor($this->getReference('user-0')->getAuthorName());
 
             $manager->persist($news[$i]);
-
-            //$restaurant[$i]->setImage($this->getReference('imagerestaurant-' . $i));
         }
 
         $manager->flush();
@@ -73,6 +67,6 @@ class Info extends AbstractFixture implements OrderedFixtureInterface
 
     public function getOrder()
     {
-        return 601; // l'ordre dans lequel les fichiers sont chargés
+        return 601;
     }
 }

@@ -1,10 +1,7 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/RestaurantStyle.php
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
-//use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -12,7 +9,6 @@ use FBN\GuideBundle\Entity\RestaurantStyle as RestrntStyle;
 
 class RestaurantStyle extends AbstractFixture implements OrderedFixtureInterface
 {
-    // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
         $stylesfr = array('Cave à Manger', 'Bistronomie', 'Masterchef', 'Street Food');
@@ -37,6 +33,6 @@ class RestaurantStyle extends AbstractFixture implements OrderedFixtureInterface
 
     public function getOrder()
     {
-        return 303; // l'ordre dans lequel les fichiers sont chargés
+        return 303;
     }
 }

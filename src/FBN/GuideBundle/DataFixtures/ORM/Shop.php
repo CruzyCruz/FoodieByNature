@@ -1,10 +1,7 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/Shop.php
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
-//use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -24,7 +21,6 @@ class Shop extends AbstractFixture implements OrderedFixtureInterface, Container
         $this->container = $container;
     }
 
-    // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
         $names = array('Vinea', 'Le Tire Bouchon', 'Les Caves Augé', 'Les Zinzins du Vin');
@@ -109,6 +105,6 @@ class Shop extends AbstractFixture implements OrderedFixtureInterface, Container
 
     public function getOrder()
     {
-        return 201; // l'ordre dans lequel les fichiers sont chargés
+        return 201;
     }
 }
