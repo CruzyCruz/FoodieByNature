@@ -7,7 +7,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use FBN\GuideBundle\Entity\TutorialChapterPara as TutoChapterPara;
 
-class TutorialChapterParaVinNaturel extends AbstractFixture implements OrderedFixtureInterface
+class TutorialChapterParaNaturalWine extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {

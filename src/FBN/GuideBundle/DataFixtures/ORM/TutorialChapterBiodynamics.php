@@ -7,7 +7,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use FBN\GuideBundle\Entity\TutorialChapter as TutoChapter;
 
-class TutorialChapterBiodynamie extends AbstractFixture implements OrderedFixtureInterface
+class TutorialChapterBiodynamics extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {

@@ -7,23 +7,23 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use FBN\GuideBundle\Entity\TutorialChapter as TutoChapter;
 
-class TutorialChapterBoireNature extends AbstractFixture implements OrderedFixtureInterface
+class TutorialChapterNaturalWine extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $titlesfr = array('Des vins vivants', 'Des vins détendus', 'Classsique vs Naturel');
+        $titlesfr = array('Le terroir', 'C\'est quoi un vin naturel ?', 'Les vins bio', 'La viticulture biodynamique');
 
-        $ranks = array(0, 1, 2);
+        $ranks = array(0, 1, 2, 3);
 
-        $titles = array('Alive wines', 'Relaxed Wines', 'Classic vs Natural');
+        $titles = array('The terroir', 'What is a natural wine?', 'Organic wines', 'Biodynamic viticulture');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
         $tutorial_ids = array(
-            5,
-            5,
-            5,
-            5,
+            1,
+            1,
+            1,
+            1,
             );
 
         foreach ($titles as $i => $title) {
@@ -37,7 +37,7 @@ class TutorialChapterBoireNature extends AbstractFixture implements OrderedFixtu
 
             $manager->persist($tutorialchapter[$i]);
 
-            $this->addReference('tutorialchapterboirenature-'.$i, $tutorialchapter[$i]);
+            $this->addReference('tutorialchaptervinnaturel-'.$i, $tutorialchapter[$i]);
 
             $tutorialchapter[$i]->setTutorial($this->getReference('tutorial-'.($tutorial_ids[$i] - 1)));
         }
@@ -47,6 +47,6 @@ class TutorialChapterBoireNature extends AbstractFixture implements OrderedFixtu
 
     public function getOrder()
     {
-        return 742;
+        return 703;
     }
 }

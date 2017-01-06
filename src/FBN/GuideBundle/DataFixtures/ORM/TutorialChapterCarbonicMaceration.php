@@ -7,7 +7,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use FBN\GuideBundle\Entity\TutorialChapter as TutoChapter;
 
-class TutorialChapterMacerationCarbonique extends AbstractFixture implements OrderedFixtureInterface
+class TutorialChapterCarbonicMaceration extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
