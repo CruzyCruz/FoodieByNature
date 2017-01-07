@@ -1,6 +1,6 @@
 <?php
 
-namespace FBN\GuideBundle\Bookmark;
+namespace FBN\GuideBundle\Manager;
 
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\HttpFoundation\Session\Session;

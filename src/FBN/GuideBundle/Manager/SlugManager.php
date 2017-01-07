@@ -1,12 +1,12 @@
 <?php
 
-namespace FBN\GuideBundle\Slug;
+namespace FBN\GuideBundle\Manager;
 
 use FBN\GuideBundle\Entity\CoordinatesISO;
 use FBN\GuideBundle\Entity\Coordinates;
 use FBN\GuideBundle\Entity\Event;
-use FBN\GuideBundle\Event\EventManager;
-use FBN\GuideBundle\Coordinates\CoordinatesManager;
+use FBN\GuideBundle\Manager\EventManager;
+use FBN\GuideBundle\Manager\CoordinatesManager;
 
 class SlugManager
 {

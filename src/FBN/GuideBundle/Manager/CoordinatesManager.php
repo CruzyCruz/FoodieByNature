@@ -1,6 +1,6 @@
 <?php
 
-namespace FBN\GuideBundle\Coordinates;
+namespace FBN\GuideBundle\Manager;
 
 use Exception;
 use Symfony\Component\PropertyAccess\PropertyAccess;

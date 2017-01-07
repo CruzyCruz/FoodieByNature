@@ -5,7 +5,7 @@ namespace FBN\GuideBundle\EventListener;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Vich\UploaderBundle\Event\Event;
 use Vich\UploaderBundle\Event\Events;
-use FBN\GuideBundle\File\ImageManager;
+use FBN\GuideBundle\Manager\ImageManager;
 
 /**
  * Listener responsible to update an Image Entity when the related file is uploaded and to remove related cached file.

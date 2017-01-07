@@ -1,6 +1,6 @@
 <?php
 
-namespace FBN\GuideBundle\File;
+namespace FBN\GuideBundle\Manager;
 
 use Symfony\Component\HttpFoundation\File\File;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;

@@ -5,9 +5,9 @@ namespace FBN\GuideBundle\EventListener;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Event\OnFlushEventArgs;
-use FBN\GuideBundle\Slug\SlugManager;
-use FBN\GuideBundle\Coordinates\CoordinatesManager;
-use FBN\GuideBundle\Event\EventManager;
+use FBN\GuideBundle\Manager\SlugManager;
+use FBN\GuideBundle\Manager\CoordinatesManager;
+use FBN\GuideBundle\Manager\EventManager;
 
 class DoctrineListenerEarly implements EventSubscriber
 {

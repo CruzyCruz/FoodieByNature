@@ -1,8 +1,8 @@
 <?php
 
-namespace FBN\GuideBundle\Event;
+namespace FBN\GuideBundle\Manager;
 
-use FBN\GuideBundle\Coordinates\CoordinatesManager;
+use FBN\GuideBundle\Manager\CoordinatesManager;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use FBN\GuideBundle\Entity\Restaurant;
 use FBN\GuideBundle\Entity\Shop;
