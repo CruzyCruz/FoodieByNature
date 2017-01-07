@@ -1,5 +1,3 @@
-{# /app/Resources/HWIOAuthBundle/views/Connect/connect_success.html.twig #}
-
 {% set flash = 'header.success' | trans({'%name%': userInformation.realName}, 'HWIOAuthBundle') %}
 
 {{ app.session.flashBag.add('hwi_success', flash) }}
