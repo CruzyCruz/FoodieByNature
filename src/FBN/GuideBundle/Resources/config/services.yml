@@ -2,16 +2,16 @@ parameters:
 
 #   fbn_guide.map
 
-#   zoom de proximité restos / events
+#   proximity zoom restaurants / events
     fbn_guide.map.zoom_close : 15
-#   zoom winemaker si un seul marker    
+#   zoom winemaker if only on marker    
     fbn_guide.map.zoom_winemaker : 10
-#   affichage google maps world    
+#   google maps display world    
     fbn_guide.map.world_dim_height : 256
     fbn_guide.map.world_dim_width : 256
 #   zoom maxi google maps        
     fbn_guide.map.zoom_max : 21
-#   dimension de l'element d'affichage de la carte        
+#   dimension of the element displaying the maps
     fbn_guide.map.map_dim_height : 300
     fbn_guide.map.map_dim_width : 300
 
@@ -35,7 +35,7 @@ services:
         arguments: [%fbn_guide.map.zoom_close%, %fbn_guide.map.zoom_winemaker%, %fbn_guide.map.world_dim_height%, %fbn_guide.map.world_dim_width%, %fbn_guide.map.zoom_max%,%fbn_guide.map.map_dim_height%, %fbn_guide.map.map_dim_width%]
 
     fbn_guide.bookmark_manager:
-        class : FBN\GuideBundle\Bookmark\BookmarkManager
+        class : FBN\GuideBundle\Manager\BookmarkManager
         arguments: [@security.token_storage, @doctrine.orm.entity_manager, @session]
 
     fbn_guide.doctrine_listener_early:
@@ -51,15 +51,15 @@ services:
             - { name: doctrine.event_subscriber, connection: default, priority: -10000 }            
 
     fbn_guide.image_manager:
-        class : FBN\GuideBundle\File\ImageManager
+        class : FBN\GuideBundle\Manager\ImageManager
         arguments: [@liip_imagine.cache.manager,  @vich_uploader.storage.file_system, %vich_uploader.mappings%]
 
     fbn_guide.slug_manager:
-        class : FBN\GuideBundle\Slug\SlugManager
+        class : FBN\GuideBundle\Manager\SlugManager
         arguments: [@fbn_guide.event_manager, @fbn_guide.coordinates_manager]
 
     fbn_guide.coordinates_manager:
-        class : FBN\GuideBundle\Coordinates\CoordinatesManager
+        class : FBN\GuideBundle\Manager\CoordinatesManager
         arguments: [@bazinga_geocoder.geocoder]
 
     fbn_guide.vich_listener:
@@ -69,7 +69,7 @@ services:
             - { name: kernel.event_subscriber }
 
     fbn_guide.event_manager:
-        class : FBN\GuideBundle\Event\EventManager
+        class : FBN\GuideBundle\Manager\EventManager
         arguments: [@fbn_guide.coordinates_manager] 
 
     fbn_guide.form_manager:

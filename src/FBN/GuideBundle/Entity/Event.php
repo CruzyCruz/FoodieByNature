@@ -12,7 +12,7 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
  *
  * @ORM\Table(name="event")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\EventRepository")
- * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\EventTranslation") 
+ * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\EventTranslation")
  * @ORM\HasLifecycleCallbacks()
  */
 class Event extends Article
@@ -88,21 +88,21 @@ class Event extends Article
     /**
      * @var string
      *
-     * @ORM\Column(name="dateStart", type="date")    
+     * @ORM\Column(name="dateStart", type="date")
      */
     private $dateStart;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="dateEnd", type="date")     
+     * @ORM\Column(name="dateEnd", type="date")
      */
     private $dateEnd;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="year", type="string", length=255)     
+     * @ORM\Column(name="year", type="string", length=255)
      */
     private $year;
 
@@ -132,7 +132,7 @@ class Event extends Article
      *
      * @ORM\Column(name="openingHours", type="string", length=255)
      * @Gedmo\Translatable
-     * @Assert\NotBlank()   
+     * @Assert\NotBlank()
      */
     private $openingHours;
 
@@ -167,7 +167,7 @@ class Event extends Article
     /**
      * @var string
      *
-     * @ORM\Column(name="formerLocationCoordinates", type="string", length=255, nullable=true)  
+     * @ORM\Column(name="formerLocationCoordinates", type="string", length=255, nullable=true)
      */
     private $formerLocationCoordinates;
 
@@ -181,7 +181,7 @@ class Event extends Article
     /**
      * @var string
      *
-     * @ORM\Column(name="formerLocation", type="string", length=255, nullable=true)  
+     * @ORM\Column(name="formerLocation", type="string", length=255, nullable=true)
      */
     private $formerLocation;
 

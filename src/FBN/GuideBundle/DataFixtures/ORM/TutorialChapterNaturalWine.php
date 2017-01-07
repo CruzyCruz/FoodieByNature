@@ -1,33 +1,29 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/TutorialChapterBiodynamie.php
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
-//use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use FBN\GuideBundle\Entity\TutorialChapter as TutoChapter;
 
-class TutorialChapterBiodynamie extends AbstractFixture implements OrderedFixtureInterface
+class TutorialChapterNaturalWine extends AbstractFixture implements OrderedFixtureInterface
 {
-    // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $titlesfr = array('Les buts de l’agriculture biodynamique', 'Historique de l’agriculture biodynamique en France', 'Les vins bio');
+        $titlesfr = array('Le terroir', 'C\'est quoi un vin naturel ?', 'Les vins bio', 'La viticulture biodynamique');
 
-        $ranks = array(0, 1, 2);
+        $ranks = array(0, 1, 2, 3);
 
-        $titles = array('The goals of biodynamic agriculture', 'History biodynamic agriculture in France', 'Organic wines');
+        $titles = array('The terroir', 'What is a natural wine?', 'Organic wines', 'Biodynamic viticulture');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
         $tutorial_ids = array(
-            2,
-            2,
-            2,
-            2,
+            1,
+            1,
+            1,
+            1,
             );
 
         foreach ($titles as $i => $title) {
@@ -41,7 +37,7 @@ class TutorialChapterBiodynamie extends AbstractFixture implements OrderedFixtur
 
             $manager->persist($tutorialchapter[$i]);
 
-            $this->addReference('tutorialchapterbiodynamie-'.$i, $tutorialchapter[$i]);
+            $this->addReference('tutorialchaptervinnaturel-'.$i, $tutorialchapter[$i]);
 
             $tutorialchapter[$i]->setTutorial($this->getReference('tutorial-'.($tutorial_ids[$i] - 1)));
         }
@@ -51,6 +47,6 @@ class TutorialChapterBiodynamie extends AbstractFixture implements OrderedFixtur
 
     public function getOrder()
     {
-        return 712; // l'ordre dans lequel les fichiers sont chargés
+        return 703;
     }
 }

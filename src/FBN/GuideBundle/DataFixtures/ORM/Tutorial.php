@@ -1,10 +1,7 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/Tutorial.php
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
-//use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -90,10 +87,10 @@ class Tutorial extends AbstractFixture implements OrderedFixtureInterface, Conta
         // Locale : fr
         $translatableListener->setTranslatableLocale('fr');
 
-        // No need to access translations repository and use translae() method 
+        // No need to access translations repository and use translae() method
         // as locale was directly changed in tanslatable listener i.e:
         // $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
-        // $repository->translate($tutorial, 'name', 'fr', $namesfr[$i]);        
+        // $repository->translate($tutorial, 'name', 'fr', $namesfr[$i]);
         foreach ($tutorials as $i => $tutorial) {
             $tutorial->setName($namesfr[$i]);
             $tutorial->setDescription($descriptionsfr[$i]);
@@ -107,6 +104,6 @@ class Tutorial extends AbstractFixture implements OrderedFixtureInterface, Conta
 
     public function getOrder()
     {
-        return 702; // l'ordre dans lequel les fichiers sont chargés
+        return 702;
     }
 }

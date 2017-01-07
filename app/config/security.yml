@@ -34,29 +34,23 @@ security:
             logout:
                 path:   fos_user_security_logout
                 target: fbn_guide_home
-                #handlers doivent implementer Symfony\Component\Security\Http\Logout\LogoutHandlerInterface
+                #handlers have to implement Symfony\Component\Security\Http\Logout\LogoutHandlerInterface
                 handlers: [fbn_user.logout_handler]
-                #succes_handlers doivent implementer Symfony\Component\Security\Http\Logout\LogoutSuccessHandlerInterface et retourner une reponse
-                # ce handler est appelé par le logout listener qui délogue le user (Symfony\Component\Security\Http\Firewall\LogoutListener)
-                #success_handler: service qui va bien
+                #succes_handlers have to implement Symfony\Component\Security\Http\Logout\LogoutSuccessHandlerInterface and return a reponse
+                # this handler is caled by the logout listener which unlogs the user (Symfony\Component\Security\Http\Firewall\LogoutListener)
+                #success_handler: the custom service
                 #invalidate_session: false
             remember_me:
-                key: %secret% # %secret% est un paramètre de parameters.yml
-                lifetime: 31536000 # 365 jours en secondes
+                key: %secret%
+                lifetime: 31536000
             oauth:
                 resource_owners:
-                    #google: "/login/check-google"
                     google: google_login
                     facebook: facebook_login
                 login_path:  fos_user_security_login
-                #login_path:  hwi_oauth_connect
                 use_forward: false
-                #failure_path: fos_user_security_login
-                # Pour les erreurs de Oauth login (exemple : mauvais "client_secret", voir config.yml)
+                # For Oauth login errors (example : bad "client_secret", see config.yml)
                 failure_path: hwi_oauth_connect
-                #failure_path: fbn_guide_home
-                #failure_path: fos_user_security_login
-                #failure_handler: fbn_user.hwioauth.authentication_failure_handler
                 default_target_path: fbn_guide_home
 
                 oauth_user_provider:

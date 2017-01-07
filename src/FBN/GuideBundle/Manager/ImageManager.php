@@ -1,6 +1,6 @@
 <?php
 
-namespace FBN\GuideBundle\File;
+namespace FBN\GuideBundle\Manager;
 
 use Symfony\Component\HttpFoundation\File\File;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
@@ -26,14 +26,14 @@ class ImageManager
 
     /**
      * Stores all path to images files upload directories (absolute path from Vich config).
-     * 
+     *
      * @var array
      */
     private $mappings = array();
 
     /**
      * Stores all path to images files to be deleted at the end of the renaming process (absolute path).
-     * 
+     *
      * @var array
      */
     private $originalFilesToBeDeleted = array();
@@ -48,9 +48,9 @@ class ImageManager
     /**
      * Rename Image file from related Entity (Article) onFlush event.
      *
-     * @param object $entity The entity.
-     * @param object $em     The entity manager.
-     * @param object $uow    The unit of work.
+     * @param object $entity the entity
+     * @param object $em     the entity manager
+     * @param object $uow    the unit of work
      */
     public function renameImageFileFromArticleOnFlush($entity, $em, $uow)
     {
@@ -79,14 +79,12 @@ class ImageManager
         }
 
         unset($images);
-
-        return;
     }
 
     /**
      * Rename Image file.
      *
-     * @param object $image The image entity.
+     * @param object $image the image entity
      */
     public function renameImageFile($image)
     {
@@ -118,17 +116,13 @@ class ImageManager
                 $image->setName($updatedName);
                 $image->setUpdatedAt(new \DateTime());
             }
-
-            return;
         }
-
-        return;
     }
 
     /**
      * Get the relative path to actual file and set the related Image attribute.
      *
-     * @param object $image The image entity.
+     * @param object $image the image entity
      */
     public function setRelativePathToActualFile($image)
     {
@@ -136,14 +130,12 @@ class ImageManager
             $relativePathToActualFile = $this->fileSystemStorage->resolveUri($image, 'file');
             $image->setRelativePathToActualFile($relativePathToActualFile);
         }
-
-        return;
     }
 
     /**
      * Remove cached image file related to Image file on update|removal.
      *
-     * @param object $image The entity.
+     * @param object $image the entity
      */
     public function removeEntityRelatedCachedFile($image)
     {
@@ -152,8 +144,6 @@ class ImageManager
         if (null !== $relativePathToActualFile) {
             $this->cacheManager->remove($relativePathToActualFile);
         }
-
-        return;
     }
 
     /**

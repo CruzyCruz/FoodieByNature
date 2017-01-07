@@ -1,33 +1,29 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/TutorialChapterMacerationCarbonique.php
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
-//use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use FBN\GuideBundle\Entity\TutorialChapter as TutoChapter;
 
-class TutorialChapterMacerationCarbonique extends AbstractFixture implements OrderedFixtureInterface
+class TutorialChapterBiodynamics extends AbstractFixture implements OrderedFixtureInterface
 {
-    // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        $titlesfr = array('Théorie', 'Mise en œuvre', 'Produits obtenus');
+        $titlesfr = array('Les buts de l’agriculture biodynamique', 'Historique de l’agriculture biodynamique en France', 'Les vins bio');
 
         $ranks = array(0, 1, 2);
 
-        $titles = array('Theory', 'Implementation', 'Products obtained');
+        $titles = array('The goals of biodynamic agriculture', 'History biodynamic agriculture in France', 'Organic wines');
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
         $tutorial_ids = array(
-            4,
-            4,
-            4,
-            4,
+            2,
+            2,
+            2,
+            2,
             );
 
         foreach ($titles as $i => $title) {
@@ -41,7 +37,7 @@ class TutorialChapterMacerationCarbonique extends AbstractFixture implements Ord
 
             $manager->persist($tutorialchapter[$i]);
 
-            $this->addReference('tutorialchaptermacerationcarbonique-'.$i, $tutorialchapter[$i]);
+            $this->addReference('tutorialchapterbiodynamie-'.$i, $tutorialchapter[$i]);
 
             $tutorialchapter[$i]->setTutorial($this->getReference('tutorial-'.($tutorial_ids[$i] - 1)));
         }
@@ -51,6 +47,6 @@ class TutorialChapterMacerationCarbonique extends AbstractFixture implements Ord
 
     public function getOrder()
     {
-        return 732; // l'ordre dans lequel les fichiers sont chargés
+        return 712;
     }
 }

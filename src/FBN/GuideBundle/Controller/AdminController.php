@@ -16,9 +16,9 @@ class AdminController extends BaseAdminController
     /**
      * Language switcher.
      *
-     * @param null|string $locale The locale.
+     * @param null|string $locale the locale
      *
-     * @return RedirectResponse The response.
+     * @return RedirectResponse the response
      */
     public function switchLocaleAction($locale = null)
     {
@@ -34,7 +34,7 @@ class AdminController extends BaseAdminController
 
     /*
      * {@inheritdoc}
-     * 
+     *
      * Force all new action to be executed in default locale.
      */
     protected function newAction()
@@ -46,7 +46,7 @@ class AdminController extends BaseAdminController
 
     /*
      * {@inheritdoc}
-     * 
+     *
      * If current entity is User force edition to be executed in default locale.
      */
     protected function editAction()
@@ -62,7 +62,7 @@ class AdminController extends BaseAdminController
 
     /*
      * {@inheritdoc}
-     * 
+     *
      * Restaurant : Disable non translatable fields for locale different of default locale.
      */
     public function createRestaurantEntityFormBuilder($entity, $view)
@@ -74,7 +74,7 @@ class AdminController extends BaseAdminController
 
     /*
      * {@inheritdoc}
-     * 
+     *
      * Winemaker : Remove non translatable fields for locale different of default locale.
      */
     public function createWinemakerEntityFormBuilder($entity, $view)
@@ -86,7 +86,7 @@ class AdminController extends BaseAdminController
 
     /*
      * {@inheritdoc}
-     * 
+     *
      * Shop : Disable non translatable fields for locale different of default locale.
      */
     public function createShopEntityFormBuilder($entity, $view)
@@ -98,7 +98,7 @@ class AdminController extends BaseAdminController
 
     /*
      * {@inheritdoc}
-     * 
+     *
      * Info : Disable non translatable fields for locale different of default locale.
      */
     public function createInfoEntityFormBuilder($entity, $view)
@@ -110,7 +110,7 @@ class AdminController extends BaseAdminController
 
     /*
      * {@inheritdoc}
-     * 
+     *
      * Tutorial : Disable non translatable fields for locale different of default locale.
      */
     public function createTutorialEntityFormBuilder($entity, $view)
@@ -137,7 +137,7 @@ class AdminController extends BaseAdminController
             $formBuilder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
                 $data = $event->getData();
 
-                if ((null !== $data->getRestaurant())  || (null !== $data->getShop()) || (null !== $data->getWinemakerDomain()) || (null !== $data->getEventPast())) {
+                if ((null !== $data->getRestaurant()) || (null !== $data->getShop()) || (null !== $data->getWinemakerDomain()) || (null !== $data->getEventPast())) {
                     $data->setCoordinates(null);
                 }
 
@@ -151,7 +151,7 @@ class AdminController extends BaseAdminController
             'class' => 'FBNGuideBundle:Event',
             'query_builder' => function (EventRepository $repo) use ($id) {
                 return $repo->getEventsWithCoordinatesAndExcludedId($id);
-                },
+            },
             'attr' => ['data-widget' => 'select2'],
             'placeholder' => 'label.form.empty_value',
             'required' => false,
@@ -163,8 +163,8 @@ class AdminController extends BaseAdminController
 
     /**
      * {@inheritdoc}
-     * 
-     * FOS User integration : user creation.     
+     *
+     * FOS User integration : user creation.
      */
     public function createNewUserEntity()
     {
@@ -173,8 +173,8 @@ class AdminController extends BaseAdminController
 
     /**
      * {@inheritdoc}
-     * 
-     * FOS User integration : let Doctrine take of persisting the user.     
+     *
+     * FOS User integration : let Doctrine take of persisting the user.
      */
     public function prePersistUserEntity($user)
     {
@@ -183,8 +183,8 @@ class AdminController extends BaseAdminController
 
     /**
      * {@inheritdoc}
-     * 
-     * FOS User integration : let Doctrine take of updating the user.     
+     *
+     * FOS User integration : let Doctrine take of updating the user.
      */
     public function preUpdateUserEntity($user)
     {
@@ -208,9 +208,9 @@ class AdminController extends BaseAdminController
     /**
      * Redirect to route for default locale if needed (in case the locale is not the default one).
      *
-     * @param Response $response The response from the default action (AdminController).
+     * @param Response $response the response from the default action (AdminController)
      *
-     * @return RedirectResponse The response with default locale as locale.
+     * @return RedirectResponse the response with default locale as locale
      */
     public function redirectToRouteForDefaultLocaleIfNeeded($response)
     {

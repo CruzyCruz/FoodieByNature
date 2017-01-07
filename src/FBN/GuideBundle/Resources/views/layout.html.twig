@@ -1,5 +1,3 @@
-{# src/FBN/GuideBundle/Resources/views/layout.html.twig #}
-
 {# Coming to homepage from another template using render(controller()) (flash messages) #}
 {% set route = app.request.get('_route') ? app.request.get('_route') : 'fbn_guide_home' %}
 {% set route_params = app.request.get('_route_params') ? app.request.get('_route_params') : { '_locale' : ''} %}
@@ -9,7 +7,6 @@
 
 {% block header %}
 
-  {# On affiche les messages flash #}
   {% if app.session.flashBag.has('hwi_success') %}
     {% for message in app.session.flashBag.get('hwi_success') %}
         <div class="hwi_success">
@@ -25,10 +22,6 @@
         {% endfor %}
     {% endfor %}   
   {% endif %}   
-
-  {#{% if app.session.flashBag.all %}
-    {% app.session.flashBag.clear %}
-  {% endif %}     #}
 
   {% if app.user and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
       <p>CONNECTE EN TANT QUE {{ app.user.username }} [<a href="{{ path('fbn_user_profile_edit_change_password') }}">MON COMPTE</a>] - <a href="{{ path('fos_user_security_logout') }}">DECONNEXION</a></p>
@@ -63,10 +56,8 @@
    
 {% endblock   %}
 
-
 {% block body %}
 {% endblock   %}
-
 
 {% block footer %}
 	<p>For us, by us.</p>

@@ -1,12 +1,12 @@
 <?php
 
-namespace FBN\GuideBundle\Slug;
+namespace FBN\GuideBundle\Manager;
 
 use FBN\GuideBundle\Entity\CoordinatesISO;
 use FBN\GuideBundle\Entity\Coordinates;
 use FBN\GuideBundle\Entity\Event;
-use FBN\GuideBundle\Event\EventManager;
-use FBN\GuideBundle\Coordinates\CoordinatesManager;
+use FBN\GuideBundle\Manager\EventManager;
+use FBN\GuideBundle\Manager\CoordinatesManager;
 
 class SlugManager
 {
@@ -29,9 +29,9 @@ class SlugManager
     /**
      * Update attribute slugFromCoordinatesISO of entity Restaurant, Shop, WinemakerDomain, Event on CoordinatesISO insertion|update (onFlush event).
      *
-     * @param object $entity The entity.
-     * @param object $em     The entity manager.
-     * @param object $uow    The unit of work.
+     * @param object $entity the entity
+     * @param object $em     the entity manager
+     * @param object $uow    the unit of work
      */
     public function updateRstrShpWnmkrDmnEvtSlugFromCoordinatesISOOnFlush($entity, $em, $uow)
     {
@@ -65,22 +65,16 @@ class SlugManager
                         }
                     }
                 }
-
-                return;
             }
-
-            return;
         }
-
-        return;
     }
 
     /**
      * Update attribute slugFromCoordinatesISO of Event entity with null coordinates (alternative location) on insertion|update (on Flush event).
      *
-     * @param object $entity The entity.
-     * @param object $em     The entity manager.
-     * @param object $uow    The unit of work.
+     * @param object $entity the entity
+     * @param object $em     the entity manager
+     * @param object $uow    the unit of work
      */
     public function updateEvtWithExternalLocationSlugFromCoordinatesISOOnFlush($entity, $em, $uow)
     {
@@ -104,7 +98,7 @@ class SlugManager
      *
      * @return string
      */
-    public function getSlugFromCoordinatesISO($city = null, Coordinates $coordinates)
+    public function getSlugFromCoordinatesISO($city, Coordinates $coordinates)
     {
         $codeISO = $coordinates->getCoordinatesCountry()->getCodeISO();
         $getCoordinatesISO = 'getCoordinates'.$codeISO;

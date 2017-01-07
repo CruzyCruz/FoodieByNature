@@ -58,7 +58,7 @@ class Image
      * Requirement for VichUploaderBundle.
      * It is required that at least one field changes if you are using doctrine
      * otherwise the event listeners won't be called and the file is lost.
-     * 
+     *
      * @ORM\Column(type="datetime")
      *
      * @var \DateTime
@@ -67,7 +67,7 @@ class Image
 
     /**
      * Store the relative path to actual file.
-     * 
+     *
      * @var null|string
      */
     private $relativePathToActualFile;

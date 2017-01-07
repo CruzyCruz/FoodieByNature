@@ -26,7 +26,7 @@ class Tutorial extends Article
   /**
    * @ORM\OneToMany(targetEntity="FBN\GuideBundle\Entity\TutorialChapter", mappedBy="tutorial", cascade={"persist","remove"}, orphanRemoval=true)
    * @ORM\OrderBy({"rank" = "ASC"})
-   * 
+   *
    * @Assert\Valid()
    */
   private $tutorialChapter;

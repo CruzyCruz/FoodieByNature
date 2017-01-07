@@ -271,11 +271,11 @@ class GuideController extends Controller
     /**
      * Displays error pages when requested from AJAX.
      *
-     * @param int $statusCode The HTTP header status code.
+     * @param int $statusCode the HTTP header status code
      *
-     * @throws NotFoundHttpException if satus code is 404.
-     * @throws AccessDeniedException if satus code is 403.
-     * @throws NotFoundHttpException is user tries any other status code in adress bar.
+     * @throws NotFoundHttpException if satus code is 404
+     * @throws AccessDeniedException if satus code is 403
+     * @throws NotFoundHttpException is user tries any other status code in adress bar
      */
     public function displayErrorPagesAction($statusCode)
     {
@@ -294,8 +294,8 @@ class GuideController extends Controller
     /**
      * Get all slugs translations for a given entity.
      *
-     * @param object $em     Entity manager.
-     * @param object $entity The entity.
+     * @param object $em     entity manager
+     * @param object $entity the entity
      *
      * @return array An array of localized slugs : ['en' => 'slugEN', ...]
      */
@@ -307,7 +307,7 @@ class GuideController extends Controller
         $locale = $this->get('request')->getLocale();
 
         // Initiate slugsTranslations array with default locale value.
-        if ($locale  !== $defaultLocale) {
+        if ($locale !== $defaultLocale) {
             $entity->setTranslatableLocale($defaultLocale);
             $em->refresh($entity);
         }

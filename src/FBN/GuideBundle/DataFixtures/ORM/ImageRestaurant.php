@@ -1,7 +1,5 @@
 <?php
 
-// src/FBN/GuideBundle/DataFixtures/ORM/ImageRestaurant.php
-
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
 use Symfony\Component\HttpFoundation\File\File;
@@ -24,7 +22,6 @@ class ImageRestaurant extends AbstractFixture implements OrderedFixtureInterface
         $this->container = $container;
     }
 
-    // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
         $ranks = array(0, 0, 0, 0, 0);
@@ -79,6 +76,6 @@ class ImageRestaurant extends AbstractFixture implements OrderedFixtureInterface
 
     public function getOrder()
     {
-        return 102; // l'ordre dans lequel les fichiers sont chargés
+        return 102;
     }
 }

@@ -1,5 +1,4 @@
 easy_admin_bundle:
-    #resource: "@EasyAdminBundle/Controller/"
     resource: "@FBNGuideBundle/Controller/AdminController.php"
     type:     annotation
     prefix:   /{_locale}/admin

@@ -26,8 +26,6 @@ class CoordinatesFR extends AbstractFixture implements OrderedFixtureInterface
 
         $coordinatesfrlanes = array(9, 14, 2, 14, 14, null, null, null, null, null, 14, 4, 11, 14, 2, 9, 3, 14);
 
-        //$country = 'France';
-
         foreach ($metros as $i => $metro) {
             $coordinatesfr[$i] = new CoordFR();
             $coordinatesfr[$i]->setMetro($metro);
@@ -47,11 +45,8 @@ class CoordinatesFR extends AbstractFixture implements OrderedFixtureInterface
 
         foreach ($localities as $i => $locality) {
             $coordinatesfr[$i]->setLocality($locality);
-            //$coordinatesfr[$i]->setCountry($country);
 
             $manager->persist($coordinatesfr[$i]);
-
-            //$coordinatesfr[$i]->setCoordinatesCountry($this->getReference('coordinatescountry-0'));
 
             $coordinatesfr[$i]->setCoordinatesFRCity($this->getReference('coordinatesfrcity-'.($coordinatesfrcities[$i] - 1)));
 

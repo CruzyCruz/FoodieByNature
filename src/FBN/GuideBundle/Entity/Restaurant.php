@@ -125,7 +125,7 @@ class Restaurant extends Article
 
     /**
      * @var string
-     * 
+     *
      * @Gedmo\Slug(separator="-", updatable=true, fields={"name","slugFromCoordinatesISO"})
      * @ORM\Column(length=128, unique=true)
      */

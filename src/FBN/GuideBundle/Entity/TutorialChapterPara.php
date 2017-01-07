@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="tutorial_chapter_para")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\TutorialChapterParaRepository")
- * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\TutorialChapterParaTranslation") 
+ * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\TutorialChapterParaTranslation")
  */
 class TutorialChapterPara
 {
@@ -41,8 +41,8 @@ class TutorialChapterPara
      * @var string
      *
      * @ORM\Column(name="paragraph", type="text")
-     * @Gedmo\Translatable 
-     * @Assert\NotBlank()         
+     * @Gedmo\Translatable
+     * @Assert\NotBlank()
      */
     private $paragraph;
 

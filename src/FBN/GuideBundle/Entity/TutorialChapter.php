@@ -41,7 +41,7 @@ class TutorialChapter
      *
      * @ORM\Column(name="title", type="string", length=255)
      * @Gedmo\Translatable
-     * @Assert\NotBlank()         
+     * @Assert\NotBlank()
      */
     private $title;
 
