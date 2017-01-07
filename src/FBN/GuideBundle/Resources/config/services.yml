@@ -2,16 +2,16 @@ parameters:
 
 #   fbn_guide.map
 
-#   zoom de proximité restos / events
+#   proximity zoom restaurants / events
     fbn_guide.map.zoom_close : 15
-#   zoom winemaker si un seul marker    
+#   zoom winemaker if only on marker    
     fbn_guide.map.zoom_winemaker : 10
-#   affichage google maps world    
+#   google maps display world    
     fbn_guide.map.world_dim_height : 256
     fbn_guide.map.world_dim_width : 256
 #   zoom maxi google maps        
     fbn_guide.map.zoom_max : 21
-#   dimension de l'element d'affichage de la carte        
+#   dimension of the element displaying the maps
     fbn_guide.map.map_dim_height : 300
     fbn_guide.map.map_dim_width : 300
 
