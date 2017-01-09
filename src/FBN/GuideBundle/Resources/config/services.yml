@@ -19,96 +19,96 @@ services:
 
     fbn_guide.menu_builder:
         class: FBN\GuideBundle\Menu\MenuBuilder
-        arguments: ["@knp_menu.factory"]
+        arguments: ['@knp_menu.factory']
 
     fbn_guide.menu.main:
         class: Knp\Menu\MenuItem # the service definition requires setting the class
         factory_service: fbn_guide.menu_builder
         factory_method: createMainMenu
-        arguments: ["@request"]
+        arguments: ['@request']
         scope: request # needed as we have the request as a dependency here
         tags:
             - { name: knp_menu.menu, alias: main } # The alias is what is used to retrieve the menu
 
     fbn_guide.map:
         class : FBN\GuideBundle\Map\Map
-        arguments: [%fbn_guide.map.zoom_close%, %fbn_guide.map.zoom_winemaker%, %fbn_guide.map.world_dim_height%, %fbn_guide.map.world_dim_width%, %fbn_guide.map.zoom_max%,%fbn_guide.map.map_dim_height%, %fbn_guide.map.map_dim_width%]
+        arguments: ['%fbn_guide.map.zoom_close%', '%fbn_guide.map.zoom_winemaker%', '%fbn_guide.map.world_dim_height%', '%fbn_guide.map.world_dim_width%', '%fbn_guide.map.zoom_max%', '%fbn_guide.map.map_dim_height%', '%fbn_guide.map.map_dim_width%']
 
     fbn_guide.bookmark_manager:
         class : FBN\GuideBundle\Manager\BookmarkManager
-        arguments: [@security.token_storage, @doctrine.orm.entity_manager, @session]
+        arguments: ['@security.token_storage', '@doctrine.orm.entity_manager', '@session']
 
     fbn_guide.doctrine_listener_early:
         class : FBN\GuideBundle\EventListener\DoctrineListenerEarly
-        arguments: [@fbn_guide.slug_manager, @fbn_guide.coordinates_manager, @fbn_guide.event_manager]
+        arguments: ['@fbn_guide.slug_manager', '@fbn_guide.coordinates_manager', '@fbn_guide.event_manager']
         tags:
             - { name: doctrine.event_subscriber, connection: default, priority: 10000 }
 
     fbn_guide.doctrine_listener_late:
         class : FBN\GuideBundle\EventListener\DoctrineListenerLate
-        arguments: [@fbn_guide.image_manager]
+        arguments: ['@fbn_guide.image_manager']
         tags:
             - { name: doctrine.event_subscriber, connection: default, priority: -10000 }            
 
     fbn_guide.image_manager:
         class : FBN\GuideBundle\Manager\ImageManager
-        arguments: [@liip_imagine.cache.manager,  @vich_uploader.storage.file_system, %vich_uploader.mappings%]
+        arguments: ['@liip_imagine.cache.manager',  '@vich_uploader.storage.file_system', '%vich_uploader.mappings%']
 
     fbn_guide.slug_manager:
         class : FBN\GuideBundle\Manager\SlugManager
-        arguments: [@fbn_guide.event_manager, @fbn_guide.coordinates_manager]
+        arguments: ['@fbn_guide.event_manager', '@fbn_guide.coordinates_manager']
 
     fbn_guide.coordinates_manager:
         class : FBN\GuideBundle\Manager\CoordinatesManager
-        arguments: [@bazinga_geocoder.geocoder]
+        arguments: ['@bazinga_geocoder.geocoder']
 
     fbn_guide.vich_listener:
         class: FBN\GuideBundle\EventListener\VichListener
-        arguments: [@fbn_guide.image_manager]
+        arguments: ['@fbn_guide.image_manager']
         tags:
             - { name: kernel.event_subscriber }
 
     fbn_guide.event_manager:
         class : FBN\GuideBundle\Manager\EventManager
-        arguments: [@fbn_guide.coordinates_manager] 
+        arguments: ['@fbn_guide.coordinates_manager'] 
 
     fbn_guide.form_manager:
         class : FBN\GuideBundle\Form\Manager\FormManager
-        arguments: [%locale%]                   
+        arguments: ['%locale%']                   
 
     fbn_guide.form_type.winemaker_domain:
         class : FBN\GuideBundle\Form\WinemakerDomainType
-        arguments: [@request_stack, @fbn_guide.form_manager]
+        arguments: ['@request_stack', '@fbn_guide.form_manager']
         tags:
             - { name: form.type }
 
     fbn_guide.form_type.image_restaurant:
         class : FBN\GuideBundle\Form\ImageRestaurantType
-        arguments: [@request_stack, @fbn_guide.form_manager]
+        arguments: ['@request_stack', '@fbn_guide.form_manager']
         tags:
             - { name: form.type }
 
     fbn_guide.form_type.image_winemaker:
         class : FBN\GuideBundle\Form\ImageWinemakerType
-        arguments: [@request_stack, @fbn_guide.form_manager]
+        arguments: ['@request_stack', '@fbn_guide.form_manager']
         tags:
             - { name: form.type }      
 
     fbn_guide.form_type.image_event:
         class : FBN\GuideBundle\Form\ImageEventType
-        arguments: [@request_stack, @fbn_guide.form_manager]
+        arguments: ['@request_stack', '@fbn_guide.form_manager']
         tags:
             - { name: form.type }        
 
     fbn_guide.form_type.image_tutorial:
         class : FBN\GuideBundle\Form\ImageTutorialType
-        arguments: [@request_stack, @fbn_guide.form_manager]
+        arguments: ['@request_stack', '@fbn_guide.form_manager']
         tags:
             - { name: form.type }
 
     fbn_guide.form_type.image_tutorial_chapter_para:
         class : FBN\GuideBundle\Form\ImageTutorialChapterParaType
-        arguments: [@request_stack, @fbn_guide.form_manager]
+        arguments: ['@request_stack', '@fbn_guide.form_manager']
         tags:
             - { name: form.type }                            
 
