@@ -27,14 +27,20 @@ class User extends AbstractFixture implements OrderedFixtureInterface, Container
     {
         $userManager = $this->container->get('fos_user.user_manager');
 
-        $listNames = array('Cedric');
+        $listNames = array('admin', 'author', 'user');
+
+        $roles = array(
+            array('ROLE_ADMIN'),
+            array('ROLE_AUTHOR'),
+            array('ROLE_USER'),
+            );
 
         foreach ($listNames as $i => $name) {
             $user[$i] = $userManager->createUser();
             $user[$i]->setUsername($name);
             $user[$i]->setPlainPassword($name);
-            $user[$i]->setEmail('bonnin.cedric@gmail.com');
-            $user[$i]->setRoles(array('ROLE_ADMIN'));
+            $user[$i]->setEmail($name.'@fake.com');
+            $user[$i]->setRoles($roles[$i]);
             $user[$i]->setEnabled(true);
             $user[$i]->setAuthorName('C.B.');
 
