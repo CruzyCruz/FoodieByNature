@@ -15,6 +15,7 @@ use FBN\UserBundle\Entity\User;
  */
 abstract class Article
 {
+    const NUM_KIND_OF_ARTICLES = 6;
     const NUM_ITEMS = 8;
     const NUM_ITEMS_HOMEPAGE = 4;
 

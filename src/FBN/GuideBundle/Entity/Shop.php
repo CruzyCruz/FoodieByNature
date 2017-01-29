@@ -14,6 +14,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Shop extends Article
 {
+    const NUM_ITEMS = 6;
+
     /**
      * @var FBN\UserBundle\Entity\User
      *

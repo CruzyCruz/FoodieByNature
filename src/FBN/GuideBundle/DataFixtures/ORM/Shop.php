@@ -36,19 +36,19 @@ class Shop extends AbstractFixture implements OrderedFixtureInterface, Container
         $sites = array('cave-vinea.com', 'le-tire-bouchon.org', 'cavesauge.com', 'leszinzinsduvin.com');
 
         $openingHours = array(
-                        'De midi à 14h30 et de 19h à 23h. Fermé dimanche.',
-                        'De 19h à 22h30. Fermé dimanche et lundi.',
-                        'De midi à 14h30 (sauf samedi) et de 19h30 à 23h. Fermé dimanche. ',
-                        'Tous les jours, de 11h30 à 15h et de 19h30 à 22h30 (22h le dimanche).',
+                        'From noon to 2:30pm and from 7pm to 11pm. Closed Sunday.',
+                        'From 7pm to 10:30pm. Closed Sunday and Monday.',
+                        'From noon to 2:30pm (except Saturday) and from 7:30pm to 11pm. Closed Sunday.',
+                        'Everyday, from 11:30am to 3pm and from 7:30pm to 10:30pm (10pm Sunday).',
                         );
 
         $descriptions = array('shop', 'shop', 'shop', 'shop');
 
         $openingHoursfr = array(
-                        'From noon to 2:30pm and from 7pm to 11pm. Closed Sunday.',
-                        'From 7pm to 10:30pm. Closed Sunday and Monday.',
-                        'From noon to 2:30pm (except Saturday) and from 7:30pm to 11pm. Closed Sunday.',
-                        'Everyday, from 11:30am to 3pm and from 7:30pm to 10:30pm (10pm Sunday).',
+                        'De midi à 14h30 et de 19h à 23h. Fermé dimanche.',
+                        'De 19h à 22h30. Fermé dimanche et lundi.',
+                        'De midi à 14h30 (sauf samedi) et de 19h30 à 23h. Fermé dimanche. ',
+                        'Tous les jours, de 11h30 à 15h et de 19h30 à 22h30 (22h le dimanche).',
                         );
 
         $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
