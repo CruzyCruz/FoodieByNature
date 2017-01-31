@@ -395,6 +395,44 @@ class GuideControllerTest extends WebTestCase
             sprintf('The (%s) shop article is correct', $locale)
         );
     }
+
+    /**
+     * Test that each error page is correctly displayed  vs the different possible kind of users.
+     *
+     * @dataProvider usersProvider
+     *
+     * @param  string $user
+     * @param  null|string $password
+     */
+    public function testDisplayErrorPages($user, $password)
+    {
+        foreach (self::$locales as $locale) {
+            $client = $this->getClientForUser($user, $password);
+            // String with a minimum length of 4 (> length(403) or length(404))
+            $randomString = 'test'.uniqid();
+
+            if ('anonymous' === $user) {
+                $crawler = $client->request('GET', '/'.$locale.'/error/403');
+                $this->assertTrue($client->getResponse()->isRedirect());
+                $this->assertEquals(
+                    '/'.$locale.'/login',
+                    $client->getResponse()->getTargetUrl(),
+                    sprintf('The (%s) error page 403 redirects to the login form.', $locale)
+                );
+                $crawler = $client->request('GET', '/'.$locale.'/error/404');
+                $this->assertEquals(404, $client->getResponse()->getStatusCode());
+                $crawler = $client->request('GET', '/'.$locale.'/error/'.$randomString);
+                $this->assertEquals(404, $client->getResponse()->getStatusCode());
+            } else {
+                $crawler = $client->request('GET', '/'.$locale.'/error/403');
+                $this->assertEquals(403, $client->getResponse()->getStatusCode());
+                $crawler = $client->request('GET', '/'.$locale.'/error/404');
+                $this->assertEquals(404, $client->getResponse()->getStatusCode());
+                $crawler = $client->request('GET', '/'.$locale.'/error/'.$randomString);
+                $this->assertEquals(404, $client->getResponse()->getStatusCode());
+            }
+        }
+    }
     
     /**
      * Test that for each kind of boorkmable article the bookmarks are correctly recorded ad removed vs the different possible kind of users.
