@@ -17,6 +17,8 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
  */
 class Event extends Article
 {
+    const NUM_ITEMS = 8;
+        
     private static $eventLocationAttributes = array('coordinates', 'restaurant', 'shop', 'winemakerDomain', 'eventPast');
 
     /**

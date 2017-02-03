@@ -269,7 +269,8 @@ class GuideController extends Controller
     }
 
     /**
-     * Displays error pages when requested from AJAX.
+     * Displays error pages when requested from AJAX in the following processes:
+     * - $this->container->get('fbn_guide.bookmark_manager')->manage(...).
      *
      * @param int $statusCode the HTTP header status code
      *

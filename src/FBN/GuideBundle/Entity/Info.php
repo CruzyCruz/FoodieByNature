@@ -14,6 +14,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Info extends Article
 {
+    const NUM_ITEMS = 8;
+    
     /**
      * @var FBN\UserBundle\Entity\User
      *

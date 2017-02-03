@@ -15,6 +15,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Restaurant extends Article
 {
+    const NUM_ITEMS = 5;
+
     /**
      * @var FBN\UserBundle\Entity\User
      *

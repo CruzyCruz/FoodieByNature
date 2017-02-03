@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class ShopRepository extends EntityRepository
 {
-    public function getArticlesImages($first = 0, $limit = Article::NUM_ITEMS)
+    public function getArticlesImages($first = 0, $limit = Shop::NUM_ITEMS)
     {
         $qb = $this->createQueryBuilder('s')
             ->orderBy('s.datePublication', 'DESC')
