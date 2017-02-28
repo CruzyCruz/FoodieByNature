@@ -6,7 +6,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\PropertyAccess\PropertyAccess;
-use Doctrine\ORM\EntityManager;
+use Doctrine\Common\Persistence\ObjectManager;
 use FOS\UserBundle\Model\UserInterface;
 use FBN\GuideBundle\Entity\Bookmark;
 
@@ -32,7 +32,7 @@ class BookmarkManager
      */
     protected $accessor;
 
-    public function __construct(TokenStorageInterface $tokenStorage, EntityManager $em, Session $session)
+    public function __construct(TokenStorageInterface $tokenStorage, ObjectManager $em, Session $session)
     {
         $this->tokenStorage = $tokenStorage;
         $this->em = $em;
