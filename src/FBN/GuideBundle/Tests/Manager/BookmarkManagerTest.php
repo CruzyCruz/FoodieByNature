@@ -23,43 +23,34 @@ use FBN\GuideBundle\Manager\BookmarkManager;
 class BookmarkManagerTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Get mocked token storage for user token.
-     *
-     * @return TokenStorageInterface
+     * @var Session
      */
-    public function getTokenStorage()
-    {
-        $tokenStorage = $this
-            ->getMockBuilder(TokenStorageInterface::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        return $tokenStorage;
-    }
+    private $session;
 
     /**
-     * Get mocked doctrine entity manager.
-     *
-     * @return ObjectManager
+     * @var PHPUnit_Framework_MockObject_MockObject
      */
-    public function getEntityManager()
-    {
-        $entityManager = $this
-            ->getMockBuilder(ObjectManager::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        return $entityManager;
-    }
+    private $tokenStorage;
 
     /**
-     * Get mocked session.
-     *
-     * @return Session
+     * @var PHPUnit_Framework_MockObject_MockObject
      */
-    public function getSession()
+    private $entityManager;
+
+    /**
+     * @var PHPUnit_Framework_MockObject_MockObject
+     */
+    private $entityRepository;
+
+    /**
+     * Creat mock objects before each test.
+     */
+    public function setUp()
     {
-        return new Session(new MockArraySessionStorage());
+        $this->session = new Session(new MockArraySessionStorage());
+        $this->tokenStorage = $this->getMockBuilder(TokenStorageInterface::class)->disableOriginalConstructor()->getMock();
+        $this->entityManager = $this->getMockBuilder(ObjectManager::class)->disableOriginalConstructor()->getMock();
+        $this->entityRepository = $this->getMockBuilder(EntityRepository::class)->disableOriginalConstructor()->getMock();
     }
 
     /**
@@ -68,67 +59,36 @@ class BookmarkManagerTest extends \PHPUnit_Framework_TestCase
      * @dataProvider bookmarkablesEntitiesProvider
      *
      * @param FBN\GuideBundle\Entity\Restaurant|FBN\GuideBundle\Entity\Winemaker|FBN\GuideBundle\Entity\Shop $entityClass
-     * @param string $bookmarkType
+     * @param string $bookmarkEntity
      */
-    public function testThatBookmarkableEntityAdditionToBookmarksIsWellManaged($entityClass, $bookmarkType)
+    public function testThatBookmarkableEntityAdditionToBookmarksIsWellManaged($entityClass, $bookmarkEntity)
     {
-        // Initiate session datas.
-        $session = $this->getSession();
-        $session->set('bookmarkAction', array('add'));
-        $session->set('bookmarkId', array(null));
-        $session->set('bookmarkEntity', array($bookmarkType));
-        $session->set('bookmarkEntityId', array(1));
+        $this->prepareSessiondatas(array('add'), array(null), array($bookmarkEntity), array(1));
 
-        // Prepare user expectations.
-        $user = $this->createMock(User::class);
+        $this->prepareUserExceptations();
 
-        $token = $this->getMockBuilder(TokenInterface::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $token->expects($this->once())
-            ->method('getUser')
-            ->will($this->returnValue($user));
-
-        $tokenStorage = $this->getTokenStorage();
-
-        $tokenStorage->expects($this->once())
-            ->method('getToken')
-            ->will($this->returnValue($token));
-
-        // Prepare entity expectations.
         $entity = $this->createMock($entityClass);
-
-        $entityRepository = $this
-            ->getMockBuilder(EntityRepository::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $entityRepository->expects($this->once())
+        $this->entityRepository->expects($this->once())
             ->method('findOneBy')
             ->will($this->returnValue($entity));
 
-        $entityManager =  $this->getEntityManager();
-        $entityManager->expects($this->once())
+        $this->entityManager->expects($this->once())
             ->method('getRepository')
-            ->will($this->returnValue($entityRepository));
-        $entityManager->expects($this->once())
+            ->will($this->returnValue($this->entityRepository));
+        $this->entityManager->expects($this->once())
             ->method('persist')
             ->will($this->returnCallback(function ($bookmark) {
                 if ($bookmark instanceof Bookmark) {
-                    $class = new \ReflectionClass($bookmark);
-                    $property = $class->getProperty('id');
-                    $property->setAccessible(true);
-                    $property->setValue($bookmark, 1);
+                    $this->setEntityIdByReflection($bookmark, 1);
                 }
             }));
-        $entityManager->expects($this->once())
+        $this->entityManager->expects($this->once())
             ->method('flush');
 
-        // Manage bookmark.
-        $bookManager = new BookmarkManager($tokenStorage, $entityManager, $session);
+        $bookmarkManager = new BookmarkManager($this->tokenStorage, $this->entityManager, $this->session);
 
-        $response = $bookManager->manage('add', null, $bookmarkType, 1);
+        $response = $bookmarkManager->manage('add', null, $bookmarkEntity, 1);
 
-        // Test the response.
         $this->assertTrue(
             $response instanceof JsonResponse,
             sprintf('After bookmark addition, the response class is correct for bookmarkable entity : ', $entityClass)
@@ -142,21 +102,302 @@ class BookmarkManagerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             'remove',
-            $session->get('bookmarkAction')[0],
+            $this->session->get('bookmarkAction')[0],
             sprintf('After bookmark addition, bookmarkAction set in session is correct for bookmarkable entity : ', $entityClass)
         );
 
         $this->assertEquals(
             1,
-            $session->get('bookmarkId')[0],
+            $this->session->get('bookmarkId')[0],
             sprintf('After bookmark addition, bookmarkId set in session is correct for bookmarkable entity : ', $entityClass)
         );
     }
 
     /**
+     * Test that bookmarkable entity addition to bookmarks is well managed when entity is null.
+     *
+     * @dataProvider bookmarkablesEntitiesProvider
+     *
+     * @param FBN\GuideBundle\Entity\Restaurant|FBN\GuideBundle\Entity\Winemaker|FBN\GuideBundle\Entity\Shop $entityClass
+     * @param string $bookmarkEntity
+     */
+    public function testThatBookmarkableEntityAdditionToBookmarksIsWellManagedWhithNullEntity($entityClass, $bookmarkEntity)
+    {
+        $this->prepareSessiondatas(array('add'), array(null), array($bookmarkEntity), array(1));
+
+        $this->prepareUserExceptations();
+
+        $this->entityRepository->expects($this->once())
+            ->method('findOneBy')
+            ->will($this->returnValue(null));
+
+        $this->entityManager->expects($this->once())
+            ->method('getRepository')
+            ->will($this->returnValue($this->entityRepository));
+
+        $bookmarkManager = new BookmarkManager($this->tokenStorage, $this->entityManager, $this->session);
+
+        $response = $bookmarkManager->manage('add', null, $bookmarkEntity, 1);
+
+        $this->checkThatResponseIsJsonWith404StatusCode($response);
+    }
+
+    /**
+     * Test that bookmark removal is well managed.
+     *
+     * @dataProvider bookmarkablesEntitiesProvider
+     *
+     * @param FBN\GuideBundle\Entity\Restaurant|FBN\GuideBundle\Entity\Winemaker|FBN\GuideBundle\Entity\Shop $entityClass
+     * @param string $bookmarkEntity
+     */
+    public function testThatBookmarkRemovalIsWellManaged($entityClass, $bookmarkEntity)
+    {
+        $this->prepareSessiondatas(array('remove'), array(1), array($bookmarkEntity), array(1));
+
+        $this->playWorkFlowForBookmarkRemoval(1);
+
+        $bookmarkManager = new BookmarkManager($this->tokenStorage, $this->entityManager, $this->session);
+
+        $response = $bookmarkManager->manage('remove', 1, $bookmarkEntity, 1);
+
+        $this->assertTrue(
+            $response instanceof JsonResponse,
+            sprintf('After bookmark removal, the response class is correct for bookmarkable entity : ', $entityClass)
+        );
+
+        $this->assertEquals(
+            '{"bookmarkAction":"add","bookmarkId":null}',
+            $response->getContent(),
+            sprintf('After bookmark removal, the content of the response is correct for bookmarkable entity : ', $entityClass)
+        );
+
+        $this->assertEquals(
+            'add',
+            $this->session->get('bookmarkAction')[0],
+            sprintf('After bookmark removal bookmarkAction set in session is correct for bookmarkable entity : ', $entityClass)
+        );
+
+        $this->assertEquals(
+            null,
+            $this->session->get('bookmarkId')[0],
+            sprintf('After bookmark removal, bookmarkId set in session is correct for bookmarkable entity : ', $entityClass)
+        );
+    }
+
+    /**
+     * Test that bookmark removal is well managed when bookmark is null.
+     *
+     * @dataProvider bookmarkablesEntitiesProvider
+     *
+     * @param FBN\GuideBundle\Entity\Restaurant|FBN\GuideBundle\Entity\Winemaker|FBN\GuideBundle\Entity\Shop $entityClass
+     * @param string $bookmarkEntity
+     */
+    public function testThatBookmarkRemovalIsWellManagedWhithNullBookmark($entityClass, $bookmarkEntity)
+    {
+        $this->prepareSessiondatas(array('remove'), array(1), array($bookmarkEntity), array(1));
+
+        $this->entityRepository->expects($this->once())
+            ->method('findOneBy')
+            ->will($this->returnValue(null));
+
+        $this->entityManager->expects($this->once())
+            ->method('getRepository')
+            ->will($this->returnValue($this->entityRepository));
+
+        $bookmarkManager = new BookmarkManager($this->tokenStorage, $this->entityManager, $this->session);
+
+        $response = $bookmarkManager->manage('remove', 1, $bookmarkEntity, 1);
+
+        $this->checkThatResponseIsJsonWith404StatusCode($response);
+    }
+
+    /**
+     * Test that bookmark removal only is well managed.
+     *
+     * @dataProvider bookmarkablesEntitiesProvider
+     *
+     * @param FBN\GuideBundle\Entity\Restaurant|FBN\GuideBundle\Entity\Winemaker|FBN\GuideBundle\Entity\Shop $entityClass
+     * @param string $bookmarkEntity
+     */
+    public function testThatBookmarkRemovalOnlyIsWellManaged($entityClass, $bookmarkEntity)
+    {
+        $this->prepareSessiondatas(array('remove_only'), array(1,2), array($bookmarkEntity), array(1));
+
+        $this->playWorkFlowForBookmarkRemoval(2);
+
+        $bookmarkManager = new BookmarkManager($this->tokenStorage, $this->entityManager, $this->session);
+
+        $response = $bookmarkManager->manage('remove_only', 2, $bookmarkEntity, 1);
+
+        $this->assertTrue(
+            $response instanceof JsonResponse,
+            sprintf('After bookmark removal only, the response class is correct for bookmarkable entity : ', $entityClass)
+        );
+
+        $this->assertEquals(
+            1,
+            count($this->session->get('bookmarkAction')),
+            sprintf('After bookmark removal only, bookmarkAction set in session is correct for bookmarkable entity : ', $entityClass)
+        );
+
+        $this->assertEquals(
+            1,
+            $this->session->get('bookmarkId')[0],
+            sprintf('After bookmark removal only, bookmarkId set in session is correct for bookmarkable entity : ', $entityClass)
+        );
+    }
+
+    /**
+     * Test that for unauthorized action the response status code is 403.
+     */
+    public function testThatUnauthorizedActionIsWellManaged()
+    {
+        $this->prepareSessiondatas(array('add'), array(null), array('restaurant'), array(1));
+
+        $bookmarkManager = new BookmarkManager($this->tokenStorage, $this->entityManager, $this->session);
+
+        $response = $bookmarkManager->manage('unauthorizedAction', null, 'restaurant', 1);
+
+        $this->checkThatResponseIsJsonWith403StatusCode($response);
+    }
+
+    /**
+     * Test that for unauthorized bookmark the response status code is 403.
+     */
+    public function testThatUnauthorizedBookmarkIsWellManaged()
+    {
+        $this->prepareSessiondatas(array('remove'), array(1), array('restaurant'), array(1));
+
+        $bookmarkManager = new BookmarkManager($this->tokenStorage, $this->entityManager, $this->session);
+
+        $response = $bookmarkManager->manage('remove', 2, 'restaurant', 1);
+
+        $this->checkThatResponseIsJsonWith403StatusCode($response);
+    }
+
+    /**
+     * Test that for bookmark addition and unauthorized entity the response status code is 403.
+     */
+    public function testThatUnauthorizedEntityForBookmarkAdditionIsWellManaged()
+    {
+        $this->prepareSessiondatas(array('add'), array(null), array('restaurant'), array(1));
+
+        $bookmarkManager = new BookmarkManager($this->tokenStorage, $this->entityManager, $this->session);
+
+        $response = $bookmarkManager->manage('add', null, 'unauthorizedEntity', 1);
+
+        $this->checkThatResponseIsJsonWith403StatusCode($response);
+    }
+
+    /**
+     * Initiate datas in session.
+     *
+     * @param  array $action array of strings
+     * @param  array $bookmarkId array of int
+     * @param  array $bookmarkEntity array of strings
+     * @param  array $bookmarkEntityId array of int
+     */
+    private function prepareSessiondatas($action, $bookmarkId, $bookmarkEntity, $bookmarkEntityId)
+    {
+        $this->session->set('bookmarkAction', $action);
+        $this->session->set('bookmarkId', $bookmarkId);
+        $this->session->set('bookmarkEntity', $bookmarkEntity);
+        $this->session->set('bookmarkEntityId', $bookmarkEntityId);
+    }
+
+    /**
+     * Prepare user exceptations.
+     */
+    private function prepareUserExceptations()
+    {
+        $user = $this->createMock(User::class);
+
+        $token = $this->getMockBuilder(TokenInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $token->expects($this->once())
+            ->method('getUser')
+            ->will($this->returnValue($user));
+
+        $this->tokenStorage->expects($this->once())
+            ->method('getToken')
+            ->will($this->returnValue($token));
+    }
+
+    private function playWorkFlowForBookmarkRemoval($bookmarkId)
+    {
+        $bookmark = new Bookmark();
+        $this->setEntityIdByReflection($bookmark, $bookmarkId);
+
+        $this->entityRepository->expects($this->once())
+            ->method('findOneBy')
+            ->will($this->returnValue($bookmark));
+
+        $this->entityManager->expects($this->once())
+            ->method('getRepository')
+            ->will($this->returnValue($this->entityRepository));
+        $this->entityManager->expects($this->once())
+            ->method('remove');
+        $this->entityManager->expects($this->once())
+            ->method('flush');
+    }
+
+    /**
+     * Check that provided response is JsonResponse with status code 403.
+     *
+     * @param  JsonResponse $response
+     */
+    private function checkThatResponseIsJsonWith403StatusCode($response)
+    {
+        $this->assertTrue(
+            $response instanceof JsonResponse,
+            'The response class is correct.'
+        );
+
+        $this->assertEquals(
+            403,
+            $response->getStatusCode(),
+            'The response status code is correct.'
+        );
+    }
+
+    /**
+     * Check that provided response is JsonResponse with status code 404.
+     *
+     * @param  JsonResponse $response
+     */
+    private function checkThatResponseIsJsonWith404StatusCode($response)
+    {
+        $this->assertTrue(
+            $response instanceof JsonResponse,
+            'The response class is correct.'
+        );
+
+        $this->assertEquals(
+            404,
+            $response->getStatusCode(),
+            'The response status code is correct.'
+        );
+    }
+
+    /**
+     * Set entity Id using reflection.
+     *
+     * @param object $entity
+     * @param int $id
+     */
+    private function setEntityIdByReflection($entity, $id)
+    {
+        $class = new \ReflectionClass($entity);
+        $property = $class->getProperty('id');
+        $property->setAccessible(true);
+        $property->setValue($entity, 1);
+    }
+
+    /**
      * Bookmarkables entities providers.
      *
-     * @return array array of [entityClass, bookmarkType].
+     * @return array array of [entityClass, bookmarkEntity].
      */
     public function bookmarkablesEntitiesProvider()
     {
