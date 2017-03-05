@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Bazinga\Bundle\GeocoderBundle\BazingaGeocoderBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

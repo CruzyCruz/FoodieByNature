@@ -264,4 +264,10 @@ ivory_ck_editor:
     plugins:
         divarea:
             path: "/js/ckeditor/divarea/"
-            filename: "plugin.js"        
+            filename: "plugin.js"
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
