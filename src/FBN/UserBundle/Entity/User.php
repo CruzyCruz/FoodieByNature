@@ -85,7 +85,7 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="authorName", type="string", length=255, nullable=true)
+     * @ORM\Column(name="authorName", type="string", length=255, nullable=true, unique=true)
      * @Assert\Length(min = 4, groups={"Registration", "Profile"})
      */
     private $authorName;
