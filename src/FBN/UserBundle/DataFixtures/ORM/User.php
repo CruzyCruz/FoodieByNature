@@ -35,6 +35,12 @@ class User extends AbstractFixture implements OrderedFixtureInterface, Container
             array('ROLE_USER'),
             );
 
+        $authorNames = array(
+            'AD.MIN',
+            'AU.THOR',
+            'US.ER',
+            );
+
         foreach ($listNames as $i => $name) {
             $user[$i] = $userManager->createUser();
             $user[$i]->setUsername($name);
@@ -42,7 +48,7 @@ class User extends AbstractFixture implements OrderedFixtureInterface, Container
             $user[$i]->setEmail($name.'@fake.com');
             $user[$i]->setRoles($roles[$i]);
             $user[$i]->setEnabled(true);
-            $user[$i]->setAuthorName('C.B.');
+            $user[$i]->setAuthorName($authorNames[$i]);
 
             $userManager->updateUser($user[$i], true);
 
