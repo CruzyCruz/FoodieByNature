@@ -15,7 +15,7 @@ easy_admin:
             - RestaurantStyle
             - { label: 'Winemakers' }
             - Winemaker
-            - WineakerArea
+            - WinemakerArea
             - { label: 'Shops' }
             - Shop
             - { label: 'Infos' }
