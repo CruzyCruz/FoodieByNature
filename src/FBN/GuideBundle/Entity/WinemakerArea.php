@@ -5,12 +5,14 @@ namespace FBN\GuideBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * WinemakerArea.
  *
  * @ORM\Table(name="winemaker_area")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\WinemakerAreaRepository")
+ * @UniqueEntity("area")
  */
 class WinemakerArea
 {
