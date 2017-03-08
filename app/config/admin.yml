@@ -234,7 +234,7 @@ easy_admin:
             class : FBN\GuideBundle\Entity\RestaurantPrice
         RestaurantStyle:
             class : FBN\GuideBundle\Entity\RestaurantStyle  
-        WineakerArea:
+        WinemakerArea:
             class : FBN\GuideBundle\Entity\WinemakerArea
         TutorialSection:
             class : FBN\GuideBundle\Entity\TutorialSection
