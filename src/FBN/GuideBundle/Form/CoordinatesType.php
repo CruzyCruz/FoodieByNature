@@ -16,7 +16,7 @@ class CoordinatesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('CoordinatesCountry', EntityType::class, array(
+            ->add('coordinatesCountry', EntityType::class, array(
                 'class' => 'FBNGuideBundle:CoordinatesCountry',
                 'property' => 'country',
                 ))

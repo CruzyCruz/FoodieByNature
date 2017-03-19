@@ -72,7 +72,7 @@ class Coordinates
      *
      * @return Coordinates
      */
-    public function setCoordinatesCountry(\FBN\GuideBundle\Entity\CoordinatesCountry $coordinatesCountry)
+    public function setCoordinatesCountry(\FBN\GuideBundle\Entity\CoordinatesCountry $coordinatesCountry = null)
     {
         $this->coordinatesCountry = $coordinatesCountry;
 

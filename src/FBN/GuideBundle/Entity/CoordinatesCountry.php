@@ -29,7 +29,6 @@ class CoordinatesCountry
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255, unique=true)
-     * @Assert\NotNull()
      * @Assert\NotBlank()
      */
     private $country;
@@ -38,7 +37,6 @@ class CoordinatesCountry
      * @var string
      *
      * @ORM\Column(name="codeISO", type="string", length=255, unique=true)
-     * @Assert\NotNull()
      * @Assert\NotBlank()
      */
     private $codeISO;
@@ -47,7 +45,6 @@ class CoordinatesCountry
      * @var decimal
      *
      * @ORM\Column(name="latitude", type="decimal", precision=10, scale=6, unique=true)
-     * @Assert\NotNull()
      * @Assert\NotBlank()
      * @Assert\Type(type="float")
      */
@@ -57,7 +54,6 @@ class CoordinatesCountry
      * @var decimal
      *
      * @ORM\Column(name="longitude", type="decimal", precision=10, scale=6, unique=true)
-     * @Assert\NotNull()
      * @Assert\NotBlank()
      * @Assert\Type(type="float")
      */
