@@ -33,6 +33,7 @@ class Event extends Article
   /**
    * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\EventType")
    * @ORM\JoinColumn(nullable=false)
+   * @Assert\NotBlank()
    */
   private $eventType;
 
@@ -357,7 +358,7 @@ class Event extends Article
      *
      * @return Event
      */
-    public function setEventType(\FBN\GuideBundle\Entity\EventType $eventType)
+    public function setEventType(\FBN\GuideBundle\Entity\EventType $eventType = null)
     {
         $this->eventType = $eventType;
 
