@@ -86,10 +86,10 @@ easy_admin:
                     - 'openingHours'
                     - 'tel'                    
                     - 'site'                     
-                    - 'href'                    
+                    - 'href'           
                     - 'restaurantPrice'
-                    - 'restaurantStyle'
-                    - 'restaurantBonus'
+                    - { property: 'restaurantStyle', type_options: {required: true} }
+                    - { property: 'restaurantBonus', type_options: {required: true} }
                     - { property: 'image', type: 'FBN\GuideBundle\Form\ImageRestaurantType', type_options: { required: true } }
                     - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType', type_options: { required: true } }                    
                     - { property: 'isShop', type_options: { required: false } }

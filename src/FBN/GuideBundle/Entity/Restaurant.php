@@ -36,14 +36,15 @@ class Restaurant extends Article
     /**
      * @ORM\ManyToMany(targetEntity="FBN\GuideBundle\Entity\RestaurantStyle")
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotBlank()
+     * @Assert\Count(min=1)
+     *
      */
     private $restaurantStyle;
 
     /**
      * @ORM\ManyToMany(targetEntity="FBN\GuideBundle\Entity\RestaurantBonus")
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotBlank()
+     * @Assert\Count(min=1)
      */
     private $restaurantBonus;
 
@@ -213,7 +214,7 @@ class Restaurant extends Article
      *
      * @return Restaurant
      */
-    public function setRestaurantPrice(\FBN\GuideBundle\Entity\RestaurantPrice $restaurantPrice)
+    public function setRestaurantPrice(\FBN\GuideBundle\Entity\RestaurantPrice $restaurantPrice = null)
     {
         $this->restaurantPrice = $restaurantPrice;
 
