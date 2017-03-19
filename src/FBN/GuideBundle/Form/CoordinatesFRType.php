@@ -7,6 +7,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use JavierEguiluz\Bundle\EasyAdminBundle\Form\Type\EasyAdminAutocompleteType;
 use FBN\GuideBundle\Entity\CoordinatesFRCity;
 
@@ -44,6 +46,22 @@ class CoordinatesFRType extends AbstractType
                 'class' => CoordinatesFRCity::class,
                 ))
         ;
+
+        // Needed to avoid the following validation error message (that is only accessible using Symfony Profiler -> Forms) when autocomplete field is empty
+        // Message : This value is not valid.
+        // Origin : autocomplete
+        // Cause :
+        //  Caused by: Symfony\Component\Form\Exception\TransformationFailedException
+        //  Unable to reverse value for property path "[autocomplete]": Expected a string or null.
+        //  Caused by: Symfony\Component\Form\Exception\TransformationFailedException
+        //  Expected a string or null.
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+            $data = $event->getData();
+            if (!isset($data["coordinatesFRCity"])) {
+                $data["coordinatesFRCity"]["autocomplete"] = "";
+                $event->setData($data);
+            }
+        });
     }
 
     /**

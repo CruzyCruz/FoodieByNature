@@ -88,7 +88,7 @@ class CoordinatesFR extends CoordinatesISO
      *
      * @return CoordinatesFR
      */
-    public function setCoordinatesFRCity(\FBN\GuideBundle\Entity\CoordinatesFRCity $coordinatesFRCity)
+    public function setCoordinatesFRCity(\FBN\GuideBundle\Entity\CoordinatesFRCity $coordinatesFRCity = null)
     {
         $this->coordinatesFRCity = $coordinatesFRCity;
 
