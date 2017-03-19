@@ -31,7 +31,7 @@ services:
             - { name: knp_menu.menu, alias: main } # The alias is what is used to retrieve the menu
 
     fbn_guide.map:
-        class : FBN\GuideBundle\Map\Map
+        class : FBN\GuideBundle\Manager\MapManager
         arguments: ['%fbn_guide.map.zoom_close%', '%fbn_guide.map.zoom_winemaker%', '%fbn_guide.map.world_dim_height%', '%fbn_guide.map.world_dim_width%', '%fbn_guide.map.zoom_max%', '%fbn_guide.map.map_dim_height%', '%fbn_guide.map.map_dim_width%']
 
     fbn_guide.bookmark_manager:

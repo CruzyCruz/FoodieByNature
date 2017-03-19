@@ -1,12 +1,12 @@
 <?php
 
-namespace FBN\GuideBundle\Map;
+namespace FBN\GuideBundle\Manager;
 
 use Ivory\GoogleMap\Map as IvoryMap;
 use Ivory\GoogleMap\Overlays\Marker;
 use Ivory\GoogleMap\Overlays\Animation;
 
-class Map
+class MapManager
 {
     protected $section;
     protected $nbMarkers;
