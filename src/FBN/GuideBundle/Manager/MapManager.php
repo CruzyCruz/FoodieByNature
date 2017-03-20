@@ -8,6 +8,19 @@ use Ivory\GoogleMap\Overlays\Animation;
 
 class MapManager
 {
+    // proximity zoom restaurants / events
+    const ZOOM_CLOSE = 15;
+    //zoom winemaker if only on marker
+    const ZOOM_WINEMAKER = 10;
+    // google maps display world
+    const WORLD_DIM_HEIGHT = 256;
+    const WORLD_DIM_WIDTH = 256;
+    // zoom maxi google maps
+    const ZOOM_MAX = 21;
+    // dimension of the element displaying the maps
+    const MAP_DIM_HEIGHT = 300;
+    const MAP_DIM_WIDTH = 300;
+
     protected $section;
     protected $nbMarkers;
     protected $lat;
@@ -16,36 +29,6 @@ class MapManager
     protected $sw;
     protected $ne;
     protected $zoom;
-
-    protected $zoomClose;
-    protected $zoomWinemaker;
-    protected $worldDimHeight;
-    protected $worldDimWidth;
-    protected $zoomMax;
-    protected $mapDimHeight;
-    protected $mapDimWidth;
-
-    public function __construct($zoomClose, $zoomWinemaker, $worldDimHeight, $worldDimWidth, $zoomMax, $mapDimHeight, $mapDimWidth)
-    {
-        $this->zoomClose = $zoomClose;
-        $this->zoomWinemaker = $zoomWinemaker;
-        $this->worldDimHeight = $worldDimHeight;
-        $this->worldDimWidth = $worldDimWidth;
-        $this->zoomMax = $zoomMax;
-        $this->mapDimHeight = $mapDimHeight;
-        $this->mapDimWidth = $mapDimWidth;
-    }
-
-    public function hydrate(array $latlngs, $section)
-    {
-        $this->setsection($section);
-        $this->setNbMarkers($latlngs);
-        $this->setLatLng($latlngs);
-        $this->setCenter();
-        $this->setSW();
-        $this->setNE();
-        $this->setZoom($this->mapDimHeight, $this->mapDimWidth);
-    }
 
     public function getMap(array $latlngs, $section)
     {
@@ -81,6 +64,17 @@ class MapManager
         }
 
         return $map;
+    }
+
+    public function hydrate(array $latlngs, $section)
+    {
+        $this->setsection($section);
+        $this->setNbMarkers($latlngs);
+        $this->setLatLng($latlngs);
+        $this->setCenter();
+        $this->setSW();
+        $this->setNE();
+        $this->setZoom(self::MAP_DIM_HEIGHT, self::MAP_DIM_WIDTH);
     }
 
     protected function latRad($lat)
@@ -144,14 +138,14 @@ class MapManager
         $lngFraction = (($lngDiff < 0) ? ($lngDiff + 360) : $lngDiff) / 360;
 
         if ($this->section == 'restaurant' || $this->section == 'event' || $this->section == 'shop') {
-            $this->zoom = $this->zoomClose;
+            $this->zoom = self::ZOOM_CLOSE;
         } elseif ($this->section == 'winemaker' && $this->nbMarkers == 1) {
-            $this->zoom = $this->zoomWinemaker;
+            $this->zoom = self::ZOOM_WINEMAKER;
         } else {
-            $latZoom = $this->zoom($mapDimH, $this->worldDimHeight, $latFraction);
-            $lngZoom = $this->zoom($mapDimW, $this->mapDimWidth, $lngFraction);
+            $latZoom = $this->zoom($mapDimH, self::WORLD_DIM_HEIGHT, $latFraction);
+            $lngZoom = $this->zoom($mapDimW, self::MAP_DIM_WIDTH, $lngFraction);
 
-            $this->zoom = min($this->zoomWinemaker, floor(min($latZoom, $lngZoom)), $this->zoomMax);
+            $this->zoom = min(self::ZOOM_WINEMAKER, floor(min($latZoom, $lngZoom)), self::ZOOM_MAX);
         }
     }
 }

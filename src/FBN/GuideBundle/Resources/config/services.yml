@@ -1,20 +1,5 @@
 parameters:
 
-#   fbn_guide.map
-
-#   proximity zoom restaurants / events
-    fbn_guide.map.zoom_close : 15
-#   zoom winemaker if only on marker    
-    fbn_guide.map.zoom_winemaker : 10
-#   google maps display world    
-    fbn_guide.map.world_dim_height : 256
-    fbn_guide.map.world_dim_width : 256
-#   zoom maxi google maps        
-    fbn_guide.map.zoom_max : 21
-#   dimension of the element displaying the maps
-    fbn_guide.map.map_dim_height : 300
-    fbn_guide.map.map_dim_width : 300
-
 services:
 
     fbn_guide.menu_builder:
@@ -31,8 +16,7 @@ services:
             - { name: knp_menu.menu, alias: main } # The alias is what is used to retrieve the menu
 
     fbn_guide.map:
-        class : FBN\GuideBundle\Manager\MapManager
-        arguments: ['%fbn_guide.map.zoom_close%', '%fbn_guide.map.zoom_winemaker%', '%fbn_guide.map.world_dim_height%', '%fbn_guide.map.world_dim_width%', '%fbn_guide.map.zoom_max%', '%fbn_guide.map.map_dim_height%', '%fbn_guide.map.map_dim_width%']
+        class : FBN\GuideBundle\Manager\MapManager        
 
     fbn_guide.bookmark_manager:
         class : FBN\GuideBundle\Manager\BookmarkManager
