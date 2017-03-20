@@ -1,6 +1,8 @@
 security:
     encoders:
-        FBN\UserBundle\Entity\User: sha512
+        FBN\UserBundle\Entity\User:
+            algorithm: bcrypt
+            cost: 12            
 
     role_hierarchy:
         ROLE_AUTHOR:      ROLE_USER
