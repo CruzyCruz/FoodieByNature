@@ -16,8 +16,6 @@ hwi_oauth_redirect:
 # is directly used in the login page.
 hwi_oauth_login:
     resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
-    #prefix:   /{_locale}/login-oauth
-    #prefix:   /{_locale}/login
     prefix:   /{_locale}/connect
     requirements:
         _locale: en|fr      
