@@ -151,12 +151,16 @@ hwi_oauth:
             client_id:           "%google_client_id%"
             client_secret:       "%google_client_secret%"       
             scope:               "email profile"
+            options:
+                csrf: true
 
         facebook:
             type:                facebook
             client_id:           "%fb_client_id%"
-            client_secret:       "%google_client_secret%"           
+            client_secret:       "%fb_client_secret%"           
             scope:               "email public_profile"
+            options:
+                csrf: true            
 
     # When connexion with FOSUserBundle is activated, and registration form is displayed
     # username automatic proposal in username form field
