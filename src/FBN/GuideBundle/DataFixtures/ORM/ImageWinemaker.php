@@ -17,12 +17,17 @@ class ImageWinemaker extends AbstractFixture implements OrderedFixtureInterface
         $path = __DIR__.'/Resources/Images/winemakers/';
         $pathto = __DIR__.'/../../../../../web/uploads/images/winemakers/';
 
-        // First delete all files in target directory
-        $files = glob($pathto.'/*');
-        foreach ($files as $file) {
-            if (is_file($file)) {
-                unlink($file);
+        // Empty target directory if it exists
+        if (file_exists($pathto)) {
+            $files = scandir($pathto);
+            foreach ($files as $file) {
+                if (is_file($file)) {
+                    unlink($file);
+                }
             }
+        // Create target directory
+        } else {
+            mkdir($pathto, 0777, true);
         }
 
         $names = array('winemaker-didier-barral-il.jpg', 'winemaker-marcel-lapierre-il.jpg', 'winemaker-elian-da-ros-il.jpg', 'winemaker-robert-plageoles-il.jpg', 'winemaker-jacques-selosse-il.jpg');

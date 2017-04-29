@@ -119,7 +119,7 @@ In the Google and Facebook developper console enter the following authorized red
 
  `php app/console doctrine:fixtures:load`
 
- This can take a little moment (one minute) as Geocoding is used to fetch some coordinates (longitude, latitude).
+ This can take a little moment (20/30 seconds) as Geocoding is used to fetch some coordinates (longitude, latitude).
 
  * **Schema (UML)**
 
@@ -139,7 +139,7 @@ Browse to */path/to/FoodieByNature* and run
 
 `phpunit -c app`
 
-*Note :* the test database is named `%database_name%_test` (see *app/config/config_test.yml*). Each time you run the tests, this database is deleted and re-created (or only created the first time) to reflect the last database schema. Then fixtures are loaded.
+*Note :* the test database is named `%database_name%_test` (see *app/config/config_test.yml*). Each time you run the tests, cache is cleared and this database is deleted and re-created (or only created the first time) to reflect the last database schema. Then fixtures are loaded.
 
 ### Usage
 

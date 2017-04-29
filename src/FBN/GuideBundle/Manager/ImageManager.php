@@ -159,17 +159,20 @@ class ImageManager
 
         // Renames files.
         foreach ($uploadDirectories as $uploadDirectory) {
-            $files = scandir($uploadDirectory);
-            foreach ($files as $file) {
-                if (false !== strpos($file, self::TEMPORARY_FILE_PREFIX)) {
-                    $absolutePathToActualFile = $uploadDirectory.DIRECTORY_SEPARATOR.$file;
-                    $renamedFile = str_replace(self::TEMPORARY_FILE_PREFIX, '', $file);
-                    $absolutePathToRenamedFile = $uploadDirectory.DIRECTORY_SEPARATOR.$renamedFile;
-                    // Updates files list to be deleted.
-                    if (false !== $key = array_search($absolutePathToRenamedFile, $this->originalFilesToBeDeleted)) {
-                        unset($this->originalFilesToBeDeleted[$key]);
+            // Test if the directory exists (for example during fixtures loading)
+            if (file_exists($uploadDirectory)) {
+                $files = scandir($uploadDirectory);
+                foreach ($files as $file) {
+                    if (false !== strpos($file, self::TEMPORARY_FILE_PREFIX)) {
+                        $absolutePathToActualFile = $uploadDirectory.DIRECTORY_SEPARATOR.$file;
+                        $renamedFile = str_replace(self::TEMPORARY_FILE_PREFIX, '', $file);
+                        $absolutePathToRenamedFile = $uploadDirectory.DIRECTORY_SEPARATOR.$renamedFile;
+                        // Updates files list to be deleted.
+                        if (false !== $key = array_search($absolutePathToRenamedFile, $this->originalFilesToBeDeleted)) {
+                            unset($this->originalFilesToBeDeleted[$key]);
+                        }
+                        rename($absolutePathToActualFile, $absolutePathToRenamedFile);
                     }
-                    rename($absolutePathToActualFile, $absolutePathToRenamedFile);
                 }
             }
         }

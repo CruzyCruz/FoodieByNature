@@ -17,12 +17,17 @@ class ImageTutorial extends AbstractFixture implements OrderedFixtureInterface
         $path = __DIR__.'/Resources/Images/tutorials/';
         $pathto = __DIR__.'/../../../../../web/uploads/images/tutorials/';
 
-        // First delete all files in target directory
-        $files = glob($pathto.'/*');
-        foreach ($files as $file) {
-            if (is_file($file)) {
-                unlink($file);
+        // Empty target directory if it exists
+        if (file_exists($pathto)) {
+            $files = scandir($pathto);
+            foreach ($files as $file) {
+                if (is_file($file)) {
+                    unlink($file);
+                }
             }
+        // Create target directory
+        } else {
+            mkdir($pathto, 0777, true);
         }
 
         $names = array('tutorial-le-vin-au-naturel.jpg', 'tutorial-la-biodynamie.jpg', 'tutorial-les-labels.jpg', 'tutorial-la-maceration-carbonique.jpg', 'tutorial-boire-nature.jpg');

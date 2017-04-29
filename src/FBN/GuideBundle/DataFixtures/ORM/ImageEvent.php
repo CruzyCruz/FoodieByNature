@@ -17,12 +17,17 @@ class ImageEvent extends AbstractFixture implements OrderedFixtureInterface
         $path = __DIR__.'/Resources/Images/events/';
         $pathto = __DIR__.'/../../../../../web/uploads/images/events/';
 
-        // First delete all files in target directory
-        $files = glob($pathto.'/*');
-        foreach ($files as $file) {
-            if (is_file($file)) {
-                unlink($file);
+        // Empty target directory if it exists
+        if (file_exists($pathto)) {
+            $files = scandir($pathto);
+            foreach ($files as $file) {
+                if (is_file($file)) {
+                    unlink($file);
+                }
             }
+        // Create target directory
+        } else {
+            mkdir($pathto, 0777, true);
         }
 
         $names = array('event-yvon-metras-au-temps-des-vendanges-2013-il.jpg', 'event-repas-gastronomique-a-toulouse-2013-il.jpg', 'event-sous-les-paves-la-vigne-2014-il.jpg', 'event-la-remise-2013-il.jpg', 'event-yvon-metras-au-temps-des-vendanges-2014-il.jpg', 'event-repas-gastronomique-a-toulouse-2014-il.jpg', 'event-la-remise-2014-il.jpg', 'event-dejeuner-sur-l-herbe-chez-robert-plageoles-2014-il.jpg');

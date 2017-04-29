@@ -2,14 +2,14 @@
 
 namespace FBN\GuideBundle\Tests\Utils;
 
+use PHPUnit\Framework\TestCase;
 use FBN\GuideBundle\Utils\Entity;
 use FBN\GuideBundle\Entity\Article;
 
 /**
  * Unitary tests for the methods defined inside Entity utility class.
- *
  */
-class EntityTest extends \PHPUnit_Framework_TestCase
+class EntityTest extends TestCase
 {
     /**
      * Test that article entity date publication comparisons are corrects.
@@ -23,7 +23,7 @@ class EntityTest extends \PHPUnit_Framework_TestCase
         $article2 = $this->createMock(Article::class);
         $article2->method('getDatePublication')
             ->willReturn(new \DateTime('2001-01-01'));
-        
+
         $int = Entity::compareDate($article1, $article2);
 
         $this->assertEquals(1, $int);

@@ -2,6 +2,7 @@
 
 namespace FBN\GuideBundle\Tests\Manager;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
@@ -9,7 +10,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\Common\Persistence\ObjectManager;
-use \FBN\UserBundle\Entity\User;
+use FBN\UserBundle\Entity\User;
 use FBN\GuideBundle\Entity\Bookmark;
 use FBN\GuideBundle\Entity\Restaurant;
 use FBN\GuideBundle\Entity\Winemaker;
@@ -18,9 +19,8 @@ use FBN\GuideBundle\Manager\BookmarkManager;
 
 /**
  * Unitary tests for the methods defined inside BookmarkManager.
- *
  */
-class BookmarkManagerTest extends \PHPUnit_Framework_TestCase
+class BookmarkManagerTest extends TestCase
 {
     /**
      * @var Session
@@ -59,7 +59,7 @@ class BookmarkManagerTest extends \PHPUnit_Framework_TestCase
      * @dataProvider bookmarkablesEntitiesProvider
      *
      * @param FBN\GuideBundle\Entity\Restaurant|FBN\GuideBundle\Entity\Winemaker|FBN\GuideBundle\Entity\Shop $entityClass
-     * @param string $bookmarkEntity
+     * @param string                                                                                         $bookmarkEntity
      */
     public function testThatBookmarkableEntityAdditionToBookmarksIsWellManaged($entityClass, $bookmarkEntity)
     {
@@ -119,7 +119,7 @@ class BookmarkManagerTest extends \PHPUnit_Framework_TestCase
      * @dataProvider bookmarkablesEntitiesProvider
      *
      * @param FBN\GuideBundle\Entity\Restaurant|FBN\GuideBundle\Entity\Winemaker|FBN\GuideBundle\Entity\Shop $entityClass
-     * @param string $bookmarkEntity
+     * @param string                                                                                         $bookmarkEntity
      */
     public function testThatBookmarkableEntityAdditionToBookmarksIsWellManagedWhithNullEntity($entityClass, $bookmarkEntity)
     {
@@ -148,7 +148,7 @@ class BookmarkManagerTest extends \PHPUnit_Framework_TestCase
      * @dataProvider bookmarkablesEntitiesProvider
      *
      * @param FBN\GuideBundle\Entity\Restaurant|FBN\GuideBundle\Entity\Winemaker|FBN\GuideBundle\Entity\Shop $entityClass
-     * @param string $bookmarkEntity
+     * @param string                                                                                         $bookmarkEntity
      */
     public function testThatBookmarkRemovalIsWellManaged($entityClass, $bookmarkEntity)
     {
@@ -190,7 +190,7 @@ class BookmarkManagerTest extends \PHPUnit_Framework_TestCase
      * @dataProvider bookmarkablesEntitiesProvider
      *
      * @param FBN\GuideBundle\Entity\Restaurant|FBN\GuideBundle\Entity\Winemaker|FBN\GuideBundle\Entity\Shop $entityClass
-     * @param string $bookmarkEntity
+     * @param string                                                                                         $bookmarkEntity
      */
     public function testThatBookmarkRemovalIsWellManagedWhithNullBookmark($entityClass, $bookmarkEntity)
     {
@@ -217,11 +217,11 @@ class BookmarkManagerTest extends \PHPUnit_Framework_TestCase
      * @dataProvider bookmarkablesEntitiesProvider
      *
      * @param FBN\GuideBundle\Entity\Restaurant|FBN\GuideBundle\Entity\Winemaker|FBN\GuideBundle\Entity\Shop $entityClass
-     * @param string $bookmarkEntity
+     * @param string                                                                                         $bookmarkEntity
      */
     public function testThatBookmarkRemovalOnlyIsWellManaged($entityClass, $bookmarkEntity)
     {
-        $this->prepareSessiondatas(array('remove_only'), array(1,2), array($bookmarkEntity), array(1));
+        $this->prepareSessiondatas(array('remove_only'), array(1, 2), array($bookmarkEntity), array(1));
 
         $this->playWorkFlowForBookmarkRemoval(2);
 
@@ -292,10 +292,10 @@ class BookmarkManagerTest extends \PHPUnit_Framework_TestCase
     /**
      * Initiate datas in session.
      *
-     * @param  array $action array of strings
-     * @param  array $bookmarkId array of int
-     * @param  array $bookmarkEntity array of strings
-     * @param  array $bookmarkEntityId array of int
+     * @param array $action           array of strings
+     * @param array $bookmarkId       array of int
+     * @param array $bookmarkEntity   array of strings
+     * @param array $bookmarkEntityId array of int
      */
     private function prepareSessiondatas($action, $bookmarkId, $bookmarkEntity, $bookmarkEntityId)
     {
@@ -345,7 +345,7 @@ class BookmarkManagerTest extends \PHPUnit_Framework_TestCase
     /**
      * Check that provided response is JsonResponse with status code 403.
      *
-     * @param  JsonResponse $response
+     * @param JsonResponse $response
      */
     private function checkThatResponseIsJsonWith403StatusCode($response)
     {
@@ -364,7 +364,7 @@ class BookmarkManagerTest extends \PHPUnit_Framework_TestCase
     /**
      * Check that provided response is JsonResponse with status code 404.
      *
-     * @param  JsonResponse $response
+     * @param JsonResponse $response
      */
     private function checkThatResponseIsJsonWith404StatusCode($response)
     {
@@ -384,7 +384,7 @@ class BookmarkManagerTest extends \PHPUnit_Framework_TestCase
      * Set entity Id using reflection.
      *
      * @param object $entity
-     * @param int $id
+     * @param int    $id
      */
     private function setEntityIdByReflection($entity, $id)
     {
