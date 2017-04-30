@@ -55,13 +55,13 @@ This configuration is for a MySQL databe but configure it to match your needs. S
 
 ```yml
 parameters:
-	database_driver: pdo_mysql
-	database_host: 127.0.0.1
-	database_port: null
-	database_name: fbn
-	database_name_test: fbn_test
-	database_user: your_database_username
-	database_password: your_database_password
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: fbn
+    database_name_test: fbn_test
+    database_user: your_database_username
+    database_password: your_database_password
 ```
 
 * **Configure swiftmailer**
@@ -108,25 +108,25 @@ parameters:
 
 In the Google and Facebook developper console enter the following authorized redirection URIs in your application (dev mode):
 
-`Google`
+**Google**
 `http://yourdomain/app_dev.php/fr/login/check-google`
 `http://yourdomain/app_dev.php/en/login/check-google`
 
-`Facebook`
+**Facebook**
 `http://yourdomain/app_dev.php/fr/login/check-facebook`
 `http://yourdomain/app_dev.php/en/login/check-facebook`
 
 ### Database
 
- * ** Create database **
+ * **Create database**
 
  `php app/console doctrine:database:create`
 
- * ** Create schema **
+ * **Create schema**
 
  `php app/console doctrine:schema:create`
 
- * ** Load fixtures **
+ * **Load fixtures**
 
  `php app/console doctrine:fixtures:load`
 
@@ -176,18 +176,18 @@ They s**k and are coded with my feet. At this time they only permit to have some
 
 ### Contributing
 
-Everybody is very welcome. Only one general philosophy : be cool :simple_smile:
+Everybody is very welcome. Only one general philosophy : be cool!
 
-** Contribute to code **
+**Contribute to code**
 
  * Propose constructive comments.
  * Propose code improvements.
 
-** Contribute to website **
+**Contribute to website**
 
  * Propose new functionnalities.
 
-** Others ** 
+**Others** 
 
  * Drink natural wine.
  * Take the apéro.
