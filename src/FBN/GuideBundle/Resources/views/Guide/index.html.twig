@@ -1,28 +1,23 @@
-{# src/FBN/GuideBundle/Resources/views/Guide/index.html.twig #}
-
 {% extends "FBNGuideBundle::layout.html.twig" %}
-
-{% block title %}
-{% endblock %}
 
 {% block body %}
 <ul>
-  {% for article in lastarticles %}
-  	{% if article.class | lower ~ 's' =='infos' %}
-  		<a href="{{ path('fbn_guide_articles', {'articles': article.class | lower ~ 's'} ) }}#{{ article.slug }}">{{ article.nom }}</a>  		
-  	{% else %}
-  		<a href="{{ path('fbn_guide_' ~ article.class | lower ~ 's', {'slug': article.slug} ) }}">{{ article.nom }}</a>
-  	{% endif %} 
-	<br />
-    {% if article.image is not null %}
+  {% for article in lastArticles %}
+    {% if entitiesArticles[article.class] == 'infos' %}
+      <a href="{{ path('fbn_guide_articles', {'articles': entitiesArticles[article.class]} ) }}#{{ article.slug }}">{{ article.name }}</a>
+    {% else %}
+      <a href="{{ path('fbn_guide_' ~ entitiesArticles[article.class], {'slug': article.slug} ) }}">{{ article.name }}</a>
+    {% endif %} 
+  <br />
+    {% if (article.image is defined) and (article.image is not null) %}
       <img 
-        src="{{ asset( article.image.webPath | imagine_filter('thumb_outbound') ) }}"
-        alt="{{ article.nom }}"
+        src="{{ vich_uploader_asset(article.image, 'file') | imagine_filter('thumb_outbound') }}"
+        alt="{{ article.name }}"
       />
     {% endif %}    
     <hr />    
   {% else %}
     <p>PAS D'ARTICLES</p>
   {% endfor %}
-</ul>	
+</ul> 
 {% endblock %}

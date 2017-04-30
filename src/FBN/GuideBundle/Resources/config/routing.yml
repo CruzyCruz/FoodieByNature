@@ -1,52 +1,52 @@
-# src/FBN/GuideBundle/Resources/config/routing.yml
-
-fbn_guide_accueil:
+fbn_guide_home:
     path:  /
-    defaults: { _controller: FBNGuideBundle:Guide:accueil }
+    defaults: { _controller: FBNGuideBundle:Guide:home }
 
 fbn_guide_articles:
     path:  /{articles}
     defaults: { _controller: FBNGuideBundle:Guide:articles }
     requirements : 
-        articles : infos|restaurants|vignerons|evenements|tutoriels|cavistes
+        articles : infos|restaurants|winemakers|events|tutorials|shops
 
 fbn_guide_restaurants:
     path:  /restaurants/{slug}
     defaults: { _controller: FBNGuideBundle:Guide:restaurant }
 
-fbn_guide_vignerons:
-    path:  /vignerons/{slug}
-    defaults: { _controller: FBNGuideBundle:Guide:vigneron }
+fbn_guide_winemakers:
+    path:  /winemakers/{slug}
+    defaults: { _controller: FBNGuideBundle:Guide:winemaker }
 
-fbn_guide_evenements:
-    path:  /evenements/{slug}
-    defaults: { _controller: FBNGuideBundle:Guide:evenement }
+fbn_guide_events:
+    path:  /events/{slug}
+    defaults: { _controller: FBNGuideBundle:Guide:event }
 
-fbn_guide_tutoriels:
-    path:  /tutoriels/{slug}
-    defaults: { _controller: FBNGuideBundle:Guide:tutoriel }
+fbn_guide_tutorials:
+    path:  /tutorials/{slug}
+    defaults: { _controller: FBNGuideBundle:Guide:tutorial }
 
-fbn_guide_cavistes:
-    path:  /cavistes/{slug}
-    defaults: { _controller: FBNGuideBundle:Guide:caviste }
+fbn_guide_shops:
+    path:  /shops/{slug}
+    defaults: { _controller: FBNGuideBundle:Guide:shop }
 
-fbn_guide_favoris:
-    path:  /favoris
-    defaults: { _controller: FBNGuideBundle:Guide:favoris }
+fbn_guide_bookmarks:
+    path:  /bookmarks
+    defaults: { _controller: FBNGuideBundle:Guide:bookmarks }
 
-fbn_guide_favoris_manage:
-    path:  /favoris/manage
-    defaults: { _controller: FBNGuideBundle:Guide:favoriManage }
+fbn_guide_bookmarks_manage:
+    path:  /bookmarks/manage
+    defaults: { _controller: FBNGuideBundle:Guide:bookmarkManage }
     options:
         expose: true
     requirements:
-        _method:  POST
+        _methods:  POST
 
-#fbn_guide_favoris_delete:
-#    path:  /favoris/delete
-#    defaults: { _controller: FBNGuideBundle:Guide:favoriDelete }
-#    options:
-#        expose: true
-#    requirements:
-#        _method:  POST        
+fbn_guide_display_error_pages:
+    path:  /error/{statusCode}
+    defaults: { _controller: FBNGuideBundle:Guide:displayErrorPages }
+    options:
+        expose: true
+
+fbn_guide_switch_admin_locale:
+    path:  /switchLocale
+    defaults: { _controller: FBNGuideBundle:Admin:switchLocale }         
 

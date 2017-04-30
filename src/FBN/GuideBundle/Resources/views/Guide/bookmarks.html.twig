@@ -1,0 +1,84 @@
+{% extends "FBNGuideBundle::layout.html.twig" %}
+
+{% block title %}
+  {{ 'fbn.guide.page_title.bookmarks'|trans }}
+{% endblock %}
+
+{% block body %}
+
+<div id="bookmarks" data-bookmark-ids="{{bookmarkIds|json_encode()}}">
+
+<h1>MES FAVORIS</h1>
+
+{% set dataBookmarkMessage = 'VOUS N\'AVEZ AUCUN FAVORIS' %} 
+
+{% if (bookmarkIds|length == 0) %}
+  {% set bookmarkMessage = dataBookmarkMessage %}    
+{% else %}
+  {% set bookmarkMessage = '' %}
+{% endif %}
+
+  <p id="bookmark-message" data-bookmark-message="{{dataBookmarkMessage}}">{{bookmarkMessage}}</p>
+
+{% if (restaurants|length > 0) %}
+
+  <div class="restaurants">
+    <h3>MES RESTOS</h3>
+    {% for bookmark in restaurants %}
+      <div class="bookmark" id="{{'bookmark-' ~ bookmark.id}}">
+        <a href="{{ path('fbn_guide_restaurants', {'slug': bookmark.restaurant.slug} ) }}">{{ bookmark.restaurant.name }}</a>
+        <br>
+        <br>
+        <button>SUPPRIMER DES FAVORIS</button>      
+        <br>
+        <hr>
+    </div>
+    {% endfor %}
+  </div>
+
+{% endif %}
+
+{% if (winemakers|length > 0) %}
+
+  <div class="winemakers">
+    <h3>MES VIGNERONS</h3>
+    {% for bookmark in winemakers %}
+      <div class="bookmark" id="{{'bookmark-' ~ bookmark.id}}">
+        <a href="{{ path('fbn_guide_winemakers', {'slug': bookmark.winemaker.slug} ) }}">{{ bookmark.winemaker.name }}</a>
+        <br>
+        <br>
+        <button>SUPPRIMER DES FAVORIS</button>    
+        <br>
+        <hr>
+    </div>
+    {% endfor %}
+  </div>
+
+{% endif %}
+
+{% if (shops|length > 0) %}
+
+  <div class="shops">
+    <h3>MES CAVISTES</h3>
+    {% for bookmark in shops %}
+      <div class="bookmark" id="{{'bookmark-' ~ bookmark.id}}">
+        <a href="{{ path('fbn_guide_shops', {'slug': bookmark.shop.slug} ) }}">{{ bookmark.shop.name }}</a>
+        <br>
+        <br>
+        <button>SUPPRIMER DES FAVORIS</button>      
+        <br>
+        <hr>
+    </div>
+    {% endfor %}
+  </div>
+
+{% endif %}    
+
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}  
+  <script type="application/javascript" src="{{ asset('js/fbn-guide-bookmarks-remove-only.js') }}"></script>
+{% endblock %}

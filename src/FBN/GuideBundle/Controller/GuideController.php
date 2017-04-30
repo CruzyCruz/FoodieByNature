@@ -4,51 +4,66 @@ namespace FBN\GuideBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use FBN\GuideBundle\Entity\Article;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class GuideController extends Controller
 {
-    public function accueilAction()
-    {
-        $route = $this->container->get('router')->getRouteCollection()->get('fbn_guide_articles');
-        $requirements = explode('|', $route->getRequirement('articles'));
+    /**
+     * Correspondence between routing fbn_guide_articles {articles} requirements and entity.
+     *
+     * @var array
+     */
+    private static $articlesEntities = array(
+        'infos' => 'Info',
+        'restaurants' => 'Restaurant',
+        'winemakers' => 'Winemaker',
+        'events' => 'Event',
+        'tutorials' => 'Tutorial',
+        'shops' => 'Shop',
+    );
 
-        $lastarticles = new \ArrayObject();
+    public function homeAction()
+    {
+        $lastArticles = array();
 
         $em = $this->getDoctrine()->getManager();
 
-        foreach ($requirements as $requirement) {
-            $entite = $this->requirementToEntity($requirement);
-
-            $articles = $em->getRepository('FBNGuideBundle:'.$entite)->getArticlesImages(0, Article::NUM_ITEMS_HOMEPAGE);
-
-            foreach ($articles as $article) {
-                $lastarticles->append($article);
-            }
+        foreach (self::$articlesEntities as $entity) {
+            $articles = $em->getRepository('FBNGuideBundle:'.$entity)->getArticlesImages(0, Article::NUM_ITEMS_HOMEPAGE);
+            $lastArticles = array_merge_recursive($lastArticles, $articles);
         }
 
-        $lastarticles->uasort('FBN\GuideBundle\Controller\GuideController::compareDate');
+        $lastArticles = array_unique($lastArticles);
+        uasort($lastArticles, 'FBN\GuideBundle\Utils\Entity::compareDate');
 
         return $this->render('FBNGuideBundle:Guide:index.html.twig', array(
-            'lastarticles' => $lastarticles,
+            'lastArticles' => $lastArticles,
+            'entitiesArticles' => array_flip(self::$articlesEntities),
         ));
     }
 
     public function articlesAction($articles)
     {
-        $entite = $this->requirementToEntity($articles);
+        $entity = self::$articlesEntities[$articles];
 
         $em = $this->getDoctrine()->getManager();
 
-        $repomenu = $em->getRepository('FBNGuideBundle:Menu');
+        $articlesList = $em->getRepository('FBNGuideBundle:'.$entity)->getArticlesImages();
 
-        $menu = $repomenu->findOneBy(array('entite' => $entite));
+        if ($entity === 'Info') {
+            return $this->render('FBNGuideBundle:Guide:infos.html.twig', array(
+                'articles' => $articles,
+                'articlesList' => $articlesList,
+            ));
+        }
 
-        $articles = $em->getRepository('FBNGuideBundle:'.$entite)->getArticlesImages();
-
-        return $this->render('FBNGuideBundle:Guide:articles.html.twig', array(
-            'menu' => $menu,
+        return $this->render('FBNGuideBundle:Guide:restaurants-winemakers-events-tutorials-shops.html.twig', array(
             'articles' => $articles,
+            'articlesList' => $articlesList,
+            'entitiesArticles' => array_flip(self::$articlesEntities),
         ));
     }
 
@@ -64,7 +79,7 @@ class GuideController extends Controller
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        $latlngs[] = array('lat' => $restaurant->getCoordonnees()->getLatitude(), 'lng' => $restaurant->getCoordonnees()->getLongitude());
+        $latlngs[] = array('lat' => $restaurant->getCoordinates()->getCoordinatesFR()->getLatitude(), 'lng' => $restaurant->getCoordinates()->getCoordinatesFR()->getLongitude());
 
         $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'restaurant');
 
@@ -76,133 +91,143 @@ class GuideController extends Controller
         return $this->render('FBNGuideBundle:Guide:restaurant.html.twig', array(
             'restaurant' => $restaurant,
             'map' => $map,
-            'entite' => 'restaurant',
+            'entity' => 'restaurant',
             'bookmarkAction' => $bookmarkAction,
             'bookmarkId' => $bookmarkId,
         ));
     }
 
-    public function vigneronAction($slug)
+    public function winemakerAction($slug)
     {
-        $vigneron = $this
+        $winemaker = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('FBNGuideBundle:Vigneron')
-            ->getVigneron($slug);
+            ->getRepository('FBNGuideBundle:Winemaker')
+            ->getWinemaker($slug);
 
-        if (null === $vigneron) {
+        if (null === $winemaker) {
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        foreach ($vigneron->getVigneronDomaine() as $vd) {
-            $latlngs[] = array('lat' => $vd->getCoordonnees()->getLatitude(), 'lng' => $vd->getCoordonnees()->getLongitude());
+        foreach ($winemaker->getWinemakerDomain() as $vd) {
+            $latlngs[] = array('lat' => $vd->getCoordinates()->getCoordinatesFR()->getLatitude(), 'lng' => $vd->getCoordinates()->getCoordinatesFR()->getLongitude());
         }
 
-        $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'vigneron');
+        $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'winemaker');
 
         $bookmarkManager = $this->container->get('fbn_guide.bookmark_manager');
-        $bookmarkStatus = $bookmarkManager->checkStatus('vigneron', $vigneron->getId());
+        $bookmarkStatus = $bookmarkManager->checkStatus('winemaker', $winemaker->getId());
         $bookmarkAction = $bookmarkStatus['bookmarkAction'];
         $bookmarkId = $bookmarkStatus['bookmarkId'];
 
-        return $this->render('FBNGuideBundle:Guide:vigneron.html.twig', array(
-            'vigneron' => $vigneron,
+        return $this->render('FBNGuideBundle:Guide:winemaker.html.twig', array(
+            'winemaker' => $winemaker,
             'map' => $map,
-            'entite' => 'vigneron',
+            'entity' => 'winemaker',
             'bookmarkAction' => $bookmarkAction,
             'bookmarkId' => $bookmarkId,
         ));
     }
 
-    public function evenementAction($slug)
+    public function eventAction($slug)
     {
-        $evenement = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('FBNGuideBundle:Evenement')
-            ->getEvenement($slug);
+        $em = $this->getDoctrine()->getManager();
 
-        if (null === $evenement) {
+        $locale = $this->get('request')->getLocale();
+
+        $event = $em->getRepository('FBNGuideBundle:Event')->getEvent($slug, $locale);
+
+        if (null === $event) {
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        ($lieuevt = $evenement->getRestaurant()) || ($lieuevt = $evenement->getCaviste()) || ($lieuevt = $evenement->getVigneronDomaine()) || ($lieuevt = $evenement->getEvenementPast()) || ($lieuevt = $evenement);
+        // Needed for correct generation of language switcher in view.
+        $slugsTranslations = $this->getSlugTranslationsByEntity($em, $event);
 
-        $latlngs[] = array('lat' => $lieuevt->getCoordonnees()->getLatitude(), 'lng' => $lieuevt->getCoordonnees()->getLongitude());
+        ($placeEvt = $event->getRestaurant()) || ($placeEvt = $event->getShop()) || ($placeEvt = $event->getWinemakerDomain()) || ($placeEvt = $event->getEventPast()) || ($placeEvt = $event);
 
-        $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'evenement');
+        $map = null;
+        if (null === $event->getFormerLocation()) {
+            $latlngs[] = array('lat' => $placeEvt->getCoordinates()->getCoordinatesFR()->getLatitude(), 'lng' => $placeEvt->getCoordinates()->getCoordinatesFR()->getLongitude());
+            $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'event');
+        }
 
-        return $this->render('FBNGuideBundle:Guide:evenement.html.twig', array(
-            'evenement' => $evenement,
-            'lieuevt' => $lieuevt,
+        return $this->render('FBNGuideBundle:Guide:event.html.twig', array(
+            'event' => $event,
+            'placeEvt' => $placeEvt,
             'map' => $map,
+            'slugsTranslations' => $slugsTranslations,
         ));
     }
 
-    public function tutorielAction($slug)
+    public function tutorialAction($slug)
     {
-        $tutoriel = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('FBNGuideBundle:Tutoriel')
-            ->getTutoriel($slug);
+        $em = $this->getDoctrine()->getManager();
 
-        if (null === $tutoriel) {
+        $locale = $this->get('request')->getLocale();
+
+        $tutorial = $em->getRepository('FBNGuideBundle:Tutorial')->getTutorial($slug, $locale);
+
+        if (null === $tutorial) {
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        return $this->render('FBNGuideBundle:Guide:tutoriel.html.twig', array(
-            'tutoriel' => $tutoriel,
+        // Needed for correct generation of language switcher in view.
+        $slugsTranslations = $this->getSlugTranslationsByEntity($em, $tutorial);
+
+        return $this->render('FBNGuideBundle:Guide:tutorial.html.twig', array(
+            'tutorial' => $tutorial,
+            'slugsTranslations' => $slugsTranslations,
         ));
     }
 
-    public function cavisteAction($slug)
+    public function shopAction($slug)
     {
-        $caviste = $this
+        $shop = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('FBNGuideBundle:Caviste')
-            ->getcaviste($slug);
+            ->getRepository('FBNGuideBundle:Shop')
+            ->getShop($slug);
 
-        if (null === $caviste) {
+        if (null === $shop) {
             throw $this->createNotFoundException('OUPS CA N\'EXISTE PAS !!!!');
         }
 
-        ($sharedData = $caviste->getRestaurant()) || ($sharedData = $caviste);
+        $latlngs[] = array('lat' => $shop->getCoordinates()->getCoordinatesFR()->getLatitude(), 'lng' => $shop->getCoordinates()->getCoordinatesFR()->getLongitude());
 
-        $latlngs[] = array('lat' => $sharedData->getCoordonnees()->getLatitude(), 'lng' => $sharedData->getCoordonnees()->getLongitude());
-
-        $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'caviste');
+        $map = $this->container->get('fbn_guide.map')->getMap($latlngs, 'shop');
 
         $bookmarkManager = $this->container->get('fbn_guide.bookmark_manager');
-        $bookmarkStatus = $bookmarkManager->checkStatus('caviste', $caviste->getId());
+        $bookmarkStatus = $bookmarkManager->checkStatus('shop', $shop->getId());
         $bookmarkAction = $bookmarkStatus['bookmarkAction'];
         $bookmarkId = $bookmarkStatus['bookmarkId'];
 
-        return $this->render('FBNGuideBundle:Guide:caviste.html.twig', array(
-            'caviste' => $caviste,
-            'sharedData' => $sharedData,
+        return $this->render('FBNGuideBundle:Guide:shop.html.twig', array(
+            'shop' => $shop,
             'map' => $map,
-            'entite' => 'caviste',
+            'entity' => 'shop',
             'bookmarkAction' => $bookmarkAction,
             'bookmarkId' => $bookmarkId,
         ));
     }
 
-    public function favorisAction()
+    public function bookmarksAction()
     {
+        $em = $this->getDoctrine()->getManager();
+
+        // User connexion is checked using custom LoginEntryPoint
         $userId = $this->getUser()->getId();
         $bookmarkManager = $this->container->get('fbn_guide.bookmark_manager');
-        $favoriRepo = $this
+        $bookmarkRepo = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('FBNGuideBundle:Favori');
+            ->getRepository('FBNGuideBundle:Bookmark');
 
-        $restaurants = $favoriRepo->getFavorisByEntite($userId, 'restaurant');
-        $vignerons = $favoriRepo->getFavorisByEntite($userId, 'vigneron');
-        $cavistes = $favoriRepo->getFavorisByEntite($userId, 'caviste');
+        $restaurants = $bookmarkRepo->getBookmarksByEntity($userId, 'restaurant');
+        $winemakers = $bookmarkRepo->getBookmarksByEntity($userId, 'winemaker');
+        $shops = $bookmarkRepo->getBookmarksByEntity($userId, 'shop');
 
-        $bookmarks = array_merge($restaurants, $vignerons, $cavistes);
+        $bookmarks = array_merge($restaurants, $winemakers, $shops);
         $bookmarkIds = array();
         foreach ($bookmarks as $bookmark) {
             $bookmarkIds[] = $bookmark['id'];
@@ -210,43 +235,97 @@ class GuideController extends Controller
 
         $bookmarkManager->setSessionVariable(array('remove_only'), $bookmarkIds, array(null), array(null));
 
-        return $this->render('FBNGuideBundle:Guide:favoris.html.twig', array(
+        return $this->render('FBNGuideBundle:Guide:bookmarks.html.twig', array(
             'restaurants' => $restaurants,
-            'vignerons' => $vignerons,
-            'cavistes' => $cavistes,
+            'winemakers' => $winemakers,
+            'shops' => $shops,
             'bookmarkIds' => $bookmarkIds,
         ));
     }
 
-    public function favoriManageAction(Request $request)
+    /**
+     * Manages bookmarks : add and remove actions.
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse
+     *
+     * @throws AccessDeniedException
+     */
+    public function bookmarkManageAction(Request $request)
     {
         if ($request->isXmlHttpRequest()) {
             $bookmarkAction = $request->request->get('bookmarkAction');
             $bookmarkId = $request->request->get('bookmarkId');
-            $bookmarkEntite = $request->request->get('bookmarkEntite');
-            $bookmarkEntiteId = $request->request->get('bookmarkEntiteId');
+            $bookmarkEntity = $request->request->get('bookmarkEntity');
+            $bookmarkEntityId = $request->request->get('bookmarkEntityId');
 
             $bookmarkManager = $this->container->get('fbn_guide.bookmark_manager');
 
-            return  $bookmarkManager->manage($bookmarkAction, $bookmarkId, $bookmarkEntite, $bookmarkEntiteId);
+            return  $bookmarkManager->manage($bookmarkAction, $bookmarkId, $bookmarkEntity, $bookmarkEntityId);
+        }
+
+        throw new AccessDeniedException();
+    }
+
+    /**
+     * Displays error pages when requested from AJAX in the following processes:
+     * - $this->container->get('fbn_guide.bookmark_manager')->manage(...).
+     *
+     * @param int $statusCode the HTTP header status code
+     *
+     * @throws NotFoundHttpException if satus code is 404
+     * @throws AccessDeniedException if satus code is 403
+     * @throws NotFoundHttpException is user tries any other status code in adress bar
+     */
+    public function displayErrorPagesAction($statusCode)
+    {
+        switch ($statusCode) {
+            case 403:
+                throw new AccessDeniedException();
+                break;
+            case 404:
+                throw new NotFoundHttpException();
+                break;
+            default:
+                throw new NotFoundHttpException();
         }
     }
 
-    // Fonction de comparaison des dates
-    public static function compareDate($a, $b)
+    /**
+     * Get all slugs translations for a given entity.
+     *
+     * @param object $em     entity manager
+     * @param object $entity the entity
+     *
+     * @return array An array of localized slugs : ['en' => 'slugEN', ...]
+     */
+    public function getSlugTranslationsByEntity($em, $entity)
     {
-        $d1 = $a->getDatePublication();
-        $d2 = $b->getDatePublication();
+        $translationRepository = $em->getRepository('Gedmo\Translatable\Entity\Translation');
 
-        if ($d1 == $d2) {
-            return 0;
+        $defaultLocale = $this->container->getParameter('locale');
+        $locale = $this->get('request')->getLocale();
+
+        // Initiate slugsTranslations array with default locale value.
+        if ($locale !== $defaultLocale) {
+            $entity->setTranslatableLocale($defaultLocale);
+            $em->refresh($entity);
         }
 
-        return ($d1 > $d2) ? -1 : 1;
-    }
+        $slugsTranslations = array($defaultLocale => $entity->getSlug());
 
-    public function requirementToEntity($requirement)
-    {
-        return ucfirst(substr($requirement, 0, strlen($requirement) - 1));
+        // Reset entity locale for further operations.
+        $entity->setTranslatableLocale($locale);
+        $em->refresh($entity);
+
+        // Get all entity translations (different from default locale)
+        $translations = $translationRepository->findTranslations($entity);
+
+        foreach ($translations as $locale => $translation) {
+            $slugsTranslations[$locale] = $translation['slug'];
+        }
+
+        return $slugsTranslations;
     }
 }

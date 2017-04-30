@@ -1,18 +1,28 @@
-<ul>
-  {% for article in articles %}    
-  <p>{{ article.datepublication|date('Y-m-d') }}</p>
-  <h1 id="{{ article.slug }}">{{ article.nom }}</h1>
-	<br />
+{% extends "FBNGuideBundle::layout.html.twig" %}
 
-  <p>{{ article.description }}</p>
-    {% if article.image is not null %}
-      <img 
-        src="{{ asset( article.image.webPath | imagine_filter('thumb_outbound') ) }}"
-        alt="{{ article.nom }}"
-      />
-    {% endif %}    
-    <hr />    
-  {% else %}
-    <p>Pas de {{ menu.entite | lower }}</p>
-  {% endfor %}
-</ul>
+{% block title %}
+	{{ 'fbn.guide.page_title.infos'|trans }}
+{% endblock %}
+
+{% block body %}
+
+	<p> {{ 'fbn.guide.page_intro.infos'|trans }}</p>
+
+	<ul>
+	  	{% for article in articlesList %}    
+		  	<p>{{ article.datepublication|date('Y-m-d') }}</p>
+		  	<h1 id="{{ article.slug }}">{{ article.name }}</h1>
+			<br />
+
+		  	<p>{{ article.description|raw }}</p>
+
+		  	<h4>DE : </h4>
+				{{ article.articleAuthor }}
+
+		    <hr />    
+		{% else %}
+		    <p>PAS D'ARTICLES</p>
+	  	{% endfor %}
+	</ul>
+
+{% endblock %}

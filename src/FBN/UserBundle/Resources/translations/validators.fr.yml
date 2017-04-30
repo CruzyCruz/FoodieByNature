@@ -1,0 +1,6 @@
+fbn:
+    user:
+        admin:
+            user:
+                isUserNameValid: Ce nom d'utilisateur n'est pas disponible.
+                isAuthorNameNeeded: Merci de choisir un nom d'auteur.

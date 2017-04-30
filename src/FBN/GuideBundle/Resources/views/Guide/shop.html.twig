@@ -1,0 +1,78 @@
+{% extends "FBNGuideBundle::layout.html.twig" %}
+
+{% block title %}
+	{{ shop.name }}
+{% endblock %}
+
+{% block body %}
+
+{% set  entityId = shop.id %} 
+{% include 'FBNGuideBundle:Guide:entity-bookmark-manage.html.twig' %}  
+
+<h1>{{ shop.name }}</h1>
+
+  <h3>HORAIRES : </h3>
+
+  <p>{{ shop.openingHours }}</p> 
+
+  {% if shop.description is not null %}
+    <p>{{ shop.description|raw }}</p>  
+  {% endif %}
+
+<h4>DE : </h4>
+  {{ shop.articleAuthor }}
+
+  <h3>PAR ICI : </h3>
+
+
+  <p>     
+    {% if shop.coordinates.coordinatesFR.miscellaneous is not null %}
+      {{ shop.coordinates.coordinatesFR.miscellaneous }}
+    {% endif %}  
+    <br />  
+    {% if shop.coordinates.coordinatesFR.laneName is not null %}
+      {% if shop.coordinates.coordinatesFR.laneNum is not null %}
+        {% set separateur = ', ' %}  
+      {% else %}
+        {% set separateur = '' %}  
+      {% endif %}
+      {{ 
+      shop.coordinates.coordinatesFR.laneNum ~ separateur ~
+      shop.coordinates.coordinatesFR.coordinatesFRLane.lane ~ ' ' ~
+      shop.coordinates.coordinatesFR.laneName
+      }}
+    {% endif %}
+    <br />
+    {% if shop.coordinates.coordinatesFR.locality is not null %}
+      {{ shop.coordinates.coordinatesFR.locality }}
+    {% endif %}  
+    <br />
+    {{ shop.coordinates.coordinatesFR.coordinatesFRCity.postCode ~ ' ' ~ shop.coordinates.coordinatesFR.coordinatesFRCity.city }}
+  </p>
+
+  {% if shop.tel is not null %}
+    <h3>ALLO : </h3>  
+    <p>{{ shop.tel }}</p>  
+  {% endif %}  
+
+  {% if shop.coordinates.coordinatesFR.metro is not null %}
+    <h3>METRO : </h3>  
+    <p>{{ shop.coordinates.coordinatesFR.metro }}</p> 
+  {% endif %}  
+
+  {% if shop.site is not null %}
+    <h3>SITE : </h3>
+    <a href="{{ shop.href }}">{{ shop.site }}</a> 
+  {% endif %}  
+
+  {{ google_map(map) }}
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}  
+
+  <script type="application/javascript" src="{{ asset('js/fbn-guide-bookmark-manage.js') }}"></script>
+{% endblock %}

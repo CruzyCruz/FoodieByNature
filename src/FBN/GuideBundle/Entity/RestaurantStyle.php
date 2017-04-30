@@ -4,17 +4,20 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * RestaurantStyle
+ * RestaurantStyle.
  *
- * @ORM\Table(name="restaurantstyle")
+ * @ORM\Table(name="restaurant_style")
  * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\RestaurantStyleRepository")
+ * @UniqueEntity(fields="style")
  */
 class RestaurantStyle
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -27,6 +30,7 @@ class RestaurantStyle
      *
      * @ORM\Column(name="style", type="string", length=255, unique=true)
      * @Gedmo\Translatable
+     * @Assert\NotBlank()
      */
     private $style;
 
@@ -37,12 +41,12 @@ class RestaurantStyle
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
      */
-    private $locale; 
+    private $locale;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -50,9 +54,10 @@ class RestaurantStyle
     }
 
     /**
-     * Set style
+     * Set style.
      *
      * @param string $style
+     *
      * @return RestaurantStyle
      */
     public function setStyle($style)
@@ -63,9 +68,9 @@ class RestaurantStyle
     }
 
     /**
-     * Get style
+     * Get style.
      *
-     * @return string 
+     * @return string
      */
     public function getStyle()
     {
@@ -73,13 +78,18 @@ class RestaurantStyle
     }
 
     /**
-     * Set locale
+     * Set locale.
      *
      * @param string $locale
-     * 
      */
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
-    }        
+    }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getStyle();
+    }
 }

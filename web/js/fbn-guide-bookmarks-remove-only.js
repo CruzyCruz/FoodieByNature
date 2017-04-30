@@ -1,37 +1,38 @@
-// Remove (only) Bookmark
+// Remove (only) bookmark
 $(function() {
 
+    var bookmarkAction = 'remove_only';
     var bookmarkIds = $('#bookmarks').data('bookmark-ids');
 
-    for(ii=0; ii < bookmarkIds.length; ii++) {
+    for(var ii=0; ii < bookmarkIds.length; ii++) {
 
-        $('#bookmark-button-' + bookmarkIds[ii]).click(function(id) {  
-
-            // Closure
+        // Closure : for each button, bookmarkIds table index is captured in closure
+        $('#bookmark-' + bookmarkIds[ii] + ' button').click((function(index) {
+            
             return function() 
-            {
-                var bookmarkAction = $(this).data('bookmark-action');
-                var bookmarkId = $(this).data('bookmark-id');                                      
+            {                                     
+                var bookmarkId = bookmarkIds[index];                                      
 
-                $('[id*="bookmark-button-"]').prop('disabled', true);
+                $('button').prop('disabled', true);
 
                 $.ajax({
                     type: 'POST',                                     
-                    url: Routing.generate('fbn_guide_favoris_manage'),
+                    url: Routing.generate('fbn_guide_bookmarks_manage'),
                     data : { bookmarkAction : bookmarkAction, bookmarkId : bookmarkId },
                     success: function(data) {
+                        $('#bookmark-' + data.bookmarkId).remove();
+                        
                         // Checking removal of last element in category                        
-                        if ($('.restaurants .bookmark').length == 1) {                                
+                        if ($('.restaurants .bookmark').length === 0) {                                
                             $('.restaurants').remove();
-                        }                                                
-                        else if ($('.vignerons .bookmark').length == 1) {                              
-                            $('.vignerons').remove();
-                        }                        
-                        else if ($('.cavistes .bookmark').length == 1) {                            
-                            $('.cavistes').remove();
+                        } 
+
+                        if ($('.winemakers .bookmark').length === 0) {                              
+                            $('.winemakers').remove();
                         }  
-                        else {
-                            $('#bookmark-' + data.bookmarkId).remove();
+
+                        if ($('.shops .bookmark').length === 0) {                            
+                            $('.shops').remove();
                         }
 
                         // If no bookmark anymore
@@ -39,10 +40,9 @@ $(function() {
                             var text = $('#bookmark-message').data('bookmark-message');
                             $('#bookmark-message').text(text);                    
                         }
-                        else
-                        {
-                            $('[id*="bookmark-button-"]').prop('disabled', false);
-                        }
+
+                        $('button').prop('disabled', false);
+
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         manageErrorCode(jqXHR.status);
@@ -50,6 +50,6 @@ $(function() {
                 });
             };
 
-        }(ii));
+        })(ii));
     } 
 });

@@ -1,22 +1,19 @@
-{# src/FBN/GuideBundle/Resources/views/restaurant.html.twig #}
-
 {% extends "FBNGuideBundle::layout.html.twig" %}
 
-
 {% block title %}
-	{{ restaurant.nom }}
+	{{ restaurant.name }}
 {% endblock %}
 
 {% block body %}
 
-{% set  entiteId = restaurant.id %} 
-{% include 'FBNGuideBundle:Guide:entite-bookmark-manage.html.twig' %}
+{% set  entityId = restaurant.id %} 
+{% include 'FBNGuideBundle:Guide:entity-bookmark-manage.html.twig' %}
 
-<h1>{{ restaurant.nom }}</h1>
+<h1>{{ restaurant.name }}</h1>
 
-  {% if restaurant.caviste is not null %}
-    <p>[<a href="{{ path('fbn_guide_cavistes', {'slug': restaurant.caviste.slug} ) }}">LA CAVE DU RESTO</a>]</p>
-  {% endif %}  
+  {% if restaurant.isShop == true %}
+    <p>RESTO-SHOP</p>
+  {% endif %}
 
 <h3>STYLE : </h3>
   <p>
@@ -33,46 +30,49 @@
   </p>  
 
 <h3>COMBIEN : </h3>
-  <p>{{ restaurant.restaurantPrix.prix }}</p> 
+  <p>{{ restaurant.restaurantPrice.price }}</p> 
 
   <h3>HORAIRES : </h3>
 
-  <p>{{ restaurant.horaires }}</p> 
+  <p>{{ restaurant.openingHours }}</p> 
 
   {% if restaurant.image is not null %}
     <img 
-      src="{{ asset(restaurant.image.webPath) }}"
-      alt="{{ restaurant.nom }}"
+      src="{{ vich_uploader_asset(restaurant.image, 'file') }}"
+      alt="{{ restaurant.name }}"
     />
   {% endif %}    
 
-  <p>{{ restaurant.description }}</p>  
+  <div>{{ restaurant.description|raw }}</div>
+
+  <h4>DE : </h4>
+    {{ restaurant.articleAuthor }}
 
   <h3>PAR ICI : </h3>
 
   <p>     
-    {% if restaurant.coordonnees.coordonneesFR.divers is not null %}
-      {{ restaurant.coordonnees.coordonneesFR.divers }}
+    {% if restaurant.coordinates.coordinatesFR.miscellaneous is not null %}
+      {{ restaurant.coordinates.coordinatesFR.miscellaneous }}
     {% endif %}  
     <br />  
-    {% if restaurant.coordonnees.coordonneesFR.voieNom is not null %}
-      {% if restaurant.coordonnees.coordonneesFR.voieNum is not null %}
+    {% if restaurant.coordinates.coordinatesFR.laneName is not null %}
+      {% if restaurant.coordinates.coordinatesFR.laneNum is not null %}
         {% set separateur = ', ' %}  
       {% else %}
         {% set separateur = '' %}  
       {% endif %}      
       {{ 
-      restaurant.coordonnees.coordonneesFR.voieNum ~ separateur ~
-      restaurant.coordonnees.coordonneesFR.coordonneesFRVoie.voie ~ ' ' ~
-      restaurant.coordonnees.coordonneesFR.voieNom
+      restaurant.coordinates.coordinatesFR.laneNum ~ separateur ~
+      restaurant.coordinates.coordinatesFR.coordinatesFRLane.lane ~ ' ' ~
+      restaurant.coordinates.coordinatesFR.laneName
       }}
     {% endif %}
     <br />
-    {% if restaurant.coordonnees.coordonneesFR.lieudit is not null %}
-      {{ restaurant.coordonnees.coordonneesFR.lieudit }}
+    {% if restaurant.coordinates.coordinatesFR.locality is not null %}
+      {{ restaurant.coordinates.coordinatesFR.locality }}
     {% endif %}  
     <br />
-    {{ restaurant.coordonnees.coordonneesFR.codePostal ~ ' ' ~ restaurant.coordonnees.ville }}
+    {{ restaurant.coordinates.coordinatesFR.coordinatesFRCity.postCode ~ ' ' ~ restaurant.coordinates.coordinatesFR.coordinatesFRCity.city }}
   </p>
 
   {% if restaurant.tel is not null %}
@@ -80,9 +80,9 @@
     <p>{{ restaurant.tel }}</p>  
   {% endif %}  
 
-  {% if restaurant.coordonnees.metro is not null %}
+  {% if restaurant.coordinates.coordinatesFR.metro is not null %}
     <h3>METRO : </h3>  
-    <p>{{ restaurant.coordonnees.metro }}</p> 
+    <p>{{ restaurant.coordinates.coordinatesFR.metro }}</p> 
   {% endif %}  
 
   {% if restaurant.site is not null %}

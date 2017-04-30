@@ -1,4 +1,5 @@
 <?php
+
 // src/FBN/GuideBundle/Menu/MenuBuilder.php
 
 namespace FBN\GuideBundle\Menu;
@@ -18,51 +19,49 @@ class MenuBuilder
         $this->factory = $factory;
     }
 
-    /**     
+    /**
      * @param Request $request
-     * @return string 
+     *
+     * @return string
      */
     public function createMainMenu(Request $request)
     {
-
         $mainmenu = $this->factory->createItem('root');
 
-
-        $mainmenu->addChild('fbn.guide.mainmenu.infos' , array(
-            'route'           => 'fbn_guide_articles',
-            'routeParameters' => array( 'articles' => 'infos' )
+        $mainmenu->addChild('fbn.guide.mainmenu.infos', array(
+            'route' => 'fbn_guide_articles',
+            'routeParameters' => array('articles' => 'infos'),
             ));
 
-        $mainmenu->addChild('fbn.guide.mainmenu.restaurants' , array(
-            'route'           => 'fbn_guide_articles',
-            'routeParameters' => array( 'articles' => 'restaurants' )
-            ));        
-
-        $mainmenu->addChild('fbn.guide.mainmenu.vignerons' , array(
-            'route'           => 'fbn_guide_articles',
-            'routeParameters' => array( 'articles' => 'vignerons' )
-            ));   
-
-        $mainmenu->addChild('fbn.guide.mainmenu.evenements' , array(
-            'route'           => 'fbn_guide_articles',
-            'routeParameters' => array( 'articles' => 'evenements' )
-            ));      
-        
-        $mainmenu->addChild('fbn.guide.mainmenu.tutoriels' , array(
-            'route'           => 'fbn_guide_articles',
-            'routeParameters' => array( 'articles' => 'tutoriels' )
-            ));   
-
-        $mainmenu->addChild('fbn.guide.mainmenu.cavistes' , array(
-            'route'           => 'fbn_guide_articles',
-            'routeParameters' => array( 'articles' => 'cavistes' )
+        $mainmenu->addChild('fbn.guide.mainmenu.restaurants', array(
+            'route' => 'fbn_guide_articles',
+            'routeParameters' => array('articles' => 'restaurants'),
             ));
 
-        $mainmenu->addChild('fbn.guide.mainmenu.favoris' , array(
-            'route'           => 'fbn_guide_favoris'
-            ));                                                     
+        $mainmenu->addChild('fbn.guide.mainmenu.winemakers', array(
+            'route' => 'fbn_guide_articles',
+            'routeParameters' => array('articles' => 'winemakers'),
+            ));
+
+        $mainmenu->addChild('fbn.guide.mainmenu.events', array(
+            'route' => 'fbn_guide_articles',
+            'routeParameters' => array('articles' => 'events'),
+            ));
+
+        $mainmenu->addChild('fbn.guide.mainmenu.tutorials', array(
+            'route' => 'fbn_guide_articles',
+            'routeParameters' => array('articles' => 'tutorials'),
+            ));
+
+        $mainmenu->addChild('fbn.guide.mainmenu.shops', array(
+            'route' => 'fbn_guide_articles',
+            'routeParameters' => array('articles' => 'shops'),
+            ));
+
+        $mainmenu->addChild('fbn.guide.mainmenu.bookmarks', array(
+            'route' => 'fbn_guide_bookmarks',
+            ));
 
         return $mainmenu;
-    }    
-
+    }
 }

@@ -1,0 +1,266 @@
+easy_admin:
+    site_name: 'Foodie By Nature'
+    design:
+        menu:         
+            - { label: 'Logout', route: 'fos_user_security_logout' }
+            - { label: 'Languages' }
+            - { label: 'EN', route: 'fbn_guide_switch_admin_locale', params: { _locale: 'en' } }
+            - { label: 'FR', route: 'fbn_guide_switch_admin_locale', params: { _locale: 'fr' } }
+            - label: 'Users'
+            - { entity: 'User' }
+            - { label: 'Restaurants' }            
+            - Restaurant
+            - RestaurantPrice
+            - RestaurantBonus
+            - RestaurantStyle
+            - { label: 'Winemakers' }
+            - Winemaker
+            - WinemakerArea
+            - { label: 'Shops' }
+            - Shop
+            - { label: 'Infos' }
+            - Info
+            - { label: 'Tutorials' }
+            - Tutorial
+            - TutorialSection   
+            - { label: 'Events' }
+            - Event
+            - EventType
+            - { label: 'Coordinates' }
+            - CoordinatesFRLane
+            - CoordinatesFRCity
+            - CoordinatesCountry
+    formats:
+        # No comma separator for thousands
+        number: '%.0f'        
+    entities:
+        User:
+            class: FBN\UserBundle\Entity\User
+            list:
+                fields: 
+                    - 'username'
+                    - 'email'
+                    - 'roles'
+                    # Disabled indicates an account has been administratively or automatically disabled for some reason. Usually some action is required to release it.
+                    - 'enabled'
+                    # Locked indicates an account has been automatically suspended due to invalid login attempts. Usually the passage of time or (less often) requesting manual unlocking is required to release it.
+                    # Stof said : there is no automatic system to lock the user either (unless you implemented your own)
+                    # https://github.com/FriendsOfSymfony/FOSUserBundle/issues/1413
+                    - 'locked'
+                    - 'lastLogin'
+                    - 'googleId'
+                    - 'facebookId'                    
+            form:
+                fields:
+                    - 'username'
+                    - 'email'
+                    # Property not mapped. Used to change user password.
+                    - { property: 'plainPassword', type: 'text', type_options: { required: false} }
+                    - { property: 'roles', type: choice, type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_AUTHOR': ROLE_AUTHOR, 'ROLE_ADMIN': 'ROLE_ADMIN' } } }
+                    - 'authorName'
+                    - { property: 'restaurants', type_options: { by_reference: false } }
+                    - { property: 'shops', type_options: { by_reference: false } }
+                    - { property: 'infos', type_options: { by_reference: false } }                    
+                    - { property: 'winemakers', type_options: { by_reference: false } } 
+                    - { property: 'events', type_options: { by_reference: false } } 
+                    - { property: 'tutorials', type_options: { by_reference: false } }
+                    - 'enabled'
+                    - 'locked'
+                form_options: { validation_groups: ['Profile'] }
+            new:
+                fields:
+                    - { property: 'plainPassword', type: 'text', type_options: { required: true} }
+                form_options: { validation_groups: ['Registration'] }                              
+        Restaurant:
+            class : FBN\GuideBundle\Entity\Restaurant
+            list:
+                fields:
+                    - 'id'
+                    - 'name'
+                    - 'publication'
+            form:
+                fields:
+                    - 'name'
+                    - { property: 'description', type: 'ckeditor', type_options: {config_name: ck_editor_config, required: true } }
+                    - 'owner'                  
+                    - 'openingHours'
+                    - 'tel'                    
+                    - 'site'                     
+                    - 'href'           
+                    - 'restaurantPrice'
+                    - { property: 'restaurantStyle', type_options: {required: true} }
+                    - { property: 'restaurantBonus', type_options: {required: true} }
+                    - { property: 'image', type: 'FBN\GuideBundle\Form\ImageRestaurantType', type_options: { required: true } }
+                    - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType', type_options: { required: true } }                    
+                    - { property: 'isShop', type_options: { required: false } }
+                    - { property: 'publication', type_options: { required: false } }
+                fields_to_be_disabled_for_non_default_locale:
+                    - 'name'              
+                    - 'owner'
+                    - 'tel'                     
+                    - 'site'                   
+                    - 'href'                   
+                    - 'restaurantPrice'
+                    - 'restaurantStyle'
+                    - 'restaurantBonus'
+                    - 'coordinates'                
+                    - 'isShop'
+                    - 'publication'                    
+        Winemaker:
+            class : FBN\GuideBundle\Entity\Winemaker
+            list:
+                fields:
+                    - 'id'
+                    - 'name'
+                    - 'publication'
+            form:
+                fields:
+                    - 'name'
+                    - { property: 'description', type: 'ckeditor', type_options: {config_name: ck_editor_config} }
+                    - { property: 'image', type: 'FBN\GuideBundle\Form\ImageWinemakerType', type_options: { required: true } }
+                    # by_reference : false => Needed to ensure that addWinemakerDomain() and removeWinemakerDomain() will be called during the flush.
+                    # See (last lines) : http://symfony.com/doc/master/reference/forms/types/collection.html#by-reference
+                    - { property: 'winemakerDomain', type: 'collection', type_options: { entry_type: 'FBN\GuideBundle\Form\WinemakerDomainType', by_reference: false, required: true  } }
+                    - { property: 'publication', type_options: { required: false } }
+                fields_to_be_disabled_for_non_default_locale:
+                    - 'name'                
+                    - 'publication'                        
+        Shop:
+            class : FBN\GuideBundle\Entity\Shop
+            list:
+                fields:
+                    - 'id'
+                    - 'name'
+                    - 'publication'
+            form:
+                fields:
+                    - 'name'
+                    - 'owner'
+                    - { property: 'description', type: 'ckeditor', type_options: {config_name: ck_editor_config, required: true } }
+                    - 'openingHours'
+                    - 'tel'
+                    - 'site'
+                    - 'href'
+                    - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType', type_options: { required: true } }
+                    - { property: 'publication', type_options: { required: false } }
+                fields_to_be_disabled_for_non_default_locale:
+                    - 'name'                
+                    - 'owner'
+                    - 'tel'                     
+                    - 'site'                   
+                    - 'href'                   
+                    - 'coordinates'
+                    - 'publication'                      
+        Info:
+            class : FBN\GuideBundle\Entity\Info
+            list:
+                fields:
+                    - 'id'
+                    - 'name'
+                    - 'publication'
+            form:
+                fields:
+                    - 'name'
+                    - { property: 'description', type: 'ckeditor', type_options: {config_name: ck_editor_config} }
+                    - { property: 'publication', type_options: { required: false } }
+                fields_to_be_disabled_for_non_default_locale:
+                    - 'publication'                                    
+        Tutorial:
+            class : FBN\GuideBundle\Entity\Tutorial
+            list:
+                fields:
+                    - 'id'
+                    - 'name'
+                    - 'publication'
+            form:
+                fields:
+                    - 'name'
+                    - { property: 'description', type: 'ckeditor', type_options: {config_name: ck_editor_config} }
+                    - 'tutorialSection'
+                    - { property: 'image', type: 'FBN\GuideBundle\Form\ImageTutorialType', type_options: { required: true } }
+                    - { property: 'tutorialChapter', type: 'collection', type_options: { entry_type: 'FBN\GuideBundle\Form\TutorialChapterType', by_reference: false, required: true } }
+                    - { property: 'publication', type_options: { required: false } }   
+                fields_to_be_disabled_for_non_default_locale:
+                    - 'tutorialSection'                    
+                    - 'publication'                       
+        Event: 
+            class : FBN\GuideBundle\Entity\Event
+            list:
+                fields:
+                    - 'id'
+                    - 'name'
+                    - 'dateStart'
+                    - 'dateEnd'
+                    - 'publication'
+            form:
+                fields:
+                    - 'name'
+                    - { property: 'description', type: 'ckeditor', type_options: {config_name: ck_editor_config} }
+                    - 'eventType'
+                    - { property: 'image', type: 'FBN\GuideBundle\Form\ImageEventType', type_options: { required: true }  }
+                    - 'dateStart'
+                    - 'dateEnd'
+                    - 'openingHours'
+                    - 'tel'
+                    - 'site'
+                    - 'href'                    
+                    - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType', type_options: { required: true }, css_class: 'col-xs-12 coordinates' }                    
+                    - { property: 'restaurant', css_class: 'col-xs-12 restaurant' }
+                    - { property: 'shop', css_class: 'col-xs-12 shop' }
+                    - { property: 'winemakerDomain', css_class: 'col-xs-12 winemakerDomain' }
+                    - { property: 'eventPast', css_class: 'col-xs-12 eventPast' }                    
+                    - { property: 'useExtTel', type_options: { required: false }, css_class: 'col-xs-12 useExtTel' } 
+                    - { property: 'useExtSite', type_options: { required: false }, css_class: 'col-xs-12 useExtSite' }                    
+                    - { property: 'publication', type_options: { required: false } }
+                fields_to_be_disabled_for_non_default_locale:
+                    - 'eventType'
+                    - 'dateStart'
+                    - 'dateEnd'     
+                    - 'tel'
+                    - 'site'
+                    - 'href'                              
+                    - 'publication'
+                    - 'coordinates'                       
+                    - 'restaurant'
+                    - 'shop'
+                    - 'winemakerDomain'
+                    - 'eventPast'
+                    - 'useExtTel'
+                    - 'useExtSite'
+                    - 'publication'
+        RestaurantBonus:    
+            class : FBN\GuideBundle\Entity\RestaurantBonus
+        RestaurantPrice:
+            class : FBN\GuideBundle\Entity\RestaurantPrice
+        RestaurantStyle:
+            class : FBN\GuideBundle\Entity\RestaurantStyle  
+        WinemakerArea:
+            class : FBN\GuideBundle\Entity\WinemakerArea
+        TutorialSection:
+            class : FBN\GuideBundle\Entity\TutorialSection
+        EventType:
+            class : FBN\GuideBundle\Entity\EventType                           
+        CoordinatesFRLane:    
+            class : FBN\GuideBundle\Entity\CoordinatesFRLane
+            list:
+                fields:
+                    - 'id'
+                    - 'lane'            
+        CoordinatesFRCity:    
+            class : FBN\GuideBundle\Entity\CoordinatesFRCity
+            search:
+                fields:
+                    - 'city'
+                    - 'deptNum'            
+            list:
+                fields:
+                    - 'id'
+                    - 'city'
+                    - 'postCode'                    
+        CoordinatesCountry:    
+            class : FBN\GuideBundle\Entity\CoordinatesCountry
+            list:
+                fields:            
+                    - 'id'
+                    - 'country'
+

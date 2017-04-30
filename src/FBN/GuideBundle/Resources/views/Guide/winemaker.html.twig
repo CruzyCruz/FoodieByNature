@@ -1,0 +1,81 @@
+{% extends "FBNGuideBundle::layout.html.twig" %}
+
+{% block title %}
+	{{ winemaker.name }}
+{% endblock %}
+
+{% block body %}
+
+{% set  entityId = winemaker.id %} 
+{% include 'FBNGuideBundle:Guide:entity-bookmark-manage.html.twig' %}
+
+<h1>{{ winemaker.name }}</h1>
+
+{% if winemaker.image is not null %}
+  <img 
+    src="{{ vich_uploader_asset(winemaker.image, 'file') }}"
+    alt="{{ winemaker.name }}"
+  />
+{% endif %}    
+
+<p>{{ winemaker.description|raw }}</p>  
+
+<h4>DE : </h4>
+  {{ winemaker.articleAuthor }}
+
+{% for vd in winemaker.winemakerDomain %} 
+<h3>PAR ICI : </h3>
+  <p>  
+    {% if vd.domain is not null %} 
+      {{ vd.domain }}
+    {% endif %}
+    {% if vd.coordinates.coordinatesFR.miscellaneous is not null %}
+      {{ vd.coordinates.coordinatesFR.miscellaneous }}
+    {% endif %}  
+    <br />          
+    {% if vd.coordinates.coordinatesFR.laneName is not null %}
+      {{ 
+      vd.coordinates.coordinatesFR.laneNum ~ ', ' ~
+      vd.coordinates.coordinatesFR.coordinatesFRLane.lane ~ ' ' ~
+      vd.coordinates.coordinatesFR.laneName
+      }}
+    {% endif %}
+    <br />
+    {% if vd.coordinates.coordinatesFR.locality is not null %}
+      {{ vd.coordinates.coordinatesFR.locality }}
+    {% endif %}  
+    <br />
+    {{ vd.coordinates.coordinatesFR.coordinatesFRCity.postCode ~ ' ' ~ vd.coordinates.coordinatesFR.coordinatesFRCity.city }}
+  </p>
+
+  {% if vd.tel is not null %}
+    <h3>ALLO : </h3>  
+    <p>{{ vd.tel }}</p>  
+  {% endif %}  
+
+  <h3>HORAIRES : </h3>
+
+  <p>{{ vd.openingHours }}</p>
+
+    {% if vd.coordinates.coordinatesFR.metro is not null %}
+      <h3>METRO : </h3>  
+      <p>{{ vd.coordinates.coordinatesFR.metro }}</p> 
+    {% endif %}  
+
+  {% if vd.site is not null %}
+    <h3>SITE : </h3>
+    <a href="{{ vd.href }}">{{ vd.site }}</a> 
+  {% endif %}
+
+{% endfor %}
+
+  {{ google_map(map) }}
+
+
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}  
+
+  <script type="application/javascript" src="{{ asset('js/fbn-guide-bookmark-manage.js') }}"></script>
+{% endblock %}

@@ -15,17 +15,22 @@ $.ajaxSetup({
     }
 });
 
-// Manage error code
+// Manage HTTP error code
 function manageErrorCode(status) {
+    var redirectUrl;
     switch (status) {
         case 401:
-            var redirectUrl = Routing.generate('fos_user_security_login');
+            redirectUrl = Routing.generate('fos_user_security_login');
             window.location.replace(redirectUrl);
             break;
         case 403:
-            // Reload page from server
-            window.location.reload(true);
+            redirectUrl = Routing.generate('fbn_guide_display_error_pages', { statusCode : status });
+            window.location.replace(redirectUrl);
             break;
+        case 404:
+            redirectUrl = Routing.generate('fbn_guide_display_error_pages', { statusCode : status });
+            window.location.replace(redirectUrl);
+            break;            
         default:
             break;                     
     }

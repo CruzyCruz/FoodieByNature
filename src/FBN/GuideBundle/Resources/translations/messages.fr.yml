@@ -1,0 +1,20 @@
+fbn:
+    guide:
+        page_title:
+            # The following keys must match the requirements of fbn_guide_articles route for templates display.
+            infos: Infos
+            restaurants: Restaurants
+            winemakers: Vignerons
+            events: Evénements
+            tutorials: Tutoriaux
+            shops : Cavistes
+            bookmarks : Mes favoris         
+        page_intro:
+            # The following keys must match the requirements of fbn_guide_articles route for templates display.
+            infos: Mais qu'est ce qui se passe ?
+            restaurants: La crème de la crème des tables au naturel
+            winemakers: L'élite
+            events: Ca se passe où et quand ?
+            tutorials: Naturel kezako ?
+            shops : Les rois du goulot
+            bookmarks : Mes favoris

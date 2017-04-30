@@ -1,15 +1,12 @@
-{# src/FBN/GuideBundle/Resources/views/layout.html.twig #}
-
 {# Coming to homepage from another template using render(controller()) (flash messages) #}
-{% set route = app.request.get('_route') ? app.request.get('_route') : 'fbn_guide_accueil' %}
+{% set route = app.request.get('_route') ? app.request.get('_route') : 'fbn_guide_home' %}
 {% set route_params = app.request.get('_route_params') ? app.request.get('_route_params') : { '_locale' : ''} %}
+{% set query_params = app.request.query.all ? app.request.query.all : [] %}
 
 {% extends "::layout.html.twig" %}
 
-
 {% block header %}
 
-  {# On affiche les messages flash #}
   {% if app.session.flashBag.has('hwi_success') %}
     {% for message in app.session.flashBag.get('hwi_success') %}
         <div class="hwi_success">
@@ -26,10 +23,6 @@
     {% endfor %}   
   {% endif %}   
 
-  {#{% if app.session.flashBag.all %}
-    {% app.session.flashBag.clear %}
-  {% endif %}     #}
-
   {% if app.user and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
       <p>CONNECTE EN TANT QUE {{ app.user.username }} [<a href="{{ path('fbn_user_profile_edit_change_password') }}">MON COMPTE</a>] - <a href="{{ path('fos_user_security_logout') }}">DECONNEXION</a></p>
   {% else %}
@@ -38,26 +31,33 @@
   {% endif %}     
   
 	<nav>      
-    <a href="{{ path('fbn_guide_accueil') }}">FBN</a> 
+    <a href="{{ path('fbn_guide_home') }}">FBN</a> 
 
     </br>
 
 		{{ knp_menu_render('main') }}
 
-    <ul>
-      {% for locale in ['fr','en'] %}
-        <li><a href="{{ path( route, route_params|merge({ '_locale': locale }) ) }}">{{ locale|upper }}</a></li>  
-      {% endfor %}
-    </ul>
+{% if slugsTranslations is defined %}
+  <ul>
+    {% for locale in ['fr','en'] %}
+      <li><a href="{{ path(route, route_params|merge(query_params)|merge({ '_locale': locale, 'slug' : slugsTranslations[locale] })) }}">{{ locale|upper }}</a></li>  
+    {% endfor %}
+  </ul>
+{% else %}
+  <ul>
+    {% for locale in ['fr','en'] %}
+      <li><a href="{{ path(route, route_params|merge(query_params)|merge({ '_locale': locale })) }}">{{ locale|upper }}</a></li>  
+    {% endfor %}
+  </ul>
+{% endif %}
+
 
 	</nav>   
    
 {% endblock   %}
 
-
 {% block body %}
 {% endblock   %}
-
 
 {% block footer %}
 	<p>For us, by us.</p>

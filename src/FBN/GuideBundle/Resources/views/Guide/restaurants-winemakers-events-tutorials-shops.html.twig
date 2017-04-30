@@ -1,0 +1,28 @@
+{% extends "FBNGuideBundle::layout.html.twig" %}
+
+{% set title = 'fbn.guide.page_title.' ~ articles %} 
+{% set intro = 'fbn.guide.page_intro.' ~ articles %}
+
+{% block title %}
+  {{ title|trans }}
+{% endblock %}
+
+{% block body %}
+
+  <p> {{ intro|trans}}</p>
+
+  {% for article in articlesList %}    
+    <a href="{{ path('fbn_guide_' ~ entitiesArticles[article.class], {'slug': article.slug} ) }}">{{ article.name }}</a>
+    <br />
+    {% if (article.image is defined) and (article.image is not null) %}
+      <img 
+        src="{{ vich_uploader_asset(article.image, 'file') | imagine_filter('thumb_outbound') }}"
+        alt="{{ article.name }}"
+      />
+    {% endif %}    
+    <hr />    
+  {% else %}
+    <p>PAS D'ARTICLES</p>
+  {% endfor %}
+
+{% endblock %}

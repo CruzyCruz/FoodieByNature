@@ -4,79 +4,46 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Image
+ * Image.
  *
- * @ORM\Table(name="image")
- * @ORM\Entity(repositoryClass="FBN\GuideBundle\Entity\ImageRepository")
- * @Gedmo\Uploadable(path="/my/path", filenameGenerator="SHA1", allowOverwrite=true, appendNumber=true)
  * @Gedmo\TranslationEntity(class="FBN\GuideBundle\Entity\Translation\ImageTranslation")
+ * @ORM\MappedSuperclass
  */
 class Image
 {
-
     /**
-     * @ORM\ManyToOne(targetEntity="FBN\GuideBundle\Entity\ImageType")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $imageType;   
-
-    /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="name", type="string", length=255)
      */
-    private $id;
+    private $name;
 
     /**
-     * @var integer
+     * Property overridden in child class for custom VichUploaderBundle annotation.
      *
-     * @ORM\Column(name="rang", type="integer")
+     * @var File
      */
-    private $rang;    
+    protected $file;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="rank", type="integer")
+     */
+    private $rank = 0;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="chemin", type="string", length=255)
-     * @Gedmo\UploadableFilePath
-     */
-    private $chemin;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=255)
-     * @Gedmo\UploadableFileName
-     */
-    private $nom;
-
-    /**
-     * @var decimal
-     *
-     * @ORM\Column(name="taille", type="decimal")
-     * @Gedmo\UploadableFileSize
-     */
-    private $taille;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="mimeType", type="string", length=255)
-     * @Gedmo\UploadableFileMimeType
-     */
-    private $mimeType;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="legende", type="string", length=255)
+     * @ORM\Column(name="legend", type="string", length=255)
      * @Gedmo\Translatable
+     * @Assert\NotBlank()
      */
-    private $legende;
+    private $legend;
 
     /**
      * @var string
@@ -85,25 +52,30 @@ class Image
      * Used locale to override Translation listener`s locale
      * this is not a mapped field of entity metadata, just a simple property
      */
-    private $locale;  
+    protected $locale;
 
     /**
-     * Set imageType
+     * Requirement for VichUploaderBundle.
+     * It is required that at least one field changes if you are using doctrine
+     * otherwise the event listeners won't be called and the file is lost.
      *
-     * @param \FBN\GuideBundle\Entity\Image $imageType
-     * @return Image
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
      */
-    public function setImageType(\FBN\GuideBundle\Entity\ImageType $imageType)
-    {
-        $this->imageType = $imageType;
-
-        return $this;
-    }
+    private $updatedAt;
 
     /**
-     * Get id
+     * Store the relative path to actual file.
      *
-     * @return integer 
+     * @var null|string
+     */
+    private $relativePathToActualFile;
+
+    /**
+     * Get id.
+     *
+     * @return int
      */
     public function getId()
     {
@@ -111,165 +83,166 @@ class Image
     }
 
     /**
-     * Set rang
+     * Set name.
      *
-     * @param integer $rang
+     * @param string $name
+     *
      * @return Image
      */
-    public function setRang($rang)
+    public function setName($name)
     {
-        $this->rang = $rang;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get rang
+     * Get name.
      *
-     * @return integer 
+     * @return string
      */
-    public function getRang()
+    public function getName()
     {
-        return $this->rang;
+        return $this->name;
     }
 
     /**
-     * Set chemin
+     * Set rank.
      *
-     * @param string $chemin
+     * @param int $rank
+     *
      * @return Image
      */
-    public function setChemin($chemin)
+    public function setRank($rank)
     {
-        $this->chemin = $chemin;
+        $this->rank = $rank;
 
         return $this;
     }
 
     /**
-     * Get chemin
+     * Get rank.
      *
-     * @return string 
+     * @return int
      */
-    public function getChemin()
+    public function getRank()
     {
-        return $this->chemin;
+        return $this->rank;
     }
 
     /**
-     * Set nom
+     * Set legend.
      *
-     * @param string $nom
+     * @param string $legend
+     *
      * @return Image
      */
-    public function setNom($nom)
+    public function setLegend($legend)
     {
-        $this->nom = $nom;
+        $this->legend = $legend;
 
         return $this;
     }
 
     /**
-     * Get nom
+     * Get legend.
      *
-     * @return string 
+     * @return string
      */
-    public function getNom()
+    public function getLegend()
     {
-        return $this->nom;
+        return $this->legend;
     }
 
     /**
-     * Set taille
+     * Set updatedAt.
      *
-     * @param string $taille
+     * @param \DateTime $updatedAt
+     *
      * @return Image
      */
-    public function setTaille($taille)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->taille = $taille;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     /**
-     * Get taille
+     * Get updatedAt.
      *
-     * @return string 
+     * @return \DateTime
      */
-    public function getTaille()
+    public function getUpdatedAt()
     {
-        return $this->taille;
+        return $this->updatedAt;
     }
 
     /**
-     * Set mimeType
+     * Set relativePathToActualFile.
      *
-     * @param string $mimeType
+     * @param string $relativePathToActualFile
+     *
      * @return Image
      */
-    public function setMimeType($mimeType)
+    public function setRelativePathToActualFile($relativePathToActualFile)
     {
-        $this->mimeType = $mimeType;
+        $this->relativePathToActualFile = $relativePathToActualFile;
 
         return $this;
     }
 
     /**
-     * Get mimeType
+     * Get relativePathToActualFile.
      *
-     * @return string 
+     * @return string
      */
-    public function getMimeType()
+    public function getRelativePathToActualFile()
     {
-        return $this->mimeType;
+        return $this->relativePathToActualFile;
     }
 
     /**
-     * Set legende
-     *
-     * @param string $legende
-     * @return Image
-     */
-    public function setLegende($legende)
-    {
-        $this->legende = $legende;
-
-        return $this;
-    }
-
-    /**
-     * Get legende
-     *
-     * @return string 
-     */
-    public function getLegende()
-    {
-        return $this->legende;
-    }
-
-    /**
-     * Set locale
+     * Set locale.
      *
      * @param string $locale
-     * 
      */
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
-    }     
+    }
 
     /**
-     * Renvoie le chemin relatif du répertoire de stockage des images depuis web
-     *    
-     * @return string
-     * 
+     * Set file.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return File
      */
-    public function getWebPath()
+    public function setFile(File $image = null)
     {
-        $pos = strpos($this->chemin, 'uploads');
-        $dir = substr($this->chemin, $pos);
+        $this->file = $image;
 
-        return $dir . '/' . $this->nom;
-    }      
+        if ($image) {
+            $this->updatedAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get file.
+     *
+     * @return File
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

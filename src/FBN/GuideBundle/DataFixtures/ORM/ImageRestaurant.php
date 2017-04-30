@@ -1,65 +1,79 @@
 <?php
-// src/FBN/GuideBundle/DataFixtures/ORM/ImageRestaurant.php
 
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
-//use Doctrine\Common\DataFixtures\FixtureInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use FBN\GuideBundle\Entity\Image;
+use FBN\GuideBundle\Entity\ImageRestaurant as Image;
 
-class ImageRestaurant extends AbstractFixture implements OrderedFixtureInterface
+class ImageRestaurant extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
-    // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
     public function load(ObjectManager $manager)
     {
-    
-        $rangs = array(0, 0, 0, 0, 0);
+        $ranks = array(0, 0, 0, 0, 0);
 
-        $chemin = __DIR__.'/../../../../../web/uploads/images/restaurants';
+        $path = __DIR__.'/Resources/Images/restaurants/';
+        $pathto = __DIR__.'/../../../../../web/uploads/images/restaurants/';
 
-        $noms = array('restaurant-paris-triplettes-il.jpg', 'restaurant-paris-naturellement-il.jpg', 'restaurant-paris-la-fine-mousse-il.jpg', 'restaurant-paris-dix-huit-il.jpg', 'restaurant-paris-cantine-california-il.jpg');
+        // Empty target directory if it exists
+        if (file_exists($pathto)) {
+            $files = scandir($pathto);
+            foreach ($files as $file) {
+                if (is_file($file)) {
+                    unlink($file);
+                }
+            }
+        // Create target directory
+        } else {
+            mkdir($pathto, 0777, true);
+        }
 
-        $tailles = array(73797, 78427, 78651, 83717, 66449);
+        // Clean cache (whole cache as this file is the first loaded for images fixtures)
+        $cacheManager = $this->container->get('liip_imagine.cache.manager');
+        $cacheManager->remove();
 
-        $mimetype = 'image/jpeg';
+        $names = array('restaurant-paris-triplettes-il.jpg', 'restaurant-paris-naturellement-il.jpg', 'restaurant-paris-la-fine-mousse-il.jpg', 'restaurant-paris-dix-huit-il.jpg', 'restaurant-paris-cantine-california-il.jpg');
 
-        $legendes = array('Plutôt trois fois qu\'une', 'Nature, quoi d\'autre ?', 'So bière!', '18 (dix-huit)', 'Si tu viens to San Fransisco...');        
+        $legendsfr = array('Plutôt trois fois qu\'une', 'Nature, quoi d\'autre ?', 'So bière!', '18 (dix-huit)', 'Si tu viens to San Fransisco...');
 
-        $legendesen = array('Three times better than one', 'Nature, what else ?', 'So beer!', '18 (eigtheen)', 'If you come to San Fransisco...');        
+        $legends = array('Three times better than one', 'Nature, what else ?', 'So beer!', '18 (eigtheen)', 'If you come to San Fransisco...');
 
-        $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');        
+        $repository = $manager->getRepository('Gedmo\\Translatable\\Entity\\Translation');
 
-        foreach($rangs as $i => $rang)
-        {
+        foreach ($ranks as $i => $rank) {
             $imagerestaurant[$i] = new Image();
-            $imagerestaurant[$i]->setRang($rang);                        
+            $imagerestaurant[$i]->setRank($rank);
         }
 
-        foreach($noms as $i => $nom)
-        {            
-            $imagerestaurant[$i]->setChemin($chemin);
-            $imagerestaurant[$i]->setNom($nom);                        
+        foreach ($names as $i => $name) {
+            $imagerestaurant[$i]->setName($name);
+            copy($path.$name, $pathto.$name);
+            $image = new File($pathto.$name);
+            $imagerestaurant[$i]->setFile($image);
         }
 
-        foreach($tailles as $i => $taille)
-        {
-            $imagerestaurant[$i]->setTaille($taille);
-            $imagerestaurant[$i]->setMimeType($mimetype);                        
-        }
+        foreach ($legends as $i => $legend) {
+            $imagerestaurant[$i]->setLegend($legend);
 
-        foreach($legendes as $i => $legende)
-        {
-            $imagerestaurant[$i]->setLegende($legende);
+            $repository->translate($imagerestaurant[$i], 'legend', 'fr', $legendsfr[$i]);
 
-            $repository->translate($imagerestaurant[$i], 'legende', 'en', $legendesen[$i]);             
-            
             $manager->persist($imagerestaurant[$i]);
 
-            $this->addReference('imagerestaurant-' . $i, $imagerestaurant[$i]);
-
-            $imagerestaurant[$i]->setImageType($this->getReference('imagetype-0'));
+            $this->addReference('imagerestaurant-'.$i, $imagerestaurant[$i]);
         }
 
         $manager->flush();
@@ -67,6 +81,6 @@ class ImageRestaurant extends AbstractFixture implements OrderedFixtureInterface
 
     public function getOrder()
     {
-        return 102; // l'ordre dans lequel les fichiers sont chargés
-    }  
+        return 102;
+    }
 }

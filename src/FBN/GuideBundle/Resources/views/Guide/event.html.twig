@@ -1,0 +1,97 @@
+{% extends "FBNGuideBundle::layout.html.twig" %}
+
+{% block title %}
+	{{ event.name }}
+{% endblock %}
+
+{% block body %}
+
+
+<h1>{{ event.name }}</h1>
+
+<h3>QUAND : </h3>
+  <p>DEBUT : {{ event.dateStart|localizeddate('short', 'none', app.request.locale, null, null) }}</p>
+  <p>FIN : {{ event.dateEnd|localizeddate('short', 'none', app.request.locale, null, null) }}</p>
+
+<h3>TYPE : </h3>
+  <p>{{ event.eventType.type }}</p> 
+
+
+{% if event.image is not null %}
+  <img 
+    src="{{ vich_uploader_asset(event.image, 'file') }}"
+    alt="{{ event.name }}"
+  />
+{% endif %}  
+
+<p>{{ event.description|raw }}</p>
+
+<h4>DE : </h4>
+  {{ event.articleAuthor }}
+
+  <h3>PAR ICI : </h3>
+
+  <p>   
+    {% if event.formerLocation is not null %}
+      CET EVENEMENT S'EST PRODUIT DANS UN LIEU QUI A FERME SES PORTES DEPUIS
+      {{ event.formerLocationName}}
+      {{ event.formerLocationCoordinates }}
+    {% else %}  
+      {% if placeEvt.coordinates.coordinatesFR.miscellaneous is not null %}
+        {{ placeEvt.coordinates.coordinatesFR.miscellaneous }}
+      {% endif %}  
+      <br />
+      {% if placeEvt.coordinates.coordinatesFR.laneName is not null %}
+        {% if placeEvt.coordinates.coordinatesFR.laneNum is not null %}
+          {% set separateur = ', ' %}  
+        {% else %}
+          {% set separateur = '' %}  
+        {% endif %}         
+        {{ 
+        placeEvt.coordinates.coordinatesFR.laneNum ~ separateur ~
+        placeEvt.coordinates.coordinatesFR.coordinatesFRLane.lane ~ ' ' ~
+        placeEvt.coordinates.coordinatesFR.laneName
+        }}
+      {% endif %}
+      <br />
+      {% if placeEvt.coordinates.coordinatesFR.locality is not null %}
+        {{ placeEvt.coordinates.coordinatesFR.locality }}
+      {% endif %}  
+      <br />
+      {{ placeEvt.coordinates.coordinatesFR.coordinatesFRCity.postCode ~ ' ' ~ placeEvt.coordinates.coordinatesFR.coordinatesFRCity.city }}
+      {% if placeEvt.coordinates.coordinatesFR.metro is not null %}
+        <h3>METRO : </h3>  
+        <p>{{ placeEvt.coordinates.coordinatesFR.metro }}</p> 
+      {% endif %} 
+    {% endif %}
+  </p>
+
+  {% if event.useexttel %}
+    {% if placeEvt.tel is not null %}
+      <h3>ALLO : </h3>  
+      <p>{{ placeEvt.tel }}</p>  
+    {% endif %} 
+  {% else %}
+    {% if event.tel is not null %}
+      <h3>ALLO : </h3>  
+      <p>{{ event.tel }}</p>  
+    {% endif %} 
+  {% endif %}  
+
+  {% if event.useextsite %}
+    {% if placeEvt.site is not null %}
+      <h3>SITE : </h3>
+      <a href="{{ placeEvt.href }}">{{ placeEvt.site }}</a> 
+    {% endif %} 
+  {% else %}
+    {% if event.site is not null %}
+      <h3>SITE : </h3>
+      <a href="{{ event.href }}">{{ event.site }}</a> 
+    {% endif %} 
+  {% endif %} 
+
+{% if map is not null %}
+  {{ google_map(map) }}
+{% endif %}
+
+{% endblock %}

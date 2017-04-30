@@ -1,0 +1,15 @@
+{% extends "EasyAdminBundle:default:edit.html.twig" %}
+
+{% block body_javascript %}
+    {{ parent() }}
+
+	{% set additional_js = null %}
+
+	{% if  app.request.attributes.get('_locale') == default_locale %}
+		{% set additional_js %}
+			<script type="application/javascript" src="{{ asset('js/fbn-easyadmin-event.js') }}"></script>
+		{% endset %}
+	{% endif %}
+
+    {{ additional_js }}
+{% endblock body_javascript %}	

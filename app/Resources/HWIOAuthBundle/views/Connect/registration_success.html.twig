@@ -1,7 +1,5 @@
-{#/app/Resources/HWIOAuthBundle/views/Connect/registration_success.html.twig#}
-
 {% set flash = 'header.registration_success' | trans({'%username%': app.user.username}, 'HWIOAuthBundle') %}
 
 {{ app.session.flashBag.add('hwi_success', flash) }}
 	
-{{ render(controller('FBNGuideBundle:Guide:accueil')) }}
+{{ render(controller('FBNGuideBundle:Guide:home')) }}

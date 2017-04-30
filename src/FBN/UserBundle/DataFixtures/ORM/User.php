@@ -1,24 +1,22 @@
 <?php
-// src/FBN/UserBundle/DataFixtures/ORM/User.php
 
 namespace FBN\UserBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class User implements FixtureInterface, ContainerAwareInterface
+class User extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
-
     /**
      * @var ContainerInterface
      */
     private $container;
-    
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setContainer(ContainerInterface $container = null)
     {
@@ -27,35 +25,39 @@ class User implements FixtureInterface, ContainerAwareInterface
 
     public function load(ObjectManager $manager)
     {
+        $userManager = $this->container->get('fos_user.user_manager');
 
-    $userManager = $this->container->get('fos_user.user_manager');
+        $listNames = array('admin', 'author', 'user');
 
+        $roles = array(
+            array('ROLE_ADMIN'),
+            array('ROLE_AUTHOR'),
+            array('ROLE_USER'),
+            );
 
-    $listNames = array('Cedric');
+        $authorNames = array(
+            'AD.MIN',
+            'AU.THOR',
+            'US.ER',
+            );
 
-    foreach ($listNames as $name) 
-    {
+        foreach ($listNames as $i => $name) {
+            $user[$i] = $userManager->createUser();
+            $user[$i]->setUsername($name);
+            $user[$i]->setPlainPassword($name);
+            $user[$i]->setEmail($name.'@fake.com');
+            $user[$i]->setRoles($roles[$i]);
+            $user[$i]->setEnabled(true);
+            $user[$i]->setAuthorName($authorNames[$i]);
 
-      $user = $userManager->createUser();
-      
-      $user->setUsername($name);
+            $userManager->updateUser($user[$i], true);
 
-      $user->setPlainPassword($name);
-
-      $user->setEmail('bonnin.cedric@gmail.com');
-
-
-      $user->setRoles(array('ROLE_USER'));
-      
-      $user->setEnabled(true);    
-
-      $userManager->updateUser($user, true);  
-
-      // On le persiste
-      //$manager->persist($user);
+            $this->addReference('user-'.$i, $user[$i]);
+        }
     }
 
-    // On déclenche l'enregistrement
-    //$manager->flush();
+    public function getOrder()
+    {
+        return 1;
     }
 }

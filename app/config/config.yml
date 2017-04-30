@@ -1,6 +1,13 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: admin.yml }
+
+parameters:
+    app.path.images_restaurant: /uploads/images/restaurants
+    app.path.images_winemaker: /uploads/images/winemakers
+    app.path.images_event: /uploads/images/events
+    app.path.images_tutorial: /uploads/images/tutorials
 
 framework:
     #esi:             ~
@@ -28,6 +35,10 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        default_locale: '%locale%'
+    #form_themes:
+    #    - 'VichUploaderBundle:Form:fields.html.twig'    
 
 # Assetic Configuration
 assetic:
@@ -51,6 +62,8 @@ doctrine:
         dbname:   "%database_name%"
         user:     "%database_user%"
         password: "%database_password%"
+        # mysql version
+        server_version: '5.5'
         charset:  UTF8
         # if using pdo_sqlite as your database driver, add the path in parameters.yml
         # e.g. database_path: "%kernel.root_dir%/data/data.db3"
@@ -81,13 +94,15 @@ swiftmailer:
 
 # Stof Doctrine Extensions Configuration
 stof_doctrine_extensions:
-    default_locale: fr
+    default_locale: "%locale%"
     translation_fallback: true
+    #persist_default_translation: true
     orm:
         default:
             timestampable: true
             sluggable: true
-            translatable: true      
+            translatable: true
+            blameable: true    
 
 # Knp Menu Configuration
 knp_menu:
@@ -96,9 +111,9 @@ knp_menu:
 
 # FOS User Configuration
 fos_user:
-    db_driver:     orm                       # Le type de BDD à utiliser, nous utilisons l'ORM Doctrine depuis le début
-    firewall_name: main                      # Le nom du firewall derrière lequel on utilisera ces utilisateurs
-    user_class:    FBN\UserBundle\Entity\User # La classe de l'entité User que nous utilisons
+    db_driver:     orm                       
+    firewall_name: main                      
+    user_class:    FBN\UserBundle\Entity\User
     registration:
         confirmation:
             enabled:    true   
@@ -119,7 +134,7 @@ hwi_oauth:
     # set then the user will be redirected to the original resource that they requested, or
     # the base address if no resource was requested.  This is similar to the behaviour of
     # [target_path_parameter for form login](http://symfony.com/doc/2.0/cookbook/security/form_login.html).
-    # target_path_parameter: fbn_guide_accueil
+    # target_path_parameter: fbn_guide_home
 
     # an optional setting to use the HTTP REFERER header to be used in case no
     # previous URL was stored in the session (i.e. no resource was requested).
@@ -133,15 +148,19 @@ hwi_oauth:
     resource_owners:
         google:
             type:                google
-            client_id:           936954419013-ltnlnlgiqnk7kbe08dsd0bn80mn7e0l9.apps.googleusercontent.com
-            client_secret:       lbqByzfxpZ6ovG90iR0iz7OO       
+            client_id:           "%google_client_id%"
+            client_secret:       "%google_client_secret%"       
             scope:               "email profile"
+            options:
+                csrf: true
 
         facebook:
             type:                facebook
-            client_id:           809025625845970
-            client_secret:       be349cf137b47bd11a16224474c612a4            
+            client_id:           "%fb_client_id%"
+            client_secret:       "%fb_client_secret%"           
             scope:               "email public_profile"
+            options:
+                csrf: true            
 
     # When connexion with FOSUserBundle is activated, and registration form is displayed
     # username automatic proposal in username form field
@@ -167,15 +186,92 @@ hwi_oauth:
 # Liip Configuration
 liip_imagine:
 
+    resolvers:
+        default:
+            web_path:
+                cache_prefix:  /uploads/cache/
+
     filter_sets:
         thumb_outbound:
             filters:
                 thumbnail: { size: [224, 149], mode: outbound }
 
+vich_uploader:
 
-# Avalanche Imagine Configuration
-#avalanche_imagine:
-#    filters:
-#        thumb:
-#            type: thumbnail
-#            options: { size: [224, 149], mode: outbound }
+    db_driver: orm
+
+    mappings:
+
+        image_restaurant:
+            uri_prefix:         %app.path.images_restaurant%
+            upload_destination: %kernel.root_dir%/../web/%app.path.images_restaurant%
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+
+        image_winemaker:
+            uri_prefix:         %app.path.images_winemaker%
+            upload_destination: %kernel.root_dir%/../web/%app.path.images_winemaker%
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true            
+
+        image_event:
+            uri_prefix:         %app.path.images_event%
+            upload_destination: %kernel.root_dir%/../web/%app.path.images_event%
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true            
+
+        image_tutorial:
+            uri_prefix:         %app.path.images_tutorial%
+            upload_destination: %kernel.root_dir%/../web/%app.path.images_tutorial%
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true            
+
+        image_tutorial_chapter_para:
+            uri_prefix:         %app.path.images_tutorial%
+            upload_destination: %kernel.root_dir%/../web/%app.path.images_tutorial%
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true            
+
+bazinga_geocoder:
+    
+    providers:   
+        google_maps:
+            locale:             null
+            region:             null
+            use_ssl:            false
+            api_key:            null
+
+services:
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }            
+
+ivory_ck_editor:
+    jquery: true
+    default_config: ck_editor_config
+    configs:
+        ck_editor_config:
+            toolbar: [ ['Bold', 'Italic', 'Strike', 'Link'], "-", ['BulletedList', 'NumberedList', '-', 'Outdent', 'Indent'], "-", ['Copy', 'Paste', 'PasteFromWord', '-', 'Undo', 'Redo'], "-", ['Maximize'] ]
+            # divarea : replace iframe by div, needed to avoid ckeditor widget freezing when reordering (i.e detach() from DOM)
+            extraPlugins: "divarea"
+    plugins:
+        divarea:
+            path: "/js/ckeditor/divarea/"
+            filename: "plugin.js"
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations

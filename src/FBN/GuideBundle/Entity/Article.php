@@ -4,38 +4,59 @@ namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use FBN\UserBundle\Entity\User;
 
 /**
  * Article.
  *
  * @ORM\MappedSuperclass
+ * @ORM\HasLifecycleCallbacks()
  */
 abstract class Article
 {
-    const NUM_ITEMS = 5;
+    const NUM_KIND_OF_ARTICLES = 6;
+    const NUM_ITEMS = 8;
     const NUM_ITEMS_HOMEPAGE = 4;
 
-
     /**
-     * @var string
+     * Property overridden in child class.
      *
-     * @ORM\Column(name="nom", type="string", length=255, nullable = true)
-     * @Gedmo\Translatable
+     * @var FBN\UserBundle\Entity\User
      */
-    private $nom;
+    protected $articleOwner;
 
     /**
-     * @var string
+     * @var FBN\UserBundle\Entity\User
      *
-     * @ORM\Column(name="auteur", type="string", length=255)
+     * @Gedmo\Blameable(on="update")
+     * @ORM\ManyToOne(targetEntity="FBN\UserBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
-    private $auteur;
+    protected $articleUpdater;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @ORM\Column(name="articleAuthor", type="string", length=255)
+     */
+    private $articleAuthor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
      * @Gedmo\Translatable
+     * @Assert\NotBlank()
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     * @Gedmo\Translatable
+     * @Assert\NotBlank()
      */
     private $description;
 
@@ -70,58 +91,76 @@ abstract class Article
      */
     private $publication;
 
+    /**
+     * @var string
+     *
+     * @Gedmo\Locale
+     * Used locale to override Translation listener`s locale
+     * this is not a mapped field of entity metadata, just a simple property
+     */
+    protected $locale;
+
     public function __construct()
     {
-        $this->publication = true;
         $this->datePublication = new \DateTime();
     }
 
     /**
-     * Set nom.
+     * Set name.
      *
-     * @param string $nom
+     * @param string $name
      *
      * @return Article
      */
-    public function setNom($nom)
+    public function setName($name)
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get nom.
+     * Get name.
      *
      * @return string
      */
-    public function getNom()
+    public function getName()
     {
-        return $this->nom;
+        return $this->name;
     }
 
     /**
-     * Set auteur.
+     * Set articleOwner.
      *
-     * @param string $auteur
+     * @param FBN\UserBundle\Entity\User $articleOwner
      *
      * @return Article
      */
-    public function setAuteur($auteur)
+    public function setArticleOwner($articleOwner)
     {
-        $this->auteur = $auteur;
+        $this->articleOwner = $articleOwner;
 
         return $this;
     }
 
     /**
-     * Get auteur.
+     * Get articleOwner.
      *
-     * @return string
+     * @return FBN\UserBundle\Entity\User
      */
-    public function getAuteur()
+    public function getArticleOwner()
     {
-        return $this->auteur;
+        return $this->articleOwner;
+    }
+
+    /**
+     * Get articleUpdater.
+     *
+     * @return FBN\UserBundle\Entity\User
+     */
+    public function getArticleUpdater()
+    {
+        return $this->articleUpdater;
     }
 
     /**
@@ -245,16 +284,78 @@ abstract class Article
     }
 
     /**
-     * Get publication.
+     * Set locale.
+     *
+     * @param string $locale
+     */
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    /**
+     * Set articleAuthor.
+     *
+     * @param string $articleAuthor
+     *
+     * @return Article
+     */
+    public function setArticleAuthor($articleAuthor)
+    {
+        $this->articleAuthor = $articleAuthor;
+
+        return $this;
+    }
+
+    /**
+     * Get articleAuthor.
+     *
+     * @return string
+     */
+    public function getArticleAuthor()
+    {
+        return $this->articleAuthor;
+    }
+
+    /**
+     * Set articleAuthor on PreFlush.
+     *
+     * Article vs User : an article has an owner (the one who created the article). Then, only the owner (ROLE_AUTHOR at least)
+     * or an user with ROLE_ADMIN can modify this article.
+     * This lifecycle event ensures that the field articleAuthor is never null and related to the owner.
+     * Nota : if the owner is deleted (by an admin), then only a user with ROLE_ADMIN can update this article. Later, an admin can
+     * set a new owner in charge of this article. Between initial owner deletion and new owner setting, the article author (author name)
+     * remains the one of the initial owner.
+     *
+     * @ORM\PreFlush
+     */
+    public function setArticleAuthorOnPreFlush()
+    {
+        if (null !== $this->articleOwner) {
+            $this->articleAuthor = $this->articleOwner->getAuthorName();
+        }
+    }
+
+    /**
+     * Get class name.
      *
      * @return string
      */
     public function getClass()
     {
-        $classe = new \ReflectionClass($this);
+        $classInfo = new \ReflectionClass($this);
 
-        $namexplode = explode('\\', $classe->getName());
+        return $classInfo->getShortName();
+    }
 
-        return end($namexplode);
+    public function findArticleOwner()
+    {
+        return null === $this->getArticleOwner() ? User::NO_OWNER : $this->getArticleOwner();
+    }
+
+    /** {@inheritdoc} */
+    public function __toString()
+    {
+        return $this->getName().' / ['.$this->findArticleOwner().']';
     }
 }

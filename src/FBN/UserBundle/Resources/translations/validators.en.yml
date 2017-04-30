@@ -1,0 +1,7 @@
+fbn:
+    user:
+        admin:
+            user:
+                isUserNameValid: This user name is not available.
+                isAuthorNameNeeded: Please choose an author name.
+

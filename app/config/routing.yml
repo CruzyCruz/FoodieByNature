@@ -1,3 +1,10 @@
+easy_admin_bundle:
+    resource: "@FBNGuideBundle/Controller/AdminController.php"
+    type:     annotation
+    prefix:   /{_locale}/admin
+    requirements:
+        _locale: en|fr    
+
 # Used for Oauth login to manage callback URI
 hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
@@ -9,8 +16,6 @@ hwi_oauth_redirect:
 # is directly used in the login page.
 hwi_oauth_login:
     resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
-    #prefix:   /{_locale}/login-oauth
-    #prefix:   /{_locale}/login
     prefix:   /{_locale}/connect
     requirements:
         _locale: en|fr      
@@ -27,12 +32,12 @@ hwi_oauth_connect:
         _locale: en|fr     
 
 google_login:
-    pattern: /{_locale}/login/check-google
+    path: /{_locale}/login/check-google
     requirements:
         _locale: en|fr
 
 facebook_login:
-    pattern: /{_locale}/login/check-facebook
+    path: /{_locale}/login/check-facebook
     requirements:
         _locale: en|fr         
 
