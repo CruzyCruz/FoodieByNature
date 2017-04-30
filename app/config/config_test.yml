@@ -24,4 +24,4 @@ security:
 
 doctrine:
     dbal:
-        dbname:   "%database_name%_test"
+        dbname:   "%database_name_test%"

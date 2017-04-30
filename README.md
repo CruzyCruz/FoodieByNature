@@ -13,6 +13,16 @@ Come on and make a great website for all natural wines lovers!
 
 Developed with love when I have time. For us, by us.
 
+### PHP
+
+ * **Version**
+
+ `PHP >= 5.6` is required.
+
+ * **Extensions**
+
+`Intl` extension is required.
+
 ### Installation
 
 ** Note : The actual Symfony version is 2.8.x. There are still some deprecated lines of code to be modified before it is possible to upgrade to 3.x versions.**
@@ -41,7 +51,7 @@ Copy *app/config/parameters.yml.dist* content in *app/config/parameters.yml* (ge
 
 * **Configure database**
 
-This configuration is for a MySQL databe but conigure it to match your needs. See [here](http://symfony.com/doc/current/doctrine.html#configuring-the-database) for official documentation.
+This configuration is for a MySQL databe but configure it to match your needs. See [here](http://symfony.com/doc/current/doctrine.html#configuring-the-database) for official documentation.
 
 ```yml
 parameters:
@@ -49,6 +59,7 @@ parameters:
 	database_host: 127.0.0.1
 	database_port: null
 	database_name: fbn
+	database_name_test: fbn_test
 	database_user: your_database_username
 	database_password: your_database_password
 ```
@@ -67,7 +78,7 @@ parameters:
 
 * **Configure the default locale**
 
-By default, the main locale is `en`. That means that, at backend level, you can not translate your content until your have completed and validated your data in this locale. You can change it if you want. At this time two locales are used : `en` and `fr`.
+By default, the main locale is `en`. That means, at backend level, that you can not translate your content until your have completed and validated your data for this locale. You can change it if you want. At this time two locales are used : `en` and `fr`.
 
 ```yml
 parameters:
@@ -119,7 +130,7 @@ In the Google and Facebook developper console enter the following authorized red
 
  `php app/console doctrine:fixtures:load`
 
- This can take a little moment (20/30 seconds) as Geocoding is used to fetch some coordinates (longitude, latitude).
+ This can take a little moment (10/20 seconds) as Geocoding is used to fetch some coordinates (longitude, latitude).
 
  * **Schema (UML)**
 
@@ -139,7 +150,7 @@ Browse to */path/to/FoodieByNature* and run
 
 `phpunit -c app`
 
-*Note :* the test database is named `%database_name%_test` (see *app/config/config_test.yml*). Each time you run the tests, cache is cleared and this database is deleted and re-created (or only created the first time) to reflect the last database schema. Then fixtures are loaded.
+*Note :* Each time you run the tests, cache is cleared and the test database is deleted and re-created (or only created the first time) to reflect the last database schema. Then fixtures are loaded. This is enough for now, but, it should be repeated before some tests in the future. In this case, sqlite database (using file copy to get a fresh database) could be used.
 
 ### Usage
 
