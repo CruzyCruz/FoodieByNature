@@ -8,10 +8,8 @@ services:
 
     fbn_guide.menu.main:
         class: Knp\Menu\MenuItem # the service definition requires setting the class
-        factory_service: fbn_guide.menu_builder
-        factory_method: createMainMenu
-        arguments: ['@request']
-        scope: request # needed as we have the request as a dependency here
+        factory: ["@fbn_guide.menu_builder", createMainMenu]
+        arguments: ['@request_stack']
         tags:
             - { name: knp_menu.menu, alias: main } # The alias is what is used to retrieve the menu
 
