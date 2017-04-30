@@ -65,7 +65,7 @@ class AdminController extends BaseAdminController
      *
      * Restaurant : Disable non translatable fields for locale different of default locale.
      */
-    public function createRestaurantEntityFormBuilder($entity, $view)
+    protected function createRestaurantEntityFormBuilder($entity, $view)
     {
         $formBuilder = parent::createEntityFormBuilder($entity, $view);
 
@@ -77,7 +77,7 @@ class AdminController extends BaseAdminController
      *
      * Winemaker : Remove non translatable fields for locale different of default locale.
      */
-    public function createWinemakerEntityFormBuilder($entity, $view)
+    protected function createWinemakerEntityFormBuilder($entity, $view)
     {
         $formBuilder = parent::createEntityFormBuilder($entity, $view);
 
@@ -89,7 +89,7 @@ class AdminController extends BaseAdminController
      *
      * Shop : Disable non translatable fields for locale different of default locale.
      */
-    public function createShopEntityFormBuilder($entity, $view)
+    protected function createShopEntityFormBuilder($entity, $view)
     {
         $formBuilder = parent::createEntityFormBuilder($entity, $view);
 
@@ -101,7 +101,7 @@ class AdminController extends BaseAdminController
      *
      * Info : Disable non translatable fields for locale different of default locale.
      */
-    public function createInfoEntityFormBuilder($entity, $view)
+    protected function createInfoEntityFormBuilder($entity, $view)
     {
         $formBuilder = parent::createEntityFormBuilder($entity, $view);
 
@@ -113,7 +113,7 @@ class AdminController extends BaseAdminController
      *
      * Tutorial : Disable non translatable fields for locale different of default locale.
      */
-    public function createTutorialEntityFormBuilder($entity, $view)
+    protected function createTutorialEntityFormBuilder($entity, $view)
     {
         $formBuilder = parent::createEntityFormBuilder($entity, $view);
 
@@ -128,7 +128,7 @@ class AdminController extends BaseAdminController
      * - Disable non translatable fields for locale different of default locale.
      * - Do not self reference the event in drop down (edition only) and show only event with non null coordinates.
      */
-    public function createEventEntityFormBuilder($entity, $view)
+    protected function createEventEntityFormBuilder($entity, $view)
     {
         $formBuilder = parent::createEntityFormBuilder($entity, $view);
         $defaulLocale = $this->container->getParameter('locale');
@@ -166,7 +166,7 @@ class AdminController extends BaseAdminController
      *
      * FOS User integration : user creation.
      */
-    public function createNewUserEntity()
+    protected function createNewUserEntity()
     {
         return $this->get('fos_user.user_manager')->createUser();
     }
@@ -176,7 +176,7 @@ class AdminController extends BaseAdminController
      *
      * FOS User integration : let Doctrine take of persisting the user.
      */
-    public function prePersistUserEntity($user)
+    protected function prePersistUserEntity($user)
     {
         $this->get('fos_user.user_manager')->updateUser($user, false);
     }
@@ -186,12 +186,12 @@ class AdminController extends BaseAdminController
      *
      * FOS User integration : let Doctrine take of updating the user.
      */
-    public function preUpdateUserEntity($user)
+    protected function preUpdateUserEntity($user)
     {
         $this->get('fos_user.user_manager')->updateUser($user, false);
     }
 
-    public function getFormBuilderForNonDefaultLocale($formBuilder, $entity, $view)
+    protected function getFormBuilderForNonDefaultLocale($formBuilder, $entity, $view)
     {
         $entityName = $this->getEntityFormOptions($entity, $view)['entity'];
         $fieldsToBeDisabled = $this->config['entities'][$entityName]['form']['fields_to_be_disabled_for_non_default_locale'];
@@ -212,7 +212,7 @@ class AdminController extends BaseAdminController
      *
      * @return RedirectResponse the response with default locale as locale
      */
-    public function redirectToRouteForDefaultLocaleIfNeeded($response)
+    protected function redirectToRouteForDefaultLocaleIfNeeded($response)
     {
         $defaultLocale = $this->container->getParameter('locale');
 

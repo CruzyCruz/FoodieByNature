@@ -300,7 +300,7 @@ class GuideController extends Controller
      *
      * @return array An array of localized slugs : ['en' => 'slugEN', ...]
      */
-    public function getSlugTranslationsByEntity($em, $entity)
+    private function getSlugTranslationsByEntity($em, $entity)
     {
         $translationRepository = $em->getRepository('Gedmo\Translatable\Entity\Translation');
 
