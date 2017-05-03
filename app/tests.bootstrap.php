@@ -14,32 +14,30 @@ try {
 }
 $dbname = $kernel->getContainer()->getParameter('database_name_test');
 
-if (isset($_ENV['BOOTSTRAP_ENV'])) {
-    passthru(sprintf(
-        'php "%s/console" cache:clear --env=%s --no-warmup',
-        __DIR__,
-        $_ENV['BOOTSTRAP_ENV']
-    ));
-    if (in_array($dbname, $databases)) {
-        passthru(sprintf(
-        'php "%s/console" doctrine:database:drop --force --env=%s ',
-        __DIR__,
-        $_ENV['BOOTSTRAP_ENV']
-        ));
-    }
-    passthru(sprintf(
-    'php "%s/console" doctrine:database:create --env=%s ',
+passthru(sprintf(
+    'php "%s/console" cache:clear --env=%s --no-warmup',
     __DIR__,
-    $_ENV['BOOTSTRAP_ENV']
-    ));
+    'test'
+));
+if (in_array($dbname, $databases)) {
     passthru(sprintf(
-        'php "%s/console" doctrine:schema:create --env=%s',
-        __DIR__,
-        $_ENV['BOOTSTRAP_ENV']
-    ));
-    passthru(sprintf(
-        'php "%s/console" doctrine:fixtures:load --env=%s --no-interaction',
-        __DIR__,
-        $_ENV['BOOTSTRAP_ENV']
+    'php "%s/console" doctrine:database:drop --force --env=%s ',
+    __DIR__,
+    'test'
     ));
 }
+passthru(sprintf(
+'php "%s/console" doctrine:database:create --env=%s ',
+__DIR__,
+'test'
+));
+passthru(sprintf(
+    'php "%s/console" doctrine:schema:create --env=%s',
+    __DIR__,
+    'test'
+));
+passthru(sprintf(
+    'php "%s/console" doctrine:fixtures:load --env=%s --no-interaction',
+    __DIR__,
+    'test'
+));

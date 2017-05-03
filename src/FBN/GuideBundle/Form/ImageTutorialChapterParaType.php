@@ -2,36 +2,13 @@
 
 namespace FBN\GuideBundle\Form;
 
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
-use Symfony\Component\HttpFoundation\RequestStack;
-use FBN\GuideBundle\Form\Manager\FormManager;
 
-class ImageTutorialChapterParaType extends AbstractType
+class ImageTutorialChapterParaType extends ImageType
 {
-    private static $fieldsToBeDisabled = array(
-        'file',
-    );
-
-    /**
-     * @var RequestStack
-     */
-    private $requestStack;
-
-    /**
-     * @var FormManager
-     */
-    private $formManager;
-
-    public function __construct(RequestStack $requestStack, FormManager $formManager)
-    {
-        $this->requestStack = $requestStack;
-        $this->formManager = $formManager;
-    }
-
     /**
      * @param FormBuilderInterface $builder
      * @param array                $options
