@@ -1,13 +1,13 @@
 <?php
 
-namespace FBN\GuideBundle\Form;
+namespace FBN\GuideBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
-class ImageEventType extends ImageType
+class ImageTutorialChapterParaType extends ImageType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -43,7 +43,7 @@ class ImageEventType extends ImageType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'FBN\GuideBundle\Entity\ImageEvent',
+            'data_class' => 'FBN\GuideBundle\Entity\ImageTutorialChapterPara',
         ));
     }
 
@@ -52,6 +52,6 @@ class ImageEventType extends ImageType
      */
     public function getName()
     {
-        return 'fbn_guidebundle_imageevent';
+        return 'fbn_guidebundle_imagetutorialchapterpara';
     }
 }

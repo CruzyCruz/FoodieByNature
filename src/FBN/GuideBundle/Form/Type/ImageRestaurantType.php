@@ -1,13 +1,13 @@
 <?php
 
-namespace FBN\GuideBundle\Form;
+namespace FBN\GuideBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
-class ImageTutorialChapterParaType extends ImageType
+class ImageRestaurantType extends ImageType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -43,7 +43,7 @@ class ImageTutorialChapterParaType extends ImageType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'FBN\GuideBundle\Entity\ImageTutorialChapterPara',
+            'data_class' => 'FBN\GuideBundle\Entity\ImageRestaurant',
         ));
     }
 
@@ -52,6 +52,6 @@ class ImageTutorialChapterParaType extends ImageType
      */
     public function getName()
     {
-        return 'fbn_guidebundle_imagetutorialchapterpara';
+        return 'fbn_guidebundle_imagerestaurant';
     }
 }

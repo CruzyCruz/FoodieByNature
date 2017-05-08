@@ -1,6 +1,6 @@
 <?php
 
-namespace FBN\GuideBundle\Form;
+namespace FBN\GuideBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\HttpFoundation\RequestStack;

@@ -59,37 +59,37 @@ services:
         arguments: ['%locale%']                   
 
     fbn_guide.form_type.winemaker_domain:
-        class : FBN\GuideBundle\Form\WinemakerDomainType
+        class : FBN\GuideBundle\Form\Type\WinemakerDomainType
         arguments: ['@request_stack', '@fbn_guide.form_manager']
         tags:
             - { name: form.type }
 
     fbn_guide.form_type.image_restaurant:
-        class : FBN\GuideBundle\Form\ImageRestaurantType
+        class : FBN\GuideBundle\Form\Type\ImageRestaurantType
         arguments: ['@request_stack', '@fbn_guide.form_manager']
         tags:
             - { name: form.type }
 
     fbn_guide.form_type.image_winemaker:
-        class : FBN\GuideBundle\Form\ImageWinemakerType
+        class : FBN\GuideBundle\Form\Type\ImageWinemakerType
         arguments: ['@request_stack', '@fbn_guide.form_manager']
         tags:
             - { name: form.type }      
 
     fbn_guide.form_type.image_event:
-        class : FBN\GuideBundle\Form\ImageEventType
+        class : FBN\GuideBundle\Form\Type\ImageEventType
         arguments: ['@request_stack', '@fbn_guide.form_manager']
         tags:
             - { name: form.type }        
 
     fbn_guide.form_type.image_tutorial:
-        class : FBN\GuideBundle\Form\ImageTutorialType
+        class : FBN\GuideBundle\Form\Type\ImageTutorialType
         arguments: ['@request_stack', '@fbn_guide.form_manager']
         tags:
             - { name: form.type }
 
     fbn_guide.form_type.image_tutorial_chapter_para:
-        class : FBN\GuideBundle\Form\ImageTutorialChapterParaType
+        class : FBN\GuideBundle\Form\Type\ImageTutorialChapterParaType
         arguments: ['@request_stack', '@fbn_guide.form_manager']
         tags:
             - { name: form.type }                            
