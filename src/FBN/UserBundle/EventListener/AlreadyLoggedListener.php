@@ -63,7 +63,7 @@ class AlreadyLoggedListener implements EventSubscriberInterface
 
         $requestType = $event->getRequestType();
 
-        if (null == $securityToken || HttpKernelInterface::MASTER_REQUEST !== $requestType) {
+        if (null === $securityToken || HttpKernelInterface::MASTER_REQUEST !== $requestType) {
             return;
         }
 
