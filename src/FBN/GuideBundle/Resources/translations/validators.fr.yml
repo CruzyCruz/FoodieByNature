@@ -15,4 +15,5 @@ fbn:
                 isTutorialChapterParasCollectionNotEmpty: "Au moins un paragraphe doît être défini par chapitre." 
             image:
                 upload: Vous devez uploadez une image.
-                mimeType: Ce fichier n'est pas un JPEG valide.                
+                mimeType: Ce fichier n'est pas un JPEG valide.
+            
