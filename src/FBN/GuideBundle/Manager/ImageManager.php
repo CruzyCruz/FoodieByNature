@@ -109,7 +109,6 @@ class ImageManager
                 $updatedName = $updatedRootName.'.'.strtolower($extension);
                 $updatedTemporaryName = self::TEMPORARY_FILE_PREFIX.$updatedRootName.'.'.strtolower($extension);
                 $absolutePathToTemporaryFile = $fileDirectory.DIRECTORY_SEPARATOR.$updatedTemporaryName;
-                $absolutePathToUpdatedFile = $fileDirectory.DIRECTORY_SEPARATOR.$updatedName;
 
                 copy($absolutePathToActualFile, $absolutePathToTemporaryFile);
                 $this->originalFilesToBeDeleted[] = $absolutePathToActualFile;

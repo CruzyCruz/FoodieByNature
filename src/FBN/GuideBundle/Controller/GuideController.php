@@ -213,8 +213,6 @@ class GuideController extends Controller
 
     public function bookmarksAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
         // User connexion is checked using custom LoginEntryPoint
         $userId = $this->getUser()->getId();
         $bookmarkManager = $this->container->get('fbn_guide.bookmark_manager');
