@@ -12,9 +12,6 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-//use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
-//use Symfony\Component\Security\Core\SecurityContextInterface;
-
 class FlashListener implements EventSubscriberInterface
 {
     private static $successMessages = array(
