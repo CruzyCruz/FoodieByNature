@@ -35,8 +35,8 @@ class RestaurantRepository extends EntityRepository
             ->leftJoin('r.image', 'i')
             ->addSelect('i')
             ->orderBy('r.datePublication', 'DESC')
-            ->andWhere('r.isShop = :isShop')
-            ->setParameter('isShop', true)
+            ->andWhere('r.shop = :shop')
+            ->setParameter('shop', true)
             ->andWhere('r.publication = :publication')
             ->setParameter('publication', true);
 
@@ -84,8 +84,8 @@ class RestaurantRepository extends EntityRepository
                 ->addSelect('c')
                 ->andWhere('r.publication = :publication')
                 ->setParameter('publication', true)
-                ->andWhere('r.isShop = :isShop')
-                ->setParameter('isShop', true)
+                ->andWhere('r.shop = :shop')
+                ->setParameter('shop', true)
                 ->andWhere('r.slug = :slug')
                 ->setParameter('slug', $slug);
 

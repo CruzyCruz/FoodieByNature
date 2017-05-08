@@ -92,7 +92,7 @@ easy_admin:
                     - { property: 'restaurantBonus', type_options: {required: true} }
                     - { property: 'image', type: 'FBN\GuideBundle\Form\ImageRestaurantType', type_options: { required: true } }
                     - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType', type_options: { required: true } }                    
-                    - { property: 'isShop', type_options: { required: false } }
+                    - { property: 'shop', type_options: { required: false } }
                     - { property: 'publication', type_options: { required: false } }
                 fields_to_be_disabled_for_non_default_locale:
                     - 'name'              
@@ -104,7 +104,7 @@ easy_admin:
                     - 'restaurantStyle'
                     - 'restaurantBonus'
                     - 'coordinates'                
-                    - 'isShop'
+                    - 'shop'
                     - 'publication'                    
         Winemaker:
             class : FBN\GuideBundle\Entity\Winemaker
