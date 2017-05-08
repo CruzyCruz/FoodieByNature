@@ -5,7 +5,10 @@ namespace FBN\GuideBundle\Manager;
 use Symfony\Component\HttpFoundation\File\File;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Vich\UploaderBundle\Storage\StorageInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\UnitOfWork;
 use FBN\GuideBundle\Entity\TutorialChapter;
+use FBN\GuideBundle\Entity\Image;
 
 class ImageManager
 {
@@ -52,7 +55,7 @@ class ImageManager
      * @param object $em     the entity manager
      * @param object $uow    the unit of work
      */
-    public function renameImageFileFromArticleOnFlush($entity, $em, $uow)
+    public function renameImageFileFromArticleOnFlush($entity, ObjectManager $em, UnitOfWork $uow)
     {
         // An array is needed to manage collections of entities have having a one to one relation with an image entity.
         $images = array();
@@ -86,7 +89,7 @@ class ImageManager
      *
      * @param object $image the image entity
      */
-    public function renameImageFile($image)
+    public function renameImageFile(Image $image)
     {
         $absolutePathToActualFile = $this->fileSystemStorage->resolvePath($image, 'file');
 
@@ -124,7 +127,7 @@ class ImageManager
      *
      * @param object $image the image entity
      */
-    public function setRelativePathToActualFile($image)
+    public function setRelativePathToActualFile(Image $image)
     {
         if (null !== $image->getName()) {
             $relativePathToActualFile = $this->fileSystemStorage->resolveUri($image, 'file');
@@ -137,7 +140,7 @@ class ImageManager
      *
      * @param object $image the entity
      */
-    public function removeEntityRelatedCachedFile($image)
+    public function removeEntityRelatedCachedFile(Image $image)
     {
         $relativePathToActualFile = $image->getRelativePathToActualFile();
 

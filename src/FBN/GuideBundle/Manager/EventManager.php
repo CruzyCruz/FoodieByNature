@@ -4,6 +4,8 @@ namespace FBN\GuideBundle\Manager;
 
 use FBN\GuideBundle\Manager\CoordinatesManager;
 use Symfony\Component\PropertyAccess\PropertyAccess;
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\UnitOfWork;
 use FBN\GuideBundle\Entity\Restaurant;
 use FBN\GuideBundle\Entity\Shop;
 use FBN\GuideBundle\Entity\WinemakerDomain;
@@ -34,7 +36,7 @@ class EventManager
      * @param object $em     the entity manager
      * @param object $uow    the unit of work
      */
-    public function setEventFormerLocationCoordinatesOnRelatedEntityRemoval($entity, $em, $uow)
+    public function setEventFormerLocationCoordinatesOnRelatedEntityRemoval($entity, ObjectManager $em, UnitOfWork $uow)
     {
         if (($entity instanceof Restaurant) || ($entity instanceof Shop) || ($entity instanceof WinemakerDomain)) {
             $events = $entity->getEvent();

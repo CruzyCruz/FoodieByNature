@@ -2,9 +2,11 @@
 
 namespace FBN\GuideBundle\Utils;
 
+use FBN\GuideBundle\Entity\Article;
+
 class Entity
 {
-    public static function compareDate($a, $b)
+    public static function compareDate(Article $a, Article $b)
     {
         $d1 = $a->getDatePublication();
         $d2 = $b->getDatePublication();

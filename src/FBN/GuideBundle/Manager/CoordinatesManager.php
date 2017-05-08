@@ -5,6 +5,8 @@ namespace FBN\GuideBundle\Manager;
 use Exception;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Geocoder\Geocoder;
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\UnitOfWork;
 use FBN\GuideBundle\Entity\CoordinatesISO;
 use FBN\GuideBundle\Entity\Coordinates;
 
@@ -43,7 +45,7 @@ class CoordinatesManager
      * @param object $em     the entity manager
      * @param object $uow    the unit of work
      */
-    public function setLatLongCoordinatesISOOnFlush($entity, $em, $uow)
+    public function setLatLongCoordinatesISOOnFlush($entity, ObjectManager $em, UnitOfWork $uow)
     {
         if ($entity instanceof CoordinatesISO) {
             $coordinatesISOCity = $this->getCoordinatesISOString($entity, 'City');
