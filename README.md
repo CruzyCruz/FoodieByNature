@@ -192,7 +192,7 @@ Everybody is very welcome. Only one general philosophy : be cool!
  * Drink natural wine.
  * Take the apéro.
 
-### Todo list
+### To be done
 
  * Install FOSUserBundle 2.0 and make the necessary modifications (using the new event RESETTING_SEND_EMAIL_COMPLETED)
  * Remove deprecated Symfony code (actual SF version : 2.8.x).
