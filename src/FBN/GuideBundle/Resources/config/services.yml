@@ -97,4 +97,4 @@ services:
     fbn_guide.last_route_listener:
         class: FBN\GuideBundle\EventListener\LastRouteListener        
         tags:
-            - { name: kernel.event_subscriber }            
+            - { name: kernel.event_subscriber }
