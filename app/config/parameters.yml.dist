@@ -16,4 +16,3 @@ parameters:
     google_client_secret: google_client_secret
     fb_client_id: fb_client_id
     fb_client_secret: fb_client_secret
-    
