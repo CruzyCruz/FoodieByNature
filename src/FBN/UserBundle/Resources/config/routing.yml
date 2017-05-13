@@ -1,5 +1,4 @@
 fbn_user_profile_edit_change_password:
     path:  /edit-all
     defaults: { _controller: FBNUserBundle:User:editProfileChangePassword }
-    requirements:
-        _methods:  GET
+    methods:  [GET]

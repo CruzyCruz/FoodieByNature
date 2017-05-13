@@ -1,72 +1,61 @@
 fbn_guide_home:
     path:  /
     defaults: { _controller: FBNGuideBundle:Guide:home }
-    requirements:
-        _methods:  GET    
+    methods:  [GET]
 
 fbn_guide_articles:
     path:  /{articles}
     defaults: { _controller: FBNGuideBundle:Guide:articles }
     requirements : 
         articles : infos|restaurants|winemakers|events|tutorials|shops
-    requirements:
-        _methods:  GET        
+    methods:  [GET]   
 
 fbn_guide_restaurants:
     path:  /restaurants/{slug}
     defaults: { _controller: FBNGuideBundle:Guide:restaurant }
-    requirements:
-        _methods:  GET         
+    methods:  [GET]       
 
 fbn_guide_winemakers:
     path:  /winemakers/{slug}
     defaults: { _controller: FBNGuideBundle:Guide:winemaker }
-    requirements:
-        _methods:  GET    
+    methods:  [GET]
 
 fbn_guide_events:
     path:  /events/{slug}
     defaults: { _controller: FBNGuideBundle:Guide:event }
-    requirements:
-        _methods:  GET    
+    methods:  [GET]  
 
 fbn_guide_tutorials:
     path:  /tutorials/{slug}
     defaults: { _controller: FBNGuideBundle:Guide:tutorial }
-    requirements:
-        _methods:  GET    
+    methods:  [GET]
 
 fbn_guide_shops:
     path:  /shops/{slug}
     defaults: { _controller: FBNGuideBundle:Guide:shop }
-    requirements:
-        _methods:  GET    
+    methods:  [GET]
 
 fbn_guide_bookmarks:
     path:  /bookmarks
     defaults: { _controller: FBNGuideBundle:Guide:bookmarks }
-    requirements:
-        _methods:  GET
+    methods:  [GET]
 
 fbn_guide_bookmarks_manage:
     path:  /bookmarks/manage
     defaults: { _controller: FBNGuideBundle:Guide:bookmarkManage }
     options:
         expose: true
-    requirements:
-        _methods:  POST
+    methods:  [POST]
 
 fbn_guide_display_error_pages:
     path:  /error/{statusCode}
     defaults: { _controller: FBNGuideBundle:Guide:displayErrorPages }
     options:
         expose: true
-    requirements:
-        _methods:  GET        
+    methods:  [GET]    
 
 fbn_guide_switch_admin_locale:
     path:  /switchLocale
     defaults: { _controller: FBNGuideBundle:Admin:switchLocale }
-    requirements:
-        _methods:  GET       
+    methods:  [GET]     
 
