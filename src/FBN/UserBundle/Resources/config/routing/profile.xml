@@ -12,9 +12,8 @@
     -->
 
     <!-- Will create a 405 error if user try to use this route (GET method) -->
-    <route id="fos_user_profile_edit" path="/edit">
+    <route id="fos_user_profile_edit" path="/edit" methods="POST">
         <default key="_controller">FOSUserBundle:Profile:edit</default>
-        <requirement key="_methods">POST</requirement>
     </route>   
 
 </routes>
