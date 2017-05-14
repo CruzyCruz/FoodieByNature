@@ -1,3 +1,5 @@
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/83222d0a-7224-48b6-aabe-a8a6b23414b6/mini.png)](https://insight.sensiolabs.com/projects/83222d0a-7224-48b6-aabe-a8a6b23414b6)
+
 Foodie By Nature
 ================
 
@@ -160,15 +162,30 @@ See [here](http://symfony.com/doc/current/setup/web_server_configuration.html) t
 
 Homepage (dev mode) is accessible from the following URIs:
 
+(en)
 `http://yourdomain/app_dev.php/en/`
+
+(fr)
 `http://yourdomain/app_dev.php/fr/`
 
 * **Admin panel**
 
 Admin panel (dev mode) is accessible from the following URIs:
 
+(en)
 `http://yourdomain/app_dev.php/en/admin`
+
+(fr)
 `http://yourdomain/app_dev.php/fr/admin`
+
+* **Users / Password**
+
+user / user
+
+author / author (can access admin panel)
+
+admin / admin (can access admin panel)
+
 
 ### About templates
 
