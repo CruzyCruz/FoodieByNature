@@ -26,7 +26,7 @@
     <h3>MES RESTOS</h3>
     {% for bookmark in restaurants %}
       <div class="bookmark" id="{{'bookmark-' ~ bookmark.id}}">
-        <a href="{{ path('fbn_guide_restaurants', { 'slug': restaurantSlugs.loop.index0 } ) }}">{{ restaurantNames.loop.index0 }}</a>
+        <a href="{{ path('fbn_guide_restaurants', {'slug': bookmark.restaurant.slug} ) }}">{{ bookmark.restaurant.name }}</a>
         <br>
         <br>
         <button>SUPPRIMER DES FAVORIS</button>      
@@ -44,7 +44,7 @@
     <h3>MES VIGNERONS</h3>
     {% for bookmark in winemakers %}
       <div class="bookmark" id="{{'bookmark-' ~ bookmark.id}}">
-        <a href="{{ path('fbn_guide_winemakers', { 'slug': winemakerSlugs.loop.index0 } ) }}">{{ winemakerNames.loop.index0 }}</a>
+        <a href="{{ path('fbn_guide_winemakers', {'slug': bookmark.winemaker.slug} ) }}">{{ bookmark.winemaker.name }}</a>
         <br>
         <br>
         <button>SUPPRIMER DES FAVORIS</button>    
@@ -62,7 +62,7 @@
     <h3>MES CAVISTES</h3>
     {% for bookmark in shops %}
       <div class="bookmark" id="{{'bookmark-' ~ bookmark.id}}">
-        <a href="{{ path('fbn_guide_shops', { 'slug': shopSlugs.loop.index0 } ) }}">{{ shopNames.loop.index0 }}</a>
+        <a href="{{ path('fbn_guide_shops', {'slug': bookmark.shop.slug} ) }}">{{ bookmark.shop.name }}</a>
         <br>
         <br>
         <button>SUPPRIMER DES FAVORIS</button>      
