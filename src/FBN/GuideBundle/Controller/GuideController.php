@@ -225,6 +225,27 @@ class GuideController extends Controller
         $winemakers = $bookmarkRepo->getBookmarksByEntity($userId, 'winemaker');
         $shops = $bookmarkRepo->getBookmarksByEntity($userId, 'shop');
 
+        $restaurantSlugs = array();
+        $restaurantNames = array();
+        foreach ($restaurants as $bookmark) {
+            $restaurantSlugs[] = $bookmark->getRestaurant()->getSlug();
+            $restaurantNames[] = $bookmark->getRestaurant()->getName();
+        }
+
+        $winemakerSlugs = array();
+        $winemakerNames = array();
+        foreach ($winemakers as $bookmark) {
+            $winemakerSlugs[] = $bookmark->getWinemaker()->getSlug();
+            $winemakerNames[] = $bookmark->getWinemaker()->getName();
+        }
+
+        $shopSlugs = array();
+        $shopNames = array();
+        foreach ($shops as $bookmark) {
+            $shopSlugs[] = $bookmark->getShop()->getSlug();
+            $shopNames[] = $bookmark->getShop()->getName();
+        }
+
         $bookmarks = array_merge($restaurants, $winemakers, $shops);
         $bookmarkIds = array();
         foreach ($bookmarks as $bookmark) {
@@ -235,8 +256,14 @@ class GuideController extends Controller
 
         return $this->render('FBNGuideBundle:Guide:bookmarks.html.twig', array(
             'restaurants' => $restaurants,
+            'restaurantSlugs' => $restaurantSlugs,
+            'restaurantNames' => $restaurantNames,
             'winemakers' => $winemakers,
+            'winemakerSlugs' => $winemakerSlugs,
+            'winemakerNames' => $winemakerNames,
             'shops' => $shops,
+            'shopSlugs' => $shopSlugs,
+            'shopNames' => $shopNames,
             'bookmarkIds' => $bookmarkIds,
         ));
     }
