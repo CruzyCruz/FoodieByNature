@@ -1,4 +1,4 @@
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/83222d0a-7224-48b6-aabe-a8a6b23414b6/mini.png)](https://insight.sensiolabs.com/account/widget?project=83222d0a-7224-48b6-aabe-a8a6b23414b6)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/83222d0a-7224-48b6-aabe-a8a6b23414b6/mini.png)](https://insight.sensiolabs.com/projects/83222d0a-7224-48b6-aabe-a8a6b23414b6)
 
 Foodie By Nature
 ================
