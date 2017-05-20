@@ -5,7 +5,7 @@
     "description": "Foodie By Nature - Places to eat natural wines",
     "keywords": ["symfony", "training", "natural wine"],
     "autoload": {
-        "psr-4": { "": "src/" },
+        "psr-4": { "FBN\\": "src/FBN/" },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
     "autoload-dev": {
