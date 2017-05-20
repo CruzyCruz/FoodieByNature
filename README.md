@@ -1,7 +1,7 @@
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/83222d0a-7224-48b6-aabe-a8a6b23414b6/mini.png)](https://insight.sensiolabs.com/projects/83222d0a-7224-48b6-aabe-a8a6b23414b6)
-
 Foodie By Nature
 ================
+
+[![Code Quality][1]][2]
 
 This repository is a personnal training project to learn the Symfony framework and its ecosystem (Doctrine, Bundles, PHPUnit, Composer, Git...). It is also the basis of a website dedicated to natural wines :
 
@@ -231,3 +231,6 @@ Everybody is very welcome. Only one general philosophy : be cool!
 ### License
 
 This software is published under the MIT License.
+
+[1]: https://insight.sensiolabs.com/projects/83222d0a-7224-48b6-aabe-a8a6b23414b6/mini.png
+[2]: https://insight.sensiolabs.com/projects/83222d0a-7224-48b6-aabe-a8a6b23414b6
