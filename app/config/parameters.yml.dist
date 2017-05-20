@@ -6,6 +6,7 @@ parameters:
     database_name_test: fbn_test
     database_user: your_database_username
     database_password: your_database_password
+    database_server_version: your_database_server_version
     mailer_transport: gmail
     mailer_host: 127.0.0.1
     mailer_user: your_username@gmail.com

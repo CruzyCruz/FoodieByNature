@@ -64,7 +64,10 @@ parameters:
     database_name_test: fbn_test
     database_user: your_database_username
     database_password: your_database_password
+    database_server_version: your_database_server_version
 ```
+
+*Note :* database_server_version was not mandatory till Doctrine DBAL < 2.5.*. You can read the [official documentation](http://symfony.com/doc/current/reference/configuration/doctrine.html#doctrine-dbal-configuration) and this [issue](https://github.com/symfony/symfony-docs/issues/4597).
 
 * **Configure swiftmailer**
 
