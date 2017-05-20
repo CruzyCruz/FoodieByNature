@@ -20,11 +20,9 @@ class MenuBuilder
     }
 
     /**
-     * @param Request $request
-     *
      * @return string
      */
-    public function createMainMenu(RequestStack $requestStack)
+    public function createMainMenu()
     {
         $mainmenu = $this->factory->createItem('root');
 
