@@ -1,7 +1,5 @@
 <?php
 
-// src/FBN/GuideBundle/Menu/MenuBuilder.php
-
 namespace FBN\GuideBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
