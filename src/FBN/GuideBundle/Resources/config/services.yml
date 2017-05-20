@@ -8,10 +8,7 @@ services:
 
     fbn_guide.menu.main:
         class: Knp\Menu\MenuItem # the service definition requires setting the class
-        factory_service: fbn_guide.menu_builder
-        factory_method: createMainMenu
-        arguments: ['@request']
-        scope: request # needed as we have the request as a dependency here
+        factory: ["@fbn_guide.menu_builder", createMainMenu]
         tags:
             - { name: knp_menu.menu, alias: main } # The alias is what is used to retrieve the menu
 
@@ -61,37 +58,37 @@ services:
         arguments: ['%locale%']                   
 
     fbn_guide.form_type.winemaker_domain:
-        class : FBN\GuideBundle\Form\WinemakerDomainType
+        class : FBN\GuideBundle\Form\Type\WinemakerDomainType
         arguments: ['@request_stack', '@fbn_guide.form_manager']
         tags:
             - { name: form.type }
 
     fbn_guide.form_type.image_restaurant:
-        class : FBN\GuideBundle\Form\ImageRestaurantType
+        class : FBN\GuideBundle\Form\Type\ImageRestaurantType
         arguments: ['@request_stack', '@fbn_guide.form_manager']
         tags:
             - { name: form.type }
 
     fbn_guide.form_type.image_winemaker:
-        class : FBN\GuideBundle\Form\ImageWinemakerType
+        class : FBN\GuideBundle\Form\Type\ImageWinemakerType
         arguments: ['@request_stack', '@fbn_guide.form_manager']
         tags:
             - { name: form.type }      
 
     fbn_guide.form_type.image_event:
-        class : FBN\GuideBundle\Form\ImageEventType
+        class : FBN\GuideBundle\Form\Type\ImageEventType
         arguments: ['@request_stack', '@fbn_guide.form_manager']
         tags:
             - { name: form.type }        
 
     fbn_guide.form_type.image_tutorial:
-        class : FBN\GuideBundle\Form\ImageTutorialType
+        class : FBN\GuideBundle\Form\Type\ImageTutorialType
         arguments: ['@request_stack', '@fbn_guide.form_manager']
         tags:
             - { name: form.type }
 
     fbn_guide.form_type.image_tutorial_chapter_para:
-        class : FBN\GuideBundle\Form\ImageTutorialChapterParaType
+        class : FBN\GuideBundle\Form\Type\ImageTutorialChapterParaType
         arguments: ['@request_stack', '@fbn_guide.form_manager']
         tags:
             - { name: form.type }                            
@@ -99,4 +96,4 @@ services:
     fbn_guide.last_route_listener:
         class: FBN\GuideBundle\EventListener\LastRouteListener        
         tags:
-            - { name: kernel.event_subscriber }            
+            - { name: kernel.event_subscriber }

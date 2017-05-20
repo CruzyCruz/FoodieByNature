@@ -2,6 +2,8 @@
 
 namespace FBN\GuideBundle\Manager;
 
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\UnitOfWork;
 use FBN\GuideBundle\Entity\CoordinatesISO;
 use FBN\GuideBundle\Entity\Coordinates;
 use FBN\GuideBundle\Entity\Event;
@@ -33,7 +35,7 @@ class SlugManager
      * @param object $em     the entity manager
      * @param object $uow    the unit of work
      */
-    public function updateRstrShpWnmkrDmnEvtSlugFromCoordinatesISOOnFlush($entity, $em, $uow)
+    public function updateRstrShpWnmkrDmnEvtSlugFromCoordinatesISOOnFlush($entity, ObjectManager $em, UnitOfWork $uow)
     {
         if ($entity instanceof CoordinatesISO) {
             $coordinates = $entity->getCoordinates();
@@ -76,7 +78,7 @@ class SlugManager
      * @param object $em     the entity manager
      * @param object $uow    the unit of work
      */
-    public function updateEvtWithExternalLocationSlugFromCoordinatesISOOnFlush($entity, $em, $uow)
+    public function updateEvtWithExternalLocationSlugFromCoordinatesISOOnFlush($entity, ObjectManager $em, UnitOfWork $uow)
     {
         if ($entity instanceof Event) {
             if (null === $entity->getCoordinates()) {

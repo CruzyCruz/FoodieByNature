@@ -3,6 +3,7 @@ parameters:
     database_host: 127.0.0.1
     database_port: null
     database_name: fbn
+    database_name_test: fbn_test
     database_user: your_database_username
     database_password: your_database_password
     mailer_transport: gmail
@@ -14,4 +15,4 @@ parameters:
     google_client_id: google_client_id
     google_client_secret: google_client_secret
     fb_client_id: fb_client_id
-    fb_client_secret: fb_client_secret   
+    fb_client_secret: fb_client_secret

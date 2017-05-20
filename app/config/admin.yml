@@ -90,9 +90,9 @@ easy_admin:
                     - 'restaurantPrice'
                     - { property: 'restaurantStyle', type_options: {required: true} }
                     - { property: 'restaurantBonus', type_options: {required: true} }
-                    - { property: 'image', type: 'FBN\GuideBundle\Form\ImageRestaurantType', type_options: { required: true } }
-                    - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType', type_options: { required: true } }                    
-                    - { property: 'isShop', type_options: { required: false } }
+                    - { property: 'image', type: 'FBN\GuideBundle\Form\Type\ImageRestaurantType', type_options: { required: true } }
+                    - { property: 'coordinates', type: 'FBN\GuideBundle\Form\Type\CoordinatesType', type_options: { required: true } }                    
+                    - { property: 'shop', type_options: { required: false } }
                     - { property: 'publication', type_options: { required: false } }
                 fields_to_be_disabled_for_non_default_locale:
                     - 'name'              
@@ -104,7 +104,7 @@ easy_admin:
                     - 'restaurantStyle'
                     - 'restaurantBonus'
                     - 'coordinates'                
-                    - 'isShop'
+                    - 'shop'
                     - 'publication'                    
         Winemaker:
             class : FBN\GuideBundle\Entity\Winemaker
@@ -117,10 +117,10 @@ easy_admin:
                 fields:
                     - 'name'
                     - { property: 'description', type: 'ckeditor', type_options: {config_name: ck_editor_config} }
-                    - { property: 'image', type: 'FBN\GuideBundle\Form\ImageWinemakerType', type_options: { required: true } }
+                    - { property: 'image', type: 'FBN\GuideBundle\Form\Type\ImageWinemakerType', type_options: { required: true } }
                     # by_reference : false => Needed to ensure that addWinemakerDomain() and removeWinemakerDomain() will be called during the flush.
                     # See (last lines) : http://symfony.com/doc/master/reference/forms/types/collection.html#by-reference
-                    - { property: 'winemakerDomain', type: 'collection', type_options: { entry_type: 'FBN\GuideBundle\Form\WinemakerDomainType', by_reference: false, required: true  } }
+                    - { property: 'winemakerDomain', type: 'collection', type_options: { entry_type: 'FBN\GuideBundle\Form\Type\WinemakerDomainType', by_reference: false, required: true  } }
                     - { property: 'publication', type_options: { required: false } }
                 fields_to_be_disabled_for_non_default_locale:
                     - 'name'                
@@ -141,7 +141,7 @@ easy_admin:
                     - 'tel'
                     - 'site'
                     - 'href'
-                    - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType', type_options: { required: true } }
+                    - { property: 'coordinates', type: 'FBN\GuideBundle\Form\Type\CoordinatesType', type_options: { required: true } }
                     - { property: 'publication', type_options: { required: false } }
                 fields_to_be_disabled_for_non_default_locale:
                     - 'name'                
@@ -177,8 +177,8 @@ easy_admin:
                     - 'name'
                     - { property: 'description', type: 'ckeditor', type_options: {config_name: ck_editor_config} }
                     - 'tutorialSection'
-                    - { property: 'image', type: 'FBN\GuideBundle\Form\ImageTutorialType', type_options: { required: true } }
-                    - { property: 'tutorialChapter', type: 'collection', type_options: { entry_type: 'FBN\GuideBundle\Form\TutorialChapterType', by_reference: false, required: true } }
+                    - { property: 'image', type: 'FBN\GuideBundle\Form\Type\ImageTutorialType', type_options: { required: true } }
+                    - { property: 'tutorialChapter', type: 'collection', type_options: { entry_type: 'FBN\GuideBundle\Form\Type\TutorialChapterType', by_reference: false, required: true } }
                     - { property: 'publication', type_options: { required: false } }   
                 fields_to_be_disabled_for_non_default_locale:
                     - 'tutorialSection'                    
@@ -197,14 +197,14 @@ easy_admin:
                     - 'name'
                     - { property: 'description', type: 'ckeditor', type_options: {config_name: ck_editor_config} }
                     - 'eventType'
-                    - { property: 'image', type: 'FBN\GuideBundle\Form\ImageEventType', type_options: { required: true }  }
+                    - { property: 'image', type: 'FBN\GuideBundle\Form\Type\ImageEventType', type_options: { required: true }  }
                     - 'dateStart'
                     - 'dateEnd'
                     - 'openingHours'
                     - 'tel'
                     - 'site'
                     - 'href'                    
-                    - { property: 'coordinates', type: 'FBN\GuideBundle\Form\CoordinatesType', type_options: { required: true }, css_class: 'col-xs-12 coordinates' }                    
+                    - { property: 'coordinates', type: 'FBN\GuideBundle\Form\Type\CoordinatesType', type_options: { required: true }, css_class: 'col-xs-12 coordinates' }                    
                     - { property: 'restaurant', css_class: 'col-xs-12 restaurant' }
                     - { property: 'shop', css_class: 'col-xs-12 shop' }
                     - { property: 'winemakerDomain', css_class: 'col-xs-12 winemakerDomain' }

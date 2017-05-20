@@ -1,13 +1,13 @@
 <?php
 
-namespace FBN\GuideBundle\Form;
+namespace FBN\GuideBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
-class TutorialChapterParaType extends AbstractType
+class CoordinatesCountryType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,11 +16,10 @@ class TutorialChapterParaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('paragraph', 'ckeditor', array(
-                'config_name' => 'ck_editor_config',
-                ))
-            ->add('rank', HiddenType::class)
-            ->add('image', ImageTutorialChapterParaType::class)
+            ->add('country', TextType::class)
+            ->add('codeISO', TextType::class)
+            ->add('latitude', TextType::class)
+            ->add('longitude', TextType::class)
         ;
     }
 
@@ -30,7 +29,7 @@ class TutorialChapterParaType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'FBN\GuideBundle\Entity\TutorialChapterPara',
+            'data_class' => 'FBN\GuideBundle\Entity\CoordinatesCountry',
         ));
     }
 
@@ -39,6 +38,6 @@ class TutorialChapterParaType extends AbstractType
      */
     public function getName()
     {
-        return 'fbn_guidebundle_tutorialchapterpara';
+        return 'fbn_guidebundle_coordinatescountry';
     }
 }

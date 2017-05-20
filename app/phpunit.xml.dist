@@ -24,12 +24,7 @@
     <php>
         <server name="KERNEL_DIR" value="/path/to/your/app/" />
     </php>
-    -->
-
-    <php>
-        <env name="BOOTSTRAP_ENV" value="test"/>
-    </php>    
-
+    -->   
     <filter>
         <whitelist>
             <directory>../src</directory>

@@ -36,7 +36,7 @@ class UserController extends Controller
             $userManager->deleteUser($user);
 
             $event = new Event();
-            /** @var $dispatcher \Symfony\Component\EventDispatcher\Event */
+            /** @var $dispatcher Symfony\Component\EventDispatcher\EventDispatcherInterface */
             $dispatcher = $this->get('event_dispatcher');
             $dispatcher->dispatch(FBNUserEvents::PROFILE_USER_DELETED, $event);
 

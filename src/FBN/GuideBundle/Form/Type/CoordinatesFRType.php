@@ -1,6 +1,6 @@
 <?php
 
-namespace FBN\GuideBundle\Form;
+namespace FBN\GuideBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -47,14 +47,6 @@ class CoordinatesFRType extends AbstractType
                 ))
         ;
 
-        // Needed to avoid the following validation error message (that is only accessible using Symfony Profiler -> Forms) when autocomplete field is empty
-        // Message : This value is not valid.
-        // Origin : autocomplete
-        // Cause :
-        //  Caused by: Symfony\Component\Form\Exception\TransformationFailedException
-        //  Unable to reverse value for property path "[autocomplete]": Expected a string or null.
-        //  Caused by: Symfony\Component\Form\Exception\TransformationFailedException
-        //  Expected a string or null.
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
             $data = $event->getData();
             if (!isset($data["coordinatesFRCity"])) {

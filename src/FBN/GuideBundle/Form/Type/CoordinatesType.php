@@ -1,13 +1,13 @@
 <?php
 
-namespace FBN\GuideBundle\Form;
+namespace FBN\GuideBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-class CoordinatesCountryType extends AbstractType
+class CoordinatesType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,10 +16,11 @@ class CoordinatesCountryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('country', TextType::class)
-            ->add('codeISO', TextType::class)
-            ->add('latitude', TextType::class)
-            ->add('longitude', TextType::class)
+            ->add('coordinatesCountry', EntityType::class, array(
+                'class' => 'FBNGuideBundle:CoordinatesCountry',
+                'property' => 'country',
+                ))
+            ->add('coordinatesFR', CoordinatesFRType::class)
         ;
     }
 
@@ -29,7 +30,7 @@ class CoordinatesCountryType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'FBN\GuideBundle\Entity\CoordinatesCountry',
+            'data_class' => 'FBN\GuideBundle\Entity\Coordinates',
         ));
     }
 
@@ -38,6 +39,6 @@ class CoordinatesCountryType extends AbstractType
      */
     public function getName()
     {
-        return 'fbn_guidebundle_coordinatescountry';
+        return 'fbn_guidebundle_coordinates';
     }
 }

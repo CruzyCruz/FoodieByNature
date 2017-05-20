@@ -213,8 +213,6 @@ class GuideController extends Controller
 
     public function bookmarksAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
         // User connexion is checked using custom LoginEntryPoint
         $userId = $this->getUser()->getId();
         $bookmarkManager = $this->container->get('fbn_guide.bookmark_manager');
@@ -300,7 +298,7 @@ class GuideController extends Controller
      *
      * @return array An array of localized slugs : ['en' => 'slugEN', ...]
      */
-    public function getSlugTranslationsByEntity($em, $entity)
+    private function getSlugTranslationsByEntity($em, $entity)
     {
         $translationRepository = $em->getRepository('Gedmo\Translatable\Entity\Translation');
 

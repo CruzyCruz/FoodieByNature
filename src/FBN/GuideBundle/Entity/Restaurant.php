@@ -137,9 +137,9 @@ class Restaurant extends Article
     /**
      * @var bool
      *
-     * @ORM\Column(name="isShop", type="boolean")
+     * @ORM\Column(name="shop", type="boolean")
      */
-    private $isShop;
+    private $shop;
 
     public function __construct()
     {
@@ -480,27 +480,27 @@ class Restaurant extends Article
     }
 
     /**
-     * Set isShop.
+     * Set shop.
      *
-     * @param bool $isShop
+     * @param bool $shop
      *
      * @return Restaurant
      */
-    public function setIsShop($isShop)
+    public function setShop($shop)
     {
-        $this->isShop = $isShop;
+        $this->shop = $shop;
 
         return $this;
     }
 
     /**
-     * Get isShop.
+     * Get shop.
      *
      * @return bool
      */
-    public function getIsShop()
+    public function getShop()
     {
-        return $this->isShop;
+        return $this->shop;
     }
 
     /** {@inheritdoc} */

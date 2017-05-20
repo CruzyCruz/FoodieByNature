@@ -1,30 +1,29 @@
 <?php
 
-namespace FBN\GuideBundle\Form;
+namespace FBN\GuideBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
-use Symfony\Component\HttpFoundation\RequestStack;
 use FBN\GuideBundle\Form\Manager\FormManager;
 
-class ImageEventType extends AbstractType
+class ImageType extends AbstractType
 {
-    private static $fieldsToBeDisabled = array(
+    protected static $fieldsToBeDisabled = array(
         'file',
     );
 
     /**
      * @var RequestStack
      */
-    private $requestStack;
+    protected $requestStack;
 
     /**
      * @var FormManager
      */
-    private $formManager;
+    protected $formManager;
 
     public function __construct(RequestStack $requestStack, FormManager $formManager)
     {
@@ -58,23 +57,5 @@ class ImageEventType extends AbstractType
             self::$fieldsToBeDisabled,
             $masterRequest->getLocale())
         ;
-    }
-
-    /**
-     * @param OptionsResolverInterface $resolver
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'FBN\GuideBundle\Entity\ImageEvent',
-        ));
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'fbn_guidebundle_imageevent';
     }
 }

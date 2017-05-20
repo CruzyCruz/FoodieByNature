@@ -41,7 +41,7 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface, Con
 
         $sites = array('letempsdesvendanges.com', null, 'lafinemousse.fr', 'dix-huit.fr', 'cantinecalifornia.com');
 
-        $isShops = array(true, false, false, false, true);
+        $shops = array(true, false, false, false, true);
 
         $openingHoursfr = array(
                         'Tous les jours, de 8h à 1h30 ; service de midi à 15h30 et de 19h à 23h30.',
@@ -96,8 +96,8 @@ class Restaurant extends AbstractFixture implements OrderedFixtureInterface, Con
             $restaurant[$i]->setSite($site);
         }
 
-        foreach ($isShops as $i => $isShop) {
-            $restaurant[$i]->setIsShop($isShop);
+        foreach ($shops as $i => $shop) {
+            $restaurant[$i]->setShop($shop);
         }
 
         foreach ($openingHours as $i => $openingHour) {

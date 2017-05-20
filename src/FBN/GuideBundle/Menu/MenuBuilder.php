@@ -1,11 +1,8 @@
 <?php
 
-// src/FBN/GuideBundle/Menu/MenuBuilder.php
-
 namespace FBN\GuideBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
-use Symfony\Component\HttpFoundation\Request;
 
 class MenuBuilder
 {
@@ -20,11 +17,9 @@ class MenuBuilder
     }
 
     /**
-     * @param Request $request
-     *
      * @return string
      */
-    public function createMainMenu(Request $request)
+    public function createMainMenu()
     {
         $mainmenu = $this->factory->createItem('root');
 

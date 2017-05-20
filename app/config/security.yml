@@ -79,4 +79,4 @@ security:
         - { path: ^/(fr|en)/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/(fr|en)/bookmarks$, role: ROLE_USER }
         - { path: ^/(fr|en)/bookmarks/manage$, role: ROLE_USER }
-        - { path: ^/(fr|en)/admin, role: ROLE_AUTHOR }        
+        - { path: ^/(fr|en)/admin, role: ROLE_AUTHOR }
