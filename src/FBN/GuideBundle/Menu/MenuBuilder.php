@@ -3,7 +3,6 @@
 namespace FBN\GuideBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 class MenuBuilder
 {
