@@ -62,8 +62,8 @@ parameters:
     database_port: null
     database_name: fbn
     database_name_test: fbn_test
-    database_user: your_database_username
-    database_password: your_database_password
+    database_user: root
+    database_password: ~
 ```
 
 *Note :* In `config.yml file`, `doctrine.dbal.server_version` parameter (the version of the database engine) was not mandatory till Doctrine DBAL < 2.5.*. Update it to match your needs. You can read the [official documentation](http://symfony.com/doc/current/reference/configuration/doctrine.html#doctrine-dbal-configuration) and this [issue](https://github.com/symfony/symfony-docs/issues/4597).
