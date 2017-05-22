@@ -39,4 +39,4 @@ install:
 
 # Run script
 script:
-  - phpunit -c app
+  - ./bin/phpunit -c app
