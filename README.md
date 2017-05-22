@@ -144,17 +144,13 @@ You can have an overview of the database schema using [Dia](http://dia-installer
 
 ### Tests
 
-* **Install PHPUnit**
-
-See [here](https://phpunit.de/manual/current/en/installation.html#installation.phar) for official documentation.
-
 * **Run tests**
 
 Browse to */path/to/FoodieByNature* and run
 
-`phpunit -c app`
+`./bin/phpunit -c app`
 
-*Note :* Each time you run the tests, cache is cleared and the test database is deleted and re-created (or only created the first time) to reflect the last database schema. Then fixtures are loaded. This is enough for now, but, it should be repeated before some tests in the future. In this case, sqlite database (using file copy to get a fresh database) could be used.
+*Note :* PHPUnit is installed as a dev dependency. Each time you run the tests, cache is cleared and the test database is deleted and re-created (or only created the first time) to reflect the last database schema. Then fixtures are loaded. This is enough for now, but, it should be repeated before some tests in the future. In this case, sqlite database (using file copy to get a fresh database) could be used.
 
 ### Usage
 
