@@ -5,8 +5,8 @@ namespace FBN\GuideBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use FBN\GuideBundle\Entity\CoordinatesFR as CoordFR;
 use FBN\GuideBundle\Entity\Coordinates as Coord;
+use FBN\GuideBundle\Entity\CoordinatesFR as CoordFR;
 
 class CoordinatesFR extends AbstractFixture implements OrderedFixtureInterface
 {

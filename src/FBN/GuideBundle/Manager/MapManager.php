@@ -3,8 +3,8 @@
 namespace FBN\GuideBundle\Manager;
 
 use Ivory\GoogleMap\Map as IvoryMap;
-use Ivory\GoogleMap\Overlays\Marker;
 use Ivory\GoogleMap\Overlays\Animation;
+use Ivory\GoogleMap\Overlays\Marker;
 
 class MapManager
 {

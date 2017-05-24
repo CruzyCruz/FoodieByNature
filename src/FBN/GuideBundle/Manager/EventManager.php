@@ -2,14 +2,14 @@
 
 namespace FBN\GuideBundle\Manager;
 
-use FBN\GuideBundle\Manager\CoordinatesManager;
-use Symfony\Component\PropertyAccess\PropertyAccess;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\UnitOfWork;
+use FBN\GuideBundle\Entity\Event;
 use FBN\GuideBundle\Entity\Restaurant;
 use FBN\GuideBundle\Entity\Shop;
 use FBN\GuideBundle\Entity\WinemakerDomain;
-use FBN\GuideBundle\Entity\Event;
+use FBN\GuideBundle\Manager\CoordinatesManager;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class EventManager
 {

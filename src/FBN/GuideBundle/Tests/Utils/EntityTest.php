@@ -2,9 +2,9 @@
 
 namespace FBN\GuideBundle\Tests\Utils;
 
-use PHPUnit\Framework\TestCase;
-use FBN\GuideBundle\Utils\Entity;
 use FBN\GuideBundle\Entity\Article;
+use FBN\GuideBundle\Utils\Entity;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unitary tests for the methods defined inside Entity utility class.

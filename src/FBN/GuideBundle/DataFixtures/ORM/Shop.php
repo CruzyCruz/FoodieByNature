@@ -5,9 +5,9 @@ namespace FBN\GuideBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use FBN\GuideBundle\Entity\Shop as Shp;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use FBN\GuideBundle\Entity\Shop as Shp;
 
 class Shop extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {

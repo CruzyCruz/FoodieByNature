@@ -2,9 +2,9 @@
 
 namespace FBN\GuideBundle\Tests\Controller;
 
+use FBN\GuideBundle\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
-use FBN\GuideBundle\Entity\Article;
 
 /**
  * Functional test for the controllers defined inside GuideController.

@@ -2,13 +2,13 @@
 
 namespace FBN\GuideBundle\Controller;
 
+use FBN\GuideBundle\Entity\EventRepository;
 use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use FBN\GuideBundle\Entity\EventRepository;
+use Symfony\Component\HttpFoundation\Response;
 
 class AdminController extends BaseAdminController
 {

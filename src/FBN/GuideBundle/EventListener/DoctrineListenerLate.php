@@ -3,9 +3,9 @@
 namespace FBN\GuideBundle\EventListener;
 
 use Doctrine\Common\EventSubscriber;
-use Doctrine\ORM\Events;
 use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\Event\PostFlushEventArgs;
+use Doctrine\ORM\Events;
 use FBN\GuideBundle\Manager\ImageManager;
 
 class DoctrineListenerLate implements EventSubscriber

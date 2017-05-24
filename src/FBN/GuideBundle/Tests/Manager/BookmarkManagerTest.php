@@ -2,20 +2,20 @@
 
 namespace FBN\GuideBundle\Tests\Manager;
 
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Doctrine\ORM\EntityRepository;
 use Doctrine\Common\Persistence\ObjectManager;
-use FBN\UserBundle\Entity\User;
+use Doctrine\ORM\EntityRepository;
 use FBN\GuideBundle\Entity\Bookmark;
 use FBN\GuideBundle\Entity\Restaurant;
-use FBN\GuideBundle\Entity\Winemaker;
 use FBN\GuideBundle\Entity\Shop;
+use FBN\GuideBundle\Entity\Winemaker;
 use FBN\GuideBundle\Manager\BookmarkManager;
+use FBN\UserBundle\Entity\User;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 /**
  * Unitary tests for the methods defined inside BookmarkManager.

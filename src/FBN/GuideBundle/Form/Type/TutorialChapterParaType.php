@@ -3,9 +3,9 @@
 namespace FBN\GuideBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TutorialChapterParaType extends AbstractType
 {
@@ -27,7 +27,7 @@ class TutorialChapterParaType extends AbstractType
     /**
      * @param OptionsResolverInterface $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'FBN\GuideBundle\Entity\TutorialChapterPara',
@@ -37,7 +37,7 @@ class TutorialChapterParaType extends AbstractType
     /**
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'fbn_guidebundle_tutorialchapterpara';
     }

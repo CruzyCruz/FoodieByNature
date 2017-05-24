@@ -2,15 +2,15 @@
 
 namespace FBN\UserBundle\EventListener;
 
+use FBN\UserBundle\FBNUserEvents;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Model\UserInterface;
-use FBN\UserBundle\FBNUserEvents;
-use Symfony\Component\Security\Http\SecurityEvents;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Http\SecurityEvents;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class FlashListener implements EventSubscriberInterface
 {

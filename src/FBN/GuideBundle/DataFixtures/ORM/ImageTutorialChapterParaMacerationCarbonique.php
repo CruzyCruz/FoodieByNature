@@ -2,11 +2,11 @@
 
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
-use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use FBN\GuideBundle\Entity\ImageTutorialChapterPara as Image;
+use Symfony\Component\HttpFoundation\File\File;
 
 class ImageTutorialChapterParaMacerationCarbonique extends AbstractFixture implements OrderedFixtureInterface
 {

@@ -2,13 +2,13 @@
 
 namespace FBN\GuideBundle\Manager;
 
-use Symfony\Component\HttpFoundation\File\File;
-use Liip\ImagineBundle\Imagine\Cache\CacheManager;
-use Vich\UploaderBundle\Storage\StorageInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\UnitOfWork;
-use FBN\GuideBundle\Entity\TutorialChapter;
 use FBN\GuideBundle\Entity\Image;
+use FBN\GuideBundle\Entity\TutorialChapter;
+use Liip\ImagineBundle\Imagine\Cache\CacheManager;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Storage\StorageInterface;
 
 class ImageManager
 {

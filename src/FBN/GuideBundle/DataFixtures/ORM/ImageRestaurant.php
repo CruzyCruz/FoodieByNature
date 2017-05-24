@@ -2,13 +2,13 @@
 
 namespace FBN\GuideBundle\DataFixtures\ORM;
 
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use FBN\GuideBundle\Entity\ImageRestaurant as Image;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\File\File;
 
 class ImageRestaurant extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {

@@ -2,12 +2,12 @@
 
 namespace FBN\UserBundle\EventListener;
 
-use Symfony\Component\Security\Http\Logout\LogoutHandlerInterface;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\Translation\TranslatorInterface;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Http\Logout\LogoutHandlerInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * This handler allows to manage actions at user deconnexion.

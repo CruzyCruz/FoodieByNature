@@ -2,15 +2,15 @@
 
 namespace FBN\GuideBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
+use FBN\GuideBundle\Entity\CoordinatesFRCity;
+use JavierEguiluz\Bundle\EasyAdminBundle\Form\Type\EasyAdminAutocompleteType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use JavierEguiluz\Bundle\EasyAdminBundle\Form\Type\EasyAdminAutocompleteType;
-use FBN\GuideBundle\Entity\CoordinatesFRCity;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CoordinatesFRType extends AbstractType
 {
@@ -59,7 +59,7 @@ class CoordinatesFRType extends AbstractType
     /**
      * @param OptionsResolverInterface $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'FBN\GuideBundle\Entity\CoordinatesFR',
@@ -69,7 +69,7 @@ class CoordinatesFRType extends AbstractType
     /**
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'fbn_guidebundle_coordinatesfr';
     }
