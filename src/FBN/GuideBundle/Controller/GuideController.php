@@ -129,11 +129,11 @@ class GuideController extends Controller
         ));
     }
 
-    public function eventAction($slug)
+    public function eventAction($slug, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $locale = $this->get('request')->getLocale();
+        $locale = $request->getLocale();
 
         $event = $em->getRepository('FBNGuideBundle:Event')->getEvent($slug, $locale);
 
@@ -142,7 +142,7 @@ class GuideController extends Controller
         }
 
         // Needed for correct generation of language switcher in view.
-        $slugsTranslations = $this->getSlugTranslationsByEntity($em, $event);
+        $slugsTranslations = $this->getSlugTranslationsByEntity($em, $event, $locale);
 
         ($placeEvt = $event->getRestaurant()) || ($placeEvt = $event->getShop()) || ($placeEvt = $event->getWinemakerDomain()) || ($placeEvt = $event->getEventPast()) || ($placeEvt = $event);
 
@@ -160,11 +160,11 @@ class GuideController extends Controller
         ));
     }
 
-    public function tutorialAction($slug)
+    public function tutorialAction($slug, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $locale = $this->get('request')->getLocale();
+        $locale = $request->getLocale();
 
         $tutorial = $em->getRepository('FBNGuideBundle:Tutorial')->getTutorial($slug, $locale);
 
@@ -173,7 +173,7 @@ class GuideController extends Controller
         }
 
         // Needed for correct generation of language switcher in view.
-        $slugsTranslations = $this->getSlugTranslationsByEntity($em, $tutorial);
+        $slugsTranslations = $this->getSlugTranslationsByEntity($em, $tutorial, $locale);
 
         return $this->render('FBNGuideBundle:Guide:tutorial.html.twig', array(
             'tutorial' => $tutorial,
@@ -293,17 +293,17 @@ class GuideController extends Controller
     /**
      * Get all slugs translations for a given entity.
      *
-     * @param object $em     entity manager
-     * @param object $entity the entity
+     * @param object  $em     entity manager
+     * @param object  $entity the entity
+     * @param string  $locale the locale
      *
      * @return array An array of localized slugs : ['en' => 'slugEN', ...]
      */
-    private function getSlugTranslationsByEntity($em, $entity)
+    private function getSlugTranslationsByEntity($em, $entity, $locale)
     {
         $translationRepository = $em->getRepository('Gedmo\Translatable\Entity\Translation');
 
         $defaultLocale = $this->container->getParameter('locale');
-        $locale = $this->get('request')->getLocale();
 
         // Initiate slugsTranslations array with default locale value.
         if ($locale !== $defaultLocale) {
