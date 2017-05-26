@@ -2,9 +2,9 @@
 
 namespace FBN\UserBundle\Flash;
 
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use FBN\UserBundle\Event\HWIOauthEvent;
 use FBN\UserBundle\FBNUserEvents;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class HWIOauthFlashDispatcher
 {

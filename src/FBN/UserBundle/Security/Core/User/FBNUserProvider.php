@@ -2,11 +2,11 @@
 
 namespace FBN\UserBundle\Security\Core\User;
 
-use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
-use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider;
-use HWI\Bundle\OAuthBundle\Security\Core\Exception\AccountNotLinkedException;
 use FBN\UserBundle\Flash\HWIOauthFlashDispatcher;
 use FOS\UserBundle\Model\UserManagerInterface;
+use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
+use HWI\Bundle\OAuthBundle\Security\Core\Exception\AccountNotLinkedException;
+use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider;
 
 class FBNUserProvider extends FOSUBUserProvider
 {

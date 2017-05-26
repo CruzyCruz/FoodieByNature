@@ -19,7 +19,7 @@ Developed with love when I have time. For us, by us.
 
  * **Version**
 
- `PHP >= 5.6` is required.
+ `PHP >= 5.5.9` is required.
 
  * **Extensions**
 

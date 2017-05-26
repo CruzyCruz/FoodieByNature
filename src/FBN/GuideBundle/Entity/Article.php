@@ -3,9 +3,9 @@
 namespace FBN\GuideBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FBN\UserBundle\Entity\User;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
-use FBN\UserBundle\Entity\User;
 
 /**
  * Article.

@@ -2,10 +2,11 @@
 
 namespace FBN\GuideBundle\Form\Type;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use FBN\GuideBundle\Entity\Coordinates;
 
 class CoordinatesType extends AbstractType
 {
@@ -25,19 +26,19 @@ class CoordinatesType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'FBN\GuideBundle\Entity\Coordinates',
+            'data_class' => Coordinates::class,
         ));
     }
 
     /**
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'fbn_guidebundle_coordinates';
     }

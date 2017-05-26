@@ -3,11 +3,11 @@
 namespace FBN\GuideBundle\EventListener;
 
 use Doctrine\Common\EventSubscriber;
-use Doctrine\ORM\Events;
 use Doctrine\ORM\Event\OnFlushEventArgs;
-use FBN\GuideBundle\Manager\SlugManager;
+use Doctrine\ORM\Events;
 use FBN\GuideBundle\Manager\CoordinatesManager;
 use FBN\GuideBundle\Manager\EventManager;
+use FBN\GuideBundle\Manager\SlugManager;
 
 class DoctrineListenerEarly implements EventSubscriber
 {

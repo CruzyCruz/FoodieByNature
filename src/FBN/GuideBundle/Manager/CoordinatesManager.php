@@ -2,13 +2,13 @@
 
 namespace FBN\GuideBundle\Manager;
 
-use Exception;
-use Symfony\Component\PropertyAccess\PropertyAccess;
-use Geocoder\Geocoder;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\UnitOfWork;
-use FBN\GuideBundle\Entity\CoordinatesISO;
+use Exception;
 use FBN\GuideBundle\Entity\Coordinates;
+use FBN\GuideBundle\Entity\CoordinatesISO;
+use Geocoder\Geocoder;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class CoordinatesManager
 {

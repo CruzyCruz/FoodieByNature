@@ -4,11 +4,11 @@ namespace FBN\GuideBundle\Manager;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\UnitOfWork;
-use FBN\GuideBundle\Entity\CoordinatesISO;
 use FBN\GuideBundle\Entity\Coordinates;
+use FBN\GuideBundle\Entity\CoordinatesISO;
 use FBN\GuideBundle\Entity\Event;
-use FBN\GuideBundle\Manager\EventManager;
 use FBN\GuideBundle\Manager\CoordinatesManager;
+use FBN\GuideBundle\Manager\EventManager;
 
 class SlugManager
 {

@@ -30,18 +30,25 @@ class HWIOauthFlashListener implements EventSubscriberInterface
         );
     }
 
-    public function addSuccessFlash(Event $event)
+    /**
+     * Add message to flash bag.
+     *
+     * @param Event                    $event
+     * @param string                   $eventName
+     * @param EventDispatcherInterface $dispatcher
+     */
+    public function addSuccessFlash(Event $event, $eventName, EventDispatcherInterface $dispatcher)
     {
-        if (!isset(self::$successMessages[$event->getName()])) {
+        if (!isset(self::$successMessages[$eventName])) {
             throw new \InvalidArgumentException('This event does not correspond to a known flash message');
         }
 
         // Let the possibility to manage other events
-        if ($event->getName() == FBNUserEvents::HWIOAUTH_ADD_OAUTH_ID_SUCCESS) {
+        if ($eventName === FBNUserEvents::HWIOAUTH_ADD_OAUTH_ID_SUCCESS) {
             $params = array('%resource_owner_name%' => ucfirst($event->getResourceOwnerName()));
         }
 
-        $this->session->getFlashBag()->add('hwi_success', $this->trans(self::$successMessages[$event->getName()], $params));
+        $this->session->getFlashBag()->add('hwi_success', $this->trans(self::$successMessages[$eventName], $params));
     }
 
     private function trans($message, array $params = array())
