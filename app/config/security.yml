@@ -43,7 +43,7 @@ security:
                 #success_handler: the custom service
                 #invalidate_session: false
             remember_me:
-                key: %secret%
+                secret: %secret%
                 lifetime: 31536000
             oauth:
                 resource_owners:
