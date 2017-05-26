@@ -3,10 +3,12 @@
 namespace FBN\UserBundle\EventListener;
 
 use FBN\UserBundle\FBNUserEvents;
+use FBN\UserBundle\Entity\User;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Http\SecurityEvents;
@@ -42,26 +44,41 @@ class FlashListener implements EventSubscriberInterface
         );
     }
 
-    public function addSuccessFlash(Event $event)
+    /**
+     * Add message to flash bag.
+     *
+     * @param Event                    $event
+     * @param string                   $eventName
+     * @param EventDispatcherInterface $dispatcher
+     */
+    public function addSuccessFlash(Event $event, $eventName, EventDispatcherInterface $dispatcher)
     {
-        if (!isset(self::$successMessages[$event->getName()])) {
+        if (!isset(self::$successMessages[$eventName])) {
             throw new \InvalidArgumentException('This event does not correspond to a known flash message');
         }
 
         $params = array();
 
-        $user = $this->getUser($event);
+        $user = $this->getUser($event, $eventName);
 
         if (is_object($user) || $user instanceof UserInterface) {
             $params = array('%username%' => $user->getUsername());
         }
 
-        $this->session->getFlashBag()->add('success', $this->trans(self::$successMessages[$event->getName()], $params));
+        $this->session->getFlashBag()->add('success', $this->trans(self::$successMessages[$eventName], $params));
     }
 
-    private function getUser($event)
+    /**
+     * Get user.
+     *
+     * @param  Event  $event
+     * @param  string $eventName
+     *
+     * @return User   $user
+     */
+    private function getUser($event, $eventName)
     {
-        if ($event->getName() == FOSUserEvents::REGISTRATION_CONFIRM) {
+        if ($eventName === FOSUserEvents::REGISTRATION_CONFIRM) {
             return $event->getUser();
         }
 
