@@ -2,13 +2,15 @@
 
 namespace FBN\GuideBundle\Form\Type;
 
-use FBN\GuideBundle\Form\Manager\FormManager;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use FBN\GuideBundle\Form\Manager\FormManager;
+use FBN\GuideBundle\Entity\WinemakerArea;
+use FBN\GuideBundle\Entity\WinemakerDomain;
 
 class WinemakerDomainType extends AbstractType
 {
@@ -60,7 +62,7 @@ class WinemakerDomainType extends AbstractType
                 ))
             ->add('openingHours', TextType::class)
             ->add('winemakerArea', EntityType::class, array(
-                'class' => 'FBNGuideBundle:WinemakerArea',
+                'class' => WinemakerArea::class,
                 'property' => 'area',
                 ))
             ->add('coordinates', CoordinatesType::class);
@@ -73,12 +75,12 @@ class WinemakerDomainType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'FBN\GuideBundle\Entity\WinemakerDomain',
+            'data_class' => WinemakerDomain::class,
         ));
     }
 

@@ -2,24 +2,25 @@
 
 namespace FBN\GuideBundle\Form\Type;
 
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use FBN\GuideBundle\Entity\ImageRestaurant;
 
 class ImageRestaurantType extends ImageType
 {
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'FBN\GuideBundle\Entity\ImageRestaurant',
+            'data_class' => ImageRestaurant::class,
         ));
     }
 
     /**
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'fbn_guidebundle_imagerestaurant';
     }

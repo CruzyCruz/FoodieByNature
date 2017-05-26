@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use FBN\GuideBundle\Entity\TutorialChapterPara;
 
 class TutorialChapterParaType extends AbstractType
 {
@@ -25,12 +26,12 @@ class TutorialChapterParaType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'FBN\GuideBundle\Entity\TutorialChapterPara',
+            'data_class' => TutorialChapterPara::class,
         ));
     }
 

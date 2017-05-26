@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use FBN\GuideBundle\Entity\TutorialChapter;
 
 class TutorialChapterType extends AbstractType
 {
@@ -32,12 +33,12 @@ class TutorialChapterType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'FBN\GuideBundle\Entity\TutorialChapter',
+            'data_class' => TutorialChapter::class,
         ));
     }
 
